@@ -1,0 +1,8 @@
+
+ **********************************************************
+ |                                                        |
+ |                 Wellcome to Shortlife                  |
+ |                                                        |
+ | The command line pipelined Continuous Integration tool |
+ |                                                        |
+ **********************************************************
