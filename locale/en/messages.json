@@ -1,0 +1,11 @@
+{
+  "step" : "step",
+  "pipeline" : "pipeline",
+  "notExists" : "doesn't exist!",
+  "default" : "using default!",
+  "isnotproduct" : "is not a software unit in the configuration",
+  "producttype" : "Your product type is:",
+  "trying" : "trying",
+  "start" : "Starting",
+  "forhelp": "type: 'slife -h' for help."
+}

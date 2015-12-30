@@ -1,0 +1,13 @@
+{
+  "params" : {},
+  "steps" : {
+    "stepName1" : {
+      "params" : {}
+    },
+    "stepName2" : {
+      "type" : "pipeline",
+      "from" : "stepName1",
+      "to" : "stepName2"
+    }
+  }
+}

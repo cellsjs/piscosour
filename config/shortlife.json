@@ -1,0 +1,5 @@
+{
+  "unitTypes" : ["component","app","wrapper","componetCordova","appCordova"],
+  "defaultType" : "component",
+  "stages" : ["pre","run","post","public"]
+}
