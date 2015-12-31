@@ -1,1 +1,0 @@
-hola esta es la documentación de vulcanize
