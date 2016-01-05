@@ -8,3 +8,6 @@ var gulp = require('gulp');
 gulp.task('unitType:stepName:stage', function() {
 
 });
+
+// for extra modules imports
+module.exports = gulp;
