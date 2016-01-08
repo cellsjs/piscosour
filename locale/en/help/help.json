@@ -3,8 +3,8 @@
   "usageTitle" : "Usage",
   "usage" : "slife [pipeline_name/(-s ) step_name] [Options...]",
   "options" : "Options",
-  "pipelines" : "Pipelines availables:",
-  "steps" : "steps:",
+  "pipelines" : "Draws availables:",
+  "steps" : "drops:",
   "initStep": "from step : slife -i <stepname>",
   "endStep": "to step : slife -e <stepname>",
   "help" : "shows detailed info for command, <name> of pipeline or -s <step> name step : slife -h <pipelinename>",
@@ -13,5 +13,5 @@
   "version" : "show version",
   "info" : "Showing information for:",
   "stepTitle" : "Step",
-  "pipeline" : "Pipeline"
+  "pipeline" : "Draw"
 }

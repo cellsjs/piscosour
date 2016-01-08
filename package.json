@@ -23,7 +23,7 @@
   "license": "ISC",
   "preferGlobal": true,
   "bin": {
-    "slife": "bin/slife.js"
+    "pisco": "bin/pisco.js"
   },
   "dependencies": {
     "nopt": "^3.0.6",

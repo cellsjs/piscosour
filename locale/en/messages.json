@@ -1,5 +1,5 @@
 {
-  "step" : "step",
+  "step" : "drop",
   "pipeline" : "pipeline",
   "notExists" : "doesn't exist!",
   "default" : "using default!",
@@ -7,5 +7,7 @@
   "producttype" : "Your product type is:",
   "trying" : "trying",
   "start" : "Starting",
-  "forhelp": "type: 'slife -h' for help."
+  "forhelp": "type: 'slife -h' for help.",
+  "notExecutable" : "is not executable",
+  "type" : "type"
 }
