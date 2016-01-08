@@ -12,7 +12,7 @@ var docs = require("./lib/slife-docs"),
 
 var messages = i18n.messages("/messages.json");
 
-var getShortlife = function(){
+var Pisco = function(){
 
     /**
      * Handle all the commands of the utility
@@ -128,16 +128,23 @@ var getShortlife = function(){
             }
         }else{
             for (var pipeline in config.pipelines){
-                if (pipeline === normal.name)
-                    return true;
+                if (pipeline === normal.name) {
+                    if (config.pipelines[pipeline].type!=='util')
+                        return true;
+                    else{
+                        logger.error("#red", pipeline,messages['type'],"#cyan",config.pipelines[pipeline].type,messages['notExecutable']);
+                        return false;
+                    }
+                }
             }
         }
         return false;
     };
 
+    //Piscosour Interface
     return {
         handle: handle
     }
 };
 
-module.exports = getShortlife();
+module.exports = Pisco;

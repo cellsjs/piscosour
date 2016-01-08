@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-var command = require("../index");
+var command = require("../index")();
 
 var onFulfilled = function () {
     process.exit(0);
