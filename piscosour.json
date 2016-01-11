@@ -1,0 +1,13 @@
+{
+  "repoTypes" : ["recipe","component","app"],
+  "defaultType" : "component",
+  "stages" : ["pre","run","post"],
+  "strawTypes" :["normal","util","palallel","state"],
+  "straws" : {
+    "built-in" : {
+      "type" : "util",
+      "name" : "Piscosour commands",
+      "description" : "Create/add new piscosour shot to a project and add it to a straw"
+    }
+  }
+}

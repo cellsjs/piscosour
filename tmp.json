@@ -1,0 +1,66 @@
+{
+  "repoTypes": [
+    "recipe",
+    "component",
+    "app"
+  ],
+  "defaultType": "component",
+  "stages": [
+    "pre",
+    "run",
+    "post"
+  ],
+  "strawTypes": [
+    "normal",
+    "util",
+    "palallel",
+    "state"
+  ],
+  "straws": {
+    "built-in": {
+      "type": "util",
+      "name": "Piscosour commands",
+      "description": "Create/add new piscosour shot to a project and add it to a straw",
+      "params": {},
+      "shots": {
+        "add": {
+          "recipe": {
+            "params": {
+              "paramName1": "value1",
+              "paramName2": [],
+              "paramName3": {}
+            }
+          },
+          "component": {
+            "params": {}
+          },
+          "app": {
+            "params": {}
+          }
+        },
+        "create": {
+          "recipe": {
+            "params": {
+              "paramName1": "value1",
+              "paramName2": [],
+              "paramName3": {}
+            }
+          },
+          "component": {
+            "params": {}
+          },
+          "app": {
+            "params": {}
+          }
+        }
+      }
+    }
+  },
+  "modulesDir": {
+    "module": "/Users/sbonacho/WebstormProjects/piscosour",
+    "local": "/usr/local/bin/.piscosour"
+  },
+  "warnings": [
+    "\u001b[33mWARNING\u001b[39m: File '\u001b[36m/usr/local/bin/.piscosour/piscosour.json\u001b[39m' not found: Using default..."
+  ]
+}
