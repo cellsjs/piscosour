@@ -1,13 +1,15 @@
 {
-  "step" : "drop",
-  "pipeline" : "pipeline",
+  "shot" : "shot",
+  "straw" : "straw",
   "notExists" : "doesn't exist!",
   "default" : "using default!",
   "isnotproduct" : "is not a software unit in the configuration",
-  "producttype" : "Your product type is:",
+  "producttype" : "Your repository type is:",
   "trying" : "trying",
+  "stops" : "stops at",
   "start" : "Starting",
-  "forhelp": "type: 'slife -h' for help.",
+  "forhelp": "type: 'pisco -h' for help.",
   "notExecutable" : "is not executable",
-  "type" : "type"
+  "type" : "type",
+  "task" : "Piscosour shot"
 }

@@ -1,8 +1,8 @@
 
- **********************************************************
- |                                                        |
- |                 Wellcome to Shortlife                  |
- |                                                        |
- | The command line pipelined Continuous Integration tool |
- |                                                        |
- **********************************************************
+ *******************************************************
+ |                                                     |
+ |                 Wellcome to Piscosour               |
+ |                                                     |
+ | The shared command line Continuous Integration tool |
+ |                                                     |
+ *******************************************************

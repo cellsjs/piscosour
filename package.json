@@ -1,14 +1,14 @@
 {
-  "name": "shortlife",
+  "name": "piscosour",
   "version": "0.0.1",
-  "description": "A lifecycle tool for pipelined automated tasks",
+  "description": "CI wherever you go",
   "main": "index.js",
   "scripts": {
     "deps": "npm install"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/cellsjs/shortlife.git"
+    "url": "https://github.com/cellsjs/piscosour.git"
   },
   "keywords": [
     "continuous",
@@ -17,7 +17,9 @@
     "install",
     "lifecycle",
     "pipeline",
-    "gulp"
+    "gulp",
+    "grunt",
+    "bash"
   ],
   "author": "Santiago García-Bonacho Rico",
   "license": "ISC",
@@ -28,10 +30,8 @@
   "dependencies": {
     "nopt": "^3.0.6",
     "fs": "^0.0.2",
-    "gulp": "^3.8.5",
     "moment" : "^2.10.6",
     "require-dir": "^0.3.0",
-    "run-sequence": "^1.1.2",
     "chalk": "^1.1.1",
     "minimist": "^1.2.0"
   }

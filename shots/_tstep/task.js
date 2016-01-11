@@ -3,9 +3,9 @@
 var gulp = require('gulp');
 
 /**
- * see configuration for unitTypes and stages
+ * see configuration for repoTypes and stages
  */
-gulp.task('unitType:stepName:stage', function() {
+gulp.task('repoType:stepName:stage', function() {
 
 });
 
