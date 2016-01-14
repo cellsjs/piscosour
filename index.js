@@ -3,6 +3,7 @@
 'use strict';
 
 var Shot = require("./lib/shot"),
+    logger = require("./lib/logger"),
     Sour = require("./lib/sour");
 
 /**
@@ -10,7 +11,8 @@ var Shot = require("./lib/shot"),
  */
 var Piscosour = {
     Shot: Shot,
-    Sour: Sour
+    Sour: Sour,
+    logger: logger
 };
 
 module.exports = Piscosour;

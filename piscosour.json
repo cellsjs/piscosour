@@ -4,10 +4,40 @@
   "stages" : ["pre","run","post"],
   "strawTypes" :["normal","util","palallel","state"],
   "straws" : {
-    "built-in" : {
+    "create" : {
+      "type" : "normal",
+      "name" : "Create from scratch",
+      "description" : "Starting a repository from scratch"
+    },
+    "start" : {
+      "type" : "normal",
+      "name" : "Start from repository",
+      "description" : "Start to work in a particular existing repository"
+    },
+    "dev" : {
+      "type" : "normal",
+      "name" : "Develop",
+      "description" : "Local testing and develop lifecicle"
+    },
+    "deliver" : {
+      "type" : "normal",
+      "name" : "Push code",
+      "description" : "Deliver code to a develop branch with test in a particular existing repository"
+    },
+    "release" : {
+      "type" : "normal",
+      "name" : "Release tag",
+      "description" : "Delivery code to a master branch with test in a particular existing repository and tag if everything is ok"
+    },
+    "publish" : {
+      "type" : "normal",
+      "name" : "Publish repository",
+      "description" : "Publish repository to a software repository (npm,...)"
+    },
+    "environment" : {
       "type" : "util",
-      "name" : "Piscosour commands",
-      "description" : "Create/add new piscosour shot to a project and add it to a straw"
+      "name" : "Environment Checks",
+      "description" : "Checks and install if an environment is ok"
     }
   }
 }
