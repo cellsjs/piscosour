@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
-var params = require("../lib/params"),
-    sour = require("../index").Sour(params);
+var sour = require("../index").Sour();
 
 var onFulfilled = function () {
     process.exit(0);

@@ -1,0 +1,9 @@
+{
+  "params" : {},
+  "shots" : {
+    "environment" : {
+      "type": "straw"
+    },
+    "scaffolding" : {}
+  }
+}
