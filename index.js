@@ -4,6 +4,8 @@
 
 var Shot = require("./lib/shot"),
     logger = require("./lib/logger"),
+    config = require("./lib/config"),
+    params = require("./lib/params"),
     Sour = require("./lib/sour");
 
 /**
@@ -12,7 +14,9 @@ var Shot = require("./lib/shot"),
 var Piscosour = {
     Shot: Shot,
     Sour: Sour,
-    logger: logger
+    logger: logger,
+    config: config,
+    params: params
 };
 
 module.exports = Piscosour;
