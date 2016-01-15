@@ -1,7 +1,7 @@
 {
   "repoTypes" : ["recipe","component","app"],
   "defaultType" : "component",
-  "stages" : ["pre","run","post"],
+  "stages" : ["check","config","run","prove","notify"],
   "strawTypes" :["normal","util","palallel","state"],
   "straws" : {
     "create" : {

@@ -1,5 +1,14 @@
 {
-  "paramName1" : "value1",
-  "paramName2" : [],
-  "paramName3" : {}
+  "prompts": [
+    {
+      "type": "input",
+      "name": "recipeName",
+      "message": "Choose a name for your pisco recipe"
+    },
+    {
+      "type": "input",
+      "name": "description",
+      "message": "Write a brief description for your recipe"
+    }
+  ]
 }
