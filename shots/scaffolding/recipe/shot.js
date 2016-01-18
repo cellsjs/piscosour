@@ -28,7 +28,7 @@ var shot = new Shot({
         process.chdir(path.join(pwd,params.recipeName));
 
         //Execute yeoman externally
-        shot.execute("yo",["pisco-recipe","--recipeName",params.recipeName,"--description",params.description],resolve, reject);
+        shot.execute("yo",params.addPrompts(["pisco-recipe"], shot.runner.params.prompts),resolve, reject);
     },
 
     prove : function(resolve){
