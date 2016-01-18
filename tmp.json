@@ -1,14 +1,470 @@
 {
+  "straws": {
+    "create": {
+      "shots": {
+        "environment": {
+          "type": "straw",
+          "recipe": {
+            "params": {}
+          },
+          "component": {
+            "params": {}
+          },
+          "app": {
+            "params": {}
+          },
+          "default": {
+            "params": {}
+          }
+        },
+        "scaffolding": {
+          "recipe": {
+            "params": {
+              "prompts": [
+                {
+                  "type": "input",
+                  "name": "recipeName",
+                  "message": "Choose a name for your pisco recipe"
+                },
+                {
+                  "type": "input",
+                  "name": "description",
+                  "message": "Write a brief description for your recipe"
+                }
+              ]
+            }
+          },
+          "component": {
+            "params": {}
+          },
+          "app": {
+            "params": {
+              "paramName1": "value1",
+              "paramName2": [],
+              "paramName3": {}
+            }
+          },
+          "default": {
+            "params": {}
+          }
+        }
+      },
+      "params": {},
+      "type": "normal",
+      "name": "Create from scratch",
+      "description": "Starting a repository from scratch"
+    },
+    "start": {
+      "type": "normal",
+      "name": "Start from repository",
+      "description": "Start to work in a particular existing repository",
+      "params": {},
+      "shots": {
+        "install": {
+          "recipe": {
+            "params": {
+              "paramName1": "value1",
+              "paramName2": [],
+              "paramName3": {}
+            }
+          },
+          "component": {
+            "params": {}
+          },
+          "app": {
+            "params": {}
+          },
+          "default": {
+            "params": {}
+          }
+        },
+        "create": {
+          "recipe": {
+            "params": {}
+          },
+          "component": {
+            "params": {}
+          },
+          "app": {
+            "params": {}
+          },
+          "default": {
+            "params": {}
+          }
+        }
+      }
+    },
+    "dev": {
+      "type": "normal",
+      "name": "Develop",
+      "description": "Local testing and develop lifecicle",
+      "params": {},
+      "shots": {
+        "install": {
+          "recipe": {
+            "params": {
+              "paramName1": "value1",
+              "paramName2": [],
+              "paramName3": {}
+            }
+          },
+          "component": {
+            "params": {}
+          },
+          "app": {
+            "params": {}
+          },
+          "default": {
+            "params": {}
+          }
+        },
+        "create": {
+          "recipe": {
+            "params": {}
+          },
+          "component": {
+            "params": {}
+          },
+          "app": {
+            "params": {}
+          },
+          "default": {
+            "params": {}
+          }
+        }
+      }
+    },
+    "deliver": {
+      "type": "normal",
+      "name": "Push code",
+      "description": "Deliver code to a develop branch with test in a particular existing repository",
+      "params": {},
+      "shots": {
+        "install": {
+          "recipe": {
+            "params": {
+              "paramName1": "value1",
+              "paramName2": [],
+              "paramName3": {}
+            }
+          },
+          "component": {
+            "params": {}
+          },
+          "app": {
+            "params": {}
+          },
+          "default": {
+            "params": {}
+          }
+        },
+        "create": {
+          "recipe": {
+            "params": {}
+          },
+          "component": {
+            "params": {}
+          },
+          "app": {
+            "params": {}
+          },
+          "default": {
+            "params": {}
+          }
+        }
+      }
+    },
+    "release": {
+      "type": "normal",
+      "name": "Release tag",
+      "description": "Delivery code to a master branch with test in a particular existing repository and tag if everything is ok",
+      "params": {},
+      "shots": {
+        "install": {
+          "recipe": {
+            "params": {
+              "paramName1": "value1",
+              "paramName2": [],
+              "paramName3": {}
+            }
+          },
+          "component": {
+            "params": {}
+          },
+          "app": {
+            "params": {}
+          },
+          "default": {
+            "params": {}
+          }
+        },
+        "create": {
+          "recipe": {
+            "params": {}
+          },
+          "component": {
+            "params": {}
+          },
+          "app": {
+            "params": {}
+          },
+          "default": {
+            "params": {}
+          }
+        }
+      }
+    },
+    "publish": {
+      "type": "normal",
+      "name": "Publish repository",
+      "description": "Publish repository to a software repository (npm,...)",
+      "params": {},
+      "shots": {
+        "install": {
+          "recipe": {
+            "params": {
+              "paramName1": "value1",
+              "paramName2": [],
+              "paramName3": {}
+            }
+          },
+          "component": {
+            "params": {}
+          },
+          "app": {
+            "params": {}
+          },
+          "default": {
+            "params": {}
+          }
+        },
+        "create": {
+          "recipe": {
+            "params": {}
+          },
+          "component": {
+            "params": {}
+          },
+          "app": {
+            "params": {}
+          },
+          "default": {
+            "params": {}
+          }
+        }
+      }
+    },
+    "environment": {
+      "type": "util",
+      "name": "Environment Checks",
+      "description": "Checks and install if an environment is ok",
+      "params": {},
+      "shots": {
+        "system": {
+          "recipe": {
+            "params": {
+              "paramName1": "value1",
+              "paramName2": [],
+              "paramName3": {}
+            }
+          },
+          "component": {
+            "params": {}
+          },
+          "app": {
+            "params": {
+              "paramName1": "value1",
+              "paramName2": [],
+              "paramName3": {}
+            }
+          },
+          "default": {
+            "params": {}
+          }
+        },
+        "npm": {
+          "recipe": {
+            "params": {
+              "paramName1": "value1",
+              "paramName2": [],
+              "paramName3": {}
+            }
+          },
+          "component": {
+            "params": {}
+          },
+          "app": {
+            "params": {
+              "paramName1": "value1",
+              "paramName2": [],
+              "paramName3": {}
+            }
+          },
+          "default": {
+            "params": {}
+          }
+        }
+      }
+    }
+  },
+  "shots": {
+    "_shot": {
+      "recipe": {
+        "params": {}
+      },
+      "component": {
+        "params": {}
+      },
+      "app": {
+        "params": {}
+      },
+      "default": {
+        "params": {}
+      }
+    },
+    "install": {
+      "recipe": {
+        "params": {
+          "paramName1": "value1",
+          "paramName2": [],
+          "paramName3": {}
+        }
+      },
+      "component": {
+        "params": {}
+      },
+      "app": {
+        "params": {}
+      },
+      "default": {
+        "params": {}
+      }
+    },
+    "npm": {
+      "recipe": {
+        "params": {
+          "paramName1": "value1",
+          "paramName2": [],
+          "paramName3": {}
+        }
+      },
+      "component": {
+        "params": {}
+      },
+      "app": {
+        "params": {
+          "paramName1": "value1",
+          "paramName2": [],
+          "paramName3": {}
+        }
+      },
+      "default": {
+        "params": {}
+      }
+    },
+    "pull": {
+      "recipe": {
+        "params": {}
+      },
+      "component": {
+        "params": {}
+      },
+      "app": {
+        "params": {}
+      },
+      "default": {
+        "params": {
+          "paramName1": "value1",
+          "paramName2": [],
+          "paramName3": {}
+        }
+      }
+    },
+    "push": {
+      "recipe": {
+        "params": {}
+      },
+      "component": {
+        "params": {}
+      },
+      "app": {
+        "params": {}
+      },
+      "default": {
+        "params": {
+          "paramName1": "value1",
+          "paramName2": [],
+          "paramName3": {}
+        }
+      }
+    },
+    "scaffolding": {
+      "recipe": {
+        "params": {
+          "prompts": [
+            {
+              "type": "input",
+              "name": "recipeName",
+              "message": "Choose a name for your pisco recipe"
+            },
+            {
+              "type": "input",
+              "name": "description",
+              "message": "Write a brief description for your recipe"
+            }
+          ]
+        }
+      },
+      "component": {
+        "params": {}
+      },
+      "app": {
+        "params": {
+          "paramName1": "value1",
+          "paramName2": [],
+          "paramName3": {}
+        }
+      },
+      "default": {
+        "params": {}
+      }
+    },
+    "system": {
+      "recipe": {
+        "params": {
+          "paramName1": "value1",
+          "paramName2": [],
+          "paramName3": {}
+        }
+      },
+      "component": {
+        "params": {}
+      },
+      "app": {
+        "params": {
+          "paramName1": "value1",
+          "paramName2": [],
+          "paramName3": {}
+        }
+      },
+      "default": {
+        "params": {}
+      }
+    }
+  },
   "repoTypes": [
     "recipe",
     "component",
-    "app"
+    "app",
+    "default"
   ],
   "defaultType": "component",
   "stages": [
-    "pre",
+    "check",
+    "config",
     "run",
-    "post"
+    "prove",
+    "notify"
   ],
   "strawTypes": [
     "normal",
@@ -16,51 +472,9 @@
     "palallel",
     "state"
   ],
-  "straws": {
-    "built-in": {
-      "type": "util",
-      "name": "Piscosour commands",
-      "description": "Create/add new piscosour shot to a project and add it to a straw",
-      "params": {},
-      "shots": {
-        "add": {
-          "recipe": {
-            "params": {
-              "paramName1": "value1",
-              "paramName2": [],
-              "paramName3": {}
-            }
-          },
-          "component": {
-            "params": {}
-          },
-          "app": {
-            "params": {}
-          }
-        },
-        "create": {
-          "recipe": {
-            "params": {
-              "paramName1": "value1",
-              "paramName2": [],
-              "paramName3": {}
-            }
-          },
-          "component": {
-            "params": {}
-          },
-          "app": {
-            "params": {}
-          }
-        }
-      }
-    }
-  },
   "modulesDir": {
     "module": "/Users/sbonacho/WebstormProjects/piscosour",
-    "local": "/usr/local/bin/.piscosour"
+    "local": "/Users/sbonacho/WebstormProjects/tmp"
   },
-  "warnings": [
-    "\u001b[33mWARNING\u001b[39m: File '\u001b[36m/usr/local/bin/.piscosour/piscosour.json\u001b[39m' not found: Using default..."
-  ]
+  "warnings": []
 }

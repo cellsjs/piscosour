@@ -2,6 +2,7 @@
 
 var piscosour = require('../../..'),
     fs = require('fs'),
+    path = require('path'),
     pwd = process.env.PWD,
     Shot = piscosour.Shot,
     params = piscosour.params,
@@ -18,31 +19,15 @@ var shot = new Shot({
 
     config : function(resolve){
         logger.info("#magenta","pre","Preparing piscosour recipe params");
-
-
-        var prompts = [
-            {
-                "type": "input",
-                "name": "recipeName",
-                "message": "Choose a name for your pisco recipe"
-            },
-            {
-                "type": "input",
-                "name": "description",
-                "message": "Write a brief description for your recipe"
-            }
-        ];
-
-        //params.inquire(piscosour.params.prompts,resolve);
-        params.inquire(prompts,resolve);
+        params.inquire(shot.runner.params.prompts,resolve);
     },
-
-
 
     run : function(resolve, reject){
         logger.info("#magenta","run","Scaffolding Piscosour recipe");
-        createDir(pwd+"/"+params.recipeName);
-        process.chdir(pwd+"/"+params.recipeName);
+        createDir(path.join(pwd,params.recipeName));
+        process.chdir(path.join(pwd,params.recipeName));
+
+        //Execute yeoman externally
         shot.execute("yo",["pisco-recipe","--recipeName",params.recipeName,"--description",params.description],resolve, reject);
     },
 
@@ -50,8 +35,6 @@ var shot = new Shot({
         logger.info("#magenta","post","creating piscosour recipe");
         resolve();
     }
-
-
 
 });
 

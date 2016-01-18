@@ -1,5 +1,5 @@
 {
-  "repoTypes" : ["recipe","component","app"],
+  "repoTypes" : ["recipe","component","app","default"],
   "defaultType" : "component",
   "stages" : ["check","config","run","prove","notify"],
   "strawTypes" :["normal","util","palallel","state"],

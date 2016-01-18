@@ -17,17 +17,17 @@ var shot = new Shot({
     pre : function(resolve, reject){
         shot.execute("ls",["-las"], resolve, reject);
 
-        logger.info("Getting all system dependencies...","#green","OK");
+        logger.info("SYSTEM PRE","#green","OK");
     },
 
     run : function(resolve,reject){
         shot.runGulp("prueba", resolve, reject);
 
-        logger.info("Solving system dependencies...","#green","OK");
+        logger.info("SYSTEM RUN","#green","OK");
     },
 
     post : function(resolve){
-        logger.info("Checking all system dependencies...","#green","OK");
+        logger.info("SYSTEM POST","#green","OK");
         resolve();
     }
 
