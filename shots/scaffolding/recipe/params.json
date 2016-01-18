@@ -3,11 +3,13 @@
     {
       "type": "input",
       "name": "recipeName",
+      "required" : true,
       "message": "Choose a name for your pisco recipe"
     },
     {
       "type": "input",
       "name": "description",
+      "required" : false,
       "message": "Write a brief description for your recipe"
     }
   ]

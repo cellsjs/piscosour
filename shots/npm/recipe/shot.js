@@ -6,7 +6,7 @@ var piscosour = require('../../../index'),
 
 
 module.exports = new Shot({
-    description : "Install all npm utils",
+    description : "Install all NPM utils",
 
     // all stage implementation
     pre : function(resolve){
