@@ -6,6 +6,7 @@
   "isnotproduct" : "is not a software unit in the configuration",
   "producttype" : "Your repository type is:",
   "trying" : "trying",
+  "running" : "running",
   "stops" : "stops at",
   "start" : "Starting",
   "forhelp": "type: 'pisco -h' for help.",

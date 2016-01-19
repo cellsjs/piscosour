@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-var sour = require("../index").Sour();
+var sour = require("..").Sour();
 
 var onFulfilled = function () {
     process.exit(0);
