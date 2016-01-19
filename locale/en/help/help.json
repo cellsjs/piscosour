@@ -1,9 +1,10 @@
 {
   "name" : "Name",
   "usageTitle" : "Usage",
-  "usage" : "pisco [straw_name/(-s ) shot_name] [Options...]",
+  "usage" : "pisco repoType:[straw_name/(-s ) shot_name] [Options...]",
   "options" : "Options",
   "straws" : "Straws availables:",
+  "repoTypes" : "Repository Types availables:",
   "shots" : "shots:",
   "initShot": "from shot : pisco -i <shotname>",
   "endShot": "to shot : pisco -e <shotname>",

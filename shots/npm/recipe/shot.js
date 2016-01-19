@@ -1,27 +1,21 @@
 'use strict';
 
-var piscosour = require('../../../index'),
+var piscosour = require('../../..'),
     Shot = piscosour.Shot,
     logger = piscosour.logger;
 
+var shot = new Shot({
+    description : "Install all npm commands",
 
-module.exports = new Shot({
-    description : "Install all NPM utils",
-
-    // all stage implementation
-    pre : function(resolve){
-        logger.info("Getting all system dependencies...","#green","OK");
-        resolve();
+    check : function(resolve, reject){
+        logger.info("Getting all npm dependencies...","#green","OK");
+        resolve({skip:false});
     },
 
-    run : function(resolve){
-        logger.info("Solving system dependencies...","#green","OK");
-        resolve();
-    },
-
-    post : function(resolve){
-        logger.info("Checking all system dependencies...","#green","OK");
-        resolve();
+    run : function(resolve, reject){
+        logger.info("Installing npm dependencies...");
+        shot.executeAll(shot.runner.params.installCmds,resolve, reject);
     }
-
 });
+
+module.exports = shot;

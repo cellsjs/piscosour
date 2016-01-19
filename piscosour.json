@@ -1,8 +1,8 @@
 {
-  "repoTypes" : ["recipe","component","app","default"],
-  "defaultType" : "component",
+  "repoTypes" : ["recipe","default"],
+  "defaultType" : "recipe",
   "stages" : ["check","config","run","prove","notify"],
-  "strawTypes" :["normal","util","palallel","state"],
+  "strawTypes" :["normal","palallel"],
   "straws" : {
     "create" : {
       "type" : "normal",
@@ -27,7 +27,7 @@
     "release" : {
       "type" : "normal",
       "name" : "Release tag",
-      "description" : "Delivery code to a master branch with test in a particular existing repository and tag if everything is ok"
+      "description" : "Deliver code to a master branch with test in a particular existing repository and tag if everything is ok"
     },
     "publish" : {
       "type" : "normal",

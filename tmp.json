@@ -1,6 +1,183 @@
 {
+  "shots": {
+    "_shot": {
+      "recipe": {
+        "params": {}
+      },
+      "component": {
+        "params": {}
+      },
+      "app": {
+        "params": {}
+      },
+      "default": {
+        "params": {}
+      }
+    },
+    "install": {
+      "recipe": {
+        "params": {
+          "paramName1": "value1",
+          "paramName2": [],
+          "paramName3": {}
+        }
+      },
+      "component": {
+        "params": {}
+      },
+      "app": {
+        "params": {}
+      },
+      "default": {
+        "params": {}
+      }
+    },
+    "npm": {
+      "recipe": {
+        "params": {
+          "paramName1": "value1",
+          "paramName2": [],
+          "paramName3": {}
+        }
+      },
+      "component": {
+        "params": {}
+      },
+      "app": {
+        "params": {
+          "paramName1": "value1",
+          "paramName2": [],
+          "paramName3": {}
+        }
+      },
+      "default": {
+        "params": {}
+      }
+    },
+    "pull": {
+      "recipe": {
+        "params": {}
+      },
+      "component": {
+        "params": {}
+      },
+      "app": {
+        "params": {}
+      },
+      "default": {
+        "params": {
+          "paramName1": "value1",
+          "paramName2": [],
+          "paramName3": {}
+        }
+      }
+    },
+    "push": {
+      "recipe": {
+        "params": {}
+      },
+      "component": {
+        "params": {}
+      },
+      "app": {
+        "params": {}
+      },
+      "default": {
+        "params": {
+          "paramName1": "value1",
+          "paramName2": [],
+          "paramName3": {}
+        }
+      }
+    },
+    "scaffolding": {
+      "recipe": {
+        "params": {
+          "prompts": [
+            {
+              "type": "input",
+              "name": "recipeName",
+              "required": true,
+              "message": "Write a name for your pisco recipe"
+            },
+            {
+              "type": "input",
+              "name": "cmd",
+              "required": true,
+              "message": "Write the command line executable for your pisco recipe"
+            },
+            {
+              "type": "input",
+              "name": "description",
+              "required": false,
+              "message": "Write a brief description for your recipe"
+            }
+          ]
+        }
+      },
+      "component": {
+        "params": {}
+      },
+      "app": {
+        "params": {
+          "paramName1": "value1",
+          "paramName2": [],
+          "paramName3": {}
+        }
+      },
+      "default": {
+        "params": {}
+      }
+    },
+    "system": {
+      "recipe": {
+        "params": {
+          "paramName1": "value1",
+          "paramName2": [],
+          "paramName3": {}
+        }
+      },
+      "component": {
+        "params": {}
+      },
+      "app": {
+        "params": {
+          "paramName1": "value1",
+          "paramName2": [],
+          "paramName3": {}
+        }
+      },
+      "default": {
+        "params": {}
+      }
+    }
+  },
+  "repoTypes": [
+    "recipe",
+    "component",
+    "app",
+    "default"
+  ],
+  "defaultType": "component",
+  "stages": [
+    "check",
+    "config",
+    "run",
+    "prove",
+    "notify"
+  ],
+  "strawTypes": [
+    "normal",
+    "util",
+    "palallel",
+    "state"
+  ],
   "straws": {
     "create": {
+      "type": "normal",
+      "name": "Create from scratch",
+      "description": "Starting a repository from scratch",
+      "params": {},
       "shots": {
         "environment": {
           "type": "straw",
@@ -24,11 +201,19 @@
                 {
                   "type": "input",
                   "name": "recipeName",
-                  "message": "Choose a name for your pisco recipe"
+                  "required": true,
+                  "message": "Write a name for your pisco recipe"
+                },
+                {
+                  "type": "input",
+                  "name": "cmd",
+                  "required": true,
+                  "message": "Write the command line executable for your pisco recipe"
                 },
                 {
                   "type": "input",
                   "name": "description",
+                  "required": false,
                   "message": "Write a brief description for your recipe"
                 }
               ]
@@ -48,11 +233,7 @@
             "params": {}
           }
         }
-      },
-      "params": {},
-      "type": "normal",
-      "name": "Create from scratch",
-      "description": "Starting a repository from scratch"
+      }
     },
     "start": {
       "type": "normal",
@@ -307,174 +488,11 @@
       }
     }
   },
-  "shots": {
-    "_shot": {
-      "recipe": {
-        "params": {}
-      },
-      "component": {
-        "params": {}
-      },
-      "app": {
-        "params": {}
-      },
-      "default": {
-        "params": {}
-      }
-    },
-    "install": {
-      "recipe": {
-        "params": {
-          "paramName1": "value1",
-          "paramName2": [],
-          "paramName3": {}
-        }
-      },
-      "component": {
-        "params": {}
-      },
-      "app": {
-        "params": {}
-      },
-      "default": {
-        "params": {}
-      }
-    },
-    "npm": {
-      "recipe": {
-        "params": {
-          "paramName1": "value1",
-          "paramName2": [],
-          "paramName3": {}
-        }
-      },
-      "component": {
-        "params": {}
-      },
-      "app": {
-        "params": {
-          "paramName1": "value1",
-          "paramName2": [],
-          "paramName3": {}
-        }
-      },
-      "default": {
-        "params": {}
-      }
-    },
-    "pull": {
-      "recipe": {
-        "params": {}
-      },
-      "component": {
-        "params": {}
-      },
-      "app": {
-        "params": {}
-      },
-      "default": {
-        "params": {
-          "paramName1": "value1",
-          "paramName2": [],
-          "paramName3": {}
-        }
-      }
-    },
-    "push": {
-      "recipe": {
-        "params": {}
-      },
-      "component": {
-        "params": {}
-      },
-      "app": {
-        "params": {}
-      },
-      "default": {
-        "params": {
-          "paramName1": "value1",
-          "paramName2": [],
-          "paramName3": {}
-        }
-      }
-    },
-    "scaffolding": {
-      "recipe": {
-        "params": {
-          "prompts": [
-            {
-              "type": "input",
-              "name": "recipeName",
-              "message": "Choose a name for your pisco recipe"
-            },
-            {
-              "type": "input",
-              "name": "description",
-              "message": "Write a brief description for your recipe"
-            }
-          ]
-        }
-      },
-      "component": {
-        "params": {}
-      },
-      "app": {
-        "params": {
-          "paramName1": "value1",
-          "paramName2": [],
-          "paramName3": {}
-        }
-      },
-      "default": {
-        "params": {}
-      }
-    },
-    "system": {
-      "recipe": {
-        "params": {
-          "paramName1": "value1",
-          "paramName2": [],
-          "paramName3": {}
-        }
-      },
-      "component": {
-        "params": {}
-      },
-      "app": {
-        "params": {
-          "paramName1": "value1",
-          "paramName2": [],
-          "paramName3": {}
-        }
-      },
-      "default": {
-        "params": {}
-      }
-    }
-  },
-  "repoTypes": [
-    "recipe",
-    "component",
-    "app",
-    "default"
-  ],
-  "defaultType": "component",
-  "stages": [
-    "check",
-    "config",
-    "run",
-    "prove",
-    "notify"
-  ],
-  "strawTypes": [
-    "normal",
-    "util",
-    "palallel",
-    "state"
-  ],
   "modulesDir": {
     "module": "/Users/sbonacho/WebstormProjects/piscosour",
-    "local": "/Users/sbonacho/WebstormProjects/tmp"
+    "c_local": "/Users/sbonacho/WebstormProjects/tmp/pisco-cells/.piscosour"
   },
-  "warnings": []
+  "warnings": [
+    "\u001b[33mWARNING\u001b[39m: File '\u001b[36m/Users/sbonacho/WebstormProjects/tmp/pisco-cells/.piscosour/piscosour.json\u001b[39m' not found: Using default..."
+  ]
 }

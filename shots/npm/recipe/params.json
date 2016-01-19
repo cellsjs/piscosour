@@ -1,5 +1,12 @@
 {
-  "paramName1" : "value1",
-  "paramName2" : [],
-  "paramName3" : {}
+  "installCmds": [
+    {
+      "cmd": "npm",
+      "args": ["install","-g","yo"]
+    },
+    {
+      "cmd" : "npm",
+      "args": ["install","-g","git+https://github.com/sbonacho/generator-pisco-recipe.git"]
+    }
+  ]
 }
