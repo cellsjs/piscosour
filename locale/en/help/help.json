@@ -4,6 +4,7 @@
   "usage" : "pisco repoType:[straw_name/(-s ) shot_name] [Options...]",
   "options" : "Options",
   "straws" : "Straws availables:",
+  "utils" : "Piscosour utils:",
   "repoTypes" : "Repository Types availables:",
   "shots" : "shots:",
   "initShot": "from shot : pisco -i <shotname>",

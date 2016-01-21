@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-
 var sour = require("..").Sour();
 
 var onFulfilled = function () {

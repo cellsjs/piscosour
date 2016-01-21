@@ -2,8 +2,18 @@
   "repoTypes" : ["recipe","default"],
   "defaultType" : "recipe",
   "stages" : ["check","config","run","prove","notify"],
-  "strawTypes" :["normal","palallel"],
+  "strawTypes" :["normal","parallel","utils","internal"],
   "straws" : {
+    "install" : {
+      "type" : "internal",
+      "name" : "Install recipe",
+      "description" : "Install piscosour recipe to this executable"
+    },
+    "new-shot" : {
+      "type" : "internal",
+      "name" : "Add new shot",
+      "description" : "Add new templated shot to to this recipe"
+    },
     "create" : {
       "type" : "normal",
       "name" : "Create from scratch",
