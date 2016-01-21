@@ -1,5 +1,17 @@
 {
-  "paramName1" : "value1",
-  "paramName2" : [],
-  "paramName3" : {}
+  "prompts": [
+    {
+      "type": "input",
+      "name": "recipeName",
+      "required" : true,
+      "message": "npm package name (or git repository url) of the recipe"
+    },
+    {
+      "type": "confirm",
+      "name": "reinstall",
+      "required" : true,
+      "message": "Re-install recipe if is already installed",
+      "default" : true
+    }
+  ]
 }
