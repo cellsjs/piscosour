@@ -28,6 +28,7 @@
     "pisco": "bin/pisco.js"
   },
   "dependencies": {
+    "bunyan" : "^1.5.1",
     "nopt": "^3.0.6",
     "fs": "^0.0.2",
     "moment" : "^2.10.6",

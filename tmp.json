@@ -1,88 +1,42 @@
 {
   "shots": {
     "_shot": {
-      "recipe": {
-        "params": {}
-      },
       "component": {
-        "params": {}
-      },
-      "app": {
-        "params": {}
-      },
-      "default": {
-        "params": {}
-      }
-    },
-    "install": {
-      "recipe": {
-        "params": {
-          "paramName1": "value1",
-          "paramName2": [],
-          "paramName3": {}
-        }
-      },
-      "component": {
-        "params": {}
-      },
-      "app": {
-        "params": {}
-      },
-      "default": {
         "params": {}
       }
     },
     "npm": {
-      "recipe": {
-        "params": {
-          "paramName1": "value1",
-          "paramName2": [],
-          "paramName3": {}
-        }
-      },
       "component": {
         "params": {}
       },
-      "app": {
+      "recipe": {
         "params": {
-          "paramName1": "value1",
-          "paramName2": [],
-          "paramName3": {}
+          "installCmds": [
+            {
+              "cmd": "npm",
+              "args": [
+                "install",
+                "-g",
+                "yo"
+              ]
+            },
+            {
+              "cmd": "npm",
+              "args": [
+                "install",
+                "-g",
+                "git+https://github.com/sbonacho/generator-pisco-recipe.git"
+              ]
+            }
+          ]
         }
       },
       "default": {
         "params": {}
       }
     },
-    "pull": {
-      "recipe": {
-        "params": {}
-      },
+    "prepare": {
       "component": {
-        "params": {}
-      },
-      "app": {
-        "params": {}
-      },
-      "default": {
-        "params": {
-          "paramName1": "value1",
-          "paramName2": [],
-          "paramName3": {}
-        }
-      }
-    },
-    "push": {
-      "recipe": {
-        "params": {}
-      },
-      "component": {
-        "params": {}
-      },
-      "app": {
-        "params": {}
-      },
-      "default": {
         "params": {
           "paramName1": "value1",
           "paramName2": [],
@@ -91,6 +45,9 @@
       }
     },
     "scaffolding": {
+      "component": {
+        "params": {}
+      },
       "recipe": {
         "params": {
           "prompts": [
@@ -115,10 +72,15 @@
           ]
         }
       },
+      "default": {
+        "params": {}
+      }
+    },
+    "system": {
       "component": {
         "params": {}
       },
-      "app": {
+      "recipe": {
         "params": {
           "paramName1": "value1",
           "paramName2": [],
@@ -129,50 +91,126 @@
         "params": {}
       }
     },
-    "system": {
+    "install": {
       "recipe": {
         "params": {
-          "paramName1": "value1",
-          "paramName2": [],
-          "paramName3": {}
-        }
-      },
-      "component": {
-        "params": {}
-      },
-      "app": {
-        "params": {
-          "paramName1": "value1",
-          "paramName2": [],
-          "paramName3": {}
+          "prompts": [
+            {
+              "type": "input",
+              "name": "recipeName",
+              "required": true,
+              "message": "npm package name (or git repository url) of the recipe"
+            },
+            {
+              "type": "confirm",
+              "name": "reinstall",
+              "required": true,
+              "message": "Re-install recipe if is already installed",
+              "default": true
+            }
+          ]
         }
       },
       "default": {
         "params": {}
       }
+    },
+    "pull": {
+      "recipe": {
+        "params": {}
+      },
+      "default": {
+        "params": {
+          "paramName1": "value1",
+          "paramName2": [],
+          "paramName3": {}
+        }
+      }
+    },
+    "push": {
+      "recipe": {
+        "params": {}
+      },
+      "default": {
+        "params": {
+          "paramName1": "value1",
+          "paramName2": [],
+          "paramName3": {}
+        }
+      }
     }
   },
   "repoTypes": [
-    "recipe",
     "component",
-    "app",
+    "recipe",
     "default"
   ],
-  "defaultType": "component",
-  "stages": [
-    "check",
-    "config",
-    "run",
-    "prove",
-    "notify"
-  ],
-  "strawTypes": [
-    "normal",
-    "util",
-    "palallel",
-    "state"
-  ],
+  "defaultType": "recipe",
   "straws": {
+    "install": {
+      "type": "internal",
+      "name": "Install recipe",
+      "description": "Install piscosour recipe to this executable",
+      "params": {},
+      "shots": {
+        "install": {
+          "recipe": {
+            "params": {
+              "prompts": [
+                {
+                  "type": "input",
+                  "name": "recipeName",
+                  "required": true,
+                  "message": "npm package name (or git repository url) of the recipe"
+                },
+                {
+                  "type": "confirm",
+                  "name": "reinstall",
+                  "required": true,
+                  "message": "Re-install recipe if is already installed",
+                  "default": true
+                }
+              ]
+            }
+          },
+          "default": {
+            "params": {}
+          }
+        }
+      }
+    },
+    "new-shot": {
+      "type": "internal",
+      "name": "Add new shot",
+      "description": "Add new templated shot to to this recipe",
+      "params": {},
+      "shots": {
+        "install": {
+          "recipe": {
+            "params": {
+              "prompts": [
+                {
+                  "type": "input",
+                  "name": "recipeName",
+                  "required": true,
+                  "message": "npm package name (or git repository url) of the recipe"
+                },
+                {
+                  "type": "confirm",
+                  "name": "reinstall",
+                  "required": true,
+                  "message": "Re-install recipe if is already installed",
+                  "default": true
+                }
+              ]
+            }
+          },
+          "default": {
+            "params": {}
+          }
+        }
+      }
+    },
     "create": {
       "type": "normal",
       "name": "Create from scratch",
@@ -182,12 +220,6 @@
         "environment": {
           "type": "straw",
           "recipe": {
-            "params": {}
-          },
-          "component": {
-            "params": {}
-          },
-          "app": {
             "params": {}
           },
           "default": {
@@ -219,16 +251,6 @@
               ]
             }
           },
-          "component": {
-            "params": {}
-          },
-          "app": {
-            "params": {
-              "paramName1": "value1",
-              "paramName2": [],
-              "paramName3": {}
-            }
-          },
           "default": {
             "params": {}
           }
@@ -244,16 +266,22 @@
         "install": {
           "recipe": {
             "params": {
-              "paramName1": "value1",
-              "paramName2": [],
-              "paramName3": {}
+              "prompts": [
+                {
+                  "type": "input",
+                  "name": "recipeName",
+                  "required": true,
+                  "message": "npm package name (or git repository url) of the recipe"
+                },
+                {
+                  "type": "confirm",
+                  "name": "reinstall",
+                  "required": true,
+                  "message": "Re-install recipe if is already installed",
+                  "default": true
+                }
+              ]
             }
-          },
-          "component": {
-            "params": {}
-          },
-          "app": {
-            "params": {}
           },
           "default": {
             "params": {}
@@ -261,12 +289,6 @@
         },
         "create": {
           "recipe": {
-            "params": {}
-          },
-          "component": {
-            "params": {}
-          },
-          "app": {
             "params": {}
           },
           "default": {
@@ -284,16 +306,22 @@
         "install": {
           "recipe": {
             "params": {
-              "paramName1": "value1",
-              "paramName2": [],
-              "paramName3": {}
+              "prompts": [
+                {
+                  "type": "input",
+                  "name": "recipeName",
+                  "required": true,
+                  "message": "npm package name (or git repository url) of the recipe"
+                },
+                {
+                  "type": "confirm",
+                  "name": "reinstall",
+                  "required": true,
+                  "message": "Re-install recipe if is already installed",
+                  "default": true
+                }
+              ]
             }
-          },
-          "component": {
-            "params": {}
-          },
-          "app": {
-            "params": {}
           },
           "default": {
             "params": {}
@@ -301,12 +329,6 @@
         },
         "create": {
           "recipe": {
-            "params": {}
-          },
-          "component": {
-            "params": {}
-          },
-          "app": {
             "params": {}
           },
           "default": {
@@ -324,16 +346,22 @@
         "install": {
           "recipe": {
             "params": {
-              "paramName1": "value1",
-              "paramName2": [],
-              "paramName3": {}
+              "prompts": [
+                {
+                  "type": "input",
+                  "name": "recipeName",
+                  "required": true,
+                  "message": "npm package name (or git repository url) of the recipe"
+                },
+                {
+                  "type": "confirm",
+                  "name": "reinstall",
+                  "required": true,
+                  "message": "Re-install recipe if is already installed",
+                  "default": true
+                }
+              ]
             }
-          },
-          "component": {
-            "params": {}
-          },
-          "app": {
-            "params": {}
           },
           "default": {
             "params": {}
@@ -341,12 +369,6 @@
         },
         "create": {
           "recipe": {
-            "params": {}
-          },
-          "component": {
-            "params": {}
-          },
-          "app": {
             "params": {}
           },
           "default": {
@@ -358,42 +380,7 @@
     "release": {
       "type": "normal",
       "name": "Release tag",
-      "description": "Delivery code to a master branch with test in a particular existing repository and tag if everything is ok",
-      "params": {},
-      "shots": {
-        "install": {
-          "recipe": {
-            "params": {
-              "paramName1": "value1",
-              "paramName2": [],
-              "paramName3": {}
-            }
-          },
-          "component": {
-            "params": {}
-          },
-          "app": {
-            "params": {}
-          },
-          "default": {
-            "params": {}
-          }
-        },
-        "create": {
-          "recipe": {
-            "params": {}
-          },
-          "component": {
-            "params": {}
-          },
-          "app": {
-            "params": {}
-          },
-          "default": {
-            "params": {}
-          }
-        }
-      }
+      "description": "Deliver code to a master branch with test in a particular existing repository and tag if everything is ok"
     },
     "publish": {
       "type": "normal",
@@ -404,16 +391,22 @@
         "install": {
           "recipe": {
             "params": {
-              "paramName1": "value1",
-              "paramName2": [],
-              "paramName3": {}
+              "prompts": [
+                {
+                  "type": "input",
+                  "name": "recipeName",
+                  "required": true,
+                  "message": "npm package name (or git repository url) of the recipe"
+                },
+                {
+                  "type": "confirm",
+                  "name": "reinstall",
+                  "required": true,
+                  "message": "Re-install recipe if is already installed",
+                  "default": true
+                }
+              ]
             }
-          },
-          "component": {
-            "params": {}
-          },
-          "app": {
-            "params": {}
           },
           "default": {
             "params": {}
@@ -421,12 +414,6 @@
         },
         "create": {
           "recipe": {
-            "params": {}
-          },
-          "component": {
-            "params": {}
-          },
-          "app": {
             "params": {}
           },
           "default": {
@@ -449,16 +436,6 @@
               "paramName3": {}
             }
           },
-          "component": {
-            "params": {}
-          },
-          "app": {
-            "params": {
-              "paramName1": "value1",
-              "paramName2": [],
-              "paramName3": {}
-            }
-          },
           "default": {
             "params": {}
           }
@@ -466,19 +443,24 @@
         "npm": {
           "recipe": {
             "params": {
-              "paramName1": "value1",
-              "paramName2": [],
-              "paramName3": {}
-            }
-          },
-          "component": {
-            "params": {}
-          },
-          "app": {
-            "params": {
-              "paramName1": "value1",
-              "paramName2": [],
-              "paramName3": {}
+              "installCmds": [
+                {
+                  "cmd": "npm",
+                  "args": [
+                    "install",
+                    "-g",
+                    "yo"
+                  ]
+                },
+                {
+                  "cmd": "npm",
+                  "args": [
+                    "install",
+                    "-g",
+                    "git+https://github.com/sbonacho/generator-pisco-recipe.git"
+                  ]
+                }
+              ]
             }
           },
           "default": {
@@ -488,11 +470,25 @@
       }
     }
   },
+  "stages": [
+    "check",
+    "config",
+    "run",
+    "prove",
+    "notify"
+  ],
+  "strawTypes": [
+    "normal",
+    "parallel",
+    "utils",
+    "internal"
+  ],
   "modulesDir": {
-    "module": "/Users/sbonacho/WebstormProjects/piscosour",
-    "c_local": "/Users/sbonacho/WebstormProjects/tmp/pisco-cells/.piscosour"
+    "piscosour": "/Users/sbonacho/WebstormProjects/pisco-cells/node_modules/piscosour",
+    "module": "/Users/sbonacho/WebstormProjects/pisco-cells",
+    "c_local": "/Users/sbonacho/WebstormProjects/pisco-cells/.piscosour"
   },
   "warnings": [
-    "\u001b[33mWARNING\u001b[39m: File '\u001b[36m/Users/sbonacho/WebstormProjects/tmp/pisco-cells/.piscosour/piscosour.json\u001b[39m' not found: Using default..."
+    "\u001b[33mWARNING\u001b[39m: File '\u001b[36m/Users/sbonacho/WebstormProjects/pisco-cells/.piscosour/piscosour.json\u001b[39m' not found: Using default..."
   ]
 }
