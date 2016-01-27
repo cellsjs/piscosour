@@ -5,24 +5,23 @@ var piscosour = require('../../..'),
     path = require('path'),
     Shot = piscosour.Shot,
     params = piscosour.params,
-    config = piscosour.config,
-    logger = piscosour.logger;
+    config = piscosour.config;
 
 var shot = new Shot({
     description : "Install npm recipe inside this executable",
 
     check : function(resolve){
-        logger.info("#magenta","check","Check all pre-requisites for the execution");
+        shot.logger.info("#magenta","check","Check all pre-requisites for the execution");
         resolve();
     },
 
     config : function(resolve){
-        logger.info("#magenta","config","All configurations labors");
+        shot.logger.info("#magenta","config","All configurations labors");
         resolve();
     },
 
     run : function(resolve, reject){
-        logger.info("#magenta","run","Installing recipe");
+        shot.logger.info("#magenta","run","Installing recipe");
 
         process.chdir(config.modulesDir.module);
 
@@ -34,9 +33,9 @@ var shot = new Shot({
         }
 
         if (fs.existsSync(path.join(config.modulesDir.module,'node_modules',name))) {
-            logger.info("#green",name," is already installed in piscosour!!");
+            shot.logger.info("#green",name," is already installed in piscosour!!");
             if (params.reinstall) {
-                logger.info("reinstalling","#cyan",name);
+                shot.logger.info("reinstalling","#cyan",name);
                 //TODO: Para evitar problemas en windows quizá sea mejor meter el borrar con tareas node (rimraf, p.e.).
                 shot.executeSync("rm",["-rf",path.join(config.modulesDir.module,'node_modules',name)], reject, true);
                 shot.executeSync("npm",["install",params.recipeName], reject, true);
@@ -79,12 +78,12 @@ var shot = new Shot({
     },
 
     prove : function(resolve){
-        logger.info("#magenta","prove","Prove that the run execution was ok");
+        shot.logger.info("#magenta","prove","Prove that the run execution was ok");
         resolve();
     },
 
     notify : function(resolve){
-        logger.info("#magenta","notify","Recollect all execution information and notify");
+        shot.logger.info("#magenta","notify","Recollect all execution information and notify");
         resolve();
     }
 });
