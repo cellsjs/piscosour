@@ -4,7 +4,6 @@ var piscosour = require('../../..'),
     fs = require('fs'),
     path = require('path'),
     Shot = piscosour.Shot,
-    params = piscosour.params,
     config = piscosour.config;
 
 var shot = new Shot({
@@ -25,26 +24,26 @@ var shot = new Shot({
 
         process.chdir(config.modulesDir.module);
 
-        var name = params.recipeName;
+        var name = shot.runner.params.recipeName;
 
         if (name.indexOf('https://')>=0) {
-            name = path.parse(params.recipeName).name;
-            params.recipeName = "git+" + params.recipeName;
+            name = path.parse(shot.runner.params.recipeName).name;
+            shot.runner.params.recipeName = "git+" + shot.runner.params.recipeName;
         }
 
         if (fs.existsSync(path.join(config.modulesDir.module,'node_modules',name))) {
             shot.logger.info("#green",name," is already installed in piscosour!!");
-            if (params.reinstall) {
+            if (shot.runner.params.reinstall) {
                 shot.logger.info("reinstalling","#cyan",name);
                 //TODO: Para evitar problemas en windows quizá sea mejor meter el borrar con tareas node (rimraf, p.e.).
                 shot.executeSync("rm",["-rf",path.join(config.modulesDir.module,'node_modules',name)], reject, true);
-                shot.executeSync("npm",["install",params.recipeName], reject, true);
+                shot.executeSync("npm",["install",shot.runner.params.recipeName], reject, true);
                 resolve();
             }else{
                 resolve();
             }
         }else{
-            shot.execute("npm",["install",params.recipeName],resolve, reject);
+            shot.execute("npm",["install",shot.runner.params.recipeName],resolve, reject);
         }
         var updated = shot.runner.updateRecipes(name);
     },
