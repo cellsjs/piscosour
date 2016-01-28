@@ -1,5 +1,7 @@
 'use strict';
 
+require('../../../lib/pathPolyfill');
+
 var piscosour = require('../../..'),
     fs = require('fs'),
     path = require('path'),
