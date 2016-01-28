@@ -19,8 +19,8 @@ var shot = new Shot({
 
     run : function(resolve, reject){
         logger.info("#magenta","run","Create new recipe from template");
-        createDir(path.join(pwd,params.recipeName));
-        process.chdir(path.join(pwd,params.recipeName));
+        createDir(path.join(pwd,shot.runner.params.recipeName));
+        process.chdir(path.join(pwd,shot.runner.params.recipeName));
 
         shot.execute("yo",params.addPrompts(["pisco-recipe"], shot.runner.params.prompts),resolve, reject);
     }
