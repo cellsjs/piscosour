@@ -4,9 +4,7 @@ var piscosour = require('../../..'),
     fs = require('fs'),
     path = require('path'),
     pwd = process.env.PWD,
-    Shot = piscosour.Shot,
-    params = piscosour.params,
-    logger = piscosour.logger;
+    Shot = piscosour.Shot;
 
 var createDir = function(dir){
     if (!fs.existsSync(dir)){
@@ -18,11 +16,12 @@ var shot = new Shot({
     description : "Create a piscosour recipe from a scaffold template",
 
     run : function(resolve, reject){
-        logger.info("#magenta","run","Create new recipe from template");
+        shot.logger.info("#magenta","run","Create new recipe from template");
+
         createDir(path.join(pwd,shot.runner.params.recipeName));
         process.chdir(path.join(pwd,shot.runner.params.recipeName));
 
-        shot.execute("yo",params.addPrompts(["pisco-recipe"], shot.runner.params.prompts),resolve, reject);
+        shot.execute("yo",shot.promptArgs(["pisco-recipe"]),resolve, reject);
     }
 });
 
