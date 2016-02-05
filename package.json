@@ -1,6 +1,6 @@
 {
   "name": "piscosour",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "CI wherever you go",
   "main": "index.js",
   "scripts": {
@@ -43,11 +43,9 @@
     "es6-promise" : "^3.0.2",
     "array.prototype.find" : "^1.0.0",
     "string.prototype.startswith": "^0.2.0",
-    "spawn-sync" : "^1.0.15"
-  },
-  "devDependencies": {
     "mocha": "^2.4.5",
     "mocha-junit-reporter": "^1.9.1"
+    "spawn-sync" : "^1.0.15"
   },
   "engines": {
     "node": ">=0.10.0"
