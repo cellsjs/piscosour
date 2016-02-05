@@ -33,7 +33,7 @@ var shot = new Shot({
 
     run : function(resolve, reject){
         logger.info("Installing npm dependencies...");
-        shot.executeParallel(shot.runner.params.installCmds,resolve, reject);
+        return shot.executeParallel(shot.runner.params.installCmds,resolve, reject);
     }
 });
 
