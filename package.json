@@ -1,6 +1,6 @@
 {
   "name": "piscosour",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "CI wherever you go",
   "main": "index.js",
   "scripts": {
