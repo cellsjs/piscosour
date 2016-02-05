@@ -1,6 +1,7 @@
 {
-  "repoTypes" : ["recipe","default"],
+  "repoTypes" : ["recipe", "default"],
   "defaultType" : "recipe",
+  "junitDir" : "test-reports",
   "stages" : ["check","config","run","prove","notify"],
   "strawTypes" :["normal","parallel","utils","internal"],
   "straws" : {
@@ -23,6 +24,11 @@
       "type" : "util",
       "name" : "Environment Checks",
       "description" : "Checks and install if an environment is ok"
+    },
+    "test" : {
+      "type" : "util",
+      "name" : "Mock test",
+      "description" : "Testing for piscosour"
     }
   }
 }

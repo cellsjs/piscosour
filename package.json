@@ -1,6 +1,6 @@
 {
   "name": "piscosour",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "CI wherever you go",
   "main": "index.js",
   "scripts": {
@@ -28,14 +28,18 @@
     "pisco": "bin/pisco.js"
   },
   "dependencies": {
-    "bunyan" : "^1.5.1",
+    "bunyan": "^1.5.1",
     "nopt": "^3.0.6",
-    "moment" : "^2.10.6",
+    "moment": "^2.10.6",
     "require-dir": "^0.3.0",
     "chalk": "^1.1.1",
     "run-sequence": "^1.1.0",
     "inquirer": "^0.10.0",
     "minimist": "^1.2.0",
-    "async" : "^1.5.2"
+    "async": "^1.5.2"
+  },
+  "devDependencies": {
+    "mocha": "^2.4.5",
+    "mocha-junit-reporter": "^1.9.1"
   }
 }
