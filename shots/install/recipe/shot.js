@@ -11,12 +11,10 @@ var shot = new Shot({
 
     check : function(resolve){
         shot.logger.info("#magenta","check","Check all pre-requisites for the execution");
-        resolve();
     },
 
     config : function(resolve){
         shot.logger.info("#magenta","config","All configurations labors");
-        resolve();
     },
 
     run : function(resolve, reject){
@@ -38,12 +36,9 @@ var shot = new Shot({
                 //TODO: Para evitar problemas en windows quizá sea mejor meter el borrar con tareas node (rimraf, p.e.).
                 shot.executeSync("rm",["-rf",path.join(config.modulesDir.module,'node_modules',name)], reject, true);
                 shot.executeSync("npm",["install",shot.runner.params.recipeName], reject, true);
-                resolve();
-            }else{
-                resolve();
             }
         }else{
-            shot.execute("npm",["install",shot.runner.params.recipeName],resolve, reject);
+            return shot.execute("npm",["install",shot.runner.params.recipeName],resolve, reject);
         }
         var updated = shot.runner.updateRecipes(name);
     },
@@ -78,12 +73,10 @@ var shot = new Shot({
 
     prove : function(resolve){
         shot.logger.info("#magenta","prove","Prove that the run execution was ok");
-        resolve();
     },
 
     notify : function(resolve){
         shot.logger.info("#magenta","notify","Recollect all execution information and notify");
-        resolve();
     }
 });
 

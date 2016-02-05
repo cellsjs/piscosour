@@ -10,7 +10,6 @@ var shot = new Shot({
     run : function(resolve){
         logger.info("Solving all system dependencies...","#green","OK");
         // Put here all system dependencies non npm... (f.i. is mac, linux, windows etc...)
-        resolve();
     }
 
 });
