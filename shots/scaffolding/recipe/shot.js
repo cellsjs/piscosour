@@ -20,9 +20,9 @@ var shot = new Shot({
 
         createDir(path.join(pwd,shot.runner.params.recipeName));
         process.chdir(path.join(pwd,shot.runner.params.recipeName));
-
         shot.execute("yo",shot.promptArgs(["pisco-recipe"]),resolve, reject);
     }
+
 });
 
 module.exports = shot;

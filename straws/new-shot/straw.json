@@ -1,6 +1,7 @@
 {
   "params" : {},
   "shots" : {
-    "install" : {}
+    "new-straw" : {},
+    "new-shot" : {}
   }
 }
