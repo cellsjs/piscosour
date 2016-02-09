@@ -8,9 +8,9 @@
     },
     {
       "type": "confirm",
-      "name": "reinstall",
+      "name": "update",
       "required" : true,
-      "message": "Re-install recipe if is already installed",
+      "message": "Update recipe installed",
       "default" : true
     }
   ]
