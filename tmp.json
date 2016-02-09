@@ -1,108 +1,62 @@
 {
   "shots": {
     "_shot": {
-      "component": {
+      "recipe": {
+        "params": {}
+      },
+      "default": {
         "params": {}
       }
     },
-    "check-out": {
-      "component": {
+    "install": {
+      "recipe": {
         "params": {
-          "workspaceDir": "workspace"
-        }
-      }
-    },
-    "coverage": {
-      "component": {
-        "params": {
-          "workspaceDir": "workspace",
-          "nodeModule": "cells-ci-coverage"
-        }
-      }
-    },
-    "demo-validate": {
-      "component": {
-        "params": {
-          "workspaceDir": "workspace",
-          "nodeModule": "cells-ci-demo-validation"
-        }
-      }
-    },
-    "deployment": {
-      "component": {
-        "params": {
-          "workspaceDir": "workspace",
-          "nodeModule": "cells-deployment-scripts"
-        }
-      }
-    },
-    "lint": {
-      "component": {
-        "params": {
-          "workspaceDir": "workspace",
-          "nodeModule": "cells-ci-lint"
-        }
-      }
-    },
-    "npm": {
-      "component": {
-        "params": {
-          "workspaceDir": "workspace",
-          "installNpms": [
+          "prompts": [
             {
-              "cmd": "npm",
-              "args": [
-                "install",
-                "bower"
-              ]
+              "type": "input",
+              "name": "recipeName",
+              "required": true,
+              "message": "npm package name (or git repository url) of the recipe"
             },
             {
-              "cmd": "npm",
-              "args": [
-                "install",
-                "s3"
-              ]
-            },
-            {
-              "cmd": "npm",
-              "args": [
-                "install",
-                "minimist"
-              ]
-            }
-          ],
-          "installGit": [
-            {
-              "cmd": "git",
-              "args": [
-                "clone",
-                "https://descinet.bbva.es/stash/scm/cel/cells-deployment-scripts.git"
-              ]
-            },
-            {
-              "cmd": "git",
-              "args": [
-                "clone",
-                "https://descinet.bbva.es/stash/scm/cel/cells-ci-demo-validation.git"
-              ]
-            },
-            {
-              "cmd": "git",
-              "args": [
-                "clone",
-                "https://descinet.bbva.es/stash/scm/cel/cells-ci-coverage.git"
-              ]
-            },
-            {
-              "cmd": "git",
-              "args": [
-                "clone",
-                "https://descinet.bbva.es/stash/scm/cel/cells-ci-lint.git"
-              ]
+              "type": "confirm",
+              "name": "reinstall",
+              "required": true,
+              "message": "Re-install recipe if is already installed",
+              "default": true
             }
           ]
         }
       },
+      "default": {
+        "params": {}
+      }
+    },
+    "new-shot": {
+      "recipe": {
+        "params": {
+          "paramName1": "value1",
+          "paramName2": [],
+          "paramName3": {}
+        }
+      },
+      "default": {
+        "params": {}
+      }
+    },
+    "new-straw": {
+      "recipe": {
+        "params": {
+          "paramName1": "value1",
+          "paramName2": [],
+          "paramName3": {}
+        }
+      },
+      "default": {
+        "params": {}
+      }
+    },
+    "npm": {
       "recipe": {
         "params": {
           "installCmds": [
@@ -130,9 +84,6 @@
       }
     },
     "scaffolding": {
-      "component": {
-        "params": {}
-      },
       "recipe": {
         "params": {
           "prompts": [
@@ -162,11 +113,6 @@
       }
     },
     "system": {
-      "component": {
-        "params": {
-          "workspaceDir": "workspace"
-        }
-      },
       "recipe": {
         "params": {
           "paramName1": "value1",
@@ -179,184 +125,35 @@
       }
     },
     "test": {
-      "component": {
+      "recipe": {
         "params": {
           "paramName1": "value1",
           "paramName2": [],
           "paramName3": {}
-        }
-      }
-    },
-    "install": {
-      "recipe": {
-        "params": {
-          "prompts": [
-            {
-              "type": "input",
-              "name": "recipeName",
-              "required": true,
-              "message": "npm package name (or git repository url) of the recipe"
-            },
-            {
-              "type": "confirm",
-              "name": "reinstall",
-              "required": true,
-              "message": "Re-install recipe if is already installed",
-              "default": true
-            }
-          ]
         }
       },
       "default": {
         "params": {}
       }
     },
-    "pull": {
+    "test2": {
       "recipe": {
-        "params": {}
-      },
-      "default": {
         "params": {
           "paramName1": "value1",
           "paramName2": [],
           "paramName3": {}
         }
-      }
-    },
-    "push": {
-      "recipe": {
-        "params": {}
       },
       "default": {
-        "params": {
-          "paramName1": "value1",
-          "paramName2": [],
-          "paramName3": {}
-        }
+        "params": {}
       }
     }
   },
   "repoTypes": [
-    "component",
     "recipe",
     "default"
   ],
-  "defaultType": "recipe",
   "straws": {
-    "upload-s3": {
-      "type": "normal",
-      "name": "Upload to s3 with some tests",
-      "description": "Bamboo components release",
-      "params": {},
-      "shots": {
-        "system": {
-          "component": {
-            "params": {
-              "workspaceDir": "workspace"
-            }
-          }
-        },
-        "npm": {
-          "component": {
-            "params": {
-              "workspaceDir": "workspace",
-              "installNpms": [
-                {
-                  "cmd": "npm",
-                  "args": [
-                    "install",
-                    "bower"
-                  ]
-                },
-                {
-                  "cmd": "npm",
-                  "args": [
-                    "install",
-                    "s3"
-                  ]
-                },
-                {
-                  "cmd": "npm",
-                  "args": [
-                    "install",
-                    "minimist"
-                  ]
-                }
-              ],
-              "installGit": [
-                {
-                  "cmd": "git",
-                  "args": [
-                    "clone",
-                    "https://descinet.bbva.es/stash/scm/cel/cells-deployment-scripts.git"
-                  ]
-                },
-                {
-                  "cmd": "git",
-                  "args": [
-                    "clone",
-                    "https://descinet.bbva.es/stash/scm/cel/cells-ci-demo-validation.git"
-                  ]
-                },
-                {
-                  "cmd": "git",
-                  "args": [
-                    "clone",
-                    "https://descinet.bbva.es/stash/scm/cel/cells-ci-coverage.git"
-                  ]
-                },
-                {
-                  "cmd": "git",
-                  "args": [
-                    "clone",
-                    "https://descinet.bbva.es/stash/scm/cel/cells-ci-lint.git"
-                  ]
-                }
-              ]
-            }
-          }
-        },
-        "check-out": {
-          "component": {
-            "params": {
-              "workspaceDir": "workspace"
-            }
-          }
-        },
-        "demo-validate": {
-          "component": {
-            "params": {
-              "workspaceDir": "workspace",
-              "nodeModule": "cells-ci-demo-validation"
-            }
-          }
-        },
-        "coverage": {
-          "component": {
-            "params": {
-              "workspaceDir": "workspace",
-              "nodeModule": "cells-ci-coverage"
-            }
-          }
-        },
-        "lint": {
-          "component": {
-            "params": {
-              "workspaceDir": "workspace",
-              "nodeModule": "cells-ci-lint"
-            }
-          }
-        },
-        "deployment": {
-          "component": {
-            "params": {
-              "workspaceDir": "workspace",
-              "nodeModule": "cells-deployment-scripts"
-            }
-          }
-        }
-      }
-    },
     "install": {
       "type": "internal",
       "name": "Install recipe",
@@ -395,24 +192,24 @@
       "description": "Add new templated shot to to this recipe",
       "params": {},
       "shots": {
-        "install": {
+        "new-straw": {
           "recipe": {
             "params": {
-              "prompts": [
-                {
-                  "type": "input",
-                  "name": "recipeName",
-                  "required": true,
-                  "message": "npm package name (or git repository url) of the recipe"
-                },
-                {
-                  "type": "confirm",
-                  "name": "reinstall",
-                  "required": true,
-                  "message": "Re-install recipe if is already installed",
-                  "default": true
-                }
-              ]
+              "paramName1": "value1",
+              "paramName2": [],
+              "paramName3": {}
+            }
+          },
+          "default": {
+            "params": {}
+          }
+        },
+        "new-shot": {
+          "recipe": {
+            "params": {
+              "paramName1": "value1",
+              "paramName2": [],
+              "paramName3": {}
             }
           },
           "default": {
@@ -513,8 +310,42 @@
           }
         }
       }
+    },
+    "test": {
+      "type": "util",
+      "name": "Mock test",
+      "description": "Testing for piscosour",
+      "params": {},
+      "shots": {
+        "test": {
+          "recipe": {
+            "params": {
+              "paramName1": "value1",
+              "paramName2": [],
+              "paramName3": {}
+            }
+          },
+          "default": {
+            "params": {}
+          }
+        },
+        "test2": {
+          "recipe": {
+            "params": {
+              "paramName1": "value1",
+              "paramName2": [],
+              "paramName3": {}
+            }
+          },
+          "default": {
+            "params": {}
+          }
+        }
+      }
     }
   },
+  "defaultType": "recipe",
+  "junitDir": "test-reports",
   "stages": [
     "check",
     "config",
@@ -529,12 +360,12 @@
     "internal"
   ],
   "modulesDir": {
-    "piscosour": "/Users/sbonacho/WebstormProjects/pisco-cells/node_modules/piscosour",
-    "module": "/Users/sbonacho/WebstormProjects/pisco-cells",
-    "c_local": "/Users/sbonacho/WebstormProjects/pisco-cells/.piscosour"
+    "piscosour": "/Users/sbonacho/WebstormProjects/test/prueba/node_modules/piscosour",
+    "module": "/Users/sbonacho/WebstormProjects/test/prueba",
+    "c_local": "/Users/sbonacho/WebstormProjects/test/prueba/.piscosour"
   },
   "warnings": [
-    "\u001b[33mWARNING\u001b[39m: File '\u001b[36m/Users/sbonacho/WebstormProjects/pisco-cells/.piscosour/piscosour.json\u001b[39m' not found: Using default..."
+    "\u001b[33mWARNING\u001b[39m: File '\u001b[36m/Users/sbonacho/WebstormProjects/test/prueba/.piscosour/piscosour.json\u001b[39m' not found: Using default..."
   ],
-  "rootDir": "/Users/sbonacho/WebstormProjects/pisco-cells"
+  "rootDir": "/Users/sbonacho/WebstormProjects/test/prueba"
 }

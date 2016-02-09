@@ -6,6 +6,7 @@ var Shot = require("./lib/shot"),
     logger = require("./lib/logger"),
     config = require("./lib/config"),
     params = require("./lib/params"),
+    fsUtils = require("./lib/utils/fsUtils"),
     Sour = require("./lib/sour");
 
 /**
@@ -14,6 +15,7 @@ var Shot = require("./lib/shot"),
 var Piscosour = {
     Shot: Shot,
     Sour: Sour,
+    fsUtils: fsUtils,
     logger: logger,
     config: config,
     params: params
