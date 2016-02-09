@@ -1,0 +1,10 @@
+{
+  "promptsPisco":[
+    {
+      "type": "input",
+      "name": "cmd",
+      "required" : true,
+      "message": "Write the command line executable for this pisco recipe"
+    }
+  ]
+}

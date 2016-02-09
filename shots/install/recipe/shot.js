@@ -66,7 +66,7 @@ var shot = new Shot({
             return false;
         else {
             recipes.list.push(name);
-            fs.writeFileSync(filename,JSON.stringify(recipes));
+            fs.writeFileSync(filename,JSON.stringify(recipes,null,4));
             return true;
         }
     },

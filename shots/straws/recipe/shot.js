@@ -45,7 +45,7 @@ var shot = new Shot({
         if (shotName) {
             shot.logger.info("#magenta", "Adding", shotName, "to", shot.runner.params.strawKey);
             shot.runner.straw.shots[shotName]={};
-            fs.writeFileSync(file, JSON.stringify(shot.runner.straw));
+            fs.writeFileSync(file, JSON.stringify(shot.runner.straw, null, 4));
         }
     },
 
@@ -71,7 +71,7 @@ var shot = new Shot({
                 description : shot.runner.params.strawDescription,
                 type: shot.runner.params.strawType
             };
-            fs.writeFileSync(file, JSON.stringify(piscosour));
+            fs.writeFileSync(file, JSON.stringify(piscosour, null, 4));
         }
     }
 
