@@ -1,0 +1,42 @@
+{
+  "prompts": [
+    {
+      "type": "confirm",
+      "name": "doStraw",
+      "required" : true,
+      "message": "Do you want to add this shot into a straw?"
+    },
+    {
+      "type": "input",
+      "name": "strawKey",
+      "required" : true,
+      "message": "Write the key of the straw",
+      "when" : "answers.doStraw"
+    }
+  ],
+  "promptsStraw" : [
+    {
+      "type": "input",
+      "name": "strawName",
+      "required" : true,
+      "message": "Write a short name for the straw"
+    },
+    {
+      "type": "input",
+      "name": "strawDescription",
+      "required" : true,
+      "message": "Write a short description for the of the straw"
+    },
+    {
+      "type": "list",
+      "name": "strawType",
+      "required" : true,
+      "message": "Choose the type for the new straw",
+      "choices" : [
+        "normal",
+        "internal",
+        "util"
+      ]
+    }
+  ]
+}
