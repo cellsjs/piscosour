@@ -46,7 +46,7 @@ var shot = new Shot({
 
         shot.logger.info("#magenta","run","Copying files to node module");
 
-        var origin = path.join(config.modulesDir.piscosour,"bin","pisco_.js");
+        var origin = path.join(config.modulesDir.piscosour,"bin","pisco_");
         var dest = path.join(config.rootDir,"bin");
         var destFile = path.join(dest,"pisco.js");
         fsUtils.createDir(dest);
@@ -59,7 +59,7 @@ var shot = new Shot({
         var result = shot.sh("node bin/pisco.js", reject);
 
         if (result.status !== 0) {
-            shot.logger.error("#red", "Error: commnad not executed propelly!", result);
+            shot.logger.error("#red", "Error: commnad not executed propelly!", result.stderr.toString());
         }
     },
 

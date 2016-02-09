@@ -29,9 +29,7 @@
     "pisco": "bin/pisco.js"
   },
   "dependencies": {
-    "bunyan" : "^1.5.1",
     "nopt": "^3.0.6",
-    "require-dir": "^0.3.0",
     "moment" : "^2.10.6",
     "chalk": "^1.1.1",
     "run-sequence": "^1.1.0",
