@@ -1,8 +1,35 @@
 {
   "shots": {
+    "hola": {
+      "component": {
+        "params": {
+          "paramName1": "value1",
+          "paramName2": [],
+          "paramName3": {}
+        }
+      },
+      "recipe": {
+        "params": {}
+      },
+      "default": {
+        "params": {}
+      }
+    },
     "_shot": {
       "recipe": {
         "params": {}
+      },
+      "default": {
+        "params": {}
+      }
+    },
+    "convert": {
+      "recipe": {
+        "params": {
+          "paramName1": "value1",
+          "paramName2": [],
+          "paramName3": {}
+        }
       },
       "default": {
         "params": {}
@@ -26,30 +53,6 @@
               "default": true
             }
           ]
-        }
-      },
-      "default": {
-        "params": {}
-      }
-    },
-    "new-shot": {
-      "recipe": {
-        "params": {
-          "paramName1": "value1",
-          "paramName2": [],
-          "paramName3": {}
-        }
-      },
-      "default": {
-        "params": {}
-      }
-    },
-    "new-straw": {
-      "recipe": {
-        "params": {
-          "paramName1": "value1",
-          "paramName2": [],
-          "paramName3": {}
         }
       },
       "default": {
@@ -112,13 +115,81 @@
         "params": {}
       }
     },
-    "system": {
+    "shots": {
       "recipe": {
         "params": {
-          "paramName1": "value1",
-          "paramName2": [],
-          "paramName3": {}
+          "prompts": [
+            {
+              "type": "input",
+              "name": "shotName",
+              "required": true,
+              "message": "Write a name for your pisco shot"
+            },
+            {
+              "type": "input",
+              "name": "repoType",
+              "required": true,
+              "message": "Write the repository type for your new shot"
+            }
+          ]
         }
+      },
+      "default": {
+        "params": {}
+      }
+    },
+    "straws": {
+      "recipe": {
+        "params": {
+          "prompts": [
+            {
+              "type": "confirm",
+              "name": "doStraw",
+              "required": true,
+              "message": "Do you want to add this shot into a straw?"
+            },
+            {
+              "type": "input",
+              "name": "strawKey",
+              "required": true,
+              "message": "Write the key of the straw",
+              "when": "answers.doStraw"
+            }
+          ],
+          "promptsStraw": [
+            {
+              "type": "input",
+              "name": "strawName",
+              "required": true,
+              "message": "Write a short name for the straw"
+            },
+            {
+              "type": "input",
+              "name": "strawDescription",
+              "required": true,
+              "message": "Write a short description for the of the straw"
+            },
+            {
+              "type": "list",
+              "name": "strawType",
+              "required": true,
+              "message": "Choose the type for the new straw",
+              "choices": [
+                "normal",
+                "internal",
+                "util"
+              ]
+            }
+          ]
+        }
+      },
+      "default": {
+        "params": {}
+      }
+    },
+    "system": {
+      "recipe": {
+        "params": {}
       },
       "default": {
         "params": {}
@@ -149,15 +220,33 @@
       }
     }
   },
+  "cmd": "pisco",
   "repoTypes": [
+    "component",
     "recipe",
     "default"
   ],
   "straws": {
+    "saludo": {
+      "name": "saludo",
+      "description": "saludo mola mucho",
+      "type": "normal",
+      "shots": {
+        "hola": {
+          "component": {
+            "params": {
+              "paramName1": "value1",
+              "paramName2": [],
+              "paramName3": {}
+            }
+          }
+        }
+      }
+    },
     "install": {
       "type": "internal",
       "name": "Install recipe",
-      "description": "Install piscosour recipe to this executable",
+      "description": "Install other piscosour recipe to this recipe",
       "params": {},
       "shots": {
         "install": {
@@ -186,25 +275,93 @@
         }
       }
     },
-    "new-shot": {
+    "config": {
       "type": "internal",
-      "name": "Add new shot",
-      "description": "Add new templated shot to to this recipe",
+      "name": "Manage shots/straws",
+      "description": "Manage shots/straws inside this recipe",
       "params": {},
       "shots": {
-        "new-straw": {
+        "shots": {
           "recipe": {
             "params": {
-              "paramName1": "value1",
-              "paramName2": [],
-              "paramName3": {}
+              "prompts": [
+                {
+                  "type": "input",
+                  "name": "shotName",
+                  "required": true,
+                  "message": "Write a name for your pisco shot"
+                },
+                {
+                  "type": "input",
+                  "name": "repoType",
+                  "required": true,
+                  "message": "Write the repository type for your new shot"
+                }
+              ]
             }
           },
           "default": {
             "params": {}
           }
         },
-        "new-shot": {
+        "straws": {
+          "recipe": {
+            "params": {
+              "prompts": [
+                {
+                  "type": "confirm",
+                  "name": "doStraw",
+                  "required": true,
+                  "message": "Do you want to add this shot into a straw?"
+                },
+                {
+                  "type": "input",
+                  "name": "strawKey",
+                  "required": true,
+                  "message": "Write the key of the straw",
+                  "when": "answers.doStraw"
+                }
+              ],
+              "promptsStraw": [
+                {
+                  "type": "input",
+                  "name": "strawName",
+                  "required": true,
+                  "message": "Write a short name for the straw"
+                },
+                {
+                  "type": "input",
+                  "name": "strawDescription",
+                  "required": true,
+                  "message": "Write a short description for the of the straw"
+                },
+                {
+                  "type": "list",
+                  "name": "strawType",
+                  "required": true,
+                  "message": "Choose the type for the new straw",
+                  "choices": [
+                    "normal",
+                    "internal",
+                    "util"
+                  ]
+                }
+              ]
+            }
+          },
+          "default": {
+            "params": {}
+          }
+        }
+      }
+    },
+    "convert": {
+      "type": "internal",
+      "name": "Module to recipe",
+      "description": "Convert any nodejs module to piscosour recipe",
+      "params": {},
+      "shots": {
+        "convert": {
           "recipe": {
             "params": {
               "paramName1": "value1",
@@ -272,11 +429,7 @@
       "shots": {
         "system": {
           "recipe": {
-            "params": {
-              "paramName1": "value1",
-              "paramName2": [],
-              "paramName3": {}
-            }
+            "params": {}
           },
           "default": {
             "params": {}

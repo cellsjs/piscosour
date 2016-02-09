@@ -12,8 +12,9 @@ var shot = new Shot({
 
     check : function(go, stop){
         shot.logger.info("#magenta","check","Check if this is a piscosour recipe");
-        var pkg = shot.runner.getPkg();
-        if (pkg) {
+        var file = path.join(process.cwd(),'package.json');
+        var pkg = fsUtils.readConfig(file);
+        if (pkg.version) {
             var isRecipe = pkg.keywords && pkg.keywords.indexOf("piscosour-recipe")>=0;
             if (!isRecipe)
                 stop("This module is not a piscosour recipe, execute \"pisco convert\" first");
@@ -38,7 +39,7 @@ var shot = new Shot({
         if (configLocal.repoTypes.indexOf(shot.runner.params.repoType)<0){
             configLocal.repoTypes.push(shot.runner.params.repoType);
         }
-        fs.writeFileSync(file,JSON.stringify(configLocal));
+        fs.writeFileSync(file,JSON.stringify(configLocal,null,4));
     },
 
     run : function(resolve, reject){
@@ -64,16 +65,7 @@ var shot = new Shot({
         }
         shot.save("shotName", shot.runner.params.shotName);
         shot.save("repoType", shot.runner.params.repoType);
-    },
-
-    getPkg : function(){
-        var pkg;
-        try {
-            pkg = require(path.join(process.cwd(),'package.json'));
-        }catch(e){}
-        return pkg;
     }
-
 });
 
 module.exports = shot;
