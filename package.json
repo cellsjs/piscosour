@@ -1,7 +1,7 @@
 {
   "name": "piscosour",
   "version": "0.0.13",
-  "description": "CI wherever you go",
+  "description": "The shared command line Continuous Integration tool",
   "main": "index.js",
   "scripts": {
     "deps": "npm install"
