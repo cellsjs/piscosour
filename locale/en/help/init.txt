@@ -1,8 +1,0 @@
-
- *******************************************************
- |                                                     |
- |                 Wellcome to Piscosour               |
- |                                                     |
- | The shared command line Continuous Integration tool |
- |                                                     |
- *******************************************************
