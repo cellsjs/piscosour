@@ -1,6 +1,6 @@
 {
   "name": "piscosour",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "The shared command line Continuous Integration tool",
   "main": "index.js",
   "scripts": {
