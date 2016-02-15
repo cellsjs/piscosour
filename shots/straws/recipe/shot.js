@@ -12,6 +12,18 @@ var shot = new Shot({
 
     straw : {},
 
+    whenStrawKey : function(answer){
+        return answer.doStraw;
+    },
+
+    strawTypes : function(){
+        return [
+            "normal",
+            "internal",
+            "util"
+        ];
+    },
+
     check: function(go){
         if (!shot.runner.params.doStraw)
             go({skip:true});
@@ -29,7 +41,8 @@ var shot = new Shot({
         shot.runner.straw = fsUtils.readConfig(file);
         if (!shot.runner.straw.shots) {
             shot.runner.straw.shots = {};
-            return shot.inquire("promptsStraw",resolve);
+            shot.inquire("promptsStraw").then(resolve);
+            return true;
         }
     },
 

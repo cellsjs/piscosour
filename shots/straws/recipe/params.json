@@ -11,7 +11,7 @@
       "name": "strawKey",
       "required" : true,
       "message": "Write the key of the straw",
-      "when" : "answers.doStraw"
+      "when" : "#whenStrawKey"
     }
   ],
   "promptsStraw" : [
@@ -32,11 +32,7 @@
       "name": "strawType",
       "required" : true,
       "message": "Choose the type for the new straw",
-      "choices" : [
-        "normal",
-        "internal",
-        "util"
-      ]
+      "choices" : "#strawTypes"
     }
   ]
 }
