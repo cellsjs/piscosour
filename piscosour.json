@@ -1,8 +1,7 @@
 {
   "cmd" : "pisco",
   "repoTypes": [
-    "recipe",
-    "default"
+    "recipe"
   ],
   "defaultType": "recipe",
   "junitDir": "test-reports",
