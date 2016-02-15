@@ -46,7 +46,7 @@ var shot = new Shot({
         shot.logger.info("#magenta","run","Creating new shot for this recipe");
 
         var dest = path.join(config.rootDir,"shots",shot.runner.params.shotName,shot.runner.params.repoType);
-        var origin = path.join(config.modulesDir.piscosour,"shots","_shot");
+        var origin = path.join(config.modulesDir.piscosour,"templates","_shot");
 
         fsUtils.createDir(path.join(config.rootDir,"shots"));
         fsUtils.createDir(path.join(config.rootDir,"shots",shot.runner.params.shotName));
