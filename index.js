@@ -18,7 +18,16 @@ var Piscosour = {
     fsUtils: fsUtils,
     logger: logger,
     config: config,
-    params: params
+    params: params,
+    gush: function () {
+        this.Sour().gush().then(this.onFulfilled, this.onReject);
+    },
+    onFulfilled : function(){
+        process.exit(0);
+    },
+    onReject : function(){
+        process.exit(-1);
+    }
 };
 
 module.exports = Piscosour;
