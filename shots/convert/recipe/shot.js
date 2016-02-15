@@ -21,17 +21,27 @@ var shot = new Shot({
         if (shot.runner.pkg.keywords && shot.runner.pkg.keywords.indexOf("piscosour-recipe")>=0){
             stop("This is already a piscosour recipe");
         }else {
-            return shot.inquire("promptsPisco", go);
+            shot.inquire("promptsPisco").then(go);
+            return true;
         }
     },
 
-    config: function(){
-        shot.logger.info("#magenta","config","Configurating package.json");
-
+    modifyPkg : function(){
+        shot.logger.info("#cyan","Modify","package.json");
         if (!shot.runner.pkg.keywords)
             shot.runner.pkg.keywords = [];
+
         shot.runner.pkg.keywords.push("piscosour-recipe");
+        if (!shot.runner.pkg.bin)
+            shot.runner.pkg.bin = {};
+
+        shot.runner.pkg.bin[shot.runner.params.cmd] = "bin/pisco.js";
+
         fs.writeFileSync(file,JSON.stringify(shot.runner.pkg,null,4));
+    },
+
+    writePiscosour : function(){
+        shot.logger.info("#cyan","Write","piscosour.json");
         var piscosour = {
             "cmd" : shot.runner.params.cmd,
             "repoTypes" : [],
@@ -40,13 +50,19 @@ var shot = new Shot({
         fs.writeFileSync("piscosour.json",JSON.stringify(piscosour,null,4));
     },
 
+    config: function(){
+        shot.logger.info("#magenta","config","Configurating package.json");
+        shot.runner.modifyPkg();
+        shot.runner.writePiscosour();
+    },
+
     run : function(resolve, reject){
         shot.logger.info("#magenta","run","Install piscosour dependency");
         shot.sh("npm install piscosour --save", reject,true);
 
         shot.logger.info("#magenta","run","Copying files to node module");
 
-        var origin = path.join(config.modulesDir.piscosour,"bin","pisco_");
+        var origin = path.join(config.modulesDir.piscosour,"templates","bin","pisco_");
         var dest = path.join(config.rootDir,"bin");
         var destFile = path.join(dest,"pisco.js");
         fsUtils.createDir(dest);
@@ -61,10 +77,6 @@ var shot = new Shot({
         if (result.status !== 0) {
             shot.logger.error("#red", "Error: commnad not executed propelly!", result.stderr.toString());
         }
-    },
-
-    notify : function(){
-        shot.logger.info("#magenta","notify","Recollect all execution information and notify");
     }
 
 });
