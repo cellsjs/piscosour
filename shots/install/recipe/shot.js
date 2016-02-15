@@ -14,7 +14,7 @@ var shot = new Shot({
 
     pkg: fsUtils.readConfig(file),
 
-    check : function(resolve){
+    check : function(stop){
         shot.logger.info("#magenta","check","Check all pre-requisites for the execution");
         if (!shot.runner.pkg.version)
             stop("Impossible to find package.json this is not a recipe root directory");
