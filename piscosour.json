@@ -44,6 +44,11 @@
       "name": "Environment Checks",
       "description": "Checks and install if an environment is ok"
     },
+    "testint": {
+      "type": "util",
+      "name": "test",
+      "description": "test"
+    },
     "test": {
       "type": "util",
       "name": "Mock test",
