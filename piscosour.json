@@ -5,6 +5,7 @@
   ],
   "defaultType": "recipe",
   "junitDir": "test-reports",
+  "junitPiscoFile": "pisco-junit.xml",
   "stages": [
     "check",
     "config",
@@ -43,6 +44,11 @@
       "type": "util",
       "name": "Environment Checks",
       "description": "Checks and install if an environment is ok"
+    },
+    "testint": {
+      "type": "util",
+      "name": "test",
+      "description": "test"
     },
     "test": {
       "type": "util",
