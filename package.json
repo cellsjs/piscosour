@@ -1,6 +1,6 @@
 {
   "name": "piscosour",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "description": "Devops recipes for all your CI tests",
   "main": "index.js",
   "scripts": {
