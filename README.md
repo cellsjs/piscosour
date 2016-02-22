@@ -1,37 +1,26 @@
-# piscosour
+# ¿Qué es piscosour?
 
+El concepto de componente llega al mundo de las herramientas de construcción, pruebas, integración y entrega continua.
+Piscosour permite ...
 
+- **Localizar fácilmente**
+- **Documentar**
+- **Compartir**
+- **Confiar**
+- **Versionar**
+- **Controlar el flujo de vida**
+- **Controlar resultados**
 
-# Install piscosour
+... de todos esos scripts bash, tareas gulp, grunt, jobs de jenkins, planes de bamboo, generadores de yeoman, etc. que tengas por ahí. 
 
-    npm install piscosour -g 
+**"Usa todas tus herramientas favoritas pero mantenlas controladas y versionadas."**
 
-Note: -g is used if you want to install the module globally in your enviroment
+- Los shots de piscosour son componentes fácilmente reutilizables a partir de una simple dependencia npm.
+- Piscosour es un generador de herramientas basadas en flujos. Generar un nuevo ejecutable es fácil con piscosour.    
+- La ejecución de piscosour genera un fichero junit xml fácilmente manejable por los orquestadores más extendidos de integración continua Jenkins, Hudson, Bamboo...   
 
-# Using piscosour as a command
+# Documentación
 
-In order to see the commands that you have available for execution execute: 
-
-    pisco
-
-or
-
-    pisco -h    
-    
-# Params loading
-
-all the params are loaded into the shot.runner.params object
-
-Priority order
-
-1) command params (--<param> <value>)
-2) local config
-    - prompt - env
-    - straw
-    - shot
-    - prompt (value ,default)
-3) recipe config
-    - prompt - env
-    - straw
-    - shot
-    - prompt (value, default)
+* [Getting Started](doc/getting_started.md) - Empieza a usar piscosour.
+* [CLI documentation](doc/CLI.md) - Manual de usuario de piscosour.
+* [API documentation](doc/API.md) - Aprende a desarrollar herramientas con piscosour.
