@@ -23,17 +23,17 @@
     "install": {
       "type": "normal",
       "name": "Install recipe",
-      "description": "Install other piscosour recipe to this recipe"
+      "description": "Install other piscosour recipes inside a recipe"
     },
     "config": {
       "type": "normal",
       "name": "Manage shots/straws",
-      "description": "Manage shots/straws inside this recipe"
+      "description": "Manage shots/straws of a recipe"
     },
     "convert": {
       "type": "normal",
       "name": "Module to recipe",
-      "description": "Convert any nodejs module to piscosour recipe"
+      "description": "Convert any module into a piscosour recipe"
     },
     "create": {
       "type": "normal",
