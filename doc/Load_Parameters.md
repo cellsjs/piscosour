@@ -171,6 +171,11 @@ Para ello será necesario configurar el parámetro prompts en el fichero **param
 
 [Documentación de inquirer](https://www.npmjs.com/package/inquirer)
 
+Se han añadido dos parámetros más a la configuración de inquirer:
+ 
+ - **env**: Nombre de la variable de entorno que se intentará usar para resolver este parámetro antes de preguntar al usuario de manera interactiva.
+ - **required**: (true/false) Establece si el campo es obligatorio o no.
+
 ```js
   "prompts": [
     {
