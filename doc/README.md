@@ -2,7 +2,7 @@
 
 * [Getting Started](getting_started.md) - Empieza a usar piscosour.
 * [Manual de Usuario](CLI.md) - Manual de usuario de piscosour.
-* [Introducción de parámetros](load_parameters.md) - Obtener parámetros de configuración para la ejecución de tus shots.
+* [Introducción de parámetros](Load_Parameters.md) - Obtener parámetros de configuración para la ejecución de tus shots.
 * [Configuración de piscosour: piscosour.json](API.md)
 
 # HOWTOs
