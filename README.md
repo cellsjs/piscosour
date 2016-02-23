@@ -22,5 +22,15 @@ Piscosour permite ...
 # Documentación
 
 * [Getting Started](doc/getting_started.md) - Empieza a usar piscosour.
-* [CLI documentation](doc/CLI.md) - Manual de usuario de piscosour.
-* [API documentation](doc/API.md) - Aprende a desarrollar herramientas con piscosour.
+* [Manual de Usuario](doc/CLI.md) - Manual de usuario de piscosour.
+* [Introducción de parámetros](doc/load_parameters.md) - Obtener parámetros de configuración para la ejecución de tus shots.
+* [Configuración de piscosour: piscosour.json](doc/API.md)
+
+# HOWTOs
+
+* [Cómo crear una receta](doc/API.md) - Manual para crear una receta desde cero.
+* [Cómo transformar un módulo nodejs en receta](doc/API.md) - Transformar un módulo nodejs cualquiera en una receta piscosour.
+* [Cómo crear un shot](doc/API.md) - Crear un shot y usar el API para sacarle el 100% del partido a piscosour.
+* [Cómo crear un straw](doc/API.md) - Crear un straw y configurarlo a partir de shots propios o de otras recetas.
+
+
