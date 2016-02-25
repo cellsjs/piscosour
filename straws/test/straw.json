@@ -1,8 +1,8 @@
 {
   "params" : {},
   "shots" : {
-    "test" : {},
     "test2" : {},
+    "test" : {},
     "testint" :{
       "type" : "straw"
     }
