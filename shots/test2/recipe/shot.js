@@ -16,10 +16,7 @@ var shot = new Shot({
 
     run : function(resolve, reject){
         shot.logger.info("#magenta","run","Run main execution");
-        setTimeout(function() {
-            reject({keep:true, error: "TEST ERROR"});
-        }, 5000);
-        return true;
+        reject({keep:true, error: "TEST ERROR"});
     },
 
     prove : function(resolve){
