@@ -15,7 +15,7 @@ var shot = new Shot({
     },
 
     run : function(resolve, reject){
-        shot.logge.info("#magenta","run","Run main execution");
+        shot.logger.info("#magenta","run","Run main execution");
         reject({keep:true, error: "TEST ERROR"});
     },
 
