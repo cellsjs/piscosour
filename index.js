@@ -25,7 +25,8 @@ var Piscosour = {
     onFulfilled : function(){
         process.exit(0);
     },
-    onReject : function(){
+    onReject : function(e){
+        if (e && e.stack) console.error("\nUncatched error:\n\n",e.stack);
         process.exit(-1);
     }
 };
