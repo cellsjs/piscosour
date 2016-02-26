@@ -8,7 +8,7 @@ var piscosour = require('../../..'),
 var shot = new Shot({
     description : "Checking all npm commands needed",
 
-    check : function(resolve, reject){
+    checks : function(resolve, reject){
         logger.info("Checking all npm commands are already installed");
 
         for (var i in shot.runner.params.installCmds){
@@ -31,7 +31,7 @@ var shot = new Shot({
         resolve({skip:true});
     },
 
-    run : function(resolve, reject){
+    runs : function(resolve, reject){
         logger.info("Installing npm dependencies...");
         return shot.executeParallel(shot.runner.params.installCmds,resolve, reject);
     }
