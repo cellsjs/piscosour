@@ -1,7 +1,18 @@
 {
-  "params" : {},
+  "params" : {
+    "saludo": "hola2"
+  },
   "shots" : {
-    "test2" : {},
+    "test2" : {
+      "params": {
+        "saludo": "hola1"
+      },
+      "recipe" : {
+        "params": {
+          "saludo": "hola"
+        }
+      }
+    },
     "test" : {},
     "testint" :{
       "type" : "straw"
