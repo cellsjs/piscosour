@@ -10,8 +10,10 @@ var shot = new Shot({
         shot.logger.info("#magenta","check","Check all pre-requisites for the execution");
     },
 
-    config : function(resolve){
+    config : function(resolve, reject){
         shot.logger.info("#magenta","config","Preparing params for main execution");
+        if (shot.runner.params.saludo!=="hola")
+            reject("ERROR: "+JSON.stringify(shot.runner.params));
     },
 
     run : function(resolve, reject){
