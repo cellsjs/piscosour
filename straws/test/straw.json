@@ -13,7 +13,16 @@
         }
       }
     },
-    "test" : {},
+    "test:1" : {
+      "params" :  {
+        "execution" :  "PRIMERA"
+      }
+    },
+    "test:2" : {
+      "params" :  {
+        "execution" :  "SEGUNDA"
+      }
+    },
     "testint" :{
       "type" : "straw"
     }
