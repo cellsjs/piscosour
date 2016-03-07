@@ -3,9 +3,6 @@
   "version": "0.0.19",
   "description": "Devops recipes for all your CI tests",
   "main": "index.js",
-  "scripts": {
-    "deps": "npm install"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/cellsjs/piscosour.git"
@@ -33,11 +30,9 @@
     "chalk": "^1.1.1",
     "inquirer": "^0.10.0",
     "minimist": "^1.2.0",
-    "mocha": "^2.4.5",
-    "mocha-junit-reporter": "^1.9.1",
     "moment": "^2.10.6",
     "nopt": "^3.0.6",
-    "run-sequence": "^1.1.0",
+    "update-notifier": "^0.6.1",
     "xml": "^1.0.1"
   },
   "engines": {
