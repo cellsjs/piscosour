@@ -44,8 +44,7 @@ var shot = new Shot({
         shot.logger.info("#cyan","Write","piscosour.json");
         var piscosour = {
             "cmd" : shot.runner.params.cmd,
-            "repoTypes" : [],
-            "straws" : {}
+            "repoTypes" : []
         };
         fs.writeFileSync("piscosour.json",JSON.stringify(piscosour,null,4));
     },
