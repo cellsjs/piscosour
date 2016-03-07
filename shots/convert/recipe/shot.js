@@ -44,8 +44,7 @@ var shot = new Shot({
         shot.logger.info("#cyan","Write","piscosour.json");
         var piscosour = {
             "cmd" : shot.runner.params.cmd,
-            "repoTypes" : [],
-            "straws" : {}
+            "repoTypes" : []
         };
         fs.writeFileSync("piscosour.json",JSON.stringify(piscosour,null,4));
     },
@@ -62,7 +61,7 @@ var shot = new Shot({
 
         shot.logger.info("#magenta","run","Copying files to node module");
 
-        var origin = path.join(config.modulesDir.piscosour,"templates","bin","pisco_");
+        var origin = path.join(config.getDir("piscosour"),"templates","bin","pisco_");
         var dest = path.join(config.rootDir,"bin");
         var destFile = path.join(dest,"pisco.js");
         fsUtils.createDir(dest);

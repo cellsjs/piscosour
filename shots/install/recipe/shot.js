@@ -35,7 +35,7 @@ var shot = new Shot({
             shot.runner.params.recipeName = "git+" + shot.runner.params.recipeName;
         }
 
-        if (fs.existsSync(path.join(config.modulesDir.module,'node_modules',name))) {
+        if (fsUtils.exists(path.join(config.getDir('module'),'node_modules',name))) {
             shot.logger.info("#green",name," is already installed in piscosour!!");
             if (shot.runner.params.update) {
                 shot.logger.info("updating","#cyan",name);

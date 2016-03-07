@@ -23,7 +23,7 @@ var shot = new Shot({
 
         var dest = path.join(config.rootDir,"shots",shot.runner.params.shotName,shot.runner.params.repoType);
 
-        if (fs.existsSync(dest)){
+        if (fsUtils.exists(dest)){
             stop('the shot "'+shot.runner.params.shotName+'" already exists for repository type: "'+shot.runner.params.repoType+'" in this recipe, edit it to change!');
         }
     },
@@ -46,7 +46,7 @@ var shot = new Shot({
         shot.logger.info("#magenta","run","Creating new shot for this recipe");
 
         var dest = path.join(config.rootDir,"shots",shot.runner.params.shotName,shot.runner.params.repoType);
-        var origin = path.join(config.modulesDir.piscosour,"templates","_shot");
+        var origin = path.join(config.getDir('piscosour'),"templates","_shot");
 
         fsUtils.createDir(path.join(config.rootDir,"shots"));
         fsUtils.createDir(path.join(config.rootDir,"shots",shot.runner.params.shotName));
@@ -56,9 +56,9 @@ var shot = new Shot({
     },
 
     prove : function(resolve, reject){
-        shot.logger.info("#magenta","prove","Prove that the shot is propelly executed");
+        shot.logger.info("#magenta","prove","Prove if the shot is propelly executed");
         var dest = path.join(config.rootDir,"shots",shot.runner.params.shotName,shot.runner.params.repoType);
-        var result = shot.sh("node bin/pisco.js -s "+shot.runner.params.repoType+":"+shot.runner.params.shotName, reject, true);
+        var result = shot.sh("node bin/pisco.js "+shot.runner.params.repoType+"::"+shot.runner.params.shotName, reject, true);
         if (result.status!==0){
             shot.logger.error("#red","Error: shot not propelly created!","cleaning files!");
             shot.sh("rm -rf "+dest,reject,true);
