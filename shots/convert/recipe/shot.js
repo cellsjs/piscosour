@@ -62,7 +62,7 @@ var shot = new Shot({
 
         shot.logger.info("#magenta","run","Copying files to node module");
 
-        var origin = path.join(config.modulesDir.piscosour,"templates","bin","pisco_");
+        var origin = path.join(config.getDir("piscosour"),"templates","bin","pisco_");
         var dest = path.join(config.rootDir,"bin");
         var destFile = path.join(dest,"pisco.js");
         fsUtils.createDir(dest);

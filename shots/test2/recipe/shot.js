@@ -11,8 +11,8 @@ var shot = new Shot({
     },
 
     config : function(resolve, reject){
-        shot.logger.info("#magenta","config","Preparing params for main execution");
-        if (shot.runner.params.saludo!=="hola")
+        shot.logger.info("#magenta","config","shot.runner.params.saludo: ", shot.runner.params.saludo);
+        if (shot.runner.params.saludo!=="holarecipe")
             reject("ERROR: "+JSON.stringify(shot.runner.params));
     },
 
