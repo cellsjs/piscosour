@@ -11,6 +11,7 @@ var Shot = require("./lib/shot"),
 
 const updateNotifier = require('update-notifier');
 const pkg = require('./package.json');
+const notifier = updateNotifier({pkg, updateCheckInterval: 1000 * 60 * 60 * 12});
 
 /**
  * Object containing all module functionality
@@ -23,7 +24,6 @@ var Piscosour = {
     config: config,
     params: params,
     gush: function () {
-        const notifier = updateNotifier({pkg, updateCheckInterval: 1000 * 60 * 60 * 12});
         notifier.notify();
         this.Sour().gush().then(this.onFulfilled, this.onReject);
     },
