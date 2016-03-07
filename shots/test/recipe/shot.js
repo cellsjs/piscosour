@@ -4,7 +4,7 @@ var piscosour = require('../../..'),
     Shot = piscosour.Shot;
 
 var shot = new Shot({
-    description : "Brief description of shot",
+    description : "TEST Brief description of shot",
 
     config : function(resolve){
         shot.logger.info("#magenta","config","Preparing params for main execution");
@@ -12,6 +12,7 @@ var shot = new Shot({
 
     run : function(resolve){
         shot.logger.info("#magenta","run","Run main execution");
+        shot.logger.info("execution: ",shot.runner.params.execution);
     },
 
     prove : function(resolve){
