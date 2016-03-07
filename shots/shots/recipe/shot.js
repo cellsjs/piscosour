@@ -23,7 +23,7 @@ var shot = new Shot({
 
         var dest = path.join(config.rootDir,"shots",shot.runner.params.shotName,shot.runner.params.repoType);
 
-        if (fs.existsSync(dest)){
+        if (fsUtils.exists(dest)){
             stop('the shot "'+shot.runner.params.shotName+'" already exists for repository type: "'+shot.runner.params.repoType+'" in this recipe, edit it to change!');
         }
     },
