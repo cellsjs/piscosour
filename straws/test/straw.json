@@ -1,15 +1,18 @@
 {
+  "type": "util",
+  "name": "Mock test",
+  "description": "Testing for piscosour",
   "params" : {
-    "saludo": "hola2"
+    "saludo": "holastraw"
   },
   "shots" : {
     "test2" : {
       "params": {
-        "saludo": "hola1"
+        "saludo": "holadefault"
       },
       "recipe" : {
         "params": {
-          "saludo": "hola"
+          "saludo": "holarecipe"
         }
       }
     },
