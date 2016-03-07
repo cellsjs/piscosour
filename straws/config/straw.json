@@ -1,4 +1,7 @@
 {
+  "type": "normal",
+  "name": "Manage shots/straws",
+  "description": "Manage shots/straws of a recipe",
   "params" : {},
   "shots" : {
     "shots" : {},

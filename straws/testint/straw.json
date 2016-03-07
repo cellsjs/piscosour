@@ -1,4 +1,7 @@
 {
+  "type": "util",
+  "name": "test",
+  "description": "test",
   "params" : {},
   "shots" : {
     "test3" : {}

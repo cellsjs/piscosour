@@ -18,42 +18,5 @@
     "parallel",
     "utils",
     "internal"
-  ],
-  "straws": {
-    "install": {
-      "type": "normal",
-      "name": "Install recipe",
-      "description": "Install other piscosour recipes inside a recipe"
-    },
-    "config": {
-      "type": "normal",
-      "name": "Manage shots/straws",
-      "description": "Manage shots/straws of a recipe"
-    },
-    "convert": {
-      "type": "normal",
-      "name": "Module to recipe",
-      "description": "Convert any module into a piscosour recipe"
-    },
-    "create": {
-      "type": "normal",
-      "name": "Create from scratch",
-      "description": "Starting a repository from scratch"
-    },
-    "environment": {
-      "type": "util",
-      "name": "Environment Checks",
-      "description": "Checks and install if an environment is ok"
-    },
-    "testint": {
-      "type": "util",
-      "name": "test",
-      "description": "test"
-    },
-    "test": {
-      "type": "util",
-      "name": "Mock test",
-      "description": "Testing for piscosour"
-    }
-  }
+  ]
 }

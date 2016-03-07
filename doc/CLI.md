@@ -6,7 +6,7 @@ Instalar piscosour como un comando global. (-g)
 
 # Guia de usuario.
 
-Ejecucanto el comando sin parámetros accederemos a la ayuda de la herramienta.  
+Ejecutando el comando sin parámetros accederemos a la ayuda de la herramienta.  
 
     pisco
 

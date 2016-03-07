@@ -38,7 +38,7 @@ var shot = new Shot({
 
         var file = path.join(config.rootDir, "straws", shot.runner.params.strawKey,"straw.json");
 
-        shot.runner.straw = fsUtils.readConfig(file);
+        shot.runner.straw = fsUtils.readConfig(file, true);
         if (!shot.runner.straw.shots) {
             shot.runner.straw.shots = {};
             shot.inquire("promptsStraw").then(resolve);
@@ -49,42 +49,32 @@ var shot = new Shot({
     run : function(){
         shot.logger.info("#magenta", "run", "Creating/managing straw", shot.runner.params.strawKey);
 
-        if (shot.runner.params.strawName)
-            shot.runner.createStraw();
-
-        var file = path.join(config.rootDir, "straws", shot.runner.params.strawKey,"straw.json");
+        if (shot.runner.params.strawName) {
+            shot.runner.straw.name = shot.runner.params.strawName;
+            shot.runner.straw.description = shot.runner.params.strawDescription;
+            shot.runner.straw.type = shot.runner.params.strawType;
+        }
 
         var shotName = shot.get("shotName", "shots");
         if (shotName) {
             shot.logger.info("#magenta", "Adding", shotName, "to", shot.runner.params.strawKey);
             shot.runner.straw.shots[shotName]={};
-            fs.writeFileSync(file, JSON.stringify(shot.runner.straw, null, 4));
         }
+
+        var file = path.join(config.rootDir, "straws", shot.runner.params.strawKey,"straw.json");
+        fs.writeFileSync(file, JSON.stringify(shot.runner.straw, null, 4));
     },
 
     prove : function(resolve, reject){
         shot.logger.info("#magenta","prove","Prove that the straw is propelly executed");
         var repoType = shot.get("repoType", "shots");
         if (repoType) {
-            var result = shot.sh("node bin/pisco.js " + repoType + ":" + shot.runner.params.strawKey, reject);
+            var result = shot.sh("node bin/pisco.js " + repoType + ":" + shot.runner.params.strawKey, reject, true);
 
             if (result.status !== 0) {
                 shot.logger.error("#red", "Error: straw not propelly created!");
+                reject(result);
             }
-        }
-    },
-
-    createStraw : function(){
-        shot.logger.info("#magenta", "createStraw", "Creating new straw","#green" ,shot.runner.params.strawName);
-        var file = path.join(config.rootDir,"piscosour.json");
-        var piscosour = fsUtils.readConfig(file);
-        if (!piscosour.straws[shot.runner.params.strawKey]) {
-            piscosour.straws[shot.runner.params.strawKey] = {
-                name: shot.runner.params.strawName,
-                description : shot.runner.params.strawDescription,
-                type: shot.runner.params.strawType
-            };
-            fs.writeFileSync(file, JSON.stringify(piscosour, null, 4));
         }
     }
 
