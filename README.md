@@ -1,3 +1,5 @@
+[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+
 # ¿Qué es piscosour?
 
 El concepto de componente llega al mundo de las herramientas de construcción, pruebas, integración y entrega continua.
