@@ -9,6 +9,10 @@ var Shot = require("./lib/shot"),
     fsUtils = require("./lib/utils/fsUtils"),
     Sour = require("./lib/sour");
 
+const updateNotifier = require('update-notifier');
+const pkg = require('./package.json');
+const notifier = updateNotifier({pkg, updateCheckInterval: 1000 * 60 * 60 * 12});
+
 /**
  * Object containing all module functionality
  */
@@ -20,6 +24,7 @@ var Piscosour = {
     config: config,
     params: params,
     gush: function () {
+        notifier.notify();
         this.Sour().gush().then(this.onFulfilled, this.onReject);
     },
     onFulfilled : function(){
