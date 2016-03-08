@@ -1,12 +1,13 @@
-# Instalación de piscosour
+# Instalación de piscosour con npm
 
-Instalar piscosour como un comando global. (-g) 
+La recomendación es instalar pisco de manera global para poder tener acceso al comando pisco desde cualquier lugar. Instalar piscosour como un comando global. (-g) 
 
     npm install -g piscosour
+    
      
 # Definición de conceptos
 
-Piscosour es un generador de herramientas. Todas las herramientas generadas con piscosour tendrán una línea de comando propia. 
+Piscosour es un envoltorio de herramientas. Cada Todas las herramientas generadas con piscosour tendrán una línea de comando propia. 
 Piscosour maneja flujos de ejecución (straw), es decir, cada ejecución de pisco desencadena la ejecución de un número determinado de pasos (shots) que a su vez llevan a cabo su propio ciclo de vida (stages)  
 
 - **stages (fases)** - Fases dentro de la ejecución de un paso (shot): (check, config, run, probe, notify).

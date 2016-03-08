@@ -10,7 +10,7 @@ Ejecutando el comando sin parámetros accederemos a la ayuda de la herramienta.
 
     pisco
 
-```bash
+```
 Name: piscosour 0.0.17  - Devops recipes for all your CI tests
  Usage: pisco [Command] [Options...]
 
@@ -36,7 +36,7 @@ Pisco es una herramienta que genera herramientas, cada una de las herramientas g
  
     cells
 
-```bash
+```
 Name: pisco-cells 0.0.5 (piscosour 0.0.17) - A piscosour recipe for cells CI process
  Usage: cells [Command] [Options...]
 
