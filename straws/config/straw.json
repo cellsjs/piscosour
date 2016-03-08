@@ -1,9 +1,10 @@
 {
   "type": "normal",
-  "name": "Manage shots/straws",
-  "description": "Manage shots/straws of a recipe",
+  "name": "Configure one repository",
+  "description": "Manage a piscosour recipe",
   "params" : {},
   "shots" : {
+    "piscosour" : {},
     "shots" : {},
     "straws" : {}
   }
