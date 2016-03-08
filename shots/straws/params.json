@@ -10,7 +10,7 @@
       "type": "input",
       "name": "strawKey",
       "required" : true,
-      "message": "Write the key of the straw",
+      "message": "Write the command of the straw",
       "when" : "#whenStrawKey"
     }
   ],

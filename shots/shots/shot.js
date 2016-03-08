@@ -1,6 +1,6 @@
 'use strict';
 
-var piscosour = require('../../..'),
+var piscosour = require('../..'),
     fs = require('fs'),
     path = require('path'),
     config = piscosour.config,
