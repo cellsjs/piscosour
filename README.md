@@ -35,7 +35,7 @@ Para hacerte a una idea, es un **jenkins**, un **bamboo**, **gocd** o **travis**
 
 # HOWTOs
 
-* [Cómo crear una receta](doc/API.md) - Manual para crear una receta desde cero.
+* [Cómo crear una receta](doc/get_started.md) - Manual para crear una receta desde cero.
 * [Cómo transformar un módulo nodejs en receta](doc/API.md) - Transformar un módulo nodejs cualquiera en una receta piscosour.
 * [Cómo crear un shot](doc/API.md) - Crear un shot y usar el API para sacarle el 100% del partido a piscosour.
 * [Cómo crear un straw](doc/API.md) - Crear un straw y configurarlo a partir de shots propios o de otras recetas.
