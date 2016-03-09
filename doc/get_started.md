@@ -67,8 +67,6 @@ Por ejemplo pondremos **"component"**
 8. Nos pide una descripción para el comando. **"this is a demo execution"**
 9. Seleccionar el tipo de straw que vamos a crear. **"normal"**
 
-![configuring our recipe](images/started7.png)
-
 Listo! ya tenemos nuestro nuevo comando añadido! Pruebalo.
 
     node bin/pisco.js
@@ -83,5 +81,79 @@ Ejecutará el nuevo straw que hemos creado con un solo shot
 
 ![first shot execution](images/started9.png)
 
+## Echemos un vistazo a lo que hemos creado.
+
+Se ha generado un módulo node con su package.json y los archivos fundamentales de pisco.
+
+Este es el árbol resultante.
+
+![recipe file tree](images/started7.png)
+ 
+package.json:
+```js
+{
+  "name": "example-wrapper",
+  "version": "0.0.1",
+  "description": "This is my first piscosour wrapper example",
+  "main": "bin/pisco.js",
+  "scripts": {
+    "deps": "npm install"
+  },
+  "keywords": [
+    "piscosour-recipe"
+  ],
+  "license": "ISC",
+  "preferGlobal": true,
+  "bin": {
+    "example-tool": "bin/pisco.js"
+  },
+  "dependencies": {
+    "piscosour": "~0.1.0"
+  },
+  "engines": {
+    "node": ">=4.0.0"
+  }
+}
+```
+
+El shot generado tiene esta pinta.
+
+```js
+'use strict';
+
+var piscosour = require('piscosour'),
+    Shot = piscosour.Shot;
+
+var shot = new Shot({
+    description : "Brief description of shot",
+
+    check : function(){
+        shot.logger.info("#magenta","check","Check all pre-requisites for the execution");
+    },
+
+    config : function(){
+        shot.logger.info("#magenta","config","Preparing params for main execution");
+    },
+
+    run : function(){
+        shot.logger.info("#magenta","run","Run main execution");
+    },
+
+    prove : function(){
+        shot.logger.info("#magenta","prove","Prove that the run execution was ok");
+    },
+
+    notify : function(){
+        shot.logger.info("#magenta","notify","Recollect all execution information and notify");
+    }
+
+});
+
+module.exports = shot;
+```
+
+puedes ver este ejemplo aquí
+
+[see this example in github](https://github.com/cellsjs/piscosour-examples)
 
 
