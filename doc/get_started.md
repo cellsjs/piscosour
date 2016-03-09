@@ -84,6 +84,10 @@ Ejecutará el nuevo straw que hemos creado con un solo shot
 ## Echemos un vistazo a lo que hemos creado.
 
 Se ha generado un módulo node con su package.json y los archivos fundamentales de pisco.
+
+Este es el árbol resultante.
+
+![recipe file tree](images/started7.png)
  
 package.json:
 ```js
@@ -104,7 +108,7 @@ package.json:
     "example-tool": "bin/pisco.js"
   },
   "dependencies": {
-    "piscosour": "~0.0.7"
+    "piscosour": "~0.1.0"
   },
   "engines": {
     "node": ">=4.0.0"
@@ -112,7 +116,44 @@ package.json:
 }
 ```
 
+El shot generado tiene esta pinta.
 
+```js
+'use strict';
 
+var piscosour = require('piscosour'),
+    Shot = piscosour.Shot;
+
+var shot = new Shot({
+    description : "Brief description of shot",
+
+    check : function(){
+        shot.logger.info("#magenta","check","Check all pre-requisites for the execution");
+    },
+
+    config : function(){
+        shot.logger.info("#magenta","config","Preparing params for main execution");
+    },
+
+    run : function(){
+        shot.logger.info("#magenta","run","Run main execution");
+    },
+
+    prove : function(){
+        shot.logger.info("#magenta","prove","Prove that the run execution was ok");
+    },
+
+    notify : function(){
+        shot.logger.info("#magenta","notify","Recollect all execution information and notify");
+    }
+
+});
+
+module.exports = shot;
+```
+
+puedes ver este ejemplo aquí
+
+[see this example in github](https://github.com/cellsjs/piscosour-examples)
 
 
