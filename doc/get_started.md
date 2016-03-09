@@ -67,8 +67,6 @@ Por ejemplo pondremos **"component"**
 8. Nos pide una descripción para el comando. **"this is a demo execution"**
 9. Seleccionar el tipo de straw que vamos a crear. **"normal"**
 
-![configuring our recipe](images/started7.png)
-
 Listo! ya tenemos nuestro nuevo comando añadido! Pruebalo.
 
     node bin/pisco.js
@@ -82,6 +80,39 @@ ahora aparecerá en la ayuda de nuestra receta el nuevo comando.
 Ejecutará el nuevo straw que hemos creado con un solo shot
 
 ![first shot execution](images/started9.png)
+
+## Echemos un vistazo a lo que hemos creado.
+
+Se ha generado un módulo node con su package.json y los archivos fundamentales de pisco.
+ 
+package.json:
+```js
+{
+  "name": "example-wrapper",
+  "version": "0.0.1",
+  "description": "This is my first piscosour wrapper example",
+  "main": "bin/pisco.js",
+  "scripts": {
+    "deps": "npm install"
+  },
+  "keywords": [
+    "piscosour-recipe"
+  ],
+  "license": "ISC",
+  "preferGlobal": true,
+  "bin": {
+    "example-tool": "bin/pisco.js"
+  },
+  "dependencies": {
+    "piscosour": "~0.0.7"
+  },
+  "engines": {
+    "node": ">=4.0.0"
+  }
+}
+```
+
+
 
 
 
