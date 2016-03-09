@@ -15,7 +15,7 @@ Piscosour envuelve la funcionalidad de cualquier herramienta y permite ...
 - **Controlar el flujo de vida**
 - **Controlar resultados**
 
-... de todos esos scripts bash, tareas gulp, grunt, generadores de yeoman, hidrolysis, lint, eslint, herramientas de polymer. etc. que tengas por ahí.
+... de todos esos scripts bash, tareas gulp, grunt, generadores de yeoman, hydrolysis, lint, eslint, herramientas de polymer. etc. que tengas por ahí.
  
 Para hacerte a una idea, es un **jenkins**, un **bamboo**, **gocd** o **travis** por línea de comando, que permite mejor reutilización de flujos. Piscosour no sustituye otras herramientas, convive con todas ellas y permite la mejor simbiosis de todas ellas.  
 
