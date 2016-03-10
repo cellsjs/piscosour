@@ -5,7 +5,7 @@
 var Shot = require("./lib/shot"),
     logger = require("./lib/logger"),
     config = require("./lib/config"),
-    params = require("./lib/params"),
+    Plugin = require("./lib/plugin"),
     fsUtils = require("./lib/utils/fsUtils"),
     Sour = require("./lib/sour");
 
@@ -14,14 +14,13 @@ const pkg = require('./package.json');
 const notifier = updateNotifier({pkg, updateCheckInterval: 1000 * 60 * 60 * 12});
 
 /**
- * <h1>Piscosour</h1>
+ * Piscosour
+ * ---------
  *
- * <ol>
- * <li>Piscosour gets all command line (CLI) development tools wrapped-up, creating command line workflows.</li>
- * <li>Piscosour does not replace other tools, coexists with all of them and allows the best symbiosis of them all.</li>
- * <li>Piscosour shots are easy and reusable components based on a npm dependency.</li>
- * <li>Piscosour execution creates an easily junit.xml filed to manage with the most popular orchestrators like Jenkins, Hudson, Bamboo, etc.</li>
- * </ol>
+ * - Piscosour gets all command line (CLI) development tools wrapped-up, creating command line workflows.
+ * - Piscosour does not replace other tools, coexists with all of them and allows the best symbiosis of them all.
+ * - Piscosour shots are easy and reusable components based on a npm dependency.
+ * - Piscosour execution creates an easily junit.xml filed to manage with the most popular orchestrators like Jenkins, Hudson, Bamboo, etc.
  *
  * We have moved the idea of a component to use it as a tool to build, to test, to use in a continuous integration tool, etc. For all these tasks we have created Piscosour.
  *
@@ -30,11 +29,11 @@ const notifier = updateNotifier({pkg, updateCheckInterval: 1000 * 60 * 60 * 12})
  */
 var Piscosour = {
     Shot: Shot,
+    config: config,
+    Plugin: Plugin,
     Sour: Sour,
     fsUtils: fsUtils,
     logger: logger,
-    config: config,
-    params: params,
     gush: function () {
         notifier.notify();
         this.Sour().gush().then(this.onFulfilled, this.onReject);
