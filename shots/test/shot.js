@@ -7,7 +7,8 @@ var shot = new Shot({
     description : "TEST Brief description of shot",
 
     config : function(resolve){
-        shot.logger.info("#magenta","config","--Preparing params for main execution");
+        shot.logger.info("#magenta","config","Preparing params for main execution");
+        shot.saludo();
     },
 
     run : function(resolve){
