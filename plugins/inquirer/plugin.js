@@ -1,19 +1,24 @@
 'use strict';
 
 var piscosour = require('../..'),
+    inquirer = require('inquirer'),
     Plugin = piscosour.Plugin;
 
 var plug = new Plugin({
     description : "Plugin inquirer",
 
-    notify : function(resolve, reject){
-        plug.runner.logger.info("-----------1------------");
+    check : function(shot, cb){
+        if (shot.runner && shot.runner.params.prompts) {
+            shot.logger.info("-----------1------------");
+            shot.inquire("prompts").then(cb);
+            shot.logger.info("-----------2------------");
+        }
     },
 
     addons : {
 
         saludo : function(){
-            plug.runner.logger.info("Hola!!!");
+            this.logger.info("Hola!!!");
         },
 
         inquire: function (name) {
