@@ -4,6 +4,12 @@
 
 # ¿Qué es piscosour?
 
+- Piscosour envuelve todas las herramientas de desarrollo por línea de comando (CLI), creando workflows comprobables ejecutados también por línea de comando.
+- Piscosour no remplaza otras herramientas, coexiste con todas permitiendo el mejor aprovechamiento y simbiosis de todas ellas.
+- Los shots son componentes sencillos y reutilizables mediante una simple dependencia npm.
+- Cada ejecución de Piscosour genera un fichero junit.xml que posibilita la mejor integración con los orquestadores más populares de C.I. como Jenkins, Hudson, Bamboo, etc.
+- Piscosour mantiene todos los sets de herramientas ordenados bajo la misma receta, así podrías tener recetas para polymer, angularjs, react, instalaciones, utilidades de sistema... y usarlos en cualquier workflow que necesites.
+
 El concepto de componente llega al mundo de las herramientas de construcción, pruebas, integración y entrega continua.
 Piscosour envuelve la funcionalidad de cualquier herramienta y permite ...
 
@@ -21,9 +27,6 @@ Para hacerte a una idea, es un **jenkins**, un **bamboo**, **gocd** o **travis**
 
 **"Usa todas tus herramientas favoritas pero mantenlas controladas y versionadas."**
 
-- Los shots de piscosour son componentes fácilmente reutilizables a partir de una simple dependencia npm.
-- Piscosour envuelve la ejecución de otras herramientas creando flujos de trabajo en línea de comando. Generar un nuevo ejecutable es fácil con piscosour.    
-- La ejecución de piscosour genera un fichero junit xml fácilmente interpretado por los orquestadores más extendidos de integración continua Jenkins, Hudson, Bamboo, Go...   
 
 # Documentación
 
