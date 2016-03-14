@@ -7,19 +7,12 @@ var piscosour = require('../..'),
 var plug = new Plugin({
     description : "Plugin inquirer",
 
-    check : function(shot, cb){
-        if (shot.runner && shot.runner.params.prompts) {
-            shot.logger.info("-----------1------------");
-            shot.inquire("prompts").then(cb);
-            shot.logger.info("-----------2------------");
-        }
+    check : function(shot, resolve, reject){
+        if (shot.runner && shot.runner.params.prompts)
+            shot.inquire("prompts").then(resolve, reject);
     },
 
     addons : {
-
-        saludo : function(){
-            this.logger.info("Hola!!!");
-        },
 
         inquire: function (name) {
             var prompts = this.runner.params[name];
@@ -31,7 +24,7 @@ var plug = new Plugin({
             };
 
             var shotResolution = function (prompt, attr) {
-                if (prompt[attr] !== undefined && prompt[attr].indexOf("#") === 0) {
+                if (prompt[attr] !== undefined && Object.prototype.toString.call(prompt[attr]) !== '[object Function]' && prompt[attr].indexOf("#") === 0) {
                     var functionName = prompt[attr].replace('#', '');
                     var func = this.runner[functionName];
                     if (func)
