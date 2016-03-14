@@ -1,17 +1,17 @@
 {
-  "plugins" : ["inquirer","error"],
+  "plugins" : ["inquirer"],
   "prompts": [
     {
       "type": "input",
-      "name": "recipeName",
+      "name": "param1",
       "required" : true,
-      "message": "npm package name (or git repository url) of the recipe"
+      "message": "Question 1?"
     },
     {
       "type": "confirm",
       "name": "update",
       "required" : true,
-      "message": "Update recipe installed",
+      "message": "Question 2?",
       "default" : true
     }
   ],

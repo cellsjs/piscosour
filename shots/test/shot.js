@@ -8,7 +8,6 @@ var shot = new Shot({
 
     config : function(resolve){
         shot.logger.info("#magenta","config","Preparing params for main execution");
-        shot.saludo();
     },
 
     run : function(resolve){
