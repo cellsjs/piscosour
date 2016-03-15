@@ -1,4 +1,7 @@
 {
+  "params" : {
+    "plugins" : ["inquirer"]
+  },
   "cmd" : "pisco",
   "repoTypes": [
     "recipe"
