@@ -6,7 +6,7 @@ var piscosour = require('../..'),
 var plug = new Plugin({
     description : "Test plugin",
 
-    check : function(shot, resolve, reject){
+    check : function(shot){
         shot.logger.info("---------PLUGIN TEST--------");
         shot.pluginAddon("Azucar!")
     },
