@@ -1,5 +1,4 @@
 {
-  "plugins" : ["test"],
   "prompts": [
     {
       "type": "input",

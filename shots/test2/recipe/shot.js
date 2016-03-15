@@ -8,7 +8,6 @@ var shot = new Shot({
 
     check : function(resolve){
         shot.logger.info("#magenta","check","Check all pre-requisites for the execution");
-        //shot.saludo();
     },
 
     config : function(resolve, reject){
