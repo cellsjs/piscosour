@@ -1,10 +1,10 @@
 {
-  "plugins" : ["inquirer"],
+  "plugins" : ["test"],
   "prompts": [
     {
       "type": "input",
       "name": "param1",
-      "required" : true,
+      "required" : false,
       "message": "Question 1?"
     },
     {

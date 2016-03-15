@@ -7,9 +7,9 @@ var piscosour = require('../..'),
 var plug = new Plugin({
     description : "Plugin inquirer",
 
-    check : function(shot, resolve, reject){
+    check : function(shot){
         if (shot.runner && shot.runner.params.prompts)
-            shot.inquire("prompts").then(resolve, reject);
+            return shot.inquire("prompts");
     },
 
     addons : {
