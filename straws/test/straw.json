@@ -3,6 +3,7 @@
   "name": "Mock test",
   "description": "Testing for piscosour",
   "params" : {
+    "plugins" : ["test"],
     "saludo": "holastraw"
   },
   "shots" : {
