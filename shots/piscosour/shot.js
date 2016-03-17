@@ -63,7 +63,7 @@ var shot = new Shot({
         };
 
         if (configLocal.straws){
-            shot.inquirer_inquire("promptsPisco").then(fixDeprecated);
+            shot.inquire("promptsPisco").then(fixDeprecated);
             return true;
         };
     }

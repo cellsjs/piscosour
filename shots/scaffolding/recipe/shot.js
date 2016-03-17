@@ -15,7 +15,7 @@ var shot = new Shot({
 
         fsUtils.createDir(path.join(pwd,shot.runner.params.recipeName));
         process.chdir(path.join(pwd,shot.runner.params.recipeName));
-        shot.execute("yo",shot.inquirer_promptArgs(["pisco-recipe"]),resolve, reject);
+        shot.execute("yo",shot.promptArgs(["pisco-recipe"]),resolve, reject);
         return true;
     }
 
