@@ -9,7 +9,7 @@ var plug = new Plugin({
 
     check : function(shot){
         if (shot.runner && shot.runner.params.prompts)
-            return shot.inquire("prompts");
+            return shot.inquirer_inquire("prompts");
     },
 
     addons : {

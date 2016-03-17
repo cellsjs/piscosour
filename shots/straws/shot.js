@@ -41,7 +41,7 @@ var shot = new Shot({
         shot.runner.straw = fsUtils.readConfig(file, true);
         if (!shot.runner.straw.shots) {
             shot.runner.straw.shots = {};
-            shot.inquire("promptsStraw").then(resolve);
+            shot.inquirer_inquire("promptsStraw").then(resolve);
             return true;
         }
     },
