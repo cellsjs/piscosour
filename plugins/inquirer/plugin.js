@@ -5,14 +5,14 @@ var piscosour = require('../..'),
     Plugin = piscosour.Plugin;
 
 var plug = new Plugin({
-    description: "Plugin inquirer",
+    description : "Plugin inquirer",
 
-    check: function (shot) {
+    check : function(shot){
         if (shot.runner && shot.runner.params.prompts)
-            return shot.inquirer_inquire("prompts");
+            return shot.inquire("prompts");
     },
 
-    addons: {
+    addons : {
 
         inquire: function (name) {
             var prompts = this.runner.params[name];
