@@ -9,7 +9,7 @@ var plug = new Plugin({
 
     check : function(shot){
         if (shot.runner && shot.runner.params.prompts)
-            return shot.inquirer.inquire("prompts");
+            return shot.inquirer_inquire("prompts");
     },
 
     addons : {
@@ -71,17 +71,6 @@ var plug = new Plugin({
                     resolve();
             }.bind(this));
             return promise;
-        },
-
-        promptArgs : function(array){
-            var prompts = this.runner.params.prompts;
-            if (prompts)
-                for (var i in prompts){
-                    var prompt = prompts[i];
-                    array.push('--'+prompt.name);
-                    array.push(this.runner.params[prompt.name]);
-                }
-            return array;
         }
     }
 });
