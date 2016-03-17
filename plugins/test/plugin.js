@@ -8,7 +8,7 @@ var plug = new Plugin({
 
     check : function(shot){
         shot.logger.info("---------PLUGIN TEST--------");
-        shot.pluginAddon("Azucar!")
+        shot.test.pluginAddon("Azucar!")
     },
 
     addons : {
