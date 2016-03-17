@@ -154,6 +154,20 @@ NOTA: En caso de estar definido varias veces un parámetro será sobre-escrito p
 
 ## (4) Configuración en el fichero params.json de un shot
 
+Existen dos localizaciones para este fichero:
+
+**Común para todos los repoTypes del shot** ("install" es el nombre del shot)
+
+Este fichero se encuentra en la receta en [recipeRoot]/shots/[shotName]/params.json
+
+```js
+{
+    "workingDir" : "workspace"
+}
+```
+
+**Específico para un repoType dado** ("component" es el repoType)
+
 Este fichero se encuentra en la receta en [recipeRoot]/shots/[shotName]/[repoType]/params.json
 
 ```js
@@ -162,8 +176,15 @@ Este fichero se encuentra en la receta en [recipeRoot]/shots/[shotName]/[repoTyp
 }
 ```
 
+
 El parámetro será shot.runner.params.workingDir="workspace".
 
+### Prioridad:
+
+- **1** Específico para un repoType dado.
+- **2** Común para todos los repoTypes del shot.
+
+NOTA: En caso de estar definido varias veces un parámetro será sobre-escrito por el número más pequeño de esta lista.
 
 ## (5) Pregunta al usuario interactivamente.
 
@@ -177,7 +198,7 @@ Se han añadido dos parámetros más a la configuración de inquirer:
  - **required**: (true/false) Establece si el campo es obligatorio o no.
 
 ```js
-  "prompts": [
+  "inquirer-prompts": [
     {
       "type": "input",
       "name": "workingDir",
@@ -194,7 +215,7 @@ Se han añadido dos parámetros más a la configuración de inquirer:
 Dado que params.json es un fichero json y no está permitido escribir código javascript se ha habilitado una forma de asignar funciones propias del shot a los parámetros check, validate y choices de inquirer.
 
 ```js
-  "prompts": [
+  "inquirer-prompts": [
     {
       "type": "input",
       "name": "workingDir",
