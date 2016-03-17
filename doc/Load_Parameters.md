@@ -154,6 +154,20 @@ NOTA: En caso de estar definido varias veces un parámetro será sobre-escrito p
 
 ## (4) Configuración en el fichero params.json de un shot
 
+Existen dos localizaciones para este fichero:
+
+**Común para todos los repoTypes del shot** ("install" es el nombre del shot)
+
+Este fichero se encuentra en la receta en [recipeRoot]/shots/[shotName]/params.json
+
+```js
+{
+    "workingDir" : "workspace"
+}
+```
+
+**Específico para un repoType dado** ("component" es el repoType)
+
 Este fichero se encuentra en la receta en [recipeRoot]/shots/[shotName]/[repoType]/params.json
 
 ```js
@@ -162,8 +176,15 @@ Este fichero se encuentra en la receta en [recipeRoot]/shots/[shotName]/[repoTyp
 }
 ```
 
+
 El parámetro será shot.runner.params.workingDir="workspace".
 
+### Prioridad:
+
+- **1** Específico para un repoType dado.
+- **2** Común para todos los repoTypes del shot.
+
+NOTA: En caso de estar definido varias veces un parámetro será sobre-escrito por el número más pequeño de esta lista.
 
 ## (5) Pregunta al usuario interactivamente.
 
