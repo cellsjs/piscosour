@@ -19,7 +19,7 @@ var plug = new piscosour.Plugin({
 
     check : function(shot){
         shot.logger.info("---------PLUGIN TEST--------");
-        shot.pluginAddon("Ejemplo")
+        shot.test_pluginAddon("Ejemplo")
     },
     
     // ---- ADDONS ----
@@ -35,8 +35,15 @@ var plug = new piscosour.Plugin({
 module.exports = plug;
 ```
 
-- Los hooks reciben como parámetro el shot donde están actuando con todas las propiedades y funciones del shot cargadas puesto que está inyección se realiza cuando el shot está completamente cargado.
-- Los addons son métodos que se añaden al prototipo Shot por lo tanto van a poderse ejecutar desde cualquier referencia a este prototipo. **this** dentro de una función addon hace referencia al shot donde se está ejecutando, también cargado con todos los parámetros que tenga.
+## HOOKS
+ - Los hooks reciben como parámetro el shot donde están actuando. Este shot será una referencia a la instancia shot que se está ejecutando en ese momento, por lo tanto con todas las propiedades y funciones del shot.
+ - Las functions de los hooks deberán tener el mismo nombre que la fase (stage) que van a preceder. 
+ - Deberán devolver una Promesa o undefined. No está permitido hacer return de otro tipo de valor.
+    
+## ADDONS
+ - Los addons son métodos que se añaden al prototipo Shot por lo tanto van a poderse ejecutar desde cualquier referencia a este prototipo.
+ - Las funciones añadidas estarán prefijadas con el nombre del plugin + '_'. En nuestro ejemplo será **test_** 
+ - Dentro de una función addon **this** hace referencia al shot donde se está ejecutando, será una referencia a la instancia ejecutandose en ese momento con todo completamente cargado.
 
 # ¿Cómo crear un plugin?
 
@@ -81,7 +88,7 @@ en el caso de params.json
  
  En nuestro ejemplo este sería el código del shot que usa el plugin test:
  
- ```js
+```js
  'use strict';
  
  var piscosour = require('piscosour'),
@@ -89,14 +96,14 @@ en el caso de params.json
  
  var shot = new Shot({
      description : "Plugins test shot",
- 
+
      config : function(resolve){
          shot.logger.info("#magenta","config","Preparing params for main execution");
      },
  
      run : function(resolve){
          shot.logger.info("#magenta","run","Run main execution");
-         shot.pluginAddon("our example!!");
+         shot.test_pluginAddon("our example!!");
      },
  
      prove : function(resolve){
@@ -105,12 +112,11 @@ en el caso de params.json
  
      notify : function(resolve){
          shot.logger.info("#magenta","notify","Recollect all execution information and notify");
-     }
- 
+     } 
  });
  
  module.exports = shot;
- ```
+```
 
 Al ejecutar el shot aparecerá nuesto mensaje:
 

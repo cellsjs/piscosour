@@ -13,8 +13,7 @@ var shot = new Shot({
     run : function(resolve){
         shot.logger.info("#magenta","run","Run main execution");
         shot.logger.info("execution: ",shot.runner.params.execution);
-        console.log("SHOT---------------->",shot);
-        shot.test.pluginAddon("----------->TEST!!!!!");
+        shot.test_pluginAddon(" - test plugin addon!");
     },
 
     prove : function(resolve){
