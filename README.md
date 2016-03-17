@@ -33,6 +33,7 @@ Para hacerte a una idea, es un **jenkins**, un **bamboo**, **gocd** o **travis**
 * [Get Started](doc/get_started.md) - Empieza a usar piscosour.
 * [What is piscosour?](doc/what_is_piscosour.md) - ¿Qué es piscosour?
 * [Manual de Usuario](doc/CLI.md) - Manual de usuario de piscosour.
+* [Plugins](doc/plugins.md) - Para escribir y usar plugins.
 * [Introducción de parámetros](doc/Load_Parameters.md) - Obtener parámetros de configuración para la ejecución de tus shots.
 * [Configuración de piscosour: piscosour.json](doc/API.md)
 
