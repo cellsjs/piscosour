@@ -198,7 +198,7 @@ Se han añadido dos parámetros más a la configuración de inquirer:
  - **required**: (true/false) Establece si el campo es obligatorio o no.
 
 ```js
-  "inquirer-prompts": [
+  "prompts": [
     {
       "type": "input",
       "name": "workingDir",
@@ -215,7 +215,7 @@ Se han añadido dos parámetros más a la configuración de inquirer:
 Dado que params.json es un fichero json y no está permitido escribir código javascript se ha habilitado una forma de asignar funciones propias del shot a los parámetros check, validate y choices de inquirer.
 
 ```js
-  "inquirer-prompts": [
+  "prompts": [
     {
       "type": "input",
       "name": "workingDir",
