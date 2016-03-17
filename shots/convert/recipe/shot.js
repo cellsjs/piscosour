@@ -21,7 +21,7 @@ var shot = new Shot({
         if (shot.runner.pkg.keywords && shot.runner.pkg.keywords.indexOf("piscosour-recipe")>=0){
             stop("This is already a piscosour recipe");
         }else {
-            shot.inquire("promptsPisco").then(go);
+            shot.inquirer_inquire("promptsPisco").then(go);
             return true;
         }
     },
