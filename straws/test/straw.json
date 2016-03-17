@@ -7,7 +7,7 @@
     "saludo": "holastraw"
   },
   "shots" : {
-    "test2" : {
+    "tests2" : {
       "params": {
         "saludo": "holadefault"
       },
