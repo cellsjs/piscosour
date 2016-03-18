@@ -32,16 +32,15 @@ Para hacerte a una idea, es un **jenkins**, un **bamboo**, **gocd** o **travis**
 
 * [Get Started](doc/get_started.md) - Empieza a usar piscosour.
 * [What is piscosour?](doc/what_is_piscosour.md) - ¿Qué es piscosour?
-* [Manual de Usuario](doc/CLI.md) - Manual de usuario de piscosour.
 * [Plugins](doc/plugins.md) - Para escribir y usar plugins.
 * [Introducción de parámetros](doc/Load_Parameters.md) - Obtener parámetros de configuración para la ejecución de tus shots.
-* [Configuración de piscosour: piscosour.json](doc/API.md)
+* [Configuración de piscosour: piscosour.json](doc/configuration.md)
 
 # HOWTOs
 
 * [Cómo crear una receta](doc/get_started.md) - Manual para crear una receta desde cero.
-* [Cómo transformar un módulo nodejs en receta](doc/API.md) - Transformar un módulo nodejs cualquiera en una receta piscosour.
-* [Cómo crear un shot](doc/API.md) - Crear un shot y usar el API para sacarle el 100% del partido a piscosour.
-* [Cómo crear un straw](doc/API.md) - Crear un straw y configurarlo a partir de shots propios o de otras recetas.
+* [Cómo transformar un módulo nodejs en receta](doc/convert_to_recipe.md) - Transformar un módulo nodejs cualquiera en una receta piscosour.
+* [Trabajar con shots](doc/shots.md) - Crear un shot y usar el API para sacarle el 100% del partido a piscosour.
+* [Trabajar con straws](doc/straws.md) - Crear un straw y configurarlo a partir de shots propios o de otras recetas.
 
 
