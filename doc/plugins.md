@@ -19,14 +19,14 @@ var plug = new piscosour.Plugin({
 
     check : function(shot){
         shot.logger.info("---------PLUGIN TEST--------");
-        shot.test_pluginAddon("Ejemplo")
+        shot.test_pluginAddon("Ejemplo");
     },
     
     // ---- ADDONS ----
 
     addons : {
 
-        pluginAddon: function (name) {
+        test_pluginAddon: function (message) {
             this.logger.info("Test addon executed", name);
         }
     }
@@ -42,8 +42,43 @@ module.exports = plug;
     
 ## ADDONS
  - Los addons son métodos que se añaden al prototipo Shot por lo tanto van a poderse ejecutar desde cualquier referencia a este prototipo.
- - Las funciones añadidas estarán prefijadas con el nombre del plugin + '_'. En nuestro ejemplo será **test_** 
  - Dentro de una función addon **this** hace referencia al shot donde se está ejecutando, será una referencia a la instancia ejecutandose en ese momento con todo completamente cargado.
+ - **ATENCIÓN: Los plugins añaden funciones al prototype Shot**. Para no sobreescribir funciones sensibles de Shot utilizar uno de estos dos métodos:
+  
+  1. Prefijar las funciones añadidas con el nombre del plugin + '_'. En nuestro ejemplo será **test_**.
+  2. Crear un espacio de nombres: Esta solución pierde la referencia al **this** del propio shot y habría que pasar el shot al llamar a la función. En nuestro ejemplo:
+  
+  **plugin.js:**
+  
+```js
+'use strict';
+
+var piscosour = require('piscosour');
+
+var plug = new piscosour.Plugin({
+    description : "Test plugin",
+
+    // ---- HOOKS ----
+
+    check : function(shot){
+        shot.logger.info("---------PLUGIN TEST--------");
+        shot.test.pluginAddon(shot,"Ejemplo");
+    },
+    
+    // ---- ADDONS ----
+
+    addons : {
+        test : {
+            pluginAddon: function (shot,message) {
+                shot.logger.info("Test addon executed", name);
+            }
+        }
+    }
+});
+
+module.exports = plug;
+```
+
 
 # ¿Cómo crear un plugin?
 
