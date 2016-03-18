@@ -2,7 +2,9 @@
 
 'use strict';
 
-var Shot = require("./lib/shot"),
+var moment = require('moment'),
+    init = moment(),
+    Shot = require("./lib/shot"),
     logger = require("./lib/logger"),
     config = require("./lib/config"),
     Plugin = require("./lib/plugin"),
@@ -36,7 +38,8 @@ var Piscosour = {
     logger: logger,
     gush: function () {
         notifier.notify();
-        this.Sour().gush().then(this.onFulfilled, this.onReject);
+        logger.info("Loading time","-","#duration",moment()-init);
+        this.Sour().gush(init).then(this.onFulfilled, this.onReject);
     },
     onFulfilled : function(){
         process.exit(0);
