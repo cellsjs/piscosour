@@ -1,29 +1,23 @@
 'use strict';
 
-var piscosour = require('../..'),
-    Shot = piscosour.Shot;
-
-var shot = new Shot({
+module.exports = {
     description : "TEST Brief description of shot",
 
     config : function(resolve){
-        shot.logger.info("#magenta","config","Preparing params for main execution");
+        this.logger.info("#magenta","config","Preparing params for main execution");
     },
 
     run : function(resolve){
-        shot.logger.info("#magenta","run","Run main execution");
-        shot.logger.info("execution: ",shot.runner.params.execution);
-        shot.pluginAddon(" - test plugin addon!");
+        this.logger.info("#magenta","run","Run main execution");
+        this.logger.info("execution: ",this.params.execution);
+        this.testPluginAddon(" - test plugin addon!");
     },
 
     prove : function(resolve){
-        shot.logger.info("#magenta","prove","Prove that the run execution was ok");
+        this.logger.info("#magenta","prove","Prove that the run execution was ok");
     },
 
     notify : function(resolve){
-        shot.logger.info("#magenta","notify","Recollect all execution information and notify");
+        this.logger.info("#magenta","notify","Recollect all execution information and notify");
     }
-
-});
-
-module.exports = shot;
+};

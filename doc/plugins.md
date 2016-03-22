@@ -18,7 +18,7 @@ var plug = new piscosour.Plugin({
     // ---- HOOKS ----
 
     check : function(shot){
-        shot.logger.info("---------PLUGIN TEST--------");
+        this.logger.info("---------PLUGIN TEST--------");
         shot.test_pluginAddon("Ejemplo");
     },
     
@@ -61,7 +61,7 @@ var plug = new piscosour.Plugin({
     // ---- HOOKS ----
 
     check : function(shot){
-        shot.logger.info("---------PLUGIN TEST--------");
+        this.logger.info("---------PLUGIN TEST--------");
         shot.test.pluginAddon(shot,"Ejemplo");
     },
     
@@ -70,7 +70,7 @@ var plug = new piscosour.Plugin({
     addons : {
         test : {
             pluginAddon: function (shot,message) {
-                shot.logger.info("Test addon executed", name);
+                this.logger.info("Test addon executed", name);
             }
         }
     }
@@ -129,28 +129,28 @@ en el caso de params.json
  var piscosour = require('piscosour'),
      Shot = piscosour.Shot;
  
- var shot = new Shot({
+ module.exports = {
      description : "Plugins test shot",
 
      config : function(resolve){
-         shot.logger.info("#magenta","config","Preparing params for main execution");
+         this.logger.info("#magenta","config","Preparing params for main execution");
      },
  
      run : function(resolve){
-         shot.logger.info("#magenta","run","Run main execution");
+         this.logger.info("#magenta","run","Run main execution");
          shot.test_pluginAddon("our example!!");
      },
  
      prove : function(resolve){
-         shot.logger.info("#magenta","prove","Prove that the run execution was ok");
+         this.logger.info("#magenta","prove","Prove that the run execution was ok");
      },
  
      notify : function(resolve){
-         shot.logger.info("#magenta","notify","Recollect all execution information and notify");
+         this.logger.info("#magenta","notify","Recollect all execution information and notify");
      } 
  });
  
- module.exports = shot;
+ 
 ```
 
 Al ejecutar el shot aparecerá nuesto mensaje:

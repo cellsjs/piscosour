@@ -1,30 +1,27 @@
 'use strict';
 
-var piscosour = require('../../..'),
-    path = require('path'),
-    Shot = piscosour.Shot,
-    logger = piscosour.logger;
+var path = require('path');
 
-var shot = new Shot({
+module.exports = {
     description : "Checking all npm commands needed",
 
     check : function(resolve, reject){
-        logger.info("Checking all npm commands are already installed");
+        this.logger.info("Checking all npm commands are already installed");
 
-        for (var i in shot.runner.params.installCmds){
-            var command = shot.runner.params.installCmds[i].args[2];
+        for (var i in this.params.installCmds){
+            var command = this.params.installCmds[i].args[2];
 
-            logger.info("Checking","#cyan",command,"....");
+            this.logger.info("Checking","#cyan",command,"....");
             if (command.indexOf('https://')>=0)
                 command = path.parse(command).name;
 
-            var result = shot.executeSync("npm",["list","-g",command]);
+            var result = this.executeSync("npm",["list","-g",command]);
 
             if (result.status===0) {
-                logger.info(command, "is installed", ".................", "#green", "OK");
-                shot.runner.params.installCmds[i].skip = true;
+                this.logger.info(command, "is installed", ".................", "#green", "OK");
+                this.params.installCmds[i].skip = true;
             } else {
-                logger.info(command, "#yellow", "is not installed!");
+                this.logger.info(command, "#yellow", "is not installed!");
                 resolve({skip: false});
             }
         }
@@ -32,9 +29,7 @@ var shot = new Shot({
     },
 
     run : function(resolve, reject){
-        logger.info("Installing npm dependencies...");
-        return shot.executeParallel(shot.runner.params.installCmds,resolve, reject);
+        this.logger.info("Installing npm dependencies...");
+        return this.executeParallel(this.params.installCmds,resolve, reject);
     }
-});
-
-module.exports = shot;
+};
