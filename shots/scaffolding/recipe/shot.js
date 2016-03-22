@@ -7,6 +7,9 @@ var piscosour = require('../../..'),
     fsUtils = piscosour.fsUtils,
     Shot = piscosour.Shot;
 
+/**
+ * Create a recipe using a yeoman generator. This shot execute yeoman and generate a new recipe using the user introduced parameters.
+ */
 var shot = new Shot({
     description : "Create a piscosour recipe from a scaffold template",
 
