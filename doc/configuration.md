@@ -84,23 +84,23 @@ notese que corresponden con los métodos a implementar dentro de un shot:
 
 ```js
     check : function(){
-        shot.logger.info("#magenta","check","Check all pre-requisites for the execution");
+        this.logger.info("#magenta","check","Check all pre-requisites for the execution");
     },
 
     config : function(){
-        shot.logger.info("#magenta","config","Preparing params for main execution");
+        this.logger.info("#magenta","config","Preparing params for main execution");
     },
 
     run : function(){
-        shot.logger.info("#magenta","run","Run main execution");
+        this.logger.info("#magenta","run","Run main execution");
     },
 
     prove : function(){
-        shot.logger.info("#magenta","prove","Prove that the run execution was ok");
+        this.logger.info("#magenta","prove","Prove that the run execution was ok");
     },
 
     notify : function(){
-        shot.logger.info("#magenta","notify","Recollect all execution information and notify");
+        this.logger.info("#magenta","notify","Recollect all execution information and notify");
     }
 ```
 
@@ -117,7 +117,7 @@ será llamada después de la ultima fase notify.
 ```js
 [...]
     final : function(){
-        shot.logger.info("#magenta","notify","Recollect all execution information and notify");
+        this.logger.info("#magenta","notify","Recollect all execution information and notify");
     }
 [...]
 ```

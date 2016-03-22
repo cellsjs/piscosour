@@ -76,35 +76,32 @@ El shot generado tiene esta pinta.
 ```js
 'use strict';
 
-var piscosour = require('piscosour'),
-    Shot = piscosour.Shot;
-
-var shot = new Shot({
+module.exports = {
     description : "Brief description of shot",
 
     check : function(){
-        shot.logger.info("#magenta","check","Check all pre-requisites for the execution");
+        this.logger.info("#magenta","check","Check all pre-requisites for the execution");
     },
 
     config : function(){
-        shot.logger.info("#magenta","config","Preparing params for main execution");
+        this.logger.info("#magenta","config","Preparing params for main execution");
     },
 
     run : function(){
-        shot.logger.info("#magenta","run","Run main execution");
+        this.logger.info("#magenta","run","Run main execution");
     },
 
     prove : function(){
-        shot.logger.info("#magenta","prove","Prove that the run execution was ok");
+        this.logger.info("#magenta","prove","Prove that the run execution was ok");
     },
 
     notify : function(){
-        shot.logger.info("#magenta","notify","Recollect all execution information and notify");
+        this.logger.info("#magenta","notify","Recollect all execution information and notify");
     }
 
 });
 
-module.exports = shot;
+
 ```
 
 puedes ver este ejemplo aquí

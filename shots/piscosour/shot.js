@@ -4,10 +4,9 @@ var piscosour = require('../..'),
     fs = require('fs'),
     path = require('path'),
     config = piscosour.config,
-    fsUtils = piscosour.fsUtils,
-    Shot = piscosour.Shot;
+    fsUtils = piscosour.fsUtils;
 
-var shot = new Shot({
+module.exports = {
     description : "Configure piscosour.json",
 
     file : path.join(config.rootDir, "piscosour.json"),
@@ -17,7 +16,7 @@ var shot = new Shot({
     },
 
     check : function(go, stop){
-        shot.logger.info("#magenta","check","Check if this is a piscosour recipe");
+        this.logger.info("#magenta","check","Check if this is a piscosour recipe");
         var file = path.join(process.cwd(),'package.json');
         var pkg = fsUtils.readConfig(file);
         if (pkg.version) {
@@ -29,21 +28,21 @@ var shot = new Shot({
     },
 
     config: function(go, stop){
-        shot.logger.info("#magenta","config","Configure recipe", shot.runner.file);
-        var configLocal = fsUtils.readConfig(shot.runner.file);
+        this.logger.info("#magenta","config","Configure recipe", this.runner.file);
+        var configLocal = fsUtils.readConfig(this.runner.file);
 
-        if (shot.runner.params.defaultType) {
+        if (this.params.defaultType) {
 
             if (!configLocal.repoTypes)
                 configLocal.repoTypes = [];
 
-            if (configLocal.repoTypes.indexOf(shot.runner.params.defaultType) < 0) {
-                configLocal.repoTypes.push(shot.runner.params.defaultType);
+            if (configLocal.repoTypes.indexOf(this.params.defaultType) < 0) {
+                configLocal.repoTypes.push(this.params.defaultType);
             }
 
-            configLocal.defaultType = shot.runner.params.defaultType;
+            configLocal.defaultType = this.params.defaultType;
 
-            fs.writeFileSync(shot.runner.file, JSON.stringify(configLocal, null, 4));
+            fs.writeFileSync(this.runner.file, JSON.stringify(configLocal, null, 4));
         }
 
         var fixDeprecated = function(){
@@ -57,17 +56,15 @@ var shot = new Shot({
                 fs.writeFileSync(strawFile,JSON.stringify(straw,null,4));
             }
             delete configLocal.straws;
-            fs.writeFileSync(shot.runner.file,JSON.stringify(configLocal,null,4));
-            shot.logger.info("#green","piscosour.json fixed!");
+            fs.writeFileSync(this.runner.file,JSON.stringify(configLocal,null,4));
+            this.logger.info("#green","piscosour.json fixed!");
             go();
         };
 
         if (configLocal.straws){
-            shot.inquire("promptsPisco").then(fixDeprecated);
+            this.inquire("promptsPisco").then(fixDeprecated);
             return true;
         };
     }
 
-});
-
-module.exports = shot;
+};

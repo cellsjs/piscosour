@@ -4,24 +4,20 @@ var piscosour = require('../../..'),
     fs = require('fs'),
     path = require('path'),
     pwd = process.env.PWD,
-    fsUtils = piscosour.fsUtils,
-    Shot = piscosour.Shot;
+    fsUtils = piscosour.fsUtils;
 
 /**
  * Create a recipe using a yeoman generator. This shot execute yeoman and generate a new recipe using the user introduced parameters.
  */
-var shot = new Shot({
+module.exports = {
     description : "Create a piscosour recipe from a scaffold template",
 
     run : function(resolve, reject){
-        shot.logger.info("#magenta","run","Create new recipe from template");
+        this.logger.info("#magenta","run","Create new recipe from template");
 
-        fsUtils.createDir(path.join(pwd,shot.runner.params.recipeName));
-        process.chdir(path.join(pwd,shot.runner.params.recipeName));
-        shot.execute("yo",shot.promptArgs(["pisco-recipe"]),resolve, reject);
+        fsUtils.createDir(path.join(pwd,this.params.recipeName));
+        process.chdir(path.join(pwd,this.params.recipeName));
+        this.execute("yo",this.promptArgs(["pisco-recipe"]),resolve, reject);
         return true;
     }
-
-});
-
-module.exports = shot;
+};

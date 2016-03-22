@@ -1,22 +1,17 @@
 'use strict';
 
-var piscosour = require('../..'),
-    Plugin = piscosour.Plugin;
-
-var plug = new Plugin({
+module.exports = {
     description : "Test plugin",
 
-    check : function(shot){
-        shot.logger.info("---------PLUGIN TEST--------");
-        shot.pluginAddon("Azucar!")
+    check : function(){
+        this.logger.info("---------PLUGIN TEST--------");
+        this.testPluginAddon("Azucar!")
     },
 
     addons : {
 
-        pluginAddon: function (name) {
+        testPluginAddon: function (name) {
             this.logger.info("Test addon executed", name);
         }
     }
-});
-
-module.exports = plug;
+};

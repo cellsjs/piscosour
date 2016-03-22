@@ -4,80 +4,78 @@ var piscosour = require('../../..'),
     path = require('path'),
     fs = require('fs'),
     fsUtils = piscosour.fsUtils,
-    config = piscosour.config,
-    Shot = piscosour.Shot;
+    config = piscosour.config;
 
 var file = path.join(process.cwd(),'package.json');
 
-var shot = new Shot({
+module.exports = {
     description : "Convert any nodejs module into a piscosour recipe",
 
     pkg: fsUtils.readConfig(file),
 
     check : function(go, stop){
-        shot.logger.info("#magenta","check","Check if this is a nodejs module");
-        if (!shot.runner.pkg.version)
+        this.logger.info("#magenta","check","Check if this is a nodejs module");
+        if (!this.runner.pkg.version)
             stop("Impossible to find package.json");
-        if (shot.runner.pkg.keywords && shot.runner.pkg.keywords.indexOf("piscosour-recipe")>=0){
+        if (this.runner.pkg.keywords && this.runner.pkg.keywords.indexOf("piscosour-recipe")>=0){
             stop("This is already a piscosour recipe");
         }else {
-            shot.inquire("promptsPisco").then(go);
+            this.inquire("promptsPisco").then(go);
             return true;
         }
     },
 
     modifyPkg : function(){
-        shot.logger.info("#cyan","Modify","package.json");
-        if (!shot.runner.pkg.keywords)
-            shot.runner.pkg.keywords = [];
+        this.logger.info("#cyan","Modify","package.json");
+        if (!this.runner.pkg.keywords)
+            this.runner.pkg.keywords = [];
 
-        shot.runner.pkg.keywords.push("piscosour-recipe");
-        if (!shot.runner.pkg.bin)
-            shot.runner.pkg.bin = {};
+        this.runner.pkg.keywords.push("piscosour-recipe");
+        if (!this.runner.pkg.bin)
+            this.runner.pkg.bin = {};
 
-        shot.runner.pkg.bin[shot.runner.params.cmd] = "bin/pisco.js";
+        this.runner.pkg.bin[this.params.cmd] = "bin/pisco.js";
 
-        fs.writeFileSync(file,JSON.stringify(shot.runner.pkg,null,4));
+        fs.writeFileSync(file,JSON.stringify(this.runner.pkg,null,4));
     },
 
     writePiscosour : function(){
-        shot.logger.info("#cyan","Write","piscosour.json");
+        this.logger.info("#cyan","Write","piscosour.json");
         var piscosour = {
-            "cmd" : shot.runner.params.cmd,
+            "cmd" : this.params.cmd,
             "repoTypes" : []
         };
         fs.writeFileSync("piscosour.json",JSON.stringify(piscosour,null,4));
     },
 
     config: function(){
-        shot.logger.info("#magenta","config","Configurating package.json");
-        shot.runner.modifyPkg();
-        shot.runner.writePiscosour();
+        this.logger.info("#magenta","config","Configurating package.json");
+        this.runner.modifyPkg();
+        this.runner.writePiscosour();
     },
 
     run : function(resolve, reject){
-        shot.logger.info("#magenta","run","Install piscosour dependency");
-        shot.sh("npm install piscosour --save", reject,true);
+        this.logger.info("#magenta","run","Install piscosour dependency");
+        this.sh("npm install piscosour --save", reject,true);
 
-        shot.logger.info("#magenta","run","Copying files to node module");
+        this.logger.info("#magenta","run","Copying files to node module");
 
         var origin = path.join(config.getDir("piscosour"),"templates","bin","pisco_");
         var dest = path.join(config.rootDir,"bin");
         var destFile = path.join(dest,"pisco.js");
         fsUtils.createDir(dest);
 
-        return fsUtils.copyFileFiltered(origin, destFile, {resolve: resolve, reject: reject, logger: shot.logger});
+        return fsUtils.copyFileFiltered(origin, destFile, {resolve: resolve, reject: reject, logger: this.logger});
     },
 
     prove : function(resolve, reject){
-        shot.logger.info("#magenta","prove","Prove that the new pisco recipe is executable");
-        var result = shot.sh("node bin/pisco.js", reject);
+        this.logger.info("#magenta","prove","Prove that the new pisco recipe is executable");
+        var result = this.sh("node bin/pisco.js", reject);
 
         if (result.status !== 0) {
-            shot.logger.error("#red", "Error: commnad not executed propelly!", result.stderr.toString());
+            this.logger.error("#red", "Error: commnad not executed propelly!", result.stderr.toString());
         }
     }
 
-});
+};
 
-module.exports = shot;
