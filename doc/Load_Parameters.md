@@ -1,12 +1,12 @@
 # Lectura de parámetros desde un shot
 
-Todos los parametros que recibimos en un shot están centralizados en **shot.runner.params**. A contiuación se enumeran los métodos disponibles para la introducción de parámetros en la ejecución de pisco o de sus recetas.
+Todos los parametros que recibimos en un shot están centralizados en **this.params**. A contiuación se enumeran los métodos disponibles para la introducción de parámetros en la ejecución de pisco o de sus recetas.
 
 ## (1) Opción en la línea de comando. 
 
     pisco --workingDir workspace
 
-el parámetro shot.runner.params.workingDir="workspace"
+el parámetro this.params.workingDir="workspace"
 
 ## (2) Configuración en el fichero piscosour.json 
 
@@ -79,7 +79,7 @@ La definición de los parámetros incluye estos ámbitos (scopes):
 }
 ``` 
 
-Todas estas opciones acabarán con el parámetro shot.runner.params.workingDir="workspace".
+Todas estas opciones acabarán con el parámetro this.params.workingDir="workspace".
 
 ### Prioridad:
 
@@ -142,7 +142,7 @@ Este fichero se encuentra en la receta en [recipeRoot]/straws/[recipeName]/straw
 }
 ``` 
 
-Todas estas opciones acabarán con el parámetro shot.runner.params.workingDir="workspace".
+Todas estas opciones acabarán con el parámetro this.params.workingDir="workspace".
 
 ### Prioridad:
 
@@ -177,7 +177,7 @@ Este fichero se encuentra en la receta en [recipeRoot]/shots/[shotName]/[repoTyp
 ```
 
 
-El parámetro será shot.runner.params.workingDir="workspace".
+El parámetro será this.params.workingDir="workspace".
 
 ### Prioridad:
 
@@ -231,7 +231,7 @@ mediante "#...nombre de la función" le decimos a piscosour que función tiene q
 Ahora en el shot simplemente definimos:
 
 ```js
-var shot = new Shot({
+module.exports = {
     description : "Adding shot to a straw",
 
     [...]
@@ -246,14 +246,14 @@ var shot = new Shot({
 
 **answer** es el objeto completo con las respuestas del usuario.  
 
-El parámetro será shot.runner.params.workingDir="workspace".
+El parámetro será this.params.workingDir="workspace".
  
 Creando la lista prompts en **params.json** automáticamente el shot preguntará al usuario siempre que el parámetro no venga informado.
 
 
 ### Prioridad:
  
- Si se usa más de un método para introducir un parámetro este será el orden de prioridad usado para estar disponible en **shot.runner.params**
+ Si se usa más de un método para introducir un parámetro este será el orden de prioridad usado para estar disponible en **this.params**
 
 - 1 - Parámetro por línea de comando.
 - 2 - Variable de entorno especificada en el parámetro env del prompt.

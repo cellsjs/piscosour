@@ -1,21 +1,19 @@
 'use strict';
 
-var piscosour = require('../..'),
-    inquirer = require('inquirer'),
-    Plugin = piscosour.Plugin;
+var inquirer = require('inquirer');
 
-var plug = new Plugin({
+module.exports = {
     description : "Plugin inquirer",
 
-    check : function(shot){
-        if (shot.runner && shot.runner.params.prompts)
-            return shot.inquire("prompts");
+    check : function(){
+        if (this.params.prompts)
+            return this.inquire("prompts");
     },
 
     addons : {
 
         inquire: function (name) {
-            var prompts = this.runner.params[name];
+            var prompts = this.params[name];
 
             var getValidate = function (prompt) {
                 return function (userInput) {
@@ -49,12 +47,12 @@ var plug = new Plugin({
                     prompt.validate = getValidate(prompt);
 
                 if (prompt.env !== undefined && process.env[prompt.env])
-                    this.runner.params[prompt.name] = process.env[prompt.env];
+                    this.params[prompt.name] = process.env[prompt.env];
 
-                if (prompt.value !== undefined && !this.runner.params[prompt.name])
-                    this.runner.params[prompt.name] = prompt.value;
+                if (prompt.value !== undefined && !this.params[prompt.name])
+                    this.params[prompt.name] = prompt.value;
 
-                if (this.runner.params[prompt.name] === undefined) {
+                if (this.params[prompt.name] === undefined) {
                     reqs.push(prompt)
                 }
             }
@@ -63,7 +61,7 @@ var plug = new Plugin({
                 if (reqs.length > 0) {
                     inquirer.prompt(reqs, function (answers) {
                         for (var i in reqs) {
-                            this.runner.params[reqs[i].name] = answers[reqs[i].name];
+                            this.params[reqs[i].name] = answers[reqs[i].name];
                         }
                         resolve();
                     }.bind(this));
@@ -74,16 +72,14 @@ var plug = new Plugin({
         },
 
         promptArgs: function (array) {
-            var prompts = this.runner.params.prompts;
+            var prompts = this.params.prompts;
             if (prompts)
                 for (var i in prompts) {
                     var prompt = prompts[i];
                     array.push('--' + prompt.name);
-                    array.push(this.runner.params[prompt.name]);
+                    array.push(this.params[prompt.name]);
                 }
             return array;
         }
     }
-});
-
-module.exports = plug;
+};
