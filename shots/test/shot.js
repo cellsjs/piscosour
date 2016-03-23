@@ -13,7 +13,7 @@ module.exports = {
         this.testPluginAddon(" - test plugin addon!");
     },
 
-    prove : function(resolve){
+    prove : function(resolve, reject){
         this.logger.info("#magenta","prove","Prove that the run execution was ok");
     },
 
