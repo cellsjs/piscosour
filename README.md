@@ -38,6 +38,7 @@ Para hacerte a una idea, es un **jenkins**, un **bamboo**, **gocd** o **travis**
 
 # HOWTOs
 
+* [Migración a la versión 0.2.0 desde 0.1.0](doc/0.2.0_migration_guide.md) - Migrar recetas de la versión 0.1.0 a la 0.2.0.
 * [Cómo crear una receta](doc/get_started.md) - Manual para crear una receta desde cero.
 * [Cómo transformar un módulo nodejs en receta](doc/convert_to_recipe.md) - Transformar un módulo nodejs cualquiera en una receta piscosour.
 * [Trabajar con shots](doc/shots.md) - Crear un shot y usar el API para sacarle el 100% del partido a piscosour.
