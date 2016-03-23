@@ -1,9 +1,0 @@
-{
-  "type": "normal",
-  "name": "Install recipe",
-  "description": "Install other piscosour recipes inside a recipe",
-  "params" : {},
-  "shots" : {
-    "install" : {}
-  }
-}
