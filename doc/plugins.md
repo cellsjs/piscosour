@@ -10,9 +10,7 @@ este es el especto de un plugin tipo:
 ```js
 'use strict';
 
-var piscosour = require('piscosour');
-
-var plug = new piscosour.Plugin({
+module.exports = {
     description : "Test plugin",
 
     // ---- HOOKS ----
@@ -26,17 +24,15 @@ var plug = new piscosour.Plugin({
 
     addons : {
 
-        test_pluginAddon: function (message) {
+        testPluginAddon: function (message) {
             this.logger.info("Test addon executed", name);
         }
     }
-});
-
-module.exports = plug;
+};
 ```
 
 ## HOOKS
- - Los hooks reciben como parámetro el shot donde están actuando. Este shot será una referencia a la instancia shot que se está ejecutando en ese momento, por lo tanto con todas las propiedades y funciones del shot.
+ - En los hooks **this** será la referencia a la instancia shot que se está ejecutando en ese momento, por lo tanto con todas las propiedades y funciones del shot.
  - Las functions de los hooks deberán tener el mismo nombre que la fase (stage) que van a preceder. 
  - Deberán devolver una Promesa o undefined. No está permitido hacer return de otro tipo de valor.
     
@@ -45,7 +41,7 @@ module.exports = plug;
  - Dentro de una función addon **this** hace referencia al shot donde se está ejecutando, será una referencia a la instancia ejecutandose en ese momento con todo completamente cargado.
  - **ATENCIÓN: Los plugins añaden funciones al prototype Shot**. Para no sobreescribir funciones sensibles de Shot utilizar uno de estos dos métodos:
   
-  1. Prefijar las funciones añadidas con el nombre del plugin + '_'. En nuestro ejemplo será **test_**.
+  1. (Recomendado): Prefijar las funciones añadidas con el nombre del plugin. En nuestro ejemplo será **test**.
   2. Crear un espacio de nombres: Esta solución pierde la referencia al **this** del propio shot y habría que pasar el shot al llamar a la función. En nuestro ejemplo:
   
   **plugin.js:**
@@ -53,16 +49,14 @@ module.exports = plug;
 ```js
 'use strict';
 
-var piscosour = require('piscosour');
-
-var plug = new piscosour.Plugin({
+module.exports = {
     description : "Test plugin",
 
     // ---- HOOKS ----
 
-    check : function(shot){
+    check : function(){
         this.logger.info("---------PLUGIN TEST--------");
-        shot.test.pluginAddon(shot,"Ejemplo");
+        this.test.pluginAddon(this,"Ejemplo");
     },
     
     // ---- ADDONS ----
@@ -70,13 +64,11 @@ var plug = new piscosour.Plugin({
     addons : {
         test : {
             pluginAddon: function (shot,message) {
-                this.logger.info("Test addon executed", name);
+                shot.logger.info("Test addon executed", message);
             }
         }
     }
-});
-
-module.exports = plug;
+};
 ```
 
 
@@ -126,9 +118,6 @@ en el caso de params.json
 ```js
  'use strict';
  
- var piscosour = require('piscosour'),
-     Shot = piscosour.Shot;
- 
  module.exports = {
      description : "Plugins test shot",
 
@@ -148,8 +137,7 @@ en el caso de params.json
      notify : function(resolve){
          this.logger.info("#magenta","notify","Recollect all execution information and notify");
      } 
- });
- 
+ };
  
 ```
 

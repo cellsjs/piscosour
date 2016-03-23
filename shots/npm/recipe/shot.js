@@ -5,7 +5,7 @@ var path = require('path');
 module.exports = {
     description : "Checking all npm commands needed",
 
-    check : function(resolve, reject){
+    check : function(resolve){
         this.logger.info("Checking all npm commands are already installed");
 
         for (var i in this.params.installCmds){
@@ -30,6 +30,6 @@ module.exports = {
 
     run : function(resolve, reject){
         this.logger.info("Installing npm dependencies...");
-        return this.executeParallel(this.params.installCmds,resolve, reject);
+        return this.executeParallel(this.params.installCmds).then(resolve, reject);
     }
 };
