@@ -1,0 +1,10 @@
+{
+    "shots": {
+        "extract-md": {},
+        "generate-docs": {},
+        "index-readme": {}
+    },
+    "name": "Generate Documentation",
+    "description": "Generate documentation for straws and shots",
+    "type": "normal"
+}
