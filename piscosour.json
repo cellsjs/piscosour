@@ -1,24 +1,27 @@
 {
-  "params" : {
-    "plugins" : ["inquirer","launcher"]
-  },
-  "cmd" : "pisco",
-  "repoTypes": [
-    "recipe"
-  ],
-  "defaultType": "recipe",
-  "junitDir": "test-reports",
-  "junitPiscoFile": "pisco-junit.xml",
-  "stages": [
-    "check",
-    "config",
-    "run",
-    "prove",
-    "notify"
-  ],
-  "strawTypes": [
-    "normal",
-    "utils",
-    "internal"
-  ]
+    "params": {
+        "plugins": [
+            "inquirer",
+            "launcher"
+        ]
+    },
+    "cmd": "pisco",
+    "repoTypes": [
+        "recipe"
+    ],
+    "defaultType": "recipe",
+    "junitDir": "test-reports",
+    "junitPiscoFile": "pisco-junit.xml",
+    "stages": [
+        "check",
+        "config",
+        "run",
+        "prove",
+        "notify"
+    ],
+    "strawTypes": [
+        "normal",
+        "utils",
+        "internal"
+    ]
 }
