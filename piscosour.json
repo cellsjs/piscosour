@@ -1,6 +1,6 @@
 {
   "params" : {
-    "plugins" : ["inquirer"]
+    "plugins" : ["inquirer","launcher"]
   },
   "cmd" : "pisco",
   "repoTypes": [

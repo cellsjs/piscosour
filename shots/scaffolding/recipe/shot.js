@@ -17,7 +17,6 @@ module.exports = {
 
         fsUtils.createDir(path.join(pwd,this.params.recipeName));
         process.chdir(path.join(pwd,this.params.recipeName));
-        this.execute("yo",this.promptArgs(["pisco-recipe"]),resolve, reject);
-        return true;
+        return this.execute("yo",this.promptArgs(["pisco-recipe"])).then(resolve,reject);
     }
 };
