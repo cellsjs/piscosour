@@ -3,8 +3,7 @@
 var piscosour = require('../..'),
     path = require('path'),
     fs = require('fs'),
-    config = piscosour.config,
-    fsUtils = piscosour.fsUtils;
+    config = piscosour.config;
 
 module.exports = {
     description : "Adding shot to a straw",
@@ -32,12 +31,12 @@ module.exports = {
         this.logger.info("#magenta", "config", "Configuring straw", this.params.strawKey);
         var dir = path.join(config.rootDir, "straws", this.params.strawKey);
 
-        fsUtils.createDir(path.join(config.rootDir, "straws"));
-        fsUtils.createDir(path.join(config.rootDir, "straws",this.params.strawKey));
+        this.fsCreateDir(path.join(config.rootDir, "straws"));
+        this.fsCreateDir(path.join(config.rootDir, "straws",this.params.strawKey));
 
         var file = path.join(config.rootDir, "straws", this.params.strawKey,"straw.json");
 
-        this.runner.straw = fsUtils.readConfig(file, true);
+        this.runner.straw = this.fsReadConfig(file, true);
         if (!this.runner.straw.shots) {
             this.runner.straw.shots = {};
             this.inquire("promptsStraw").then(resolve);
