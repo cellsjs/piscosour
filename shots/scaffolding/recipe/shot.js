@@ -1,7 +1,6 @@
 'use strict';
 
-var piscosour = require('../../..'),
-    fs = require('fs'),
+var fs = require('fs'),
     path = require('path'),
     pwd = process.env.PWD;
 

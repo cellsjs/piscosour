@@ -1,9 +1,7 @@
 'use strict';
 
-var piscosour = require('../..'),
-    path = require('path'),
-    fs = require('fs'),
-    config = piscosour.config;
+var path = require('path'),
+    fs = require('fs');
 
 module.exports = {
     description : "Adding shot to a straw",
@@ -29,12 +27,12 @@ module.exports = {
 
     config : function(resolve){
         this.logger.info("#magenta", "config", "Configuring straw", this.params.strawKey);
-        var dir = path.join(config.rootDir, "straws", this.params.strawKey);
+        var dir = path.join(this.config.rootDir, "straws", this.params.strawKey);
 
-        this.fsCreateDir(path.join(config.rootDir, "straws"));
-        this.fsCreateDir(path.join(config.rootDir, "straws",this.params.strawKey));
+        this.fsCreateDir(path.join(this.config.rootDir, "straws"));
+        this.fsCreateDir(path.join(this.config.rootDir, "straws",this.params.strawKey));
 
-        var file = path.join(config.rootDir, "straws", this.params.strawKey,"straw.json");
+        var file = path.join(this.config.rootDir, "straws", this.params.strawKey,"straw.json");
 
         this.runner.straw = this.fsReadConfig(file, true);
         if (!this.runner.straw.shots) {
@@ -59,7 +57,7 @@ module.exports = {
             this.runner.straw.shots[shotName]={};
         }
 
-        var file = path.join(config.rootDir, "straws", this.params.strawKey,"straw.json");
+        var file = path.join(this.config.rootDir, "straws", this.params.strawKey,"straw.json");
         fs.writeFileSync(file, JSON.stringify(this.runner.straw, null, 4));
     },
 
@@ -75,5 +73,4 @@ module.exports = {
             }
         }
     }
-
 };

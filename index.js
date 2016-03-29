@@ -5,7 +5,6 @@
 var moment = require('moment'),
     init = moment(),
     logger = require("./lib/logger"),
-    config = require("./lib/config"),
     Sour = require("./lib/sour");
 
 const updateNotifier = require('update-notifier');
@@ -27,7 +26,6 @@ const notifier = updateNotifier({pkg, updateCheckInterval: 1000 * 60 * 60 * 12})
  * @constructor Piscosour
  */
 var Piscosour = {
-    config: config,
     Sour: Sour,
     gush: function () {
         notifier.notify();

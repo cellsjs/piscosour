@@ -31,23 +31,23 @@ module.exports = {
 
             child.on('disconnect', function () {
                 this.logger.info("Child process disconnected!", arguments);
-            });
+            }.bind(this));
 
             child.stdout.on('data', function (data) {
                 this.logger.out(data.toString());
-            });
+            }.bind(this));
 
             child.stderr.on('data', function (data) {
                 this.logger.err(data.toString());
-            });
+            }.bind(this));
 
             child.on('error', function () {
                 this.logger.error("Child process error!", arguments);
-            });
+            }.bind(this));
 
             child.on('exit', function () {
                 this.logger.info("Child process exit!", arguments);
-            });
+            }.bind(this));
 
             return new Promise(function (resolve, reject){
                 child.on('close', function (code) {
@@ -57,8 +57,8 @@ module.exports = {
                     } else {
                         resolve({cmd: cmd, args: args, status: "OK"});
                     }
-                });
-            });
+                }.bind(this));
+            }.bind(this));
         },
         executeParallel: function (multiple) {
             var promises = [];

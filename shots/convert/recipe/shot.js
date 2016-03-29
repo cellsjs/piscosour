@@ -1,9 +1,7 @@
 'use strict';
 
-var piscosour = require('../../..'),
-    path = require('path'),
-    fs = require('fs'),
-    config = piscosour.config;
+var path = require('path'),
+    fs = require('fs');
 
 module.exports = {
     description : "Convert any nodejs module into a piscosour recipe",
@@ -53,8 +51,8 @@ module.exports = {
 
         this.logger.info("#magenta","run","Copying files to node module");
 
-        var origin = path.join(config.getDir("piscosour"),"templates","bin","pisco_");
-        var dest = path.join(config.rootDir,"bin");
+        var origin = path.join(this.config.getDir("piscosour"),"templates","bin","pisco_");
+        var dest = path.join(this.config.rootDir,"bin");
         var destFile = path.join(dest,"pisco.js");
         this.fsCreateDir(dest);
 
@@ -69,6 +67,4 @@ module.exports = {
             this.logger.error("#red", "Error: commnad not executed propelly!", result.stderr.toString());
         }
     }
-
 };
-
