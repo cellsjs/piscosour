@@ -4,10 +4,8 @@
 
 var moment = require('moment'),
     init = moment(),
-    Shot = require("./lib/shot"),
     logger = require("./lib/logger"),
     config = require("./lib/config"),
-    Plugin = require("./lib/plugin"),
     Sour = require("./lib/sour");
 
 const updateNotifier = require('update-notifier');
@@ -29,11 +27,8 @@ const notifier = updateNotifier({pkg, updateCheckInterval: 1000 * 60 * 60 * 12})
  * @constructor Piscosour
  */
 var Piscosour = {
-    Shot: Shot,
     config: config,
-    Plugin: Plugin,
     Sour: Sour,
-    logger: logger,
     gush: function () {
         notifier.notify();
         logger.info("Loading time","-","#duration",moment()-init);
