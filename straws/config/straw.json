@@ -1,8 +1,10 @@
 {
+  "params" : {
+    "plugins" : ["cookbook"]
+  },
   "type": "normal",
   "name": "Configure one repository",
   "description": "Manage a piscosour recipe",
-  "params" : {},
   "shots" : {
     "piscosour" : {},
     "shots" : {},
