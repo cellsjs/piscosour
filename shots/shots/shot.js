@@ -11,26 +11,14 @@ module.exports = {
 
     check : function(go, stop){
         this.logger.info("#magenta","check","Check if this is a piscosour recipe");
-        var file = path.join(process.cwd(),'package.json');
-        var pkg = fsUtils.readConfig(file);
-        if (pkg.version) {
-            var isRecipe = pkg.keywords && pkg.keywords.indexOf("piscosour-recipe")>=0;
-            if (!isRecipe)
-                stop("This module is not a piscosour recipe, execute \"pisco convert\" first");
-        }else
-            stop("Impossible to find package.json this is not a recipe root directory");
-
         var dest = path.join(config.rootDir,"shots",this.params.shotName,this.params.repoType);
-
-        if (fsUtils.exists(dest)){
-            stop('the shot "'+this.params.shotName+'" already exists for repository type: "'+this.params.repoType+'" in this recipe, edit it to change!');
-        }
+        if (fsUtils.exists(dest))
+            stop('Shot "'+this.params.shotName+'" already exists for repository type: "'+this.params.repoType+'" in this recipe, edit it to change!');
     },
 
     config: function(go, stop){
-        var file = path.join(config.rootDir, "piscosour.json");
-        this.logger.info("#magenta","config","Configure recipe for the new shot in", file);
-        var configLocal = fsUtils.readConfig(file);
+        this.logger.info("#magenta","config","Configure recipe for the new shot in", this.piscoFile);
+        var configLocal = fsUtils.readConfig(this.piscoFile);
 
         if (!configLocal.repoTypes)
             configLocal.repoTypes = [];
@@ -38,7 +26,7 @@ module.exports = {
         if (configLocal.repoTypes.indexOf(this.params.repoType)<0){
             configLocal.repoTypes.push(this.params.repoType);
         }
-        fs.writeFileSync(file,JSON.stringify(configLocal,null,4));
+        fs.writeFileSync(this.piscoFile,JSON.stringify(configLocal,null,4));
     },
 
     run : function(resolve, reject){

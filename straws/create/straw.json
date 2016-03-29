@@ -2,7 +2,6 @@
   "type": "normal",
   "name": "Create from scratch",
   "description": "Starting a repository from scratch",
-  "params" : {},
   "shots" : {
     "environment" : {
       "type": "straw"
