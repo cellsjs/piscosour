@@ -3,7 +3,6 @@
 var piscosour = require('../../..'),
     path = require('path'),
     fs = require('fs'),
-    fsUtils = piscosour.fsUtils,
     config = piscosour.config;
 
 module.exports = {
@@ -57,9 +56,9 @@ module.exports = {
         var origin = path.join(config.getDir("piscosour"),"templates","bin","pisco_");
         var dest = path.join(config.rootDir,"bin");
         var destFile = path.join(dest,"pisco.js");
-        fsUtils.createDir(dest);
+        this.fsCreateDir(dest);
 
-        return fsUtils.copyFileFiltered(origin, destFile, {resolve: resolve, reject: reject, logger: this.logger});
+        return this.fsCopyFileFiltered(origin, destFile).then(resolve, reject);
     },
 
     prove : function(resolve, reject){

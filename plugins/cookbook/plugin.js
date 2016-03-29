@@ -2,7 +2,7 @@
 
 var piscosour = require('../..'),
     path = require('path'),
-    fsUtils = piscosour.fsUtils,
+    fsUtils = require('../../lib/utils/fsUtils'),
     root = process.cwd(),
     pkgFile = path.join(root,'package.json'),
     piscoFile = path.join(root,'piscosour.json'),

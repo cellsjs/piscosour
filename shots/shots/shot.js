@@ -3,8 +3,7 @@
 var piscosour = require('../..'),
     fs = require('fs'),
     path = require('path'),
-    config = piscosour.config,
-    fsUtils = piscosour.fsUtils;
+    config = piscosour.config;
 
 module.exports = {
     description : "Create new pisco shot inside this module",
@@ -12,13 +11,13 @@ module.exports = {
     check : function(go, stop){
         this.logger.info("#magenta","check","Check if this is a piscosour recipe");
         var dest = path.join(config.rootDir,"shots",this.params.shotName,this.params.repoType);
-        if (fsUtils.exists(dest))
+        if (this.fsExists(dest))
             stop('Shot "'+this.params.shotName+'" already exists for repository type: "'+this.params.repoType+'" in this recipe, edit it to change!');
     },
 
     config: function(go, stop){
         this.logger.info("#magenta","config","Configure recipe for the new shot in", this.piscoFile);
-        var configLocal = fsUtils.readConfig(this.piscoFile);
+        var configLocal = this.fsReadConfig(this.piscoFile);
 
         if (!configLocal.repoTypes)
             configLocal.repoTypes = [];
@@ -35,11 +34,11 @@ module.exports = {
         var dest = path.join(config.rootDir,"shots",this.params.shotName,this.params.repoType);
         var origin = path.join(config.getDir('piscosour'),"templates","_shot");
 
-        fsUtils.createDir(path.join(config.rootDir,"shots"));
-        fsUtils.createDir(path.join(config.rootDir,"shots",this.params.shotName));
-        fsUtils.createDir(dest);
+        this.fsCreateDir(path.join(config.rootDir,"shots"));
+        this.fsCreateDir(path.join(config.rootDir,"shots",this.params.shotName));
+        this.fsCreateDir(dest);
 
-        return fsUtils.copyDirFiltered(origin, dest, {resolve: resolve, reject: reject, logger: this.logger});
+        return this.fsCopyDirFiltered(origin, dest).then(resolve, reject);
     },
 
     prove : function(resolve, reject){

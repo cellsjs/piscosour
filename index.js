@@ -8,7 +8,6 @@ var moment = require('moment'),
     logger = require("./lib/logger"),
     config = require("./lib/config"),
     Plugin = require("./lib/plugin"),
-    fsUtils = require("./lib/utils/fsUtils"),
     Sour = require("./lib/sour");
 
 const updateNotifier = require('update-notifier');
@@ -34,7 +33,6 @@ var Piscosour = {
     config: config,
     Plugin: Plugin,
     Sour: Sour,
-    fsUtils: fsUtils,
     logger: logger,
     gush: function () {
         notifier.notify();
