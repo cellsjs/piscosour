@@ -1,9 +1,7 @@
 'use strict';
 
-var piscosour = require('../..'),
-    fs = require('fs'),
-    path = require('path'),
-    config = piscosour.config;
+var fs = require('fs'),
+    path = require('path');
 
 module.exports = {
     description : "Configure piscosour.json",
@@ -33,7 +31,7 @@ module.exports = {
         var fixDeprecated = function(){
             for (var name in configLocal.straws){
                 var local = configLocal.straws[name];
-                var strawFile = path.join(config.rootDir,"straws",name,"straw.json");
+                var strawFile = path.join(this.config.rootDir,"straws",name,"straw.json");
                 var straw = this.fsReadConfig(strawFile);
                 straw.type =local.type;
                 straw.name = local.name;
@@ -51,5 +49,4 @@ module.exports = {
             return true;
         };
     }
-
 };
