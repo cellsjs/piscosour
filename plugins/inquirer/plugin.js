@@ -29,7 +29,7 @@ module.exports = {
                         prompt[attr] = func;
                     else {
                         prompt[attr] = undefined;
-                        logger.info("#yellow", "WARNING", "value", functionName, "doesn't exists!! in this shot");
+                        this.logger.info("#yellow", "WARNING", "value", functionName, "doesn't exists!! in this shot");
                     }
                 }
             }.bind(this);
