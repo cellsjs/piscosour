@@ -48,6 +48,10 @@ module.exports = {
                     resolve();
                 });
             });
+        },
+
+        fsBundleFiles : function(bundle, file){
+            this.logger.trace("Bundle ", file, bundle);
         }
     }
 };

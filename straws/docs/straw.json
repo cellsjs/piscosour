@@ -3,7 +3,6 @@
         "plugins" : ["cookbook"]
     },
     "shots": {
-        "extract-md": {},
         "generate-docs": {},
         "index-readme": {}
     },
