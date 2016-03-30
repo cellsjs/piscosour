@@ -6,18 +6,12 @@ var piscosour = require('../../..'),
     fsUtils = piscosour.fsUtils,
     config = piscosour.config;
 
-var file = path.join(process.cwd(),'package.json');
-
 module.exports = {
     description : "Convert any nodejs module into a piscosour recipe",
 
-    pkg: fsUtils.readConfig(file),
-
     check : function(go, stop){
         this.logger.info("#magenta","check","Check if this is a nodejs module");
-        if (!this.runner.pkg.version)
-            stop("Impossible to find package.json");
-        if (this.runner.pkg.keywords && this.runner.pkg.keywords.indexOf("piscosour-recipe")>=0){
+        if (this.isRecipe()){
             stop("This is already a piscosour recipe");
         }else {
             this.inquire("promptsPisco").then(go);
@@ -27,16 +21,16 @@ module.exports = {
 
     modifyPkg : function(){
         this.logger.info("#cyan","Modify","package.json");
-        if (!this.runner.pkg.keywords)
-            this.runner.pkg.keywords = [];
+        if (!this.pkg.keywords)
+            this.pkg.keywords = [];
 
-        this.runner.pkg.keywords.push("piscosour-recipe");
-        if (!this.runner.pkg.bin)
-            this.runner.pkg.bin = {};
+        this.pkg.keywords.push("piscosour-recipe");
+        if (!this.pkg.bin)
+            this.pkg.bin = {};
 
-        this.runner.pkg.bin[this.params.cmd] = "bin/pisco.js";
+        this.pkg.bin[this.params.cmd] = "bin/pisco.js";
 
-        fs.writeFileSync(file,JSON.stringify(this.runner.pkg,null,4));
+        fs.writeFileSync(this.pkgFile,JSON.stringify(this.pkg,null,4));
     },
 
     writePiscosour : function(){
