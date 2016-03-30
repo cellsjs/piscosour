@@ -3,8 +3,7 @@
 var piscosour = require('../..'),
     fs = require('fs'),
     path = require('path'),
-    config = piscosour.config,
-    fsUtils = piscosour.fsUtils;
+    config = piscosour.config;
 
 module.exports = {
     description : "Configure piscosour.json",
@@ -15,7 +14,7 @@ module.exports = {
 
     config: function(go, stop){
         this.logger.info("#magenta","config","Configure recipe", this.piscoFile);
-        var configLocal = fsUtils.readConfig(this.piscoFile);
+        var configLocal = this.fsReadConfig(this.piscoFile);
 
         if (this.params.defaultType) {
 
@@ -35,7 +34,7 @@ module.exports = {
             for (var name in configLocal.straws){
                 var local = configLocal.straws[name];
                 var strawFile = path.join(config.rootDir,"straws",name,"straw.json");
-                var straw = fsUtils.readConfig(strawFile);
+                var straw = this.fsReadConfig(strawFile);
                 straw.type =local.type;
                 straw.name = local.name;
                 straw.description = local.description;
