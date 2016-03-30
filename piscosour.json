@@ -3,7 +3,8 @@
         "plugins": [
             "inquirer",
             "launcher",
-            "fsutils"
+            "fsutils",
+            "piscosour"
         ]
     },
     "cmd": "pisco",

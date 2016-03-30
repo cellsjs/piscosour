@@ -1,16 +1,14 @@
 'use strict';
 
-var piscosour = require('../..'),
-    fs = require('fs'),
-    path = require('path'),
-    config = piscosour.config;
+var fs = require('fs'),
+    path = require('path');
 
 module.exports = {
     description : "Create new pisco shot inside this module",
 
     check : function(go, stop){
         this.logger.info("#magenta","check","Check if this is a piscosour recipe");
-        var dest = path.join(config.rootDir,"shots",this.params.shotName,this.params.repoType);
+        var dest = path.join(this.config.rootDir,"shots",this.params.shotName,this.params.repoType);
         if (this.fsExists(dest))
             stop('Shot "'+this.params.shotName+'" already exists for repository type: "'+this.params.repoType+'" in this recipe, edit it to change!');
     },
@@ -31,11 +29,11 @@ module.exports = {
     run : function(resolve, reject){
         this.logger.info("#magenta","run","Creating new shot for this recipe");
 
-        var dest = path.join(config.rootDir,"shots",this.params.shotName,this.params.repoType);
-        var origin = path.join(config.getDir('piscosour'),"templates","_shot");
+        var dest = path.join(this.config.rootDir,"shots",this.params.shotName,this.params.repoType);
+        var origin = path.join(this.config.getDir('piscosour'),"templates","_shot");
 
-        this.fsCreateDir(path.join(config.rootDir,"shots"));
-        this.fsCreateDir(path.join(config.rootDir,"shots",this.params.shotName));
+        this.fsCreateDir(path.join(this.config.rootDir,"shots"));
+        this.fsCreateDir(path.join(this.config.rootDir,"shots",this.params.shotName));
         this.fsCreateDir(dest);
 
         return this.fsCopyDirFiltered(origin, dest).then(resolve, reject);
@@ -43,7 +41,7 @@ module.exports = {
 
     prove : function(resolve, reject){
         this.logger.info("#magenta","prove","Prove if the shot is propelly executed");
-        var dest = path.join(config.rootDir,"shots",this.params.shotName,this.params.repoType);
+        var dest = path.join(this.config.rootDir,"shots",this.params.shotName,this.params.repoType);
         var result = this.sh("node bin/pisco.js "+this.params.repoType+"::"+this.params.shotName, reject, true);
         if (result.status!==0){
             this.logger.error("#red","Error: shot not propelly created!","cleaning files!");
