@@ -2,7 +2,8 @@
     "params": {
         "plugins": [
             "inquirer",
-            "launcher"
+            "launcher",
+            "fsutils"
         ]
     },
     "cmd": "pisco",
