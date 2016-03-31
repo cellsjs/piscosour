@@ -3,8 +3,7 @@
         "plugins" : ["cookbook"]
     },
     "shots": {
-        "generate-docs": {},
-        "index-readme": {}
+        "generate-docs": {}
     },
     "name": "Generate Documentation",
     "description": "Generate documentation for straws and shots",

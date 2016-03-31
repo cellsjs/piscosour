@@ -11,6 +11,7 @@ module.exports = {
         fsCreateDir : fsUtils.createDir,
         fsExists : fsUtils.exists,
         fsReadConfig : fsUtils.readConfig,
+        fsReadFile : fsUtils.readFile,
 
         fsCopyDirFiltered : function (origin, dest){
             this.logger.info("#yellow","copy", origin, "to", dest);
@@ -51,7 +52,16 @@ module.exports = {
         },
 
         fsBundleFiles : function(bundle, file){
-            this.logger.trace("Bundle ", file, bundle);
+            var content = "";
+            bundle.forEach((item) => {
+                content += "\n"+item.title+"\n";
+                if (item.subtitle)
+                    content += item.subtitle+"\n";
+                else
+                    content += "\n";
+                content += this.fsReadFile(item.file);
+            });
+            fs.writeFileSync(file,content);
         }
     }
 };
