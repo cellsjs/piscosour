@@ -16,7 +16,7 @@ module.exports = {
             var result = spawnSync(cmd, args);
 
             if ((result.error || result.status !== 0) && reject)
-                reject({error: result.error, stderr: result.stdout.toString()});
+                reject({error: result.error, stderr: result.stderr.toString()});
 
             if (loud) {
                 this.logger.out(result.stdout.toString());
