@@ -51,8 +51,11 @@ module.exports = {
             });
         },
 
-        fsBundleFiles : function(bundle, file){
-            var content = "";
+        fsAppendBundle : function(bundle, file, title){
+            var orig = this.fsReadFile(file).toString();
+            var z = orig.indexOf('#'+title);
+            var content = z>=0?orig.toString().substring(0,z-1):orig;
+            content += "\n#"+title+"\n";
             bundle.forEach((item) => {
                 content += "\n"+item.title+"\n";
                 if (item.subtitle)
