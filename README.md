@@ -129,7 +129,15 @@ shot scaffolding
 
 ##docs: "Generate Documentation"
 Generate documentation for straws and shots
+Command: **bin/pisco.js docs**
 
+Generate documentation for your recipe.
+
+### How to write info.md
+
+Info.md is a regular md file, so you can use all the markdown specification. The only thing that you have to be on mind is the use of titles. 
+ 
+**Inside a info.md use title from third level and beyond**
 
 ###1. generate-docs: "Generate one file per straw inside a directory"
 ```
@@ -144,7 +152,7 @@ shot generate-docs
 
 ##cookbook: "Utilities for recipes"
 
-
+This plugins provide functionality  
 ##fsutils: "fs utils"
 
 Plugins with some fs utilities
