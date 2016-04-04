@@ -27,7 +27,6 @@ Para hacerte a una idea, es un **jenkins**, un **bamboo**, **gocd** o **travis**
 
 **"Usa todas tus herramientas favoritas pero mantenlas controladas y versionadas."**
 
-
 # Documentación
 
 * [Get Started](doc/get_started.md) - Empieza a usar piscosour.
@@ -44,4 +43,119 @@ Para hacerte a una idea, es un **jenkins**, un **bamboo**, **gocd** o **travis**
 * [Trabajar con shots](doc/shots.md) - Crear un shot y usar el API para sacarle el 100% del partido a piscosour.
 * [Trabajar con straws](doc/straws.md) - Crear un straw y configurarlo a partir de shots propios o de otras recetas.
 
+#Recipes
+
+|Name|Version|Description|
+|---|---|---|
+|piscosour|0.3.0|Get all your devops tools wrapped-up!|
+
+
+
+#Commands
+
+
+##config: "Configure one repository"
+Manage a piscosour recipe
+
+
+###1. piscosour: "Configure piscosour.json"
+```
+Repository types:  recipe
+Recipes: piscosour (0.3.0)
+```
+shot piscosour
+
+
+###2. shots: "Create new pisco shot inside this module"
+```
+Repository types:  recipe
+Recipes: piscosour (0.3.0)
+```
+shot shots
+
+
+###3. straws: "Adding shot to a straw"
+```
+Repository types:  recipe
+Recipes: piscosour (0.3.0)
+```
+shot straws
+
+##convert: "Module to recipe"
+Convert any module into a piscosour recipe
+
+
+###1. convert: "Convert any nodejs module into a piscosour recipe"
+```
+Repository types:  recipe
+Recipes: piscosour (0.3.0)
+```
+shot convert
+
+##create: "Create from scratch"
+Starting a repository from scratch
+
+- Pisco te preguntará por el nombre de la receta que quieres crear. Este será el nombre de tu paquete npm que usarás para compartir la funcionalidad y las herramientas que envuelvas. Introduce el nombre que más te guste.
+- Deberás introducir el comando que quieres usar para hacer correr los "straws" (flujos) que vas a introducir en este módulo.
+- También deberás introducir una breve descripción para tu módulo.
+
+Mientras pisco genera tu primera receta usando un generator de yeoman. Te explicamos brevemente lo que está pasando ante tus ojos. (no te preocupes, más adelante podrás profundizar más). 
+
+"Pisco create" también es un comando envuelto de pisco que está ejecutando otras herramientas. Cada uno de los mensajes que ves aparecer es la ejecución de un shot (paso). Concretamente este comando conlleva la ejecución de estos pasos.
+
+- system: Comprueba que tu sistema es compatible con la ejecución de piscosour
+- npm: Comprueba que tienes instalado todos los módulos npm necesarios (yeoman y el generator-pisco-recipe)
+- scaffolding: Hace las preguntas y llama a yeoman para generar el esqueleto del módulo.
+
+Listo! ya tienes tu primer ejecutable de pisco creado! pruebalo
+###1. (Straw) environment: "Environment Checks"
+Checks and install if an environment is ok
+
+
+###1.1. npm: "Checking all npm commands needed"
+```
+Repository types:  all
+Recipes: piscosour (0.3.0)
+```
+shot npm
+
+
+###2. scaffolding: "Create a piscosour recipe from a scaffold template"
+```
+Repository types:  recipe
+Recipes: piscosour (0.3.0)
+```
+shot scaffolding
+
+##docs: "Generate Documentation"
+Generate documentation for straws and shots
+
+
+###1. generate-docs: "Generate one file per straw inside a directory"
+```
+Repository types:  all
+Recipes: piscosour (0.3.0)
+```
+shot generate-docs
+
+
+#Plugins
+
+
+##cookbook: "Utilities for recipes"
+
+
+##fsutils: "fs utils"
+
+Plugins with some fs utilities
+##inquirer: "Plugin inquirer"
+
+Utility for inquire the user
+##launcher: "Launcher plugin"
+
+
+##piscosour: "Piscosour config plugin"
+
+
+##test: "Test plugin"
 
