@@ -1,0 +1,1 @@
+shot generate-docs
