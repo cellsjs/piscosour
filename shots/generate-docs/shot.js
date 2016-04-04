@@ -7,19 +7,55 @@ module.exports = {
     description : "Generate one file per straw inside a directory",
 
     run : function() {
-        this.logger.info("#magenta", "run", "Merge all info.md into a big one per straw");
-        var straws = fs.readdirSync(path.join(process.cwd(), 'straws'));
+        this.logger.info("#magenta", "run", "Merge all info.md of straws and shots in the readme.md");
 
         var bundle = [];
 
+        bundle = this.runner._addBundle(this.runner._infoRecipe(), null, bundle);
+        bundle = this.runner._addBundle("#Commands", null, bundle);
+        this.runner._infoStraws(bundle);
+        bundle = this.runner._addBundle("\n#Plugins", null, bundle);
+        this.runner._infoPlugins(bundle);
+
+        this.fsAppendBundle(bundle,"README.md", "Recipes");
+    },
+
+    _infoRecipe : function(){
+        var content = "|Name|Version|Description|\n";
+        content += "|---|---|---|\n";
+        for (var recipeName in this.config.recipes) {
+            var recipe = this.config.recipes[recipeName];
+            if (recipe.name) {
+                content += "|"+recipe.name+"|"+recipe.version+"|"+recipe.description+"|\n";
+            }
+        }
+        return content;
+    },
+
+    _infoPlugins : function(bundle){
+        try {
+            var plugins = fs.readdirSync(path.join(process.cwd(), 'plugins'));
+
+            plugins.forEach((dir) => {
+                this.logger.info("processing plugin","#cyan", dir,"...");
+                var fileMd = path.join(process.cwd(), 'plugins', dir, 'info.md');
+                var file = path.join(process.cwd(), 'plugins', dir, 'plugin.js');
+                bundle = this.runner._addBundle("##" + dir + ": \"" + require(file).description + "\"", fileMd, bundle, true);
+            });
+        }catch(e){
+            bundle = this.runner._addBundle("There is no plugin for this recipe", null, bundle);
+        }
+    },
+
+    _infoStraws : function(bundle){
+        var straws = fs.readdirSync(path.join(process.cwd(), 'straws'));
+
         straws.forEach((dir) => {
-            this.logger.info("processing","#cyan", dir,"...");
+            this.logger.info("processing straw","#cyan", dir,"...");
             var straw = this.fsReadConfig(path.join(process.cwd(), 'straws',dir,'straw.json'));
             if (straw.type==='normal')
                 this.runner._infoStraw(bundle,straw,dir);
         });
-
-        this.fsAppendBundle(bundle,"README.md", "Commands of Recipe");
     },
 
     _infoStraw : function(bundle, straw, dir, p){
@@ -71,7 +107,7 @@ module.exports = {
     },
 
     _addBundle : function(title,file, bundle, force, subtitle){
-        if (this.fsExists(file) || force) {
+        if (!file || this.fsExists(file) || force) {
             bundle.push({
                 title: title,
                 subtitle: subtitle,

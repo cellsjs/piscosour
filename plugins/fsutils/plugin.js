@@ -62,7 +62,9 @@ module.exports = {
                     content += item.subtitle+"\n";
                 else
                     content += "\n";
-                content += this.fsReadFile(item.file);
+
+                if (item.file)
+                    content += this.fsReadFile(item.file);
             });
             fs.writeFileSync(file,content);
         }

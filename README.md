@@ -27,7 +27,6 @@ Para hacerte a una idea, es un **jenkins**, un **bamboo**, **gocd** o **travis**
 
 **"Usa todas tus herramientas favoritas pero mantenlas controladas y versionadas."**
 
-
 # Documentación
 
 * [Get Started](doc/get_started.md) - Empieza a usar piscosour.
@@ -44,7 +43,16 @@ Para hacerte a una idea, es un **jenkins**, un **bamboo**, **gocd** o **travis**
 * [Trabajar con shots](doc/shots.md) - Crear un shot y usar el API para sacarle el 100% del partido a piscosour.
 * [Trabajar con straws](doc/straws.md) - Crear un straw y configurarlo a partir de shots propios o de otras recetas.
 
-#Commands of Recipe
+#Recipes
+
+|Name|Version|Description|
+|---|---|---|
+|piscosour|0.3.0|Get all your devops tools wrapped-up!|
+
+
+
+#Commands
+
 
 ##config: "Configure one repository"
 Manage a piscosour recipe
@@ -125,7 +133,29 @@ Generate documentation for straws and shots
 
 ###1. generate-docs: "Generate one file per straw inside a directory"
 ```
-Repository types:  recipe
+Repository types:  all
 Recipes: piscosour (0.3.0)
 ```
 shot generate-docs
+
+
+#Plugins
+
+
+##cookbook: "Utilities for recipes"
+
+
+##fsutils: "fs utils"
+
+Plugins with some fs utilities
+##inquirer: "Plugin inquirer"
+
+Utility for inquire the user
+##launcher: "Launcher plugin"
+
+
+##piscosour: "Piscosour config plugin"
+
+
+##test: "Test plugin"
+
