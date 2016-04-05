@@ -4,7 +4,6 @@ var fs = require('fs'),
     path = require('path');
 
 module.exports = {
-    description : "Generate one file per straw inside a directory",
 
     run : function() {
         this.logger.info("#magenta", "run", "Merge all info.md of straws and shots in the readme.md");

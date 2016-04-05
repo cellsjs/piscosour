@@ -1,7 +1,6 @@
 'use strict';
 
 module.exports = {
-    description : "TEST Brief description of shot",
 
     config : function(resolve){
         this.logger.info("#magenta","config","Preparing params for main execution");
