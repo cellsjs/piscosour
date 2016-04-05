@@ -4,7 +4,6 @@ var path = require('path'),
     fs = require('fs');
 
 module.exports = {
-    description : "Adding shot to a straw",
 
     straw : {},
 

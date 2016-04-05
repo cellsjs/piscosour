@@ -4,7 +4,6 @@ var fs = require('fs'),
     path = require('path');
 
 module.exports = {
-    description : "Create new pisco shot inside this module",
 
     check : function(go, stop){
         this.logger.info("#magenta","check","Check if this is a piscosour recipe");

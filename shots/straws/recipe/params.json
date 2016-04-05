@@ -1,4 +1,5 @@
 {
+  "description" : "Adding shot to a straw",
   "requireRecipe" : true,
   "prompts": [
     {
