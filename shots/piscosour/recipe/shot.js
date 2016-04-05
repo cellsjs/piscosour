@@ -4,7 +4,6 @@ var fs = require('fs'),
     path = require('path');
 
 module.exports = {
-    description : "Configure piscosour.json",
 
     whenDefaultType:  function(answer){
         return answer.doDefault;
