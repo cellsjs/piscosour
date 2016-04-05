@@ -3,7 +3,6 @@
 var path = require('path');
 
 module.exports = {
-    description : "Checking all npm commands needed",
 
     check : function(resolve){
         this.logger.info("Checking all npm commands are already installed");

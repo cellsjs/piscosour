@@ -1,4 +1,5 @@
 {
+    "cmd": "pisco",
     "params": {
         "plugins": [
             "inquirer",
@@ -7,11 +8,10 @@
             "piscosour"
         ]
     },
-    "cmd": "pisco",
+    "defaultType" : "recipe",
     "repoTypes": [
         "recipe"
     ],
-    "defaultType": "recipe",
     "junitDir": "test-reports",
     "junitPiscoFile": "pisco-junit.xml",
     "stages": [

@@ -1,4 +1,5 @@
 {
+  "description" : "Configure piscosour.json",
   "requireRecipe" : true,
   "prompts": [
     {

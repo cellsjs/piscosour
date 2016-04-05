@@ -4,7 +4,6 @@ var path = require('path'),
     fs = require('fs');
 
 module.exports = {
-    description : "Convert any nodejs module into a piscosour recipe",
 
     check : function(go, stop){
         this.logger.info("#magenta","check","Check if this is a nodejs module");
