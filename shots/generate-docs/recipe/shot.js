@@ -47,14 +47,20 @@ module.exports = {
     },
 
     _infoStraws : function(bundle){
-        var straws = fs.readdirSync(path.join(process.cwd(), 'straws'));
-
-        straws.forEach((dir) => {
-            this.logger.info("processing straw","#cyan", dir,"...");
-            var straw = this.fsReadConfig(path.join(process.cwd(), 'straws',dir,'straw.json'));
-            if (straw.type==='normal')
-                this.runner._infoStraw(bundle,straw,dir);
-        });
+        for (var recipeName in this.config.recipes) {
+            var recipe = this.config.recipes[recipeName];
+            var dirStraw = path.join(recipe.dir, 'straws');
+            if (recipe.name && this.fsExists(dirStraw)) {
+                this.logger.info("#green", "reading",dirStraw);
+                var straws = fs.readdirSync(dirStraw);
+                straws.forEach((dir) => {
+                    this.logger.info("processing straw","#cyan", dir,"...");
+                    var straw = this.fsReadConfig(path.join(recipe.dir, 'straws',dir,'straw.json'));
+                    if (straw.type==='normal')
+                        this.runner._infoStraw(bundle,straw,dir);
+                });
+            }
+        }
     },
 
     _infoStraw : function(bundle, straw, dir, p){
@@ -73,7 +79,7 @@ module.exports = {
             }else {
                 for (var recipeName in this.config.recipes) {
                     var recipe = this.config.recipes[recipeName];
-                    if (recipe.name && recipe.shots[shotName]) {
+                    if (recipe.name && recipe.shots && recipe.shots[shotName]) {
                         file = path.join(recipe.dir, "shots", shotName, "info.md");
                         var info = this.config.getShotInfo(shotName);
                         bundle = this.runner._addBundle("\n###" + n +(p?'.'+p:'')+ ". " + shotName + ": \"" + info.description + "\"", file, bundle, true, this.runner._infomd(info));

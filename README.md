@@ -141,7 +141,7 @@ Info.md is a regular md file, so you can use all the markdown specification. The
 
 ###1. generate-docs: "Generate one file per straw inside a directory"
 ```
-Repository types:  all
+Repository types:  recipe
 Recipes: piscosour (0.3.0)
 ```
 shot generate-docs
