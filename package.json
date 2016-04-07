@@ -1,6 +1,6 @@
 {
   "name": "piscosour",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Get all your devops tools wrapped-up!",
   "main": "index.js",
   "repository": {
@@ -9,16 +9,7 @@
   },
   "keywords": [
    "piscosour-recipe",
-    "wrapper",
-    "continuous",
-    "delivery",
-    "release",
-    "install",
-    "lifecycle",
-    "pipeline",
-    "gulp",
-    "grunt",
-    "bash"
+    "Tooling wrapper"
   ],
   "author": "Santiago García-Bonacho Rico",
   "license": "ISC",

@@ -11,6 +11,10 @@ module.exports = {
             var args = ["-c", cmdsh];
             return this.executeSync("sh", args, reject, loud);
         },
+        sudo: function(cmdsh, reject, loud){
+            var args = ["sh","-c", cmdsh];
+            return this.execute("sudo", args);
+        },
         executeSync: function (cmd, args, reject, loud) {
             this.logger.trace("#cyan", "executing", cmd, args);
             var result = spawnSync(cmd, args);
