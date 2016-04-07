@@ -1,7 +1,6 @@
 'use strict';
 
 module.exports = {
-    description : "Brief description of shot",
 
     check : function(){
         this.logger.info("#magenta","check","Check all pre-requisites for the execution");
