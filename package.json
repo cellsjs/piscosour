@@ -9,16 +9,7 @@
   },
   "keywords": [
    "piscosour-recipe",
-    "wrapper",
-    "continuous",
-    "delivery",
-    "release",
-    "install",
-    "lifecycle",
-    "pipeline",
-    "gulp",
-    "grunt",
-    "bash"
+    "Tooling wrapper"
   ],
   "author": "Santiago García-Bonacho Rico",
   "license": "ISC",
