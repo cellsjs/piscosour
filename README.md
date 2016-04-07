@@ -51,14 +51,14 @@ Para hacerte a una idea, es un **jenkins**, un **bamboo**, **gocd** o **travis**
 
 
 
-#Commands
+# Commands
 
 
 ##config: "Configure one repository"
 Manage a piscosour recipe
 
 
-###1. piscosour: "Configure piscosour.json"
+### 1. piscosour: "Configure piscosour.json"
 ```
 Repository types:  recipe
 Recipes: piscosour (0.3.0)
@@ -66,7 +66,7 @@ Recipes: piscosour (0.3.0)
 shot piscosour
 
 
-###2. shots: "Create new pisco shot inside this module"
+### 2. shots: "Create new pisco shot inside this module"
 ```
 Repository types:  recipe
 Recipes: piscosour (0.3.0)
@@ -74,7 +74,7 @@ Recipes: piscosour (0.3.0)
 shot shots
 
 
-###3. straws: "Adding shot to a straw"
+### 3. straws: "Adding shot to a straw"
 ```
 Repository types:  recipe
 Recipes: piscosour (0.3.0)
@@ -85,7 +85,7 @@ shot straws
 Convert any module into a piscosour recipe
 
 
-###1. convert: "Convert any nodejs module into a piscosour recipe"
+### 1. convert: "Convert any nodejs module into a piscosour recipe"
 ```
 Repository types:  recipe
 Recipes: piscosour (0.3.0)
@@ -108,11 +108,11 @@ Mientras pisco genera tu primera receta usando un generator de yeoman. Te explic
 - scaffolding: Hace las preguntas y llama a yeoman para generar el esqueleto del módulo.
 
 Listo! ya tienes tu primer ejecutable de pisco creado! pruebalo
-###1. (Straw) environment: "Environment Checks"
+### 1. (Straw) environment: "Environment Checks"
 Checks and install if an environment is ok
 
 
-###1.1. npm: "Checking all npm commands needed"
+### 1.1. npm: "Checking all npm commands needed"
 ```
 Repository types:  all
 Recipes: piscosour (0.3.0)
@@ -120,7 +120,7 @@ Recipes: piscosour (0.3.0)
 shot npm
 
 
-###2. scaffolding: "Create a piscosour recipe from a scaffold template"
+### 2. scaffolding: "Create a piscosour recipe from a scaffold template"
 ```
 Repository types:  recipe
 Recipes: piscosour (0.3.0)
@@ -139,7 +139,7 @@ Info.md is a regular md file, so you can use all the markdown specification. The
  
 **Inside a info.md use title from third level and beyond**
 
-###1. generate-docs: "Generate one file per straw inside a directory"
+### 1. generate-docs: "Generate one file per straw inside a directory"
 ```
 Repository types:  recipe
 Recipes: piscosour (0.3.0)
@@ -147,23 +147,23 @@ Recipes: piscosour (0.3.0)
 shot generate-docs
 
 
-#Plugins
+# Plugins
 
 
-##cookbook: "Utilities for recipes"
+## cookbook
 
 This plugins provide functionality  
-##fsutils: "fs utils"
+## fsutils
 
 Plugins with some fs utilities
-##inquirer: "Plugin inquirer"
+## inquirer
 
 Utility for inquire the user
-##launcher: "Launcher plugin"
+## launcher
 
 
-##piscosour: "Piscosour config plugin"
+## piscosour
 
 
-##test: "Test plugin"
+## test
 
