@@ -5,10 +5,11 @@
 var moment = require('moment'),
     init = moment(),
     logger = require("./lib/logger"),
+    config = require("./lib/config"),
     Sour = require("./lib/sour");
 
 const updateNotifier = require('update-notifier');
-const pkg = require('./package.json');
+const pkg = require(config.getDir('module')+'/package.json');
 const notifier = updateNotifier({pkg, updateCheckInterval: 1000 * 60 * 60 * 12});
 
 /**
