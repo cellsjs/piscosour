@@ -1,7 +1,8 @@
 'use strict';
 
 var fs = require('fs'),
-    path = require('path');
+    path = require('path'),
+    docs = require('../../lib/docs');
 
 module.exports = {
 
@@ -10,13 +11,45 @@ module.exports = {
 
         var bundle = [];
 
+        bundle = this.runner._addBundle(this.runner._getStarted(), null, bundle);
+        bundle = this.runner._addBundle("# Recipes", null, bundle);
         bundle = this.runner._addBundle(this.runner._infoRecipe(), null, bundle);
         bundle = this.runner._addBundle("# Commands", null, bundle);
+        bundle = this.runner._addBundle(this.runner._commandsIndex(), null, bundle);
         this.runner._infoStraws(bundle);
         bundle = this.runner._addBundle("\n# Plugins", null, bundle);
         this.runner._infoPlugins(bundle);
 
-        this.fsAppendBundle(bundle,"README.md", "Recipes");
+        this.fsAppendBundle(bundle,"README.md", " Installing "+this.pkg.name);
+    },
+
+    _getStarted : function(){
+        var content = `Install ${this.pkg.name} globally\n\n`;
+        content += `    npm install -g ${this.pkg.name}`;
+        return content;
+    },
+
+    _commandsIndex : function(){
+
+        var content = "";
+        var enriched = docs.enrichCommands();
+
+        for (var recipeKey in enriched) {
+            var recipe = enriched[recipeKey].___recipe;
+            if (recipe) {
+                content += ` **from ${recipe.name}  v.${recipe.version}:**\n`;
+                content += "```\n";
+                for (var command in enriched[recipeKey]){
+                    if (command!=='___recipe') {
+                        var enrich = enriched[recipeKey][command];
+                        content += ` ${command} ( ${enrich.description} )\n`;
+                    }
+                }
+                content += "```\n";
+            }
+        }
+        return content;
+
     },
 
     _infoRecipe : function(){

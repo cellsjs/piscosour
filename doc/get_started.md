@@ -1,6 +1,51 @@
-# Trabajar con shots.
+# Instalación de piscosour con npm
 
-Un shot es un paso de ejecución dentro de un flujo de ejecución.
+La recomendación es instalar pisco de manera global para poder tener acceso al comando pisco desde cualquier lugar. Instalar piscosour como un comando global. (-g) 
+
+    npm install -g piscosour
+    
+# Crear una receta en 5 minutos
+(Receta -> Ejecutable envoltorio)
+
+Una vez instalada la herramienta ejecuta el comando pisco para ver la ayuda general.
+
+    pisco
+
+![First execution: Show help](images/started1.png)
+
+Sitúate en tu directorio de trabajo y crea tu primera receta. Una receta es un contenedor de shots (pasos) y straws (flujos). 
+
+    mkdir demo
+    cd demo
+    pisco create
+
+( "pisco create" es un straw de pisco, esto es, un flujo de pasos (shots) que hacen una tarea, verás la salida de la ejecución de cada shot... más tarde te explicaremos que significa cada mensaje, ... es fácil imaginarse que está haciendo leyendo cada uno de los mensajes, pero más adelante verémos más detalle...)  
+
+![Execution of pisco create command](images/started2.png)
+
+- Pisco te preguntará por el nombre de la receta que quieres crear. Este será el nombre de tu paquete npm que usarás para compartir la funcionalidad y las herramientas que envuelvas. Introduce el nombre que más te guste.
+- Deberás introducir el comando que quieres usar para hacer correr los "straws" (flujos) que vas a introducir en este módulo.
+- También deberás introducir una breve descripción para tu módulo.
+
+![Pisco create questions](images/started3.png)
+
+Mientras pisco genera tu primera receta usando un generator de yeoman. Te explicamos brevemente lo que está pasando ante tus ojos. (no te preocupes, más adelante podrás profundizar más). 
+
+"Pisco create" también es un comando envuelto de pisco que está ejecutando otras herramientas. Cada uno de los mensajes que ves aparecer es la ejecución de un shot (paso). Concretamente este comando conlleva la ejecución de estos pasos.
+
+- system: Comprueba que tu sistema es compatible con la ejecución de piscosour
+- npm: Comprueba que tienes instalado todos los módulos npm necesarios (yeoman y el generator-pisco-recipe)
+- scaffolding: Hace las preguntas y llama a yeoman para generar el esqueleto del módulo.
+ 
+![Finish! Pisco create done!](images/started4.png)
+
+Listo! ya tienes tu primer ejecutable de pisco creado! pruebalo
+
+    node bin/pisco.js
+
+![Testing pisco command](images/started5.png)
+
+## Añadir comandos a nuestra receta
 
 Una vez creada nuestra receta nos situamos dentro del directorio que hemos creado.
 
@@ -100,106 +145,10 @@ module.exports = {
     }
 
 });
-
-
 ```
 
 puedes ver este ejemplo aquí
 
 [see this example in github](https://github.com/cellsjs/piscosour-examples)
-
-## Procesos asincronos en shots. 
-
-Cada una de las fases de un shot realmente son promesas y reciben dos métodos resolve y reject
-
-```js
-  [...]
-  
-  run: function(resolve, reject){
-     resolve();  
-  }
-  
-  [...]
-```
-
-Realmente al final de cada fase se está ejecutando la function resolve de la promesa asociada, pero **se hace de una manera automática**. Si no se hace nada con estas functions el shot se comporta como si todo fuera sincrono.
-
-### ¿Cómo manejar promesas y callbacks en un shot?
-
-Para desactivar la ejecución automática de resolve en un shot es necesario hacer un return de algo distinto de undefined.
- 
-```js
-  [...]
-  
-  run: function(resolve, reject){
-     return true;  
-  }
-  
-  [...]
-```
-
-**(*) Importante:** Si queremos que algún shot siga ejecutando algo en background y seguir con la ejecución del resto de shots simplemente no hacer un return de nada. Muy util para que funcionen procesos en background que necesitemas para la ejecución de la straw completa.
-
-Ejemplo de uso de promesas dentro de un shot:
-
-```js
-[...]
-    run : function(resolve, reject){
-    [...]
-        return this.execute("yo",this.promptArgs(["pisco-recipe"])).then(resolve,reject);
-    }
-[...]
-
-```
-
-- this.exexute devuelve una promesa, si hacemos return de esa promesa no estámos devolviendo undefined, por lo tanto el resolve de la promesa no será llamado automáticamente.
-- al pasarle los resolve y reject mediante el then a la promesa el shot terminará cuando esta promesa termine.
-
-### Errores en shots
-
-Si se produce un error en un shot y este error no está controlado, **la ejecución de toda la straw parará**. Si queremos registrar un error pero no queremos parar la ejecución de todo el straw deberemos devolver un objeto con la variable keep: true
-
-```js
-[...]
-    run : function(resolve, reject){
-    
-        reject({keep:true, error: txt});
-    }
-[...]
-
-```
-
-para parar la ejecución dando un error de una menera deliverada:
- 
-```js
- [...]
-     run : function(resolve, reject){
-
-        if (error)
-         reject({error: text});
-     }
- [...]
-
-```
-
-### Ejecuciones condicionales de shots.
-
-Hace posible en función de unas comprobaciones iniciales, por ejemplo un parámetro de configuración o opción pasada por línea de comando, que la ejecución de un shot se realice o no. 
-
-Para ello en la fase **check** del shot deveremos devolver un objeto con el parámetro **skip:true** al ejecutar resolve.
-
-```js
- [...]
-     check : function(resolve, reject){
-
-        if (this.params.needThisShot)
-         resolve({skip: true});
-     }
- [...]
-
-```
-
-El resto de las stages del shot no se ejecutará. por ejemplo si en run limpiamos un directorio mediante este método el limpiado del directorio no se llevará a cabo.
-
 
 
