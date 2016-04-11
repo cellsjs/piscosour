@@ -30,9 +30,8 @@ module.exports = {
             return result;
         },
         execute: function (cmd, args) {
-            console.log("---------- env is including!!!");
-            var child = spawn(cmd, args, {env: process.env, stdio: [process.stdin]});
-            this.logger.trace("#cyan", "executing async", cmd, args);
+            var child = spawn(cmd, args, {stdio: [process.stdin]});
+            this.logger.trace("#cyan", "executing async", cmd, args, child);
 
             child.on('disconnect', function () {
                 this.logger.info("Child process disconnected!", arguments);
