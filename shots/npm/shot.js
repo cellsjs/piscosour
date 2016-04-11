@@ -14,7 +14,7 @@ module.exports = {
             if (command.indexOf('https://')>=0)
                 command = path.parse(command).name;
 
-            var result = this.executeSync("npm",["list","-g",command]);
+            var result = this.executeSync("npm",["list","-g","--depth", "1",command]);
 
             if (result.status===0) {
                 this.logger.info(command, "is installed", ".................", "#green", "OK");

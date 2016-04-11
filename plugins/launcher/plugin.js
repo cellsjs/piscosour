@@ -8,14 +8,26 @@ module.exports = {
 
     addons: {
         sh: function (cmdsh, reject, loud) {
-            var args = ["-c", cmdsh];
-            return this.executeSync("sh", args, reject, loud);
+            var result;
+            if (this.isWin) {
+                result = this.executeSync("cmd", ["/c", cmdsh], reject, loud);
+            }else{
+                result = this.executeSync("sh", ["-c", cmdsh], reject, loud);
+            }
+            return result;
         },
-        sudo: function(cmdsh, reject, loud){
+        sudo: function(cmdsh){
             var args = ["sh","-c", cmdsh];
+            if (this.isWin)
+                args = ["cmd","/c", cmdsh];
             return this.execute("sudo", args);
         },
         executeSync: function (cmd, args, reject, loud) {
+            if (cmd!=="cmd" && cmd!=="sh") {
+                var patch = this.windowsPatch(cmd,args);
+                cmd = patch.cmd;
+                args = patch.args;
+            }
             this.logger.trace("#cyan", "executing", cmd, args);
             var result = spawnSync(cmd, args);
 
@@ -29,9 +41,25 @@ module.exports = {
 
             return result;
         },
+        /**
+         * Because of this: https://github.com/nodejs/node-v0.x-archive/issues/2318
+         *
+         * Fast fix for windows environments
+         *
+         */
+        windowsPatch: function(cmd,args){
+            if (this.isWin){
+                args = ["/c",cmd].concat(args);
+                cmd = "cmd";
+            }
+            return {cmd: cmd, args: args};
+        },
         execute: function (cmd, args) {
+            var patch = this.windowsPatch(cmd,args);
+            cmd = patch.cmd;
+            args = patch.args;
             var child = spawn(cmd, args, {stdio: [process.stdin]});
-            this.logger.trace("#cyan", "executing async", cmd, args);
+            this.logger.trace("#cyan", "executing async", cmd, args, child);
 
             child.on('disconnect', function () {
                 this.logger.info("Child process disconnected!", arguments);
