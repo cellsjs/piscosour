@@ -37,12 +37,14 @@ module.exports = {
         for (var recipeKey in enriched) {
             var recipe = enriched[recipeKey].___recipe;
             if (recipe) {
-                content += ` **from ${recipe.name}  v.${recipe.version}:**\n\n`;
-                for (var command in enriched[recipeKey]){
-                    if (command!=='___recipe') {
-                        var enrich = enriched[recipeKey][command];
-                        var piscoCfg = this.fsReadConfig(this.piscoFile);
-                        content += `- **${piscoCfg.cmd} ${command}** ( ${enrich.description} )\n`;
+                if (recipeKey!=='piscosour') {
+                    content += `\n**from ${recipe.name}  v.${recipe.version}:**\n\n`;
+                    for (var command in enriched[recipeKey]) {
+                        if (command !== '___recipe') {
+                            var enrich = enriched[recipeKey][command];
+                            var piscoCfg = this.fsReadConfig(this.piscoFile);
+                            content += `- **${piscoCfg.cmd} ${command}** ( ${enrich.description} )\n`;
+                        }
                     }
                 }
             }
