@@ -23,8 +23,11 @@ module.exports = {
             return this.execute("sudo", args);
         },
         executeSync: function (cmd, args, reject, loud) {
-            if (cmd!=="cmd" && cmd!=="sh")
-                this.windowsPatch(cmd,args);
+            if (cmd!=="cmd" && cmd!=="sh") {
+                var patch = this.windowsPatch(cmd,args);
+                cmd = patch.cmd;
+                args = patch.args;
+            }
             this.logger.trace("#cyan", "executing", cmd, args);
             var result = spawnSync(cmd, args);
 
@@ -49,9 +52,12 @@ module.exports = {
                 args = ["/c",cmd].concat(args);
                 cmd = "cmd";
             }
+            return {cmd: cmd, args: args};
         },
         execute: function (cmd, args) {
-            this.windowsPatch(cmd,args);
+            var patch = this.windowsPatch(cmd,args);
+            cmd = patch.cmd;
+            args = patch.args;
             var child = spawn(cmd, args, {stdio: [process.stdin]});
             this.logger.trace("#cyan", "executing async", cmd, args, child);
 
