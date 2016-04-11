@@ -59,7 +59,7 @@ module.exports = {
             cmd = patch.cmd;
             args = patch.args;
             var child = spawn(cmd, args, {stdio: [process.stdin]});
-            this.logger.trace("#cyan", "executing async", cmd, args, child);
+            this.logger.trace("#cyan", "executing async", cmd, args);
 
             child.on('disconnect', function () {
                 this.logger.info("Child process disconnected!", arguments);
