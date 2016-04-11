@@ -22,7 +22,7 @@ module.exports = {
                 args = ["cmd","/c", cmdsh];
             return this.execute("sudo", args);
         },
-        _executeSync: function (cmd, args, reject, loud) {
+        executeSync: function (cmd, args, reject, loud) {
             if (cmd!=="cmd" && cmd!=="sh")
                 this.windowsPatch(cmd,args);
             this.logger.trace("#cyan", "executing", cmd, args);
