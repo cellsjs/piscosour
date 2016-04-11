@@ -1,0 +1,1 @@
+Plugins used to check Operating System where pisco is running
