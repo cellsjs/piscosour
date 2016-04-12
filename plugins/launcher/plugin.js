@@ -18,7 +18,7 @@ module.exports = {
         },
         sudo: function(cmdsh){
             var args = ["sh","-c", cmdsh];
-            if (this.isWin)
+            if (this.isWin())
                 args = ["cmd","/c", cmdsh];
             return this.execute("sudo", args);
         },
@@ -48,7 +48,7 @@ module.exports = {
          *
          */
         windowsPatch: function(cmd,args){
-            if (this.isWin){
+            if (this.isWin()){
                 args = ["/c",cmd].concat(args);
                 cmd = "cmd";
             }
