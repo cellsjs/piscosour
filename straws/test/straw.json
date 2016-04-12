@@ -7,16 +7,6 @@
     "saludo": "holastraw"
   },
   "shots" : {
-    "test2" : {
-      "params": {
-        "saludo": "holadefault"
-      },
-      "recipe" : {
-        "params": {
-          "saludo": "holarecipe"
-        }
-      }
-    },
     "test:1" : {
       "params" :  {
         "execution" :  "PRIMERA"
@@ -27,8 +17,6 @@
         "execution" :  "SEGUNDA"
       }
     },
-    "testint" :{
-      "type" : "straw"
-    }
+    "wheather" : {}
   }
 }
