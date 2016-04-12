@@ -23,7 +23,7 @@ module.exports = {
                 args = ["/c", cmdsh];
                 cmd = "cmd";
             }
-            return this.execute(cmd, args);
+            return this.executeStreamed(cmd, args);
         },
         executeSync: function (cmd, args, reject, loud) {
             if (cmd!=="cmd" && cmd!=="sh") {
@@ -57,12 +57,16 @@ module.exports = {
             }
             return {cmd: cmd, args: args};
         },
-        execute: function (cmd, args) {
+        executeStreamed: function (cmd, args) {
             var patch = this.windowsPatch(cmd,args);
             cmd = patch.cmd;
             args = patch.args;
             var child = spawn(cmd, args, {stdio: [process.stdin]});
             this.logger.trace("#cyan", "executing async", cmd, args);
+            return child;
+        },
+        execute: function (cmd, args) {
+            var child = this.executeStreamed(cmd,args);
 
             child.on('disconnect', function () {
                 this.logger.info("Child process disconnected!", arguments);
