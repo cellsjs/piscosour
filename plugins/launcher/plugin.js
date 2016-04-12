@@ -9,7 +9,7 @@ module.exports = {
     addons: {
         sh: function (cmdsh, reject, loud) {
             var result;
-            if (this.isWin) {
+            if (this.isWin()) {
                 result = this.executeSync("cmd", ["/c", cmdsh], reject, loud);
             }else{
                 result = this.executeSync("sh", ["-c", cmdsh], reject, loud);
