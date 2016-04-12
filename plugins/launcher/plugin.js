@@ -18,9 +18,12 @@ module.exports = {
         },
         sudo: function(cmdsh){
             var args = ["sh","-c", cmdsh];
-            if (this.isWin())
-                args = ["cmd","/c", cmdsh];
-            return this.execute("sudo", args);
+            var cmd = "sudo";
+            if (this.isWin()) {
+                args = ["/c", cmdsh];
+                cmd = "cmd";
+            }
+            return this.execute(cmd, args);
         },
         executeSync: function (cmd, args, reject, loud) {
             if (cmd!=="cmd" && cmd!=="sh") {
