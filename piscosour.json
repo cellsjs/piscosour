@@ -1,30 +1,68 @@
 {
-    "cmd": "pisco",
-    "params": {
-        "plugins": [
-            "os",
-            "inquirer",
-            "launcher",
-            "fsutils",
-            "piscosour"
-        ]
-    },
-    "defaultType" : "recipe",
-    "repoTypes": [
-        "recipe"
+  "cmd": "pisco",
+  "params": {
+    "plugins": [
+      "os",
+      "inquirer",
+      "launcher",
+      "fsutils",
+      "piscosour",
+      "context"
     ],
-    "junitDir": "test-reports",
-    "junitPiscoFile": "pisco-junit.xml",
-    "stages": [
-        "check",
-        "config",
-        "run",
-        "prove",
-        "notify"
-    ],
-    "strawTypes": [
-        "normal",
-        "utils",
-        "internal"
-    ]
+    "contexts": {
+      "recipe": [
+        {
+          "sufficient" : true,
+          "file": ".piscosour/piscosour.json",
+          "conditions" : ["that.repoType==='recipe'"]
+        },
+        {
+          "file": "package.json",
+          "conditions": ["that.keywords.indexOf('piscosour-recipe')>=0"]
+        },
+        {
+          "file": "piscosour.json"
+        }
+      ],
+      "component": [
+        {
+          "sufficient" : true,
+          "file": ".piscosour/piscosour.json",
+          "conditions" : ["that.repoType==='component'"]
+        },
+        {
+          "file" : "bower.json"
+        }
+      ],
+      "app": [
+        {
+          "sufficient" : true,
+          "file": ".piscosour/piscosour.json",
+          "conditions" : ["that.repoType==='app'"]
+        },
+        {
+          "file" : "bower.json",
+          "conditions" : ["that.dependencies && that.dependencies.polymer"]
+        }
+      ]
+    }
+  },
+  "defaultType": "recipe",
+  "repoTypes": [
+    "recipe"
+  ],
+  "junitDir": "test-reports",
+  "junitPiscoFile": "pisco-junit.xml",
+  "stages": [
+    "check",
+    "config",
+    "run",
+    "prove",
+    "notify"
+  ],
+  "strawTypes": [
+    "normal",
+    "utils",
+    "internal"
+  ]
 }
