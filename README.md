@@ -14,7 +14,7 @@ Install piscosour globally
 
 |Name|Version|Description|
 |---|---|---|
-|piscosour|0.3.2|Get all your devops tools wrapped-up!|
+|piscosour|0.3.3|Get all your devops tools wrapped-up!|
 
 
 
@@ -22,13 +22,16 @@ Install piscosour globally
 
 
 
-**from piscosour  v.0.3.2:**
+**from piscosour  v.0.3.3:**
 
+- **pisco recipe:add-shot** ( Add a shot to a piscosour recipe )
+- **pisco recipe:add-straw** ( Add a straw to a piscosour recipe )
 - **pisco recipe:config** ( Manage a piscosour recipe )
-- **pisco recipe:convert** ( Convert any module into a piscosour recipe )
+- **pisco node-module:convert** ( Convert any module into a piscosour recipe )
 - **pisco recipe:create** ( Starting a repository from scratch )
 - **pisco recipe:docs** ( Generate documentation for straws and shots )
-- **pisco recipe::convert** ( Convert any nodejs module into a piscosour recipe )
+- **pisco node-module:docs** ( Generate documentation for straws and shots )
+- **pisco node-module::convert** ( Convert any nodejs module into a piscosour recipe )
 - **pisco all::generate-docs** ( Generate one file per straw inside a directory )
 - **pisco all::npm** ( Checking all npm commands needed )
 - **pisco recipe::piscosour** ( Configure piscosour.json )
@@ -38,32 +41,38 @@ Install piscosour globally
 
 
 
-## config: "Configure one repository"
+## add-shot: "Add a shot"
+Add a shot to a piscosour recipe
+
+
+### 1. shots: "Create new pisco shot inside this module"
+```
+Repository types:  recipe
+Recipes: piscosour (0.3.3)
+```
+shot shots
+
+## add-straw: "Add straw"
+Add a straw to a piscosour recipe
+
+
+### 1. straws: "Adding shot to a straw"
+```
+Repository types:  recipe
+Recipes: piscosour (0.3.3)
+```
+shot straws
+
+## config: "Configure piscosour"
 Manage a piscosour recipe
 
 
 ### 1. piscosour: "Configure piscosour.json"
 ```
 Repository types:  recipe
-Recipes: piscosour (0.3.2)
+Recipes: piscosour (0.3.3)
 ```
 shot piscosour
-
-
-### 2. shots: "Create new pisco shot inside this module"
-```
-Repository types:  recipe
-Recipes: piscosour (0.3.2)
-```
-shot shots
-
-
-### 3. straws: "Adding shot to a straw"
-```
-Repository types:  recipe
-Recipes: piscosour (0.3.2)
-```
-shot straws
 
 ## convert: "Module to recipe"
 Convert any module into a piscosour recipe
@@ -71,8 +80,8 @@ Convert any module into a piscosour recipe
 
 ### 1. convert: "Convert any nodejs module into a piscosour recipe"
 ```
-Repository types:  recipe
-Recipes: piscosour (0.3.2)
+Repository types:  node-module
+Recipes: piscosour (0.3.3)
 ```
 shot convert
 
@@ -99,7 +108,7 @@ Checks and install if an environment is ok
 ### 1.1. npm: "Checking all npm commands needed"
 ```
 Repository types:  all
-Recipes: piscosour (0.3.2)
+Recipes: piscosour (0.3.3)
 ```
 shot npm
 
@@ -107,7 +116,7 @@ shot npm
 ### 2. scaffolding: "Create a piscosour recipe from a scaffold template"
 ```
 Repository types:  recipe
-Recipes: piscosour (0.3.2)
+Recipes: piscosour (0.3.3)
 ```
 shot scaffolding
 
@@ -126,7 +135,7 @@ Info.md is a regular md file, so you can use all the markdown specification. The
 ### 1. generate-docs: "Generate one file per straw inside a directory"
 ```
 Repository types:  all
-Recipes: piscosour (0.3.2)
+Recipes: piscosour (0.3.3)
 ```
 shot generate-docs
 
