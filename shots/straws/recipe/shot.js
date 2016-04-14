@@ -7,21 +7,12 @@ module.exports = {
 
     straw : {},
 
-    whenStrawKey : function(answer){
-        return answer.doStraw;
-    },
-
     strawTypes : function(){
         return [
             "normal",
             "internal",
             "util"
         ];
-    },
-
-    check: function(go){
-        if (!this.params.doStraw)
-            go({skip:true});
     },
 
     config : function(resolve){
