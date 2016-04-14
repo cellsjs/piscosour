@@ -1,7 +1,4 @@
 {
-    "params" : {
-        "plugins" : ["cookbook"]
-    },
     "shots": {
         "generate-docs": {}
     },
