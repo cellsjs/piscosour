@@ -1,5 +1,5 @@
 {
   "description" : "See your city weather",
-  "yourCity" : "matalascañas",
+  "city" : "madrid",
   "isTest" : true
 }
