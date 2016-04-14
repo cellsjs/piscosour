@@ -7,6 +7,6 @@ module.exports = {
     description : "Get automatic context of execution",
 
     addons : {
-        ctxIs : context.is
+        ctxIs : context.cis
     }
 };
