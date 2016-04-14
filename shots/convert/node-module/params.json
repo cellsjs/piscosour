@@ -1,4 +1,5 @@
 {
+  "plugins" : ["cookbook"],
   "description" : "Convert any nodejs module into a piscosour recipe",
   "promptsPisco":[
     {
