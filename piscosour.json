@@ -23,27 +23,6 @@
         {
           "file": "piscosour.json"
         }
-      ],
-      "component": [
-        {
-          "sufficient" : true,
-          "file": ".piscosour/piscosour.json",
-          "conditions" : ["that.repoType==='component'"]
-        },
-        {
-          "file" : "bower.json"
-        }
-      ],
-      "app": [
-        {
-          "sufficient" : true,
-          "file": ".piscosour/piscosour.json",
-          "conditions" : ["that.repoType==='app'"]
-        },
-        {
-          "file" : "bower.json",
-          "conditions" : ["that.dependencies && that.dependencies.polymer"]
-        }
       ]
     }
   },
