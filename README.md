@@ -14,22 +14,23 @@ Install piscosour globally
 
 |Name|Version|Description|
 |---|---|---|
-|piscosour|0.3.1|Get all your devops tools wrapped-up!|
+|piscosour|0.3.2|Get all your devops tools wrapped-up!|
 
 
 
 # Commands
 
 
- **from piscosour  v.0.3.1:**
+
+**from piscosour  v.0.3.2:**
 
 - **pisco recipe:config** ( Manage a piscosour recipe )
 - **pisco recipe:convert** ( Convert any module into a piscosour recipe )
 - **pisco recipe:create** ( Starting a repository from scratch )
 - **pisco recipe:docs** ( Generate documentation for straws and shots )
 - **pisco recipe::convert** ( Convert any nodejs module into a piscosour recipe )
-- **pisco default::generate-docs** ( Generate one file per straw inside a directory )
-- **pisco default::npm** ( Checking all npm commands needed )
+- **pisco all::generate-docs** ( Generate one file per straw inside a directory )
+- **pisco all::npm** ( Checking all npm commands needed )
 - **pisco recipe::piscosour** ( Configure piscosour.json )
 - **pisco recipe::scaffolding** ( Create a piscosour recipe from a scaffold template )
 - **pisco recipe::shots** ( Create new pisco shot inside this module )
@@ -37,14 +38,14 @@ Install piscosour globally
 
 
 
-##config: "Configure one repository"
+## config: "Configure one repository"
 Manage a piscosour recipe
 
 
 ### 1. piscosour: "Configure piscosour.json"
 ```
 Repository types:  recipe
-Recipes: piscosour (0.3.1)
+Recipes: piscosour (0.3.2)
 ```
 shot piscosour
 
@@ -52,7 +53,7 @@ shot piscosour
 ### 2. shots: "Create new pisco shot inside this module"
 ```
 Repository types:  recipe
-Recipes: piscosour (0.3.1)
+Recipes: piscosour (0.3.2)
 ```
 shot shots
 
@@ -60,22 +61,22 @@ shot shots
 ### 3. straws: "Adding shot to a straw"
 ```
 Repository types:  recipe
-Recipes: piscosour (0.3.1)
+Recipes: piscosour (0.3.2)
 ```
 shot straws
 
-##convert: "Module to recipe"
+## convert: "Module to recipe"
 Convert any module into a piscosour recipe
 
 
 ### 1. convert: "Convert any nodejs module into a piscosour recipe"
 ```
 Repository types:  recipe
-Recipes: piscosour (0.3.1)
+Recipes: piscosour (0.3.2)
 ```
 shot convert
 
-##create: "Create from scratch"
+## create: "Create from scratch"
 Starting a repository from scratch
 
 - Pisco te preguntará por el nombre de la receta que quieres crear. Este será el nombre de tu paquete npm que usarás para compartir la funcionalidad y las herramientas que envuelvas. Introduce el nombre que más te guste.
@@ -91,14 +92,14 @@ Mientras pisco genera tu primera receta usando un generator de yeoman. Te explic
 - scaffolding: Hace las preguntas y llama a yeoman para generar el esqueleto del módulo.
 
 Listo! ya tienes tu primer ejecutable de pisco creado! pruebalo
-### 1. (Straw) environment: "Environment Checks"
+## # 1. (Straw) environment: "Environment Checks"
 Checks and install if an environment is ok
 
 
 ### 1.1. npm: "Checking all npm commands needed"
 ```
 Repository types:  all
-Recipes: piscosour (0.3.1)
+Recipes: piscosour (0.3.2)
 ```
 shot npm
 
@@ -106,11 +107,11 @@ shot npm
 ### 2. scaffolding: "Create a piscosour recipe from a scaffold template"
 ```
 Repository types:  recipe
-Recipes: piscosour (0.3.1)
+Recipes: piscosour (0.3.2)
 ```
 shot scaffolding
 
-##docs: "Generate Documentation"
+## docs: "Generate Documentation"
 Generate documentation for straws and shots
 Command: **bin/pisco.js docs**
 
@@ -125,7 +126,7 @@ Info.md is a regular md file, so you can use all the markdown specification. The
 ### 1. generate-docs: "Generate one file per straw inside a directory"
 ```
 Repository types:  all
-Recipes: piscosour (0.3.1)
+Recipes: piscosour (0.3.2)
 ```
 shot generate-docs
 
@@ -133,9 +134,12 @@ shot generate-docs
 # Plugins
 
 
+## context
+
+Get the context where pisco were executed
 ## cookbook
 
-This plugins provide functionality  
+This plugins provide functionality to build straw for recipes.  
 ## fsutils
 
 Plugins with some fs utilities
@@ -145,6 +149,9 @@ Utility for inquire the user
 ## launcher
 
 
+## os
+
+Plugins used to check Operating System where pisco is running
 ## piscosour
 
 
