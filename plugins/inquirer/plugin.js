@@ -42,6 +42,7 @@ module.exports = {
                 shotResolution(prompt, "when");
                 shotResolution(prompt, "validate");
                 shotResolution(prompt, "choices");
+                shotResolution(prompt, "default");
 
                 if (prompt.required && !prompt.validate)
                     prompt.validate = getValidate(prompt);
