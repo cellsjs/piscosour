@@ -1,64 +1,64 @@
 {
-  "cmd": "pisco",
-  "params": {
-    "plugins": [
-      "os",
-      "context",
-      "launcher",
-      "inquirer",
-      "fsutils",
-      "piscosour"
+    "cmd": "pisco",
+    "params": {
+        "plugins": [
+            "os",
+            "context",
+            "launcher",
+            "inquirer",
+            "fsutils",
+            "piscosour"
+        ],
+        "contexts": {
+            "node-module": [
+                {
+                    "file": "package.json",
+                    "conditions": [
+                        "that.version"
+                    ]
+                },
+                {
+                    "file": "piscosour.json",
+                    "noexists": "true"
+                }
+            ],
+            "recipe": [
+                {
+                    "sufficient": true,
+                    "file": ".piscosour/piscosour.json",
+                    "conditions": [
+                        "that.repoType==='recipe'"
+                    ]
+                },
+                {
+                    "file": "package.json",
+                    "conditions": [
+                        "that.keywords.indexOf('piscosour-recipe')>=0"
+                    ]
+                },
+                {
+                    "file": "piscosour.json"
+                }
+            ]
+        }
+    },
+    "defaultType": "recipe",
+    "repoTypes": [
+        "recipe",
+        "node-module"
     ],
-    "contexts": {
-      "node-module": [
-        {
-          "file": "package.json",
-          "conditions": [
-            "that.version"
-          ]
-        },
-        {
-          "file": "piscosour.json",
-          "noexists": "true"
-        }
-      ],
-      "recipe": [
-        {
-          "sufficient": true,
-          "file": ".piscosour/piscosour.json",
-          "conditions": [
-            "that.repoType==='recipe'"
-          ]
-        },
-        {
-          "file": "package.json",
-          "conditions": [
-            "that.keywords.indexOf('piscosour-recipe')>=0"
-          ]
-        },
-        {
-          "file": "piscosour.json"
-        }
-      ]
-    }
-  },
-  "defaultType": "recipe",
-  "repoTypes": [
-    "recipe",
-    "node-module"
-  ],
-  "junitDir": "test-reports",
-  "junitPiscoFile": "pisco-junit.xml",
-  "stages": [
-    "check",
-    "config",
-    "run",
-    "prove",
-    "notify"
-  ],
-  "strawTypes": [
-    "normal",
-    "utils",
-    "internal"
-  ]
+    "junitDir": "test-reports",
+    "junitPiscoFile": "pisco-junit.xml",
+    "stages": [
+        "check",
+        "config",
+        "run",
+        "prove",
+        "notify"
+    ],
+    "strawTypes": [
+        "normal",
+        "utils",
+        "internal"
+    ]
 }

@@ -9,6 +9,5 @@
       "cmd" : "npm",
       "args": ["install","-g","git+https://github.com/sbonacho/generator-pisco-recipe.git"]
     }
-  ],
-  "nocontext" : true
+  ]
 }
