@@ -8,8 +8,6 @@ module.exports = {
 
     config : function(resolve, reject){
         this.logger.info("#magenta","config","this.params.saludo: ", this.params.saludo);
-        if (this.params.saludo!=="holarecipe")
-            reject("ERROR: "+JSON.stringify(this.params));
     },
 
     run : function(resolve, reject){
