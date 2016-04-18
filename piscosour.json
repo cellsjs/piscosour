@@ -3,15 +3,49 @@
     "params": {
         "plugins": [
             "os",
-            "inquirer",
+            "context",
             "launcher",
+            "inquirer",
             "fsutils",
             "piscosour"
-        ]
+        ],
+        "contexts": {
+            "node-module": [
+                {
+                    "file": "package.json",
+                    "conditions": [
+                        "that.version"
+                    ]
+                },
+                {
+                    "file": "piscosour.json",
+                    "noexists": "true"
+                }
+            ],
+            "recipe": [
+                {
+                    "sufficient": true,
+                    "file": ".piscosour/piscosour.json",
+                    "conditions": [
+                        "that.repoType==='recipe'"
+                    ]
+                },
+                {
+                    "file": "package.json",
+                    "conditions": [
+                        "that.keywords.indexOf('piscosour-recipe')>=0"
+                    ]
+                },
+                {
+                    "file": "piscosour.json"
+                }
+            ]
+        }
     },
-    "defaultType" : "recipe",
+    "defaultType": "recipe",
     "repoTypes": [
-        "recipe"
+        "recipe",
+        "node-module"
     ],
     "junitDir": "test-reports",
     "junitPiscoFile": "pisco-junit.xml",

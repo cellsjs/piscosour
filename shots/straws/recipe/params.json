@@ -1,22 +1,13 @@
 {
   "description" : "Adding shot to a straw",
-  "requireRecipe" : true,
+  "mustBeIn" : ["recipe"],
   "prompts": [
-    {
-      "type": "confirm",
-      "name": "doStraw",
-      "required" : true,
-      "message": "Do you want to add this shot into a straw?"
-    },
     {
       "type": "input",
       "name": "strawKey",
       "required" : true,
-      "message": "Write the command of the straw",
-      "when" : "#whenStrawKey"
-    }
-  ],
-  "promptsStraw" : [
+      "message": "Write the command of the straw"
+    },
     {
       "type": "input",
       "name": "strawName",
@@ -27,7 +18,7 @@
       "type": "input",
       "name": "strawDescription",
       "required" : true,
-      "message": "Write a short description for the of the straw"
+      "message": "Write a description for the of the straw"
     },
     {
       "type": "list",

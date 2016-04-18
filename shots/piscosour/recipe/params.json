@@ -1,6 +1,6 @@
 {
   "description" : "Configure piscosour.json",
-  "requireRecipe" : true,
+  "mustBeIn" : ["recipe"],
   "prompts": [
     {
       "type": "confirm",
@@ -14,7 +14,8 @@
       "name": "defaultType",
       "required" : true,
       "message": "Set the default repository type for this recipe",
-      "when" : "#whenDefaultType"
+      "when" : "#whenDefaultType",
+      "default" : "#getDefault"
     }
   ],
   "promptsPisco": [

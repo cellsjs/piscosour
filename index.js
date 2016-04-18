@@ -30,7 +30,7 @@ var Piscosour = {
     Sour: Sour,
     gush: function () {
         notifier.notify();
-        logger.info("Loading time","-","#duration",moment()-init);
+        logger.trace("Loading time","-","#duration",moment()-init);
         this.Sour().gush(init).then(this.onFulfilled, this.onReject);
     },
     onFulfilled : function(){

@@ -10,7 +10,6 @@ module.exports = {
         this.logger.info("#magenta","run","Run main execution");
         this.logger.info("execution: ",this.params.execution);
         this.testPluginAddon(" - test plugin addon!");
-        this.sh("ls -las", reject, true);
     },
 
     prove : function(resolve, reject){
