@@ -1,1 +1,0 @@
-This plugins provide functionality to build straw for recipes.  
