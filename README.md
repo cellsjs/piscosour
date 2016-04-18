@@ -29,8 +29,8 @@ Install piscosour globally
 - **pisco recipe:config** ( Manage a piscosour recipe )
 - **pisco node-module:convert** ( Convert any module into a piscosour recipe )
 - **pisco recipe:create** ( Starting a repository from scratch )
-- **pisco recipe:docs** ( Generate documentation for straws and shots )
-- **pisco node-module:docs** ( Generate documentation for straws and shots )
+- **pisco recipe:docs** ( Append documentation from info.md to readme.md of the recipe )
+- **pisco node-module:docs** ( Append documentation from info.md to readme.md of the recipe )
 - **pisco node-module::convert** ( Convert any nodejs module into a piscosour recipe )
 - **pisco all::generate-docs** ( Generate one file per straw inside a directory )
 - **pisco all::npm** ( Checking all npm commands needed )
@@ -121,7 +121,7 @@ Recipes: piscosour (0.3.3)
 shot scaffolding
 
 ## docs: "Generate Documentation"
-Generate documentation for straws and shots
+Append documentation from info.md to readme.md of the recipe
 Command: **bin/pisco.js docs**
 
 Generate documentation for your recipe.
@@ -146,9 +146,6 @@ shot generate-docs
 ## context
 
 Get the context where pisco were executed
-## cookbook
-
-This plugins provide functionality to build straw for recipes.  
 ## fsutils
 
 Plugins with some fs utilities

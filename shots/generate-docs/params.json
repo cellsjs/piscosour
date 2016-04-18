@@ -1,5 +1,4 @@
 {
-  "plugins": ["cookbook"],
   "description" : "Generate one file per straw inside a directory",
-  "requireRecipe" : true
+  "mustBeIn" : ["recipe"]
 }

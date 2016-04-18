@@ -1,7 +1,6 @@
 {
-  "plugins": ["cookbook"],
   "description" : "Adding shot to a straw",
-  "requireRecipe" : true,
+  "mustBeIn" : ["recipe"],
   "prompts": [
     {
       "type": "input",

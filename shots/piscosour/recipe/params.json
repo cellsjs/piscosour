@@ -1,7 +1,6 @@
 {
-  "plugins": ["cookbook"],
   "description" : "Configure piscosour.json",
-  "requireRecipe" : true,
+  "mustBeIn" : ["recipe"],
   "prompts": [
     {
       "type": "confirm",

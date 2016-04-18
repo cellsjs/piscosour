@@ -8,5 +8,5 @@
     },
     "scaffolding" : {}
   },
-  "nocontext" : true
+  "contextFree" : true
 }
