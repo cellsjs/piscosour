@@ -3,11 +3,11 @@
   "params": {
     "plugins": [
       "os",
-      "inquirer",
+      "context",
       "launcher",
+      "inquirer",
       "fsutils",
-      "piscosour",
-      "context"
+      "piscosour"
     ],
     "contexts": {
       "node-module": [
