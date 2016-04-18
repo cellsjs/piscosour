@@ -10,7 +10,8 @@ module.exports = {
     },
 
     getDefault : function(){
-        return this.config.defaultType;
+        var configLocal = this.fsReadConfig(this.piscoFile);
+        return configLocal.defaultType;
     },
 
     config: function(go, stop){
