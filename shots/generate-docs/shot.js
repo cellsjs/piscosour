@@ -32,7 +32,7 @@ module.exports = {
     _commandsIndex : function(){
 
         var content = "";
-        var enriched = docs.enrichCommands();
+        var enriched = docs.enrichCommands(null,true);
 
         for (var recipeKey in enriched) {
             var recipe = enriched[recipeKey].___recipe;
@@ -102,7 +102,7 @@ module.exports = {
 
     _infoStraw : function(bundle, straw, dir, p){
         var file = path.join(process.cwd(), 'straws', dir, 'info.md');
-        bundle = this.runner._addBundle("##" + dir + ": \"" + straw.name + "\"", file, bundle, true, straw.description);
+        bundle = this.runner._addBundle("## " + dir + ": \"" + straw.name + "\"", file, bundle, true, straw.description);
 
         var n = 1;
         for (var shotName in straw.shots) {

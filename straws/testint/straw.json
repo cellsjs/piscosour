@@ -4,6 +4,15 @@
   "description": "test",
   "params" : {},
   "shots" : {
-    "test3" : {}
+    "test2" : {
+      "params": {
+        "saludo": "holadefault"
+      },
+      "recipe" : {
+        "params": {
+          "saludo": "holarecipe"
+        }
+      }
+    }
   }
 }

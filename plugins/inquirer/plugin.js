@@ -22,7 +22,7 @@ module.exports = {
             };
 
             var shotResolution = function (prompt, attr) {
-                if (prompt[attr] !== undefined && Object.prototype.toString.call(prompt[attr]) !== '[object Function]' && prompt[attr].indexOf("#") === 0) {
+                if (prompt[attr] !== undefined && Object.prototype.toString.call(prompt[attr]) !== '[object Function]' && typeof prompt[attr] !== 'boolean' && prompt[attr].indexOf("#") === 0) {
                     var functionName = prompt[attr].replace('#', '');
                     var func = this.runner[functionName];
                     if (func)
@@ -42,6 +42,7 @@ module.exports = {
                 shotResolution(prompt, "when");
                 shotResolution(prompt, "validate");
                 shotResolution(prompt, "choices");
+                shotResolution(prompt, "default");
 
                 if (prompt.required && !prompt.validate)
                     prompt.validate = getValidate(prompt);

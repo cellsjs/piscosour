@@ -1,7 +1,4 @@
 {
-  "params" : {
-    "plugins" : ["cookbook"]
-  },
   "type": "normal",
   "name": "Module to recipe",
   "description": "Convert any module into a piscosour recipe",

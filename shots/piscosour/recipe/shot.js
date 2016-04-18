@@ -9,6 +9,11 @@ module.exports = {
         return answer.doDefault;
     },
 
+    getDefault : function(){
+        var configLocal = this.fsReadConfig(this.piscoFile);
+        return configLocal.defaultType;
+    },
+
     config: function(go, stop){
         this.logger.info("#magenta","config","Configure recipe", this.piscoFile);
         var configLocal = this.fsReadConfig(this.piscoFile);
