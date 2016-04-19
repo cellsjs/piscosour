@@ -1,6 +1,5 @@
 {
   "description" : "Adding shot to a straw",
-  "mustBeIn" : ["recipe"],
   "prompts": [
     {
       "type": "input",

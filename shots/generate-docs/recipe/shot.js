@@ -2,7 +2,7 @@
 
 var fs = require('fs'),
     path = require('path'),
-    docs = require('../../lib/docs');
+    docs = require('../../../lib/docs');
 
 module.exports = {
 

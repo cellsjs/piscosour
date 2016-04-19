@@ -1,6 +1,5 @@
 {
   "description" : "Convert any nodejs module into a piscosour recipe",
-  "mustBeIn": ["node-module"],
   "promptsPisco":[
     {
       "type": "input",
