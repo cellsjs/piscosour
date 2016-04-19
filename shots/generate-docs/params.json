@@ -1,4 +1,0 @@
-{
-  "description" : "Generate one file per straw inside a directory",
-  "mustBeIn" : ["recipe"]
-}

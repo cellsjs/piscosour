@@ -1,6 +1,5 @@
 {
   "description" : "Configure piscosour.json",
-  "mustBeIn" : ["recipe"],
   "prompts": [
     {
       "type": "confirm",
