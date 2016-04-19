@@ -1,7 +1,7 @@
 {
     "cmd": "pisco",
     "params": {
-        "workingDir" : "",
+        "workingDir": "",
         "plugins": [
             "os",
             "context",
