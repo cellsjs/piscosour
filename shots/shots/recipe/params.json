@@ -1,6 +1,5 @@
 {
   "description" : "Create new pisco shot inside this module",
-  "mustBeIn" : ["recipe"],
   "prompts": [
     {
       "type": "input",

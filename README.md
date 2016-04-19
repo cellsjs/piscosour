@@ -210,12 +210,12 @@ Define all rules that a repoType must match. All rules not sufficient must to be
 
 #### Pre-hook: Check one shot is executed in the root of any repository type.
 
-The only thing that you have to do is set the parameter mustBeIn inside the params.json file of the shot.
+Actually by default the behaviour is asum that the repoType of the shot is necesary for the execution of the shot, if you need to execute one shot without check if the context is ok use contextFree. contextFree usually is use for shot like create or something like that.  
 
 ```
 {
  [...]
-  "mustBeIn" : ["recipe"]
+  "contextFree" : true
 }
 ```
 
