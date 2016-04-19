@@ -7,7 +7,7 @@ module.exports = {
 
     check : function(go, stop){
         this.logger.info("#magenta","check","Check if this is a nodejs module");
-        if (this.isRecipe()){
+        if (this.ctxIs('recipe')){
             stop("This is already a piscosour recipe");
         }else {
             this.inquire("promptsPisco").then(go);
