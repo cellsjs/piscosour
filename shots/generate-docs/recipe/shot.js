@@ -5,8 +5,11 @@ var fs = require('fs'),
     docs = require('../../../lib/docs');
 
 module.exports = {
+    
+    pkg : {},
 
     run : function() {
+        this.runner.pkg = this.fsReadConfig(this.pkgFile);
         this.logger.info("#magenta", "run", "Merge all info.md of straws and shots in the readme.md");
 
         var bundle = [];
@@ -20,12 +23,12 @@ module.exports = {
         bundle = this.runner._addBundle("\n# Plugins", null, bundle);
         this.runner._infoPlugins(bundle);
 
-        this.fsAppendBundle(bundle,"README.md", " Installing "+this.pkg.name);
+        this.fsAppendBundle(bundle,"README.md", " Installing "+this.runner.pkg.name);
     },
 
     _getStarted : function(){
-        var content = `Install ${this.pkg.name} globally\n\n`;
-        content += `    npm install -g ${this.pkg.name}`;
+        var content = `Install ${this.runner.pkg.name} globally\n\n`;
+        content += `    npm install -g ${this.runner.pkg.name}`;
         return content;
     },
 

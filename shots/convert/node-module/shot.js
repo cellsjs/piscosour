@@ -17,16 +17,17 @@ module.exports = {
 
     modifyPkg : function(){
         this.logger.info("#cyan","Modify","package.json");
-        if (!this.pkg.keywords)
-            this.pkg.keywords = [];
+        let pkg = this.fsReadConfig(this.pkgFile);
+        if (!pkg.keywords)
+            pkg.keywords = [];
 
-        this.pkg.keywords.push("piscosour-recipe");
-        if (!this.pkg.bin)
-            this.pkg.bin = {};
+        pkg.keywords.push("piscosour-recipe");
+        if (!pkg.bin)
+            pkg.bin = {};
 
-        this.pkg.bin[this.params.cmd] = "bin/pisco.js";
+        pkg.bin[this.params.cmd] = "bin/pisco.js";
 
-        fs.writeFileSync(this.pkgFile,JSON.stringify(this.pkg,null,4));
+        fs.writeFileSync(this.pkgFile,JSON.stringify(pkg,null,4));
     },
 
     writePiscosour : function(){

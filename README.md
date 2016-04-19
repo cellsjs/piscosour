@@ -25,7 +25,7 @@ Install piscosour globally
 **from piscosour  v.0.3.3:**
 
 - **pisco node-module::convert** ( Convert any nodejs module into a piscosour recipe )
-- **pisco all::generate-docs** ( Generate one file per straw inside a directory )
+- **pisco recipe::generate-docs** ( Generate one file per straw inside a directory )
 - **pisco all::npm** ( Checking all npm commands needed )
 - **pisco recipe::piscosour** ( Configure piscosour.json )
 - **pisco recipe::scaffolding** ( Create a piscosour recipe from a scaffold template )
@@ -37,7 +37,6 @@ Install piscosour globally
 - **pisco node-module:convert** ( Convert any module into a piscosour recipe )
 - **pisco recipe:create** ( Starting a repository from scratch )
 - **pisco recipe:docs** ( Append documentation from info.md to readme.md of the recipe )
-- **pisco node-module:docs** ( Append documentation from info.md to readme.md of the recipe )
 
 
 
@@ -134,7 +133,7 @@ Info.md is a regular md file, so you can use all the markdown specification. The
 
 ### 1. generate-docs: "Generate one file per straw inside a directory"
 ```
-Repository types:  all
+Repository types:  recipe
 Recipes: piscosour (0.3.3)
 ```
 shot generate-docs
