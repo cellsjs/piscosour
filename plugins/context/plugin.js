@@ -20,7 +20,11 @@ module.exports = {
     },
 
     addons : {
-        ctxIs : context.cis,
-        ctxWhoami : context.whoami
+        ctxIs : function(name){
+            return context.cis(name,this.params.workingDir);
+        },
+        ctxWhoami : function(){
+            return context.whoami(this.params.workingDir);
+        }
     }
 };
