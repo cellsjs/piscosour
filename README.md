@@ -2,6 +2,33 @@
 
 ![Piscosour: Get all your devops tools wrapped-up!](doc/images/logo.png)
 
+# What is Piscosour?
+
+- Piscosour gets all command line (CLI) development tools wrapped-up, creating ascertainable command line workflows. 
+- Piscosour does not replace other tools, coexists with all of them and allows the best symbiosis of them all.
+- Piscosour shots are easy and reusable components based on a npm dependency. 
+- Piscosour execution creates an easily junit.xml filed to manage with the most popular orchestrators like Jenkins, Hudson, Bamboo, etc.
+- Piscosour keeps all sets of tools ordered under the same recipe, so you could have recipes for polymer, AngularJS, react, facilities, system utilities ... and use them in any workflow you need.
+
+We have moved the idea of a component to use it as a tool to build, to test, to use in a continuous integration tool, etc. For all these tasks we have created Piscosour.
+
+**To get an idea, it’s a command line jenkins, bamboo, travis or gocd , which allows better reuse of workflows.** 
+
+Piscosour wraps the functionality of any tool and helps you to:
+
+1. localize.
+2. documenting.
+3. share.
+4. trust.
+5. test.
+6. versioning.
+7. watch the life cycle.
+8. watch results
+
+of all bash scripts, gulp and grunt tasks, yeoman generators, hydrolysis, lint/eslint, polymer tools, cordova tools, sass,  etc.
+
+So, you can use all your favorites tools keeping it under control and versioned.
+
 # Documentation
 
 * [Complete documentation](doc/README.md) - Complete documentation, howtos, api, examples...
