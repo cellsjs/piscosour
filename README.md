@@ -2,6 +2,33 @@
 
 ![Piscosour: Get all your devops tools wrapped-up!](doc/images/logo.png)
 
+# What is Piscosour?
+
+- Piscosour gets all command line (CLI) development tools wrapped-up, creating ascertainable command line workflows. 
+- Piscosour does not replace other tools, coexists with all of them and allows the best symbiosis of them all.
+- Piscosour shots are easy and reusable components based on a npm dependency. 
+- Piscosour execution creates an easily junit.xml filed to manage with the most popular orchestrators like Jenkins, Hudson, Bamboo, etc.
+- Piscosour keeps all sets of tools ordered under the same recipe, so you could have recipes for polymer, AngularJS, react, facilities, system utilities ... and use them in any workflow you need.
+
+We have moved the idea of a component to use it as a tool to build, to test, to use in a continuous integration tool, etc. For all these tasks we have created Piscosour.
+
+**To get an idea, it’s a command line jenkins, bamboo, travis or gocd , which allows better reuse of workflows.** 
+
+Piscosour wraps the functionality of any tool and helps you to:
+
+1. localize.
+2. documenting.
+3. share.
+4. trust.
+5. test.
+6. versioning.
+7. watch the life cycle.
+8. watch results
+
+of all bash scripts, gulp and grunt tasks, yeoman generators, hydrolysis, lint/eslint, polymer tools, cordova tools, sass,  etc.
+
+So, you can use all your favorites tools keeping it under control and versioned.
+
 # Documentation
 
 * [Complete documentation](doc/README.md) - Complete documentation, howtos, api, examples...
@@ -18,7 +45,7 @@ Install piscosour globally
 
 |Name|Version|Description|
 |---|---|---|
-|piscosour|0.3.3|Get all your devops tools wrapped-up!|
+|piscosour|0.4.0|Get all your devops tools wrapped-up!|
 
 
 
@@ -26,7 +53,7 @@ Install piscosour globally
 
 
 
-**from piscosour  v.0.3.3:**
+**from piscosour  v.0.4.0:**
 
 - **pisco node-module::convert** ( Convert any nodejs module into a piscosour recipe )
 - **pisco recipe::generate-docs** ( Generate one file per straw inside a directory )
@@ -51,7 +78,7 @@ Add a shot to a piscosour recipe
 ### 1. shots: "Create new pisco shot inside this module"
 ```
 Repository types:  recipe
-Recipes: piscosour (0.3.3)
+Recipes: piscosour (0.4.0)
 ```
 shot shots
 
@@ -62,7 +89,7 @@ Add a straw to a piscosour recipe
 ### 1. straws: "Adding shot to a straw"
 ```
 Repository types:  recipe
-Recipes: piscosour (0.3.3)
+Recipes: piscosour (0.4.0)
 ```
 shot straws
 
@@ -73,7 +100,7 @@ Manage a piscosour recipe
 ### 1. piscosour: "Configure piscosour.json"
 ```
 Repository types:  recipe
-Recipes: piscosour (0.3.3)
+Recipes: piscosour (0.4.0)
 ```
 shot piscosour
 
@@ -84,7 +111,7 @@ Convert any module into a piscosour recipe
 ### 1. convert: "Convert any nodejs module into a piscosour recipe"
 ```
 Repository types:  node-module
-Recipes: piscosour (0.3.3)
+Recipes: piscosour (0.4.0)
 ```
 shot convert
 
@@ -111,7 +138,7 @@ Checks and install if an environment is ok
 ### 1.1. npm: "Checking all npm commands needed"
 ```
 Repository types:  all
-Recipes: piscosour (0.3.3)
+Recipes: piscosour (0.4.0)
 ```
 shot npm
 
@@ -119,7 +146,7 @@ shot npm
 ### 2. scaffolding: "Create a piscosour recipe from a scaffold template"
 ```
 Repository types:  recipe
-Recipes: piscosour (0.3.3)
+Recipes: piscosour (0.4.0)
 ```
 shot scaffolding
 
@@ -138,7 +165,7 @@ Info.md is a regular md file, so you can use all the markdown specification. The
 ### 1. generate-docs: "Generate one file per straw inside a directory"
 ```
 Repository types:  recipe
-Recipes: piscosour (0.3.3)
+Recipes: piscosour (0.4.0)
 ```
 shot generate-docs
 
