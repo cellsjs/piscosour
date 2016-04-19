@@ -1,3 +1,7 @@
+[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+
+![Piscosour: Get all your devops tools wrapped-up!](doc/images/logo.png)
+
 # Documentation
 
 * [Complete documentation](doc/README.md) - Complete documentation, howtos, api, examples...
