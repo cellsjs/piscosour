@@ -8,8 +8,21 @@
     "url": "https://github.com/cellsjs/piscosour.git"
   },
   "keywords": [
-   "piscosour-recipe",
-    "Tooling wrapper"
+    "piscosour-recipe",
+    "tooling",
+    "wrapper",
+    "CLI",
+    "jenkins",
+    "bamboo",
+    "CI",
+    "integration",
+    "continuous",
+    "deployment",
+    "docker",
+    "testing",
+    "junit",
+    "orchestrator",
+    "gulp"
   ],
   "author": "Santiago García-Bonacho Rico",
   "license": "ISC",
@@ -24,7 +37,8 @@
     "moment": "^2.10.6",
     "nopt": "^3.0.6",
     "update-notifier": "^0.6.1",
-    "xml": "^1.0.1"
+    "xml": "^1.0.1",
+    "generator-pisco-recipe": "git+https://github.com/sbonacho/generator-pisco-recipe.git#0.0.2"
   },
   "engines": {
     "node": ">=4.0.0"
