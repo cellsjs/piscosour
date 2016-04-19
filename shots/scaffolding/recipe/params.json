@@ -1,5 +1,6 @@
 {
   "description" : "Create a piscosour recipe from a scaffold template",
+  "contextFree" : true,
   "prompts": [
     {
       "type": "input",
