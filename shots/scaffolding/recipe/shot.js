@@ -10,9 +10,9 @@ module.exports = {
 
     run : function(resolve, reject){
         this.logger.info("#magenta","run","Create new recipe from template");
-
-        this.fsCreateDir(path.join(this.config.rootDir,this.params.recipeName));
-        process.chdir(path.join(this.config.rootDir,this.params.recipeName));
+        this.fsCreateDir(this.params.recipeName);
+        process.chdir(this.params.recipeName);
+        process.env.NODE_PATH=process.env.NODE_PATH+path.delimiter+path.join(this.config.getDir('module'),"node_modules");
         return this.execute("yo",this.promptArgs(["pisco-recipe"])).then(resolve,reject);
     }
 };
