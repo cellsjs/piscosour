@@ -24,13 +24,6 @@ Install piscosour globally
 
 **from piscosour  v.0.3.3:**
 
-- **pisco recipe:add-shot** ( Add a shot to a piscosour recipe )
-- **pisco recipe:add-straw** ( Add a straw to a piscosour recipe )
-- **pisco recipe:config** ( Manage a piscosour recipe )
-- **pisco node-module:convert** ( Convert any module into a piscosour recipe )
-- **pisco recipe:create** ( Starting a repository from scratch )
-- **pisco recipe:docs** ( Append documentation from info.md to readme.md of the recipe )
-- **pisco node-module:docs** ( Append documentation from info.md to readme.md of the recipe )
 - **pisco node-module::convert** ( Convert any nodejs module into a piscosour recipe )
 - **pisco all::generate-docs** ( Generate one file per straw inside a directory )
 - **pisco all::npm** ( Checking all npm commands needed )
@@ -38,6 +31,13 @@ Install piscosour globally
 - **pisco recipe::scaffolding** ( Create a piscosour recipe from a scaffold template )
 - **pisco recipe::shots** ( Create new pisco shot inside this module )
 - **pisco recipe::straws** ( Adding shot to a straw )
+- **pisco recipe:add-shot** ( Add a shot to a piscosour recipe )
+- **pisco recipe:add-straw** ( Add a straw to a piscosour recipe )
+- **pisco recipe:config** ( Manage a piscosour recipe )
+- **pisco node-module:convert** ( Convert any module into a piscosour recipe )
+- **pisco recipe:create** ( Starting a repository from scratch )
+- **pisco recipe:docs** ( Append documentation from info.md to readme.md of the recipe )
+- **pisco node-module:docs** ( Append documentation from info.md to readme.md of the recipe )
 
 
 
