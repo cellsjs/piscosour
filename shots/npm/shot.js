@@ -1,6 +1,7 @@
 'use strict';
 
-var path = require('path');
+var path = require('path'),
+    semver = require('semver');
 
 module.exports = {
 
@@ -17,14 +18,27 @@ module.exports = {
             var result = this.executeSync("npm",["list","-g","--depth", "1",command]);
 
             if (result.status===0) {
-                this.logger.info(command, "is installed", ".................", "#green", "OK");
-                this.params.installCmds[i].skip = true;
+                let version = this.runner._getVersion(result.stdout.toString());
+                if (this.params.installCmds[i].version && semver.lt(version,this.params.installCmds[i].version)) {
+                    this.logger.info(command, "is installed .................", "#yellow", "OUT OF DATE!");
+                    this.logger.info("version: ", version,"must to be up to",this.params.installCmds[i].version);
+                    this.params.installCmds[i].args[0] = "update";
+                    resolve({skip: false});
+                } else {
+                    this.logger.info(command, "is installed .................", "#green", "OK");
+                    this.logger.info("version: ", version);
+                    this.params.installCmds[i].skip = true;
+                }
             } else {
-                this.logger.info(command, "#yellow", "is not installed!");
+                this.logger.info(command, "#red", "is not installed!");
                 resolve({skip: false});
             }
         }
         resolve({skip:true});
+    },
+
+    _getVersion : function(str){
+        return str!==undefined?str.split("@")[1]:"";
     },
 
     run : function(resolve, reject){
