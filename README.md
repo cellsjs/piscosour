@@ -25,13 +25,14 @@ Piscosour wraps the functionality of any tool and helps you to:
 7. watch the life cycle.
 8. watch results
 
-of all bash scripts, gulp and grunt tasks, yeoman generators, hydrolysis, lint/eslint, polymer tools, cordova tools, sass,  etc.
+ of all bash scripts, gulp and grunt tasks, yeoman generators, hydrolysis, lint/eslint, polymer tools, cordova tools, sass,  etc.
 
 So, you can use all your favorites tools keeping it under control and versioned.
 
 # Documentation
 
 * [Complete documentation](doc/README.md) - Complete documentation, howtos, api, examples...
+* [Spanish documentation](doc/spanish/README.md) - Spanish documentation for piscosour.
 
 # Installing piscosour
 
