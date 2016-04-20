@@ -36,9 +36,9 @@
     "minimist": "^1.2.0",
     "moment": "^2.10.6",
     "nopt": "^3.0.6",
+    "semver": "^5.1.0",
     "update-notifier": "^0.6.1",
-    "xml": "^1.0.1",
-    "generator-pisco-recipe": "^0.0.2"
+    "xml": "^1.0.1"
   },
   "engines": {
     "node": ">=4.0.0"
