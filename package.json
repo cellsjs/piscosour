@@ -38,7 +38,7 @@
     "nopt": "^3.0.6",
     "update-notifier": "^0.6.1",
     "xml": "^1.0.1",
-    "generator-pisco-recipe": "git+https://github.com/sbonacho/generator-pisco-recipe.git#0.0.2"
+    "generator-pisco-recipe": "^0.0.2"
   },
   "engines": {
     "node": ">=4.0.0"
