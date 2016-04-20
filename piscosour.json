@@ -34,7 +34,7 @@
                 {
                     "file": "package.json",
                     "conditions": [
-                        "that.keywords.indexOf('piscosour-recipe')>=0"
+                        "that.keywords && that.keywords.indexOf('piscosour-recipe')>=0"
                     ]
                 },
                 {
