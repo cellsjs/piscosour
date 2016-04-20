@@ -138,7 +138,7 @@ Para desactivar la ejecución automática de resolve en un shot es necesario hac
   [...]
 ```
 
-**(*) Importante:** Si queremos que algún shot siga ejecutando algo en background y seguir con la ejecución del resto de shots simplemente no hacer un return de nada. Muy util para que funcionen procesos en background que necesitemas para la ejecución de la straw completa.
+**(*) Importante: (NO RECOMENDABLE, MEJOR USAR UN PLUGIN)** Si queremos que algún shot siga ejecutando algo en background y seguir con la ejecución del resto de shots simplemente no hacer un return de nada. Muy util para que funcionen procesos en background que necesitemas para la ejecución de la straw completa.
 
 Ejemplo de uso de promesas dentro de un shot:
 
