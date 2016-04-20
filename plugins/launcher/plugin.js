@@ -27,7 +27,7 @@ module.exports = {
         },
         executeSync: function (cmd, args, reject, loud) {
             if (cmd!=="cmd" && cmd!=="sh") {
-                var patch = this.windowsPatch(cmd,args);
+                var patch = this._windowsPatch(cmd,args);
                 cmd = patch.cmd;
                 args = patch.args;
             }
@@ -50,7 +50,7 @@ module.exports = {
          * Fast fix for windows environments
          *
          */
-        windowsPatch: function(cmd,args){
+        _windowsPatch: function(cmd,args){
             if (this.isWin()){
                 args = ["/c",cmd].concat(args);
                 cmd = "cmd";
@@ -58,7 +58,7 @@ module.exports = {
             return {cmd: cmd, args: args};
         },
         executeStreamed: function (cmd, args) {
-            var patch = this.windowsPatch(cmd,args);
+            var patch = this._windowsPatch(cmd,args);
             cmd = patch.cmd;
             args = patch.args;
             var child = spawn(cmd, args, {stdio: [process.stdin]});
