@@ -252,6 +252,11 @@ Actually by default the behaviour is asum that the repoType of the shot is neces
 
 #### addon: this.ctxIs
 
+| Param | Description |
+| --- | --- |
+| name | name of the repoType to test|
+
+
 Use this.ctxIs to ask pisco where was executed.
 
 ```
@@ -271,18 +276,138 @@ let repos = this.ctxWhoami();
 repos is an Array of types that match the place where your recipe was executed.
 ## fsutils
 
-Plugins with some fs utilities
+### fs plugin (fs addons for piscosour)
+
+#### this.fsCreateDir
+
+| Param | Description |
+| --- | --- |
+| | |
+
+#### this.fsExists
+
+| Param | Description |
+| --- | --- |
+| | |
+
+#### this.fsReadConfig
+
+| Param | Description |
+| --- | --- |
+| | |
+
+#### this.fsReadFile
+
+| Param | Description |
+| --- | --- |
+| | |
+
+#### this.fsCopyDirFiltered
+
+| Param | Description |
+| --- | --- |
+| | |
+
+#### this.fsCopyFileFiltered
+
+| Param | Description |
+| --- | --- |
+| | |
+
+#### this.fsAppendBundle
+
+| Param | Description |
+| --- | --- |
+| | |
+
 ## inquirer
 
-Utility for inquire the user
+### Inquirer plugin
+
+This plugin use inquirer library [Inquirer documentation](https://www.npmjs.com/package/inquirer)
+
+#### this.inquire
+
+| Param | Description |
+| --- | --- |
+| | |
 ## launcher
 
+### Execute any command with pisco.
 
+Core plugin used to execute any command inside pisco.
+
+#### this.sh
+
+| Param | Description |
+| --- | --- |
+| command | command that you want to execute|
+| reject | reject function, called if command fails (stop overall execcution)|
+| loud | Boolean if true echo of command is done|
+
+Syncronous method use to execute any command in your environment.
+
+#### this.sudo
+
+| Param | Description |
+| --- | --- |
+| | |
+
+#### this.executeSync
+
+| Param | Description |
+| --- | --- |
+| | |
+
+#### this.executeStreamed
+
+| Param | Description |
+| --- | --- |
+| | |
+
+#### this.execute
+
+| Param | Description |
+| --- | --- |
+| | |
+
+#### this.executeParallel
+
+| Param | Description |
+| --- | --- |
+| | |
 ## os
 
+### System checking plugin
+
 Plugins used to check Operating System where pisco is running
+
+#### this.isWin();
+
+return true if the Operation System where pisco is executed is Windows.
+
+#### this.isMac();
+
+return true if the Operation System where pisco is executed is MacOS.
 ## piscosour
+
+### Expose piscosour config
+
+Expose core configuration to shots.
+
+#### this.config
+
+Expose the piscosour config object [Trabajar con shots](doc/api.md#Config)
+  
+#### this.piscoFile
+
+return the literal: 'piscosour.json'
+
+#### this.pkgFile
+
+return the literal: 'package.json'
 
 
 ## test
 
+Testing plugin. NO FUNCTIONALITY.
