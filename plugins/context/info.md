@@ -74,6 +74,11 @@ Actually by default the behaviour is asum that the repoType of the shot is neces
 
 #### addon: this.ctxIs
 
+| Param | Description |
+| --- | --- |
+| name | name of the repoType to test|
+
+
 Use this.ctxIs to ask pisco where was executed.
 
 ```
