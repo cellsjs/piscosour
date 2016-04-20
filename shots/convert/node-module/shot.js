@@ -61,7 +61,7 @@ module.exports = {
 
     prove : function(resolve, reject){
         this.logger.info("#magenta","prove","Prove that the new pisco recipe is executable");
-        var result = this.sh("node bin/pisco.js", reject);
+        var result = this.sh("node bin/pisco.js -a", reject);
 
         if (result.status !== 0) {
             this.logger.error("#red", "Error: commnad not executed propelly!", result.stderr.toString());
