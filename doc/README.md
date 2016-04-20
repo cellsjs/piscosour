@@ -9,6 +9,7 @@
 * [Plugins](plugins.md) - Para escribir y usar plugins.
 * [Introducción de parámetros](Load_Parameters.md) - Obtener parámetros de configuración para la ejecución de tus shots.
 * [Configuración de piscosour: piscosour.json](configuration.md)
+* [Packaging Best Practices](packaging.md) - Best Practices for piscosour packaging.
 * [Api](api.md) - Piscosour complete api.
 
 # HOWTOs
