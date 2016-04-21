@@ -1,6 +1,6 @@
 # Piscosour Packaging Best Practices
 
-The maximun power of Piscosour is when eveything is separated, so is very convenient to pack every plugin, straw, shots as split as you can. 
+The maximun power of Piscosour is when everything is separated, so is very convenient to pack shots, straws or plugins as separate as possible. 
 
 ## (1) Recipe module
 
