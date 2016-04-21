@@ -3,6 +3,10 @@
   "contextFree" : true,
   "installCmds": [
     {
+      "cmd": "npm",
+      "args": ["install","-g","yo"]
+    },
+    {
       "cmd" : "npm",
       "args": ["install","-g","generator-pisco-recipe"],
       "version" : "0.0.2"
