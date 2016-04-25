@@ -64,7 +64,7 @@ module.exports = {
                         for (var i in reqs) {
                             this.params[reqs[i].name] = answers[reqs[i].name];
                         }
-                        resolve();
+                        resolve(answers);
                     }.bind(this));
                 } else
                     resolve();

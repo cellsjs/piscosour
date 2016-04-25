@@ -67,6 +67,7 @@ module.exports = {
         },
         execute: function (cmd, args) {
             var child = this.executeStreamed(cmd,args);
+            var error;
 
             child.on('disconnect', function () {
                 this.logger.info("Child process disconnected!", arguments);
@@ -78,6 +79,8 @@ module.exports = {
 
             child.stderr.on('data', function (data) {
                 this.logger.err(data.toString());
+                error=error?error:"";
+                error+=data.toString();
             }.bind(this));
 
             child.on('error', function () {
@@ -92,7 +95,7 @@ module.exports = {
                 child.on('close', function (code) {
                     this.logger.info("child process exited with code ", code);
                     if (code !== 0) {
-                        reject({cmd: cmd, args: args, status: "ERROR"});
+                        reject({cmd: cmd, args: args, status: "ERROR", error: error});
                     } else {
                         resolve({cmd: cmd, args: args, status: "OK"});
                     }
