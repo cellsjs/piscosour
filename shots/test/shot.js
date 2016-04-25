@@ -4,6 +4,8 @@ module.exports = {
 
     config : function(resolve){
         this.logger.info("#magenta","config","Preparing params for main execution");
+        this.logger.info("this.params.inflying:",this.params.inflying);
+        this.logger.info("this.params.otracosa:",this.params.otracosa);
     },
 
     run : function(resolve, reject){
@@ -18,5 +20,11 @@ module.exports = {
 
     notify : function(resolve){
         this.logger.info("#magenta","notify","Recollect all execution information and notify");
+    },
+
+    emit : function(){
+        return {
+            localmovida : "Un valor dado"
+        }
     }
 };
