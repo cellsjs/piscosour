@@ -11,7 +11,7 @@ There is a special stage in shots called **'emit'**. The emit behaviour is wide 
 
 As other stages **emit** is optional
 
-Example:
+Example in any shot.js:
 
 ```js
     emit : function(){
