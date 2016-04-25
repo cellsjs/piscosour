@@ -8,6 +8,7 @@
 * [What is piscosour?](what_is_piscosour.md) - ¿Qué es piscosour?
 * [Plugins](plugins.md) - Para escribir y usar plugins.
 * [Introducción de parámetros](Load_Parameters.md) - Obtener parámetros de configuración para la ejecución de tus shots.
+* [Parameters between shots](Parameters_between_shots.md) - How to transmit parameters between shots
 * [Configuración de piscosour: piscosour.json](configuration.md)
 * [Packaging Best Practices](packaging.md) - Best Practices for piscosour packaging.
 * [Api](api.md) - Piscosour complete api.
