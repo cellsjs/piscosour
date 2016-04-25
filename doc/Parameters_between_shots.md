@@ -1,4 +1,4 @@
-# Transmition of parameters between shots
+# Parameters transmition between shots
 
 Sometimes we need a parameter generated in one shot in other shot. This is the way to do this.
  
