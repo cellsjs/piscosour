@@ -19,8 +19,10 @@ module.exports = {
         this.logger.info("#magenta","prove","Prove that the run execution was ok");
     },
 
-    notify : function(resolve){
-        this.logger.info("#magenta","notify","Recollect all execution information and notify");
+    emit : function(){
+        return {
+            flying : this.params.flying
+        }
     }
 
 };
