@@ -55,7 +55,8 @@
         "config",
         "run",
         "prove",
-        "notify"
+        "notify",
+        "emit"
     ],
     "strawTypes": [
         "normal",
