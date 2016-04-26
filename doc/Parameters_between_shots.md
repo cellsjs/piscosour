@@ -1,6 +1,6 @@
-# Parameters transmition between shots
+# Parameters transmision between shots
 
-Sometimes we need a parameter generated in one shot in other shot. This is the way to do this.
+Sometimes we need a generated parameter in one shot into another shot. This is the way to do this.
  
 ## Define output parameters
 
@@ -34,6 +34,7 @@ straw.json example:
 
 ```js
     [...]
+    
   "shots" : {
     "test1" : {},
     "test2" : {
@@ -41,8 +42,8 @@ straw.json example:
         "inWhatever" : {"test1": "whatever"}
       }
     }
+    
     [...]
-  }
 
 ```
 
