@@ -63,7 +63,9 @@ Define all rules that a repoType must match. All rules not sufficient must to be
 
 #### Pre-hook: Check one shot is executed in the root of any repository type.
 
-Actually by default the behaviour is asum that the repoType of the shot is necesary for the execution of the shot, if you need to execute one shot without check if the context is ok use contextFree. contextFree usually is use for shot like create or something like that.  
+Actually by default the behaviour of the shot is assuming that the repoType is mandatory, if you need to execute one shot without this check of context, use **contextFree** parameter. **contextFree** usually is used for shotd like "create" or something like that.  
+
+only parametrized in params.json:
 
 ```
 {
@@ -71,6 +73,8 @@ Actually by default the behaviour is asum that the repoType of the shot is neces
   "contextFree" : true
 }
 ```
+
+A user command (straw) only could be contextFree if all of its shots are contextFree. If only one shot of a straw is not contextFree then the context will be checked.
 
 #### addon: this.ctxIs
 
