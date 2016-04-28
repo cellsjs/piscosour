@@ -8,10 +8,6 @@ var moment = require('moment'),
     config = require("./lib/config"),
     Sour = require("./lib/sour");
 
-const updateNotifier = require('update-notifier');
-const pkg = require(config.getDir('module')+'/package.json');
-const notifier = updateNotifier({pkg, updateCheckInterval: 1000 * 60 * 60 * 12});
-
 /**
  * Piscosour
  * ---------
@@ -29,7 +25,6 @@ const notifier = updateNotifier({pkg, updateCheckInterval: 1000 * 60 * 60 * 12})
 var Piscosour = {
     Sour: Sour,
     gush: function () {
-        notifier.notify();
         logger.trace("Loading time","-","#duration",moment()-init);
         this.Sour().gush(init).then(this.onFulfilled, this.onReject);
     },
