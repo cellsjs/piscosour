@@ -46,7 +46,7 @@ Install piscosour globally
 
 |Name|Version|Description|
 |---|---|---|
-|piscosour|0.4.1|Get all your devops tools wrapped-up!|
+|piscosour|0.4.4|Get all your devops tools wrapped-up!|
 
 
 
@@ -54,7 +54,7 @@ Install piscosour globally
 
 
 
-**from piscosour  v.0.4.1:**
+**from piscosour  v.0.4.4:**
 
 - **pisco node-module::convert** ( Convert any nodejs module into a piscosour recipe )
 - **pisco recipe::generate-docs** ( Generate one file per straw inside a directory )
@@ -63,6 +63,7 @@ Install piscosour globally
 - **pisco recipe::scaffolding** ( Create a piscosour recipe from a scaffold template )
 - **pisco recipe::shots** ( Create new pisco shot inside this module )
 - **pisco recipe::straws** ( Adding shot to a straw )
+- **pisco recipe::updateversion** ( Updating tool )
 - **pisco recipe:add-shot** ( Add a shot to a piscosour recipe )
 - **pisco recipe:add-straw** ( Add a straw to a piscosour recipe )
 - **pisco recipe:config** ( Manage a piscosour recipe )
@@ -79,7 +80,7 @@ Add a shot to a piscosour recipe
 ### 1. shots: "Create new pisco shot inside this module"
 ```
 Repository types:  recipe
-Recipes: piscosour (0.4.1)
+Recipes: piscosour (0.4.4)
 ```
 shot shots
 
@@ -90,7 +91,7 @@ Add a straw to a piscosour recipe
 ### 1. straws: "Adding shot to a straw"
 ```
 Repository types:  recipe
-Recipes: piscosour (0.4.1)
+Recipes: piscosour (0.4.4)
 ```
 shot straws
 
@@ -101,7 +102,7 @@ Manage a piscosour recipe
 ### 1. piscosour: "Configure piscosour.json"
 ```
 Repository types:  recipe
-Recipes: piscosour (0.4.1)
+Recipes: piscosour (0.4.4)
 ```
 shot piscosour
 
@@ -112,7 +113,7 @@ Convert any module into a piscosour recipe
 ### 1. convert: "Convert any nodejs module into a piscosour recipe"
 ```
 Repository types:  node-module
-Recipes: piscosour (0.4.1)
+Recipes: piscosour (0.4.4)
 ```
 shot convert
 
@@ -139,7 +140,7 @@ Checks and install if an environment is ok
 ### 1.1. npm: "Checking all npm commands needed"
 ```
 Repository types:  all
-Recipes: piscosour (0.4.1)
+Recipes: piscosour (0.4.4)
 ```
 shot npm
 
@@ -147,7 +148,7 @@ shot npm
 ### 2. scaffolding: "Create a piscosour recipe from a scaffold template"
 ```
 Repository types:  recipe
-Recipes: piscosour (0.4.1)
+Recipes: piscosour (0.4.4)
 ```
 shot scaffolding
 
@@ -166,7 +167,7 @@ Info.md is a regular md file, so you can use all the markdown specification. The
 ### 1. generate-docs: "Generate one file per straw inside a directory"
 ```
 Repository types:  recipe
-Recipes: piscosour (0.4.1)
+Recipes: piscosour (0.4.4)
 ```
 shot generate-docs
 
@@ -241,7 +242,9 @@ Define all rules that a repoType must match. All rules not sufficient must to be
 
 #### Pre-hook: Check one shot is executed in the root of any repository type.
 
-Actually by default the behaviour is asum that the repoType of the shot is necesary for the execution of the shot, if you need to execute one shot without check if the context is ok use contextFree. contextFree usually is use for shot like create or something like that.  
+Actually by default the behaviour of the shot is assuming that the repoType is mandatory, if you need to execute one shot without this check of context, use **contextFree** parameter. **contextFree** usually is used for shotd like "create" or something like that.  
+
+only parametrized in params.json:
 
 ```
 {
@@ -249,6 +252,8 @@ Actually by default the behaviour is asum that the repoType of the shot is neces
   "contextFree" : true
 }
 ```
+
+A user command (straw) only could be contextFree if all of its shots are contextFree. If only one shot of a straw is not contextFree then the context will be checked.
 
 #### addon: this.ctxIs
 
