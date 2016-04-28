@@ -1,8 +1,0 @@
-{
-  "type": "util",
-  "name": "Environment Checks",
-  "description": "Checks and install if an environment is ok",
-  "shots" : {
-    "npm" : {}
-  }
-}
