@@ -1,6 +1,7 @@
 'use strict';
 
 var spawn = require('child_process').spawn,
+    chalk = require('chalk'),
     spawnSync = require('child_process').spawnSync;
 
 module.exports = {
@@ -39,7 +40,7 @@ module.exports = {
 
             if (loud) {
                 this.logger.out(result.stdout.toString());
-                this.logger.err("#red","ERROR:",result.stderr.toString());
+                this.logger.err(chalk.red("ERROR: ")+result.stderr.toString());
             }
 
             return result;
@@ -78,7 +79,7 @@ module.exports = {
             }.bind(this));
 
             child.stderr.on('data', function (data) {
-                this.logger.err("#red","ERROR:",data.toString());
+                this.logger.err(chalk.red("ERROR: ")+data.toString());
                 error=error?error:"";
                 error+=data.toString();
             }.bind(this));
