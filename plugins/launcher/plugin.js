@@ -40,7 +40,7 @@ module.exports = {
 
             if (loud) {
                 this.logger.out(result.stdout.toString());
-                this.logger.err(chalk.red("ERROR: ")+result.stderr.toString());
+                this.logger.err(chalk.red("ERROR: "+result.stderr.toString()));
             }
 
             return result;
@@ -79,7 +79,7 @@ module.exports = {
             }.bind(this));
 
             child.stderr.on('data', function (data) {
-                this.logger.err(chalk.red("ERROR: ")+data.toString());
+                this.logger.err(chalk.red("ERROR: "+data.toString()));
                 error=error?error:"";
                 error+=data.toString();
             }.bind(this));
