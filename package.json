@@ -1,6 +1,6 @@
 {
   "name": "piscosour",
-  "version": "0.4.4",
+  "version": "0.5.0",
   "description": "Get all your devops tools wrapped-up!",
   "main": "index.js",
   "repository": {
