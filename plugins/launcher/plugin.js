@@ -39,7 +39,7 @@ module.exports = {
 
             if (loud) {
                 this.logger.out(result.stdout.toString());
-                this.logger.err(result.stderr.toString());
+                this.logger.err("#red","ERROR:",result.stderr.toString());
             }
 
             return result;
@@ -78,13 +78,13 @@ module.exports = {
             }.bind(this));
 
             child.stderr.on('data', function (data) {
-                this.logger.err(data.toString());
+                this.logger.err("#red","ERROR:",data.toString());
                 error=error?error:"";
                 error+=data.toString();
             }.bind(this));
 
             child.on('error', function () {
-                this.logger.error("Child process error!", arguments);
+                this.logger.error("#red","Child process error!", arguments);
             }.bind(this));
 
             child.on('exit', function () {
