@@ -6,14 +6,14 @@ Una vez creada nuestra receta nos situamos dentro del directorio que hemos cread
 
     cd example-wrapper
     pisco config
-    
+
 pisco config nos ayuda a configurar nuestra receta.
 
 ![configuring our recipe](images/started6.png)
 
 1. Nos pregunta si queremos establecer un nuevo tipo de repositorio por defecto. En nuestro ejemplo decimos **"yes"**
 2. Nos pregunta el tipo de repositorio. El tipo de repositorio es el lugar donde se va a ejecutar el comando pisco. Normalmente se ejecutará en la raiz de un repositorio git. [Ver que es piscosour para el glosario de términos](what_is_piscosour.md).
-Por ejemplo pondremos **"component"**  
+Por ejemplo pondremos **"component"**
 3. Pregunta por el nombre del shot que queremos crear. Por ejemplo pondremos: **"show"**
 4. El tipo de repositorio sobre el que va a actuar nuestro comando. Por ejemplo pondremos **"component"**
 5. Nos pregunta si queremos añadir este shot (paso) a una nueva straw (flujo). **"yes"**
@@ -43,7 +43,7 @@ Se ha generado un módulo node con su package.json y los archivos fundamentales 
 Este es el árbol resultante.
 
 ![recipe file tree](images/started7.png)
- 
+
 package.json:
 ```js
 {
@@ -108,17 +108,17 @@ puedes ver este ejemplo aquí
 
 [see this example in github](https://github.com/cellsjs/piscosour-examples)
 
-## Procesos asincronos en shots. 
+## Procesos asíncronos en shots.
 
 Cada una de las fases de un shot realmente son promesas y reciben dos métodos resolve y reject
 
 ```js
   [...]
-  
+
   run: function(resolve, reject){
-     resolve();  
+     resolve();
   }
-  
+
   [...]
 ```
 
@@ -127,18 +127,18 @@ Realmente al final de cada fase se está ejecutando la function resolve de la pr
 ### ¿Cómo manejar promesas y callbacks en un shot?
 
 Para desactivar la ejecución automática de resolve en un shot es necesario hacer un return de algo distinto de undefined.
- 
+
 ```js
   [...]
-  
+
   run: function(resolve, reject){
-     return true;  
+     return true;
   }
-  
+
   [...]
 ```
 
-**(*) Importante: (NO RECOMENDABLE, MEJOR USAR UN PLUGIN)** Si queremos que algún shot siga ejecutando algo en background y seguir con la ejecución del resto de shots simplemente no hacer un return de nada. Muy util para que funcionen procesos en background que necesitemas para la ejecución de la straw completa.
+**(\*) Importante: (NO RECOMENDABLE, MEJOR USAR UN PLUGIN)** Si queremos que algún shot siga ejecutando algo en background y seguir con la ejecución del resto de shots simplemente no hacer un return de nada. Muy util para que funcionen procesos en background que necesitemas para la ejecución de la straw completa.
 
 Ejemplo de uso de promesas dentro de un shot:
 
@@ -162,7 +162,7 @@ Si se produce un error en un shot y este error no está controlado, **la ejecuci
 ```js
 [...]
     run : function(resolve, reject){
-    
+
         reject({keep:true, error: txt});
     }
 [...]
@@ -170,7 +170,7 @@ Si se produce un error en un shot y este error no está controlado, **la ejecuci
 ```
 
 para parar la ejecución dando un error de una menera deliverada:
- 
+
 ```js
  [...]
      run : function(resolve, reject){
@@ -182,9 +182,24 @@ para parar la ejecución dando un error de una menera deliverada:
 
 ```
 
+Adicionalmente se puede devolver más información sobre el error producido mediante *'data'*. Es especialmente útil en el caso en que se gerere un fichero junit y queremos que aparezcan el detalle del error en el entorno de integración continua (jenkins, bamboo o similar).
+
+```js
+ [...]
+     run : function(resolve, reject){
+
+        if (error)
+         reject({error: text, data: details});
+     }
+ [...]
+
+```
+
+
+
 ### Ejecuciones condicionales de shots.
 
-Hace posible en función de unas comprobaciones iniciales, por ejemplo un parámetro de configuración o opción pasada por línea de comando, que la ejecución de un shot se realice o no. 
+Hace posible en función de unas comprobaciones iniciales, por ejemplo un parámetro de configuración o opción pasada por línea de comando, que la ejecución de un shot se realice o no.
 
 Para ello en la fase **check** del shot deveremos devolver un objeto con el parámetro **skip:true** al ejecutar resolve.
 
