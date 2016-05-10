@@ -7,12 +7,10 @@ module.exports = {
 
   check: function() {
     if (!this.params.contextFree) {
-      var ami = this.ctxWhoami();
-      /*
-      TODO: Detectar que receta requiere el shot.
-          throw {error: 'This is not the root of a ' + mustType};
-      */
-
+      let ami = this.ctxWhoami();
+      if (ami.indexOf(this._repoType) < 0) {
+        throw {error: 'This is not the root of a ' + this._repoType};
+      }
       this.logger.info('This shot is in the root of a ' + ami, '#green', 'OK');
     }
   },
