@@ -3,84 +3,88 @@
 var inquirer = require('inquirer');
 
 module.exports = {
-    description : "Plugin inquirer",
+  description: 'Plugin inquirer',
 
-    check : function(){
-        if (this.params.prompts)
-            return this.inquire("prompts");
+  check: function() {
+    if (this.params.prompts) {
+      return this.inquire('prompts');
+    }
+  },
+
+  addons: {
+
+    inquire: function(name) {
+      var prompts = this.params[name];
+
+      var getValidate = function(prompt) {
+        return function(userInput) {
+          return userInput ? true : '"' + prompt.name + '" is required. ' + prompt.message;
+        };
+      };
+
+      var shotResolution = function(prompt, attr) {
+        if (prompt[attr] !== undefined && Object.prototype.toString.call(prompt[attr]) !== '[object Function]' && typeof prompt[attr] !== 'boolean' && prompt[attr].indexOf('#') === 0) {
+          var functionName = prompt[attr].replace('#', '');
+          var func = this.runner[functionName];
+          if (func) {
+            prompt[attr] = func;
+          } else {
+            prompt[attr] = undefined;
+            this.logger.info('#yellow', 'WARNING', 'value', functionName, 'doesn\'t exists!! in this shot');
+          }
+        }
+      }.bind(this);
+
+      var reqs = [];
+
+      if (prompts) {
+        prompts.forEach((prompt) => {
+
+          shotResolution(prompt, 'when');
+          shotResolution(prompt, 'validate');
+          shotResolution(prompt, 'choices');
+          shotResolution(prompt, 'default');
+
+          if (prompt.required && !prompt.validate) {
+            prompt.validate = getValidate(prompt);
+          }
+
+          if (prompt.env !== undefined && process.env[prompt.env]) {
+            this.params[prompt.name] = process.env[prompt.env];
+          }
+
+          if (prompt.value !== undefined && !this.params[prompt.name]) {
+            this.params[prompt.name] = prompt.value;
+          }
+
+          if (this.params[prompt.name] === undefined) {
+            reqs.push(prompt);
+          }
+        });
+      }
+
+      return new Promise((resolve, reject) => {
+        if (reqs.length > 0) {
+          inquirer.prompt(reqs, (answers) => {
+            reqs.forEach((req) => {
+              this.params[req.name] = answers[req.name];
+            });
+            resolve(answers);
+          });
+        } else {
+          resolve();
+        }
+      });
     },
 
-    addons : {
-
-        inquire: function (name) {
-            var prompts = this.params[name];
-
-            var getValidate = function (prompt) {
-                return function (userInput) {
-                    return userInput ? true : '"' + prompt.name + '" is required. ' + prompt.message;
-                };
-            };
-
-            var shotResolution = function (prompt, attr) {
-                if (prompt[attr] !== undefined && Object.prototype.toString.call(prompt[attr]) !== '[object Function]' && typeof prompt[attr] !== 'boolean' && prompt[attr].indexOf("#") === 0) {
-                    var functionName = prompt[attr].replace('#', '');
-                    var func = this.runner[functionName];
-                    if (func)
-                        prompt[attr] = func;
-                    else {
-                        prompt[attr] = undefined;
-                        this.logger.info("#yellow", "WARNING", "value", functionName, "doesn't exists!! in this shot");
-                    }
-                }
-            }.bind(this);
-
-            var reqs = [];
-
-            for (var i in prompts) {
-                var prompt = prompts[i];
-
-                shotResolution(prompt, "when");
-                shotResolution(prompt, "validate");
-                shotResolution(prompt, "choices");
-                shotResolution(prompt, "default");
-
-                if (prompt.required && !prompt.validate)
-                    prompt.validate = getValidate(prompt);
-
-                if (prompt.env !== undefined && process.env[prompt.env])
-                    this.params[prompt.name] = process.env[prompt.env];
-
-                if (prompt.value !== undefined && !this.params[prompt.name])
-                    this.params[prompt.name] = prompt.value;
-
-                if (this.params[prompt.name] === undefined) {
-                    reqs.push(prompt)
-                }
-            }
-
-            var promise = new Promise(function (resolve, reject) {
-                if (reqs.length > 0) {
-                    inquirer.prompt(reqs, function (answers) {
-                        for (var i in reqs) {
-                            this.params[reqs[i].name] = answers[reqs[i].name];
-                        }
-                        resolve(answers);
-                    }.bind(this));
-                } else
-                    resolve();
-            }.bind(this));
-            return promise;
-        },
-
-        promptArgs: function (array) {
-            var prompts = this.params.prompts;
-            if (prompts)
-                for (var i in prompts) {
-                    var prompt = prompts[i];
-                    array.push('--' + prompt.name);
-                    array.push(this.params[prompt.name]);
-                }
-            return array;
-        }
+    promptArgs: function(array) {
+      if (this.params.prompts) {
+        this.params.prompts.forEach((prompt) => {
+          array.push('--' + prompt.name);
+          array.push(this.params[prompt.name]);
+        });
+      }
+      return array;
     }
+  }
 };

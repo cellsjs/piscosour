@@ -1,8 +1,8 @@
 {
-    "shots": {
-        "generate-docs": {}
-    },
-    "name": "Generate Documentation",
-    "description": "Append documentation from info.md to readme.md of the recipe",
-    "type": "normal"
+  "shots": {
+    "generate-docs": {}
+  },
+  "name": "Generate Documentation",
+  "description": "Append documentation from info.md to readme.md of the recipe",
+  "type": "normal"
 }
