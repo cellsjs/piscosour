@@ -8,7 +8,7 @@ module.exports = {
   check: function() {
     if (!this.params.contextFree) {
       let ami = this.ctxWhoami();
-      if (ami.indexOf(this._repoType) < 0) {
+      if (this._repoType && ami.indexOf(this._repoType) < 0) {
         throw {error: 'This is not the root of a ' + this._repoType};
       }
       this.logger.info('This shot is in the root of a ' + ami, '#green', 'OK');
