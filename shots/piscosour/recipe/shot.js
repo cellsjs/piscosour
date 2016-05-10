@@ -34,15 +34,17 @@ module.exports = {
     }
 
     var fixDeprecated = function() {
-      Object.getOwnPropertyNames(configLocal.straws).forEach((name) => {
-        var local = configLocal.straws[name];
-        var strawFile = path.join(this.config.rootDir, 'straws', name, 'straw.json');
-        var straw = this.fsReadConfig(strawFile);
-        straw.type = local.type;
-        straw.name = local.name;
-        straw.description = local.description;
-        fs.writeFileSync(strawFile, JSON.stringify(straw, null, 4));
-      });
+      if (configLocal.straws) {
+        Object.getOwnPropertyNames(configLocal.straws).forEach((name) => {
+          var local = configLocal.straws[name];
+          var strawFile = path.join(this.config.rootDir, 'straws', name, 'straw.json');
+          var straw = this.fsReadConfig(strawFile);
+          straw.type = local.type;
+          straw.name = local.name;
+          straw.description = local.description;
+          fs.writeFileSync(strawFile, JSON.stringify(straw, null, 4));
+        });
+      }
       delete configLocal.straws;
       fs.writeFileSync(this.piscoFile, JSON.stringify(configLocal, null, 4));
       this.logger.info('#green', 'piscosour.json fixed!');
