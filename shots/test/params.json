@@ -1,5 +1,7 @@
 {
-  "plugins": ["test"],
-  "description" : "TEST Brief description of shot",
-  "isTest" : true
+  "plugins": [
+    "test"
+  ],
+  "description": "TEST Brief description of shot",
+  "isTest": true
 }

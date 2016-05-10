@@ -1,17 +1,17 @@
 'use strict';
 
 module.exports = {
-    description : "Test plugin",
+  description: 'Test plugin',
 
-    check : function(){
-        this.logger.info("---------PLUGIN TEST--------");
-        this.testPluginAddon("Azucar!")
-    },
+  check: function() {
+    this.logger.info('---------PLUGIN TEST--------');
+    this.testPluginAddon('Azucar!');
+  },
 
-    addons : {
+  addons: {
 
-        testPluginAddon: function (name) {
-            this.logger.info("Test addon executed", name);
-        }
+    testPluginAddon: function(name) {
+      this.logger.info('Test addon executed', name);
     }
+  }
 };
