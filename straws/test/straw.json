@@ -2,29 +2,37 @@
   "type": "util",
   "name": "Mock test",
   "description": "Testing for piscosour",
-  "params" : {
-    "plugins" : ["test"],
+  "params": {
+    "plugins": [
+      "test"
+    ],
     "saludo": "holastraw"
   },
-  "shots" : {
-    "test2" : {},
-    "test:1" : {
-      "inputs" : {
-        "inflying" : {"test2": "flying"}
+  "shots": {
+    "test2": {},
+    "test:1": {
+      "inputs": {
+        "inflying": {
+          "test2": "flying"
+        }
       },
-      "params" :  {
-        "execution" :  "PRIMERA"
+      "params": {
+        "execution": "PRIMERA"
       }
     },
-    "test:2" : {
-      "inputs" : {
-        "inflying" : {"test2": "flying"},
-        "otracosa" : {"test:1": "localmovida"}
+    "test:2": {
+      "inputs": {
+        "inflying": {
+          "test2": "flying"
+        },
+        "otracosa": {
+          "test:1": "localmovida"
+        }
       },
-      "params" :  {
-        "execution" :  "SEGUNDA"
+      "params": {
+        "execution": "SEGUNDA"
       }
     },
-    "weather" : {}
+    "weather": {}
   }
 }

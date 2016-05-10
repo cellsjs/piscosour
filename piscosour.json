@@ -1,66 +1,66 @@
 {
-    "cmd": "pisco",
-    "params": {
-        "workingDir": "",
-        "plugins": [
-            "os",
-            "context",
-            "launcher",
-            "inquirer",
-            "fsutils",
-            "piscosour"
-        ],
-        "contexts": {
-            "node-module": [
-                {
-                    "file": "package.json",
-                    "conditions": [
-                        "that.version"
-                    ]
-                },
-                {
-                    "file": "piscosour.json",
-                    "noexists": "true"
-                }
-            ],
-            "recipe": [
-                {
-                    "sufficient": true,
-                    "file": ".piscosour/piscosour.json",
-                    "conditions": [
-                        "that.repoType==='recipe'"
-                    ]
-                },
-                {
-                    "file": "package.json",
-                    "conditions": [
-                        "that.keywords && that.keywords.indexOf('piscosour-recipe')>=0"
-                    ]
-                },
-                {
-                    "file": "piscosour.json"
-                }
-            ]
+  "cmd": "pisco",
+  "params": {
+    "workingDir": "",
+    "plugins": [
+      "os",
+      "context",
+      "launcher",
+      "inquirer",
+      "fsutils",
+      "piscosour"
+    ],
+    "contexts": {
+      "node-module": [
+        {
+          "file": "package.json",
+          "conditions": [
+            "that.version"
+          ]
+        },
+        {
+          "file": "piscosour.json",
+          "noexists": "true"
         }
-    },
-    "defaultType": "recipe",
-    "repoTypes": [
-        "recipe",
-        "node-module"
-    ],
-    "junitDir": "test-reports",
-    "junitPiscoFile": "pisco-junit.xml",
-    "stages": [
-        "check",
-        "config",
-        "run",
-        "prove",
-        "notify",
-        "emit"
-    ],
-    "strawTypes": [
-        "normal",
-        "utils",
-        "internal"
-    ]
+      ],
+      "recipe": [
+        {
+          "sufficient": true,
+          "file": ".piscosour/piscosour.json",
+          "conditions": [
+            "that.repoType==='recipe'"
+          ]
+        },
+        {
+          "file": "package.json",
+          "conditions": [
+            "that.keywords && that.keywords.indexOf('piscosour-recipe')>=0"
+          ]
+        },
+        {
+          "file": "piscosour.json"
+        }
+      ]
+    }
+  },
+  "defaultType": "recipe",
+  "repoTypes": [
+    "recipe",
+    "node-module"
+  ],
+  "junitDir": "test-reports",
+  "junitPiscoFile": "pisco-junit.xml",
+  "stages": [
+    "check",
+    "config",
+    "run",
+    "prove",
+    "notify",
+    "emit"
+  ],
+  "strawTypes": [
+    "normal",
+    "utils",
+    "internal"
+  ]
 }

@@ -1,6 +1,6 @@
 {
   "name": "piscosour",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Get all your devops tools wrapped-up!",
   "main": "index.js",
   "repository": {
@@ -33,7 +33,6 @@
   "dependencies": {
     "chalk": "^1.1.1",
     "inquirer": "^0.10.0",
-    "minimist": "^1.2.0",
     "moment": "^2.10.6",
     "nopt": "^3.0.6",
     "semver": "^5.1.0",
