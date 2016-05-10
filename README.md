@@ -410,6 +410,12 @@ return the literal: 'piscosour.json'
 return the literal: 'package.json'
 
 
+## skipper
+
+### Skipper plugin
+
+Skips the shot execution when receiving the param "\_skip": true
+
 ## test
 
 Testing plugin. NO FUNCTIONALITY.
