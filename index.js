@@ -1,12 +1,10 @@
-/*jshint node:true */
-
 'use strict';
 
-var moment = require('moment'),
-    init = moment(),
-    logger = require("./lib/logger"),
-    config = require("./lib/config"),
-    Sour = require("./lib/sour");
+let moment = require('moment');
+let init = moment();
+let logger = require('./lib/logger');
+let config = require('./lib/config');
+let sour = require('./lib/sour');
 
 /**
  * Piscosour
@@ -23,18 +21,20 @@ var moment = require('moment'),
  * @constructor Piscosour
  */
 var Piscosour = {
-    Sour: Sour,
-    gush: function () {
-        logger.trace("Loading time","-","#duration",moment()-init);
-        this.Sour().gush(init).then(this.onFulfilled, this.onReject);
-    },
-    onFulfilled : function(){
-        process.exit(0);
-    },
-    onReject : function(e){
-        if (e && e.stack) console.error("\nUncatched error:\n\n",e.stack);
-        process.exit(-1);
+  sour: sour,
+  gush: function() {
+    logger.trace('Loading time', '-', '#duration', moment() - init);
+    this.sour().gush(init).then(this.onFulfilled, this.onReject);
+  },
+  onFulfilled: function() {
+    process.exit(0);
+  },
+  onReject: function(e) {
+    if (e && e.stack) {
+      console.error('\nUncatched error:\n\n', e.stack);
     }
+    process.exit(-1);
+  }
 };
 
 module.exports = Piscosour;
