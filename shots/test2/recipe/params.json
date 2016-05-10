@@ -1,5 +1,6 @@
 {
   "workingDir": "nohay",
   "flying": "ohyeah!!",
-  "other": "good!!"
+  "other": "good!!",
+  "contextFree" : true
 }
