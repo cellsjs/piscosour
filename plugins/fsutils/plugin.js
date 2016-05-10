@@ -24,12 +24,12 @@ module.exports = {
         write = fs.createWriteStream(path.join(dest, file));
         read.pipe(write);
       });
-      return new Promise(function(resolve, reject) {
-        write.on('error', function(error) {
+      return new Promise((resolve, reject) => {
+        write.on('error', (error) => {
           reject(error);
         });
 
-        write.on('finish', function() {
+        write.on('finish', () => {
           resolve();
         });
       });
