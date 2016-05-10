@@ -1,30 +1,23 @@
 {
-  "description" : "Adding shot to a straw",
+  "description": "Adding shot to a straw",
   "prompts": [
     {
       "type": "input",
       "name": "strawKey",
-      "required" : true,
+      "required": true,
       "message": "Write the command of the straw"
     },
     {
       "type": "input",
       "name": "strawName",
-      "required" : true,
+      "required": true,
       "message": "Write a short name for the straw"
     },
     {
       "type": "input",
       "name": "strawDescription",
-      "required" : true,
+      "required": true,
       "message": "Write a description for the of the straw"
-    },
-    {
-      "type": "list",
-      "name": "strawType",
-      "required" : true,
-      "message": "Choose the type for the new straw",
-      "choices" : "#strawTypes"
     }
   ]
 }

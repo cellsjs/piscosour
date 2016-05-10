@@ -2,13 +2,13 @@
   "type": "util",
   "name": "test",
   "description": "test",
-  "params" : {},
-  "shots" : {
-    "test2" : {
+  "params": {},
+  "shots": {
+    "test2": {
       "params": {
         "saludo": "holadefault"
       },
-      "recipe" : {
+      "recipe": {
         "params": {
           "saludo": "holarecipe"
         }

@@ -46,7 +46,7 @@ Install piscosour globally
 
 |Name|Version|Description|
 |---|---|---|
-|piscosour|0.4.4|Get all your devops tools wrapped-up!|
+|piscosour|0.5.1|Get all your devops tools wrapped-up!|
 
 
 
@@ -54,7 +54,7 @@ Install piscosour globally
 
 
 
-**from piscosour  v.0.4.4:**
+**from piscosour  v.0.5.1:**
 
 - **pisco node-module::convert** ( Convert any nodejs module into a piscosour recipe )
 - **pisco recipe::generate-docs** ( Generate one file per straw inside a directory )
@@ -63,7 +63,7 @@ Install piscosour globally
 - **pisco recipe::scaffolding** ( Create a piscosour recipe from a scaffold template )
 - **pisco recipe::shots** ( Create new pisco shot inside this module )
 - **pisco recipe::straws** ( Adding shot to a straw )
-- **pisco recipe::updateversion** ( Updating tool )
+- **pisco recipe::updateversion** ( Update tool )
 - **pisco recipe:add-shot** ( Add a shot to a piscosour recipe )
 - **pisco recipe:add-straw** ( Add a straw to a piscosour recipe )
 - **pisco recipe:config** ( Manage a piscosour recipe )
@@ -73,51 +73,51 @@ Install piscosour globally
 
 
 
-## add-shot: "Add a shot"
+## add-shot: 'Add a shot'
 Add a shot to a piscosour recipe
 
 
-### 1. shots: "Create new pisco shot inside this module"
+### 1. shots: 'Create new pisco shot inside this module'
 ```
 Repository types:  recipe
-Recipes: piscosour (0.4.4)
+Recipes: piscosour (0.5.1)
 ```
 shot shots
 
-## add-straw: "Add straw"
+## add-straw: 'Add straw'
 Add a straw to a piscosour recipe
 
 
-### 1. straws: "Adding shot to a straw"
+### 1. straws: 'Adding shot to a straw'
 ```
 Repository types:  recipe
-Recipes: piscosour (0.4.4)
+Recipes: piscosour (0.5.1)
 ```
 shot straws
 
-## config: "Configure piscosour"
+## config: 'Configure piscosour'
 Manage a piscosour recipe
 
 
-### 1. piscosour: "Configure piscosour.json"
+### 1. piscosour: 'Configure piscosour.json'
 ```
 Repository types:  recipe
-Recipes: piscosour (0.4.4)
+Recipes: piscosour (0.5.1)
 ```
 shot piscosour
 
-## convert: "Module to recipe"
+## convert: 'Module to recipe'
 Convert any module into a piscosour recipe
 
 
-### 1. convert: "Convert any nodejs module into a piscosour recipe"
+### 1. convert: 'Convert any nodejs module into a piscosour recipe'
 ```
 Repository types:  node-module
-Recipes: piscosour (0.4.4)
+Recipes: piscosour (0.5.1)
 ```
 shot convert
 
-## create: "Create from scratch"
+## create: 'Create from scratch'
 Starting a repository from scratch
 
 - Pisco te preguntará por el nombre de la receta que quieres crear. Este será el nombre de tu paquete npm que usarás para compartir la funcionalidad y las herramientas que envuelvas. Introduce el nombre que más te guste.
@@ -133,26 +133,23 @@ Mientras pisco genera tu primera receta usando un generator de yeoman. Te explic
 - scaffolding: Hace las preguntas y llama a yeoman para generar el esqueleto del módulo.
 
 Listo! ya tienes tu primer ejecutable de pisco creado! pruebalo
-## # 1. (Straw) environment: "Environment Checks"
-Checks and install if an environment is ok
 
-
-### 1.1. npm: "Checking all npm commands needed"
+### 1. npm: 'Checking all npm commands needed'
 ```
 Repository types:  all
-Recipes: piscosour (0.4.4)
+Recipes: piscosour (0.5.1)
 ```
 shot npm
 
 
-### 2. scaffolding: "Create a piscosour recipe from a scaffold template"
+### 2. scaffolding: 'Create a piscosour recipe from a scaffold template'
 ```
 Repository types:  recipe
-Recipes: piscosour (0.4.4)
+Recipes: piscosour (0.5.1)
 ```
 shot scaffolding
 
-## docs: "Generate Documentation"
+## docs: 'Generate Documentation'
 Append documentation from info.md to readme.md of the recipe
 Command: **bin/pisco.js docs**
 
@@ -164,10 +161,10 @@ Info.md is a regular md file, so you can use all the markdown specification. The
  
 **Inside a info.md use title from third level and beyond**
 
-### 1. generate-docs: "Generate one file per straw inside a directory"
+### 1. generate-docs: 'Generate one file per straw inside a directory'
 ```
 Repository types:  recipe
-Recipes: piscosour (0.4.4)
+Recipes: piscosour (0.5.1)
 ```
 shot generate-docs
 
