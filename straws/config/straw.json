@@ -2,7 +2,7 @@
   "type": "normal",
   "name": "Configure piscosour",
   "description": "Manage a piscosour recipe",
-  "shots" : {
-    "piscosour" : {}
+  "shots": {
+    "piscosour": {}
   }
 }
