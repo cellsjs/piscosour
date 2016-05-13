@@ -380,9 +380,10 @@ Syncronous method use to execute any command in your environment.
 | | |
 ## os
 
-### System checking plugin
 
 Plugins used to check Operating System where pisco is running
+
+###Addons:
 
 #### this.isWin();
 
