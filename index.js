@@ -1,30 +1,14 @@
 'use strict';
 
-let moment = require('moment');
-let init = moment();
-let logger = require('./lib/logger');
-let config = require('./lib/config');
-let sour = require('./lib/sour');
+const moment = require('moment');
+const init = moment();
+const logger = require('./lib/logger');
 
-/**
- * Piscosour
- * ---------
- *
- * - Piscosour gets all command line (CLI) development tools wrapped-up, creating command line workflows.
- * - Piscosour does not replace other tools, coexists with all of them and allows the best symbiosis of them all.
- * - Piscosour shots are easy and reusable components based on a npm dependency.
- * - Piscosour execution creates an easily junit.xml filed to manage with the most popular orchestrators like Jenkins, Hudson, Bamboo, etc.
- *
- * We have moved the idea of a component to use it as a tool to build, to test, to use in a continuous integration tool, etc. For all these tasks we have created Piscosour.
- *
- * To get an idea, it’s a command line jenkins, bamboo, travis or gocd , which allows better reuse of workflows.
- * @constructor Piscosour
- */
-var Piscosour = {
-  sour: sour,
+module.exports = {
   gush: function() {
+    const sour = require('./lib/sour');
     logger.trace('Loading time', '-', '#duration', moment() - init);
-    this.sour().gush(init).then(this.onFulfilled, this.onReject);
+    sour().gush(init).then(this.onFulfilled, this.onReject);
   },
   onFulfilled: function() {
     process.exit(0);
@@ -36,5 +20,3 @@ var Piscosour = {
     process.exit(-1);
   }
 };
-
-module.exports = Piscosour;
