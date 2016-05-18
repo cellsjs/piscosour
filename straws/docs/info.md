@@ -1,4 +1,4 @@
-Command: **bin/pisco.js docs**
+Command: **node bin/pisco.js recipe:docs**
 
 Generate documentation for your recipe.
 
