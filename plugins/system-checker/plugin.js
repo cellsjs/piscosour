@@ -2,11 +2,13 @@
 
 const semver = require('semver');
 const os = require('os');
+const fs = require('fs');
 
 module.exports = {
   description: 'System requirements checker',
 
   check: function() {
+
     const _getVersion = (regexp, out, err) => {
       let txt = !out || out.length === 0 ? err : out;
       if (txt && txt.length > 0) {
@@ -41,14 +43,42 @@ module.exports = {
         this.logger.info('#cyan', cmd, '( any version ) is required -> ', '#green', cmd, 'is installed ...', '#green', 'OK');
       }
     };
-    if (this.params.requirements && this.params.syscheck) {
-      for (var cmd in this.params.requirements) {
-        if (this.params.requirements.hasOwnProperty(cmd)) {
-          let promise = _check(cmd, this.params.requirements[cmd]);
-          if (promise) {
-            return promise;
+    const _sumRequirements = (sum, added) => {
+      for (var cmd in added) {
+        if (sum[cmd]) {
+          if (!sum[cmd].version || (added[cmd].version && semver.lt(sum[cmd].version, added[cmd].version))) {
+            sum[cmd].version = added[cmd].version;
+          }
+          if (sum[cmd].option !== added[cmd].option || sum[cmd].regexp !== added[cmd].regexp) {
+            this.logger.warn('#yellow', 'Incoherent definition of requirements', 'option: "' + sum[cmd].option + '"  =>  "' + added[cmd].option + '" ; regexp: "' + sum[cmd].regexp + '"  =>  "' + added[cmd].regexp + '"');
+          }
+        } else {
+          sum[cmd] = added[cmd];
+        }
+      }
+      return sum;
+    };
+
+    const fileName = 'requirements.json';
+
+    if (this.params.requirements) {
+      if (this.params.syscheck) {
+        for (var cmd in this.params.requirements) {
+          if (this.params.requirements.hasOwnProperty(cmd)) {
+            let promise = _check(cmd, this.params.requirements[cmd]);
+            if (promise) {
+              return promise;
+            }
           }
         }
+      }
+      if (this.params.saveRequirements) {
+        let requirements = this.fsReadConfig(fileName);
+        if (requirements.empty) {
+          delete requirements.empty;
+        }
+        requirements = _sumRequirements(requirements, this.params.requirements);
+        fs.writeFileSync(fileName, JSON.stringify(requirements, null, 2));
       }
     }
   }
