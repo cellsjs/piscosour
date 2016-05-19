@@ -19,10 +19,27 @@ module.exports = {
         }
       }
     };
+    const _sh = (cmd, option, module) => {
+      if (module) {
+        const result = this.sh(`npm list ${module} --depth 0 -g`, null, false);
+        result.stdout = new Buffer(result.stdout.toString().match(`${module}\@(.*?) `)[1]);
+        return result;
+      } else if (option) {
+        return this.sh(`${cmd} ${option}`, null, false);
+      } else {
+        return this.sh(cmd, null, false);
+      }
+    };
     const _check = (cmd, options) => {
+      if (options.module) {
+        if (cmd !== 'npm') {
+          this.logger.warn('#yellow', 'Module was defined on a command diferent to "npm"');
+        }
+        cmd = options.module;
+      }
       if (options.version) {
         let option = options.option ? options.option : '-v';
-        const result = this.sh(`${cmd} ${option}`, null, false);
+        const result = _sh(cmd, option, options.module);
         if (result.status !== 0) {
           return Promise.reject({error: `'${cmd}' is not accesible!!`, data: result.stderr.toString()});
         } else {
@@ -36,7 +53,7 @@ module.exports = {
           }
         }
       } else {
-        const result = this.sh(cmd, null, false);
+        const result = _sh(cmd, null, options.module);
         if (result.status !== 0) {
           return Promise.reject({error: `'${cmd}' is not accesible!!`, data: result.stderr.toString()});
         }
@@ -44,7 +61,7 @@ module.exports = {
       }
     };
     const _sumRequirements = (sum, added) => {
-      for (var cmd in added) {
+      for (let cmd in added) {
         if (sum[cmd]) {
           if (!sum[cmd].version || (added[cmd].version && semver.lt(sum[cmd].version, added[cmd].version))) {
             sum[cmd].version = added[cmd].version;
@@ -63,7 +80,7 @@ module.exports = {
 
     if (this.params.requirements) {
       if (this.params.syscheck) {
-        for (var cmd in this.params.requirements) {
+        for (let cmd in this.params.requirements) {
           if (this.params.requirements.hasOwnProperty(cmd)) {
             let promise = _check(cmd, this.params.requirements[cmd]);
             if (promise) {
