@@ -30,7 +30,7 @@ module.exports = {
 
       configLocal.defaultType = this.params.defaultType;
 
-      fs.writeFileSync(this.piscoFile, JSON.stringify(configLocal, null, 4));
+      fs.writeFileSync(this.piscoFile, JSON.stringify(configLocal, null, 2));
     }
 
     var fixDeprecated = function() {
@@ -42,11 +42,11 @@ module.exports = {
           straw.type = local.type;
           straw.name = local.name;
           straw.description = local.description;
-          fs.writeFileSync(strawFile, JSON.stringify(straw, null, 4));
+          fs.writeFileSync(strawFile, JSON.stringify(straw, null, 2));
         });
       }
       delete configLocal.straws;
-      fs.writeFileSync(this.piscoFile, JSON.stringify(configLocal, null, 4));
+      fs.writeFileSync(this.piscoFile, JSON.stringify(configLocal, null, 2));
       this.logger.info('#green', 'piscosour.json fixed!');
       go();
     };

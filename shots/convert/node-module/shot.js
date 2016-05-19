@@ -29,7 +29,7 @@ module.exports = {
 
     pkg.bin[this.params.cmd] = 'bin/pisco.js';
 
-    fs.writeFileSync(this.pkgFile, JSON.stringify(pkg, null, 4));
+    fs.writeFileSync(this.pkgFile, JSON.stringify(pkg, null, 2));
   },
 
   writePiscosour: function() {
@@ -38,7 +38,7 @@ module.exports = {
       'cmd': this.params.cmd,
       'repoTypes': []
     };
-    fs.writeFileSync('piscosour.json', JSON.stringify(piscosour, null, 4));
+    fs.writeFileSync('piscosour.json', JSON.stringify(piscosour, null, 2));
   },
 
   config: function() {
