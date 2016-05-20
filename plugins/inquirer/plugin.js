@@ -6,7 +6,7 @@ module.exports = {
   description: 'Plugin inquirer',
 
   check: function() {
-    if (this.params.prompts) {
+    if (this.params.prompts && !this.params.disablePrompts) {
       return this.inquire('prompts');
     }
   },

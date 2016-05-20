@@ -1,5 +1,9 @@
 {
   "requirements": {
+    "npm" : {
+      "module" : "generator-pisco-recipe",
+      "version" : "0.0.2"
+    },
     "java": {
       "version": "1.7.0",
       "option" : "-version",

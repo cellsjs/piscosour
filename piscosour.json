@@ -6,9 +6,9 @@
       "os",
       "context",
       "launcher",
-      "system-checker",
       "inquirer",
       "fsutils",
+      "system-checker",
       "piscosour",
       "skipper"
     ],
