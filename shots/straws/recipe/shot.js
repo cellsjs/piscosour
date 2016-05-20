@@ -33,6 +33,6 @@ module.exports = {
     }
 
     var file = path.join('straws', this.params.strawKey, 'straw.json');
-    fs.writeFileSync(file, JSON.stringify(this.runner.straw, null, 4));
+    fs.writeFileSync(file, JSON.stringify(this.runner.straw, null, 2));
   }
 };

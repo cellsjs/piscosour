@@ -24,7 +24,7 @@ module.exports = {
     if (configLocal.repoTypes.indexOf(this.params.repoType) < 0) {
       configLocal.repoTypes.push(this.params.repoType);
     }
-    fs.writeFileSync(this.piscoFile, JSON.stringify(configLocal, null, 4));
+    fs.writeFileSync(this.piscoFile, JSON.stringify(configLocal, null, 2));
   },
 
   run: function(resolve, reject) {
