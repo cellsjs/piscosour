@@ -46,7 +46,7 @@ Install piscosour globally
 
 |Name|Version|Description|
 |---|---|---|
-|piscosour|0.5.2|Get all your devops tools wrapped-up!|
+|piscosour|0.5.3|Get all your devops tools wrapped-up!|
 
 
 
@@ -54,7 +54,7 @@ Install piscosour globally
 
 
 
-**from piscosour  v.0.5.2:**
+**from piscosour  v.0.5.3:**
 
 - **pisco node-module::convert** ( Convert any nodejs module into a piscosour recipe )
 - **pisco recipe::generate-docs** ( Generate one file per straw inside a directory )
@@ -80,7 +80,7 @@ Add a shot to a piscosour recipe
 ### 1. shots: 'Create new pisco shot inside this module'
 ```
 Repository types:  recipe
-Recipes: piscosour (0.5.2)
+Recipes: piscosour (0.5.3)
 ```
 shot shots
 
@@ -91,7 +91,7 @@ Add a straw to a piscosour recipe
 ### 1. straws: 'Adding shot to a straw'
 ```
 Repository types:  recipe
-Recipes: piscosour (0.5.2)
+Recipes: piscosour (0.5.3)
 ```
 shot straws
 
@@ -102,7 +102,7 @@ Manage a piscosour recipe
 ### 1. piscosour: 'Configure piscosour.json'
 ```
 Repository types:  recipe
-Recipes: piscosour (0.5.2)
+Recipes: piscosour (0.5.3)
 ```
 shot piscosour
 
@@ -113,7 +113,7 @@ Convert any module into a piscosour recipe
 ### 1. convert: 'Convert any nodejs module into a piscosour recipe'
 ```
 Repository types:  node-module
-Recipes: piscosour (0.5.2)
+Recipes: piscosour (0.5.3)
 ```
 shot convert
 
@@ -137,7 +137,7 @@ Listo! ya tienes tu primer ejecutable de pisco creado! pruebalo
 ### 1. npm: 'Checking all npm commands needed'
 ```
 Repository types:  all
-Recipes: piscosour (0.5.2)
+Recipes: piscosour (0.5.3)
 ```
 shot npm
 
@@ -145,13 +145,13 @@ shot npm
 ### 2. scaffolding: 'Create a piscosour recipe from a scaffold template'
 ```
 Repository types:  recipe
-Recipes: piscosour (0.5.2)
+Recipes: piscosour (0.5.3)
 ```
 shot scaffolding
 
 ## docs: 'Generate Documentation'
 Append documentation from info.md to readme.md of the recipe
-Command: **bin/pisco.js docs**
+Command: **node bin/pisco.js recipe:docs**
 
 Generate documentation for your recipe.
 
@@ -164,7 +164,7 @@ Info.md is a regular md file, so you can use all the markdown specification. The
 ### 1. generate-docs: 'Generate one file per straw inside a directory'
 ```
 Repository types:  recipe
-Recipes: piscosour (0.5.2)
+Recipes: piscosour (0.5.3)
 ```
 shot generate-docs
 
@@ -229,7 +229,7 @@ example of piscosour.json:
 Define all rules that a repoType must match. All rules not sufficient must to be satisfied.
 
 - **file:** The path of the file relative to the root of the repoType. (for exemple: package.json for a node-module)
-- **sufficient:** If this rule is matched the rest of the rules are ignored. If is not match the remaing rules are evaluated (default: false)
+- **sufficient:** If this rule is matched the rest of the rules are ignored. If is not matched, the rule is ignored and the rest of rules are evaluated (default: false)
 - **noexist:** Check if the file is **not** present. (default: false)
 - **conditions:** Is an array with all the conditions that the file must to match. 
   1. The file must to be a correct json file.
@@ -239,7 +239,7 @@ Define all rules that a repoType must match. All rules not sufficient must to be
 
 #### Pre-hook: Check one shot is executed in the root of any repository type.
 
-Actually by default the behaviour of the shot is assuming that the repoType is mandatory, if you need to execute one shot without this check of context, use **contextFree** parameter. **contextFree** usually is used for shotd like "create" or something like that.  
+By default, the shot behaviour is assume that repoType is mandatory, if you need to execute one shot without this check of context, use **contextFree** parameter. **contextFree** usually is used for shotd like "create" or something like that.  
 
 only parametrized in params.json:
 
@@ -251,6 +251,8 @@ only parametrized in params.json:
 ```
 
 A user command (straw) only could be contextFree if all of its shots are contextFree. If only one shot of a straw is not contextFree then the context will be checked.
+
+**Disable this check using options in the command line**: Is possible to disable this check using this option in the command line: **--b-disableContextCheck**. Usefull for system requirements checks.
 
 #### addon: this.ctxIs
 
@@ -446,7 +448,11 @@ Example of params.json:
     "sass" : {
       "version": "3.1.0",
       "regexp" : "s (.*?) "
-    }
+    },
+    "npm" : {
+      "module" : "generator-pisco-recipe",
+      "version" : "0.0.2"
+    }    
   },
   [...]
 }
@@ -458,16 +464,19 @@ This is the possible parameters that you need in order to define a system requir
 - **version**: (optional) is the minimum version that you need for the command.
 - **option**: (optional, default is '-v') if version is set the way to check this version.
 - **regexp**: (optional) if version is on a string the way to extract only the version.
+- **module**: (optional) only with npm command. Check if a node_module is installed globally.
  
 #### 2. Check if a pisco command has all system requirements satisfied
 
-    cells component:validate --pstage check --b-syscheck
+    cells component:validate --pstage check --b-syscheck --b-disablePrompts --b-disableContextCheck
     
 Command explanation:
 
 - **cells component:validate**: is the pisco command that you want to check.
 - **--pstage check**: this means that only the check stage is executed for all the pipeline. System requirements check is a **pre-hook** of the stage **check** so you have to execute only this stage.
 - **--b-syscheck**: tells pisco to check the system requirements. By default this check is not madden. (b- is the way to say pisco that this option is a Boolean, is the same of **--syscheck true**)
+- **--b-disablePrompts**: disable all prompts for the command.
+- **--b-disableContextCheck**: disable context checks for commands that need one.
 
 this is the result of the execution for every shot that would have system requirements defined:
 
@@ -480,6 +489,46 @@ this is the result of the execution for every shot that would have system requir
 ```
 
 If any system requirement is not satisfied the command will throw an error and stops...
+
+#### 3. Write the requirements into a global file 'requirements.json'
+
+    cells component:validate --pstage check --b-saveRequirements --b-disablePrompts --b-disableContextCheck
+    
+Command explanation:
+
+- **cells component:validate**: is the pisco command that you want to check.
+- **--pstage check**: this means that only the check stage is executed for all the pipeline. System requirements check is a **pre-hook** of the stage **check** so you have to execute only this stage.
+- **--b-saveRequirements**: tells pisco to save all system requirements in one file.
+- **--b-disablePrompts**: disable all prompts for the command. 
+- **--b-disableContextCheck**: disable context checks for commands that need one.
+
+this is the file resulting of the execution: the mix of all system requirements for all shots.
+
+```
+{
+  "npm": {
+    "module": "generator-pisco-recipe",
+    "version": "0.0.2"
+  },
+  "java": {
+    "version": "1.7.0",
+    "option": "-version",
+    "regexp": "\"(.*?)_"
+  },
+  "cordova": {
+    "version": "5.4.1"
+  },
+  "yo": {},
+  "bower": {
+    "version": "1.0.0"
+  },
+  "sass": {
+    "version": "3.1.0",
+    "regexp": "s (.*?) "
+  }
+}
+```
+    
 ## test
 
 Testing plugin. NO FUNCTIONALITY.

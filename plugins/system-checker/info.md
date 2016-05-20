@@ -25,7 +25,11 @@ Example of params.json:
     "sass" : {
       "version": "3.1.0",
       "regexp" : "s (.*?) "
-    }
+    },
+    "npm" : {
+      "module" : "generator-pisco-recipe",
+      "version" : "0.0.2"
+    }    
   },
   [...]
 }
@@ -37,16 +41,19 @@ This is the possible parameters that you need in order to define a system requir
 - **version**: (optional) is the minimum version that you need for the command.
 - **option**: (optional, default is '-v') if version is set the way to check this version.
 - **regexp**: (optional) if version is on a string the way to extract only the version.
+- **module**: (optional) only with npm command. Check if a node_module is installed globally.
  
 #### 2. Check if a pisco command has all system requirements satisfied
 
-    cells component:validate --pstage check --b-syscheck
+    cells component:validate --pstage check --b-syscheck --b-disablePrompts --b-disableContextCheck
     
 Command explanation:
 
 - **cells component:validate**: is the pisco command that you want to check.
 - **--pstage check**: this means that only the check stage is executed for all the pipeline. System requirements check is a **pre-hook** of the stage **check** so you have to execute only this stage.
 - **--b-syscheck**: tells pisco to check the system requirements. By default this check is not madden. (b- is the way to say pisco that this option is a Boolean, is the same of **--syscheck true**)
+- **--b-disablePrompts**: disable all prompts for the command.
+- **--b-disableContextCheck**: disable context checks for commands that need one.
 
 this is the result of the execution for every shot that would have system requirements defined:
 
@@ -59,3 +66,43 @@ this is the result of the execution for every shot that would have system requir
 ```
 
 If any system requirement is not satisfied the command will throw an error and stops...
+
+#### 3. Write the requirements into a global file 'requirements.json'
+
+    cells component:validate --pstage check --b-saveRequirements --b-disablePrompts --b-disableContextCheck
+    
+Command explanation:
+
+- **cells component:validate**: is the pisco command that you want to check.
+- **--pstage check**: this means that only the check stage is executed for all the pipeline. System requirements check is a **pre-hook** of the stage **check** so you have to execute only this stage.
+- **--b-saveRequirements**: tells pisco to save all system requirements in one file.
+- **--b-disablePrompts**: disable all prompts for the command. 
+- **--b-disableContextCheck**: disable context checks for commands that need one.
+
+this is the file resulting of the execution: the mix of all system requirements for all shots.
+
+```
+{
+  "npm": {
+    "module": "generator-pisco-recipe",
+    "version": "0.0.2"
+  },
+  "java": {
+    "version": "1.7.0",
+    "option": "-version",
+    "regexp": "\"(.*?)_"
+  },
+  "cordova": {
+    "version": "5.4.1"
+  },
+  "yo": {},
+  "bower": {
+    "version": "1.0.0"
+  },
+  "sass": {
+    "version": "3.1.0",
+    "regexp": "s (.*?) "
+  }
+}
+```
+    
