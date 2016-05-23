@@ -1,12 +1,20 @@
 {
   "name": "piscosour",
-  "version": "0.5.3",
+  "version": "0.5.4",
   "description": "Get all your devops tools wrapped-up!",
   "main": "index.js",
+  "homepage": "https://github.com/cellsjs/piscosour",
   "repository": {
     "type": "git",
-    "url": "https://github.com/cellsjs/piscosour.git"
+    "url": "git+https://github.com/cellsjs/piscosour.git"
   },
+  "bugs": {
+    "url": "https://github.com/cellsjs/piscosour/issues",
+    "email": "santiago.garcia-bonacho.contractor@bbva.com"
+  },
+  "author": "Cells Studio",
+  "license": "ISC",
+  "readme": "README.md",
   "keywords": [
     "piscosour-recipe",
     "tooling",
@@ -24,8 +32,6 @@
     "orchestrator",
     "gulp"
   ],
-  "author": "Santiago García-Bonacho Rico",
-  "license": "ISC",
   "preferGlobal": true,
   "bin": {
     "pisco": "bin/pisco.js"
@@ -36,7 +42,7 @@
     "moment": "^2.10.6",
     "nopt": "^3.0.6",
     "semver": "^5.1.0",
-    "update-notifier": "^0.6.1",
+    "update-notifier": "^0.7.0",
     "xml": "^1.0.1"
   },
   "engines": {
