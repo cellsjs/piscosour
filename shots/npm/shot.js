@@ -14,6 +14,9 @@ module.exports = {
       this.logger.info('Checking', '#cyan', command, '....');
       if (command.indexOf('https://') >= 0) {
         command = path.parse(command).name;
+        if (cmd.version) {
+          cmd.args[2] = `${cmd.args[2]}#${cmd.version}`;
+        }
       }
 
       var result = this.executeSync('npm', ['list', '-g', '--depth', '1', command]);
@@ -39,7 +42,7 @@ module.exports = {
   },
 
   _getVersion: function(str) {
-    return str !== undefined ? str.split('@')[1] : '';
+    return str !== undefined ? str.match('\@(.*?) ')[1] : '';
   },
 
   run: function(resolve, reject) {
