@@ -11,7 +11,7 @@ module.exports = {
     this.params.installCmds.forEach((cmd) => {
       var command = cmd.args[2];
 
-      this.logger.info('Checking', '#cyan', command, '....');
+      this.logger.info('Checking', '#cyan', command, '...');
       if (command.indexOf('https://') >= 0) {
         command = path.parse(command).name;
         if (cmd.version) {
