@@ -1,5 +1,9 @@
 {
   "cmd": "pisco",
+  "analytics" : {
+    "id": "UA-23096868-2",
+    "ask" : "true"
+  },
   "params": {
     "workingDir": "",
     "plugins": [
