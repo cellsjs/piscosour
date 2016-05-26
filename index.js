@@ -14,9 +14,15 @@ module.exports = {
     process.exit(0);
   },
   onReject: function(e) {
+    let message = e;
+    let fatal = false;
     if (e && e.stack) {
+      message += e.stack;
+      fatal = true;
       console.error('\nUncatched error:\n\n', e.stack);
     }
-    process.exit(-1);
+    require('./lib/analytics').error(message, fatal, () => {
+      process.exit(-1);
+    });
   }
 };
