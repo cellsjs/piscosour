@@ -10,9 +10,7 @@ module.exports = {
     logger.trace('Loading time', '-', '#duration', moment() - init);
     sour().gush(init).then(this.onFulfilled, this.onReject);
   },
-  onFulfilled: function() {
-    process.exit(0);
-  },
+  onFulfilled: function() {},
   onReject: function(e) {
     let message = e;
     let fatal = false;
@@ -21,7 +19,9 @@ module.exports = {
       fatal = true;
       console.error('\nUncatched error:\n\n', e.stack);
     }
-    require('./lib/analytics').error(message, fatal, () => {
+    const params = require('./lib/params');
+    const analytics = require('./lib/analytics');
+    analytics.error(message, fatal, params.normal, () => {
       process.exit(-1);
     });
   }
