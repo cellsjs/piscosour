@@ -2,7 +2,7 @@
   "cmd": "pisco",
   "analytics" : {
     "id": "UA-23096868-2",
-    "ask" : "true"
+    "ask" : true
   },
   "params": {
     "workingDir": "",
