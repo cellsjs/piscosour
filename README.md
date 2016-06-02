@@ -46,7 +46,8 @@ Install piscosour globally
 
 |Name|Version|Description|
 |---|---|---|
-|piscosour|0.5.3|Get all your devops tools wrapped-up!|
+|pisco-user|-|User Piscosour Recipe|
+|piscosour|0.6.1|Get all your devops tools wrapped-up!|
 
 
 
@@ -54,7 +55,7 @@ Install piscosour globally
 
 
 
-**from piscosour  v.0.5.3:**
+**from piscosour  v.0.6.1:**
 
 - **pisco node-module::convert** ( Convert any nodejs module into a piscosour recipe )
 - **pisco recipe::generate-docs** ( Generate one file per straw inside a directory )
@@ -80,7 +81,7 @@ Add a shot to a piscosour recipe
 ### 1. shots: 'Create new pisco shot inside this module'
 ```
 Repository types:  recipe
-Recipes: piscosour (0.5.3)
+Recipes: piscosour (0.6.1)
 ```
 shot shots
 
@@ -91,7 +92,7 @@ Add a straw to a piscosour recipe
 ### 1. straws: 'Adding shot to a straw'
 ```
 Repository types:  recipe
-Recipes: piscosour (0.5.3)
+Recipes: piscosour (0.6.1)
 ```
 shot straws
 
@@ -102,7 +103,7 @@ Manage a piscosour recipe
 ### 1. piscosour: 'Configure piscosour.json'
 ```
 Repository types:  recipe
-Recipes: piscosour (0.5.3)
+Recipes: piscosour (0.6.1)
 ```
 shot piscosour
 
@@ -113,7 +114,7 @@ Convert any module into a piscosour recipe
 ### 1. convert: 'Convert any nodejs module into a piscosour recipe'
 ```
 Repository types:  node-module
-Recipes: piscosour (0.5.3)
+Recipes: piscosour (0.6.1)
 ```
 shot convert
 
@@ -137,7 +138,7 @@ Listo! ya tienes tu primer ejecutable de pisco creado! pruebalo
 ### 1. npm: 'Checking all npm commands needed'
 ```
 Repository types:  all
-Recipes: piscosour (0.5.3)
+Recipes: piscosour (0.6.1)
 ```
 shot npm
 
@@ -145,7 +146,7 @@ shot npm
 ### 2. scaffolding: 'Create a piscosour recipe from a scaffold template'
 ```
 Repository types:  recipe
-Recipes: piscosour (0.5.3)
+Recipes: piscosour (0.6.1)
 ```
 shot scaffolding
 
@@ -164,7 +165,7 @@ Info.md is a regular md file, so you can use all the markdown specification. The
 ### 1. generate-docs: 'Generate one file per straw inside a directory'
 ```
 Repository types:  recipe
-Recipes: piscosour (0.5.3)
+Recipes: piscosour (0.6.1)
 ```
 shot generate-docs
 
