@@ -79,16 +79,15 @@ module.exports = {
     const fileName = 'requirements.json';
 
     if (this.params.requirements) {
-      if (this.params.syscheck) {
-        for (let cmd in this.params.requirements) {
-          if (this.params.requirements.hasOwnProperty(cmd)) {
-            let promise = _check(cmd, this.params.requirements[cmd]);
-            if (promise) {
-              return promise;
-            }
+      for (let cmd in this.params.requirements) {
+        if (this.params.requirements.hasOwnProperty(cmd)) {
+          let promise = _check(cmd, this.params.requirements[cmd]);
+          if (promise) {
+            return promise;
           }
         }
       }
+
       if (this.params.saveRequirements) {
         let requirements = this.fsReadConfig(fileName);
         if (requirements.empty) {
