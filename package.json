@@ -12,7 +12,10 @@
     "url": "https://github.com/cellsjs/piscosour/issues",
     "email": "cells.tooling.group@bbva.com"
   },
-  "author": "Santiago García-Bonacho Rico",
+  "author": {
+    "email": "sbonacho@gmail.com",
+    "name": "Santiago"
+  },
   "license": "ISC",
   "keywords": [
     "piscosour-recipe",
