@@ -45,13 +45,12 @@ This is the possible parameters that you need in order to define a system requir
  
 #### 2. Check if a pisco command has all system requirements satisfied
 
-    cells component:validate --pstage check --b-syscheck --b-disablePrompts --b-disableContextCheck
+    cells component:validate --pstage check --b-disablePrompts --b-disableContextCheck
     
 Command explanation:
 
 - **cells component:validate**: is the pisco command that you want to check.
 - **--pstage check**: this means that only the check stage is executed for all the pipeline. System requirements check is a **pre-hook** of the stage **check** so you have to execute only this stage.
-- **--b-syscheck**: tells pisco to check the system requirements. By default this check is not madden. (b- is the way to say pisco that this option is a Boolean, is the same of **--syscheck true**)
 - **--b-disablePrompts**: disable all prompts for the command.
 - **--b-disableContextCheck**: disable context checks for commands that need one.
 
@@ -105,4 +104,3 @@ this is the file resulting of the execution: the mix of all system requirements 
   }
 }
 ```
-    
