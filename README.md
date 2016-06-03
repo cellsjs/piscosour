@@ -47,7 +47,7 @@ Install piscosour globally
 |Name|Version|Description|
 |---|---|---|
 |pisco-user|-|User Piscosour Recipe|
-|piscosour|0.6.1|Get all your devops tools wrapped-up!|
+|piscosour|0.6.2|Get all your devops tools wrapped-up!|
 
 
 
@@ -55,7 +55,7 @@ Install piscosour globally
 
 
 
-**from piscosour  v.0.6.1:**
+**from piscosour  v.0.6.2:**
 
 - **pisco node-module::convert** ( Convert any nodejs module into a piscosour recipe )
 - **pisco recipe::generate-docs** ( Generate one file per straw inside a directory )
@@ -81,7 +81,7 @@ Add a shot to a piscosour recipe
 ### 1. shots: 'Create new pisco shot inside this module'
 ```
 Repository types:  recipe
-Recipes: piscosour (0.6.1)
+Recipes: piscosour (0.6.2)
 ```
 shot shots
 
@@ -92,7 +92,7 @@ Add a straw to a piscosour recipe
 ### 1. straws: 'Adding shot to a straw'
 ```
 Repository types:  recipe
-Recipes: piscosour (0.6.1)
+Recipes: piscosour (0.6.2)
 ```
 shot straws
 
@@ -103,7 +103,7 @@ Manage a piscosour recipe
 ### 1. piscosour: 'Configure piscosour.json'
 ```
 Repository types:  recipe
-Recipes: piscosour (0.6.1)
+Recipes: piscosour (0.6.2)
 ```
 shot piscosour
 
@@ -114,7 +114,7 @@ Convert any module into a piscosour recipe
 ### 1. convert: 'Convert any nodejs module into a piscosour recipe'
 ```
 Repository types:  node-module
-Recipes: piscosour (0.6.1)
+Recipes: piscosour (0.6.2)
 ```
 shot convert
 
@@ -138,7 +138,7 @@ Listo! ya tienes tu primer ejecutable de pisco creado! pruebalo
 ### 1. npm: 'Checking all npm commands needed'
 ```
 Repository types:  all
-Recipes: piscosour (0.6.1)
+Recipes: piscosour (0.6.2)
 ```
 shot npm
 
@@ -146,7 +146,7 @@ shot npm
 ### 2. scaffolding: 'Create a piscosour recipe from a scaffold template'
 ```
 Repository types:  recipe
-Recipes: piscosour (0.6.1)
+Recipes: piscosour (0.6.2)
 ```
 shot scaffolding
 
@@ -165,7 +165,7 @@ Info.md is a regular md file, so you can use all the markdown specification. The
 ### 1. generate-docs: 'Generate one file per straw inside a directory'
 ```
 Repository types:  recipe
-Recipes: piscosour (0.6.1)
+Recipes: piscosour (0.6.2)
 ```
 shot generate-docs
 
@@ -469,13 +469,12 @@ This is the possible parameters that you need in order to define a system requir
  
 #### 2. Check if a pisco command has all system requirements satisfied
 
-    cells component:validate --pstage check --b-syscheck --b-disablePrompts --b-disableContextCheck
+    cells component:validate --pstage check --b-disablePrompts --b-disableContextCheck
     
 Command explanation:
 
 - **cells component:validate**: is the pisco command that you want to check.
 - **--pstage check**: this means that only the check stage is executed for all the pipeline. System requirements check is a **pre-hook** of the stage **check** so you have to execute only this stage.
-- **--b-syscheck**: tells pisco to check the system requirements. By default this check is not madden. (b- is the way to say pisco that this option is a Boolean, is the same of **--syscheck true**)
 - **--b-disablePrompts**: disable all prompts for the command.
 - **--b-disableContextCheck**: disable context checks for commands that need one.
 
@@ -529,7 +528,6 @@ this is the file resulting of the execution: the mix of all system requirements 
   }
 }
 ```
-    
 ## test
 
 Testing plugin. NO FUNCTIONALITY.
