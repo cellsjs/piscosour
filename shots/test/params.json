@@ -15,6 +15,11 @@
     "sass" : {
       "version": "3.1.0",
       "regexp" : "s (.*?) "
+    },
+    "git": {
+      "version": "2.6.0",
+      "option" : "--version",
+      "regexp" : "n (.*?)\\n"
     }
   },
   "plugins": [
