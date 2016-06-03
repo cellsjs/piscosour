@@ -11,6 +11,7 @@
 * [Parameters transmition between shots](Parameters_between_shots.md) - Parameters transmition between shots
 * [Configuración de piscosour: piscosour.json](configuration.md)
 * [Packaging Best Practices](packaging.md) - Best Practices for piscosour packaging.
+* [Google Analytics Integration](analytics.md) - Google Analytics Integration.
 * [Api](api.md) - Piscosour complete api.
 
 # HOWTOs
