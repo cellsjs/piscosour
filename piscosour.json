@@ -12,8 +12,8 @@
       "launcher",
       "inquirer",
       "fsutils",
-      "system-checker",
       "piscosour",
+      "system-checker",
       "skipper"
     ],
     "contexts": {
