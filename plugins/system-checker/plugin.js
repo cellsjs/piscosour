@@ -1,8 +1,13 @@
 'use strict';
 
+// Plugins: ['launcher', 'piscosour', 'fsutils']
+
 const semver = require('semver');
 const os = require('os');
+const path = require('path');
 const fs = require('fs');
+
+let versions;
 
 module.exports = {
   description: 'System requirements checker',
@@ -22,7 +27,10 @@ module.exports = {
     const _sh = (cmd, option, module) => {
       if (module) {
         const result = this.sh(`npm list ${module} --depth 0 -g`, null, false);
-        result.stdout = new Buffer(result.stdout.toString().match(`${module}\@(.*?) `)[1]);
+        const version = result.stdout.toString().match(`${module}\@(.*?) `);
+        if (version && version.length > 1) {
+          result.stdout = new Buffer(version[1]);
+        }
         return result;
       } else if (option) {
         return this.sh(`${cmd} ${option}`, null, false);
@@ -54,7 +62,7 @@ module.exports = {
         }
       } else {
         const result = _sh(cmd, null, options.module);
-        if (result.status !== 0) {
+        if (result.status === 127) {
           return Promise.reject({error: `'${cmd}' is not accesible!!`, data: result.stderr.toString()});
         }
         this.logger.info('#cyan', cmd, '( any version ) is required -> ', '#green', cmd, 'is installed ...', '#green', 'OK');
@@ -67,7 +75,7 @@ module.exports = {
             sum[cmd].version = added[cmd].version;
           }
           if (sum[cmd].option !== added[cmd].option || sum[cmd].regexp !== added[cmd].regexp) {
-            this.logger.warn('#yellow', 'Incoherent definition of requirements', 'option: "' + sum[cmd].option + '"  =>  "' + added[cmd].option + '" ; regexp: "' + sum[cmd].regexp + '"  =>  "' + added[cmd].regexp + '"');
+            this.logger.warn('#yellow', 'Uncoherent definition of requirements', 'option: "' + sum[cmd].option + '"  =>  "' + added[cmd].option + '" ; regexp: "' + sum[cmd].regexp + '"  =>  "' + added[cmd].regexp + '"');
           }
         } else {
           sum[cmd] = added[cmd];
@@ -77,11 +85,14 @@ module.exports = {
     };
 
     const fileName = 'requirements.json';
+    if (!versions) {
+      versions = this.fsReadConfig(path.join(__dirname, 'versions.json'));
+    }
 
     if (this.params.requirements) {
       for (let cmd in this.params.requirements) {
         if (this.params.requirements.hasOwnProperty(cmd)) {
-          let promise = _check(cmd, this.params.requirements[cmd]);
+          let promise = _check(cmd, this.config.mergeObject(this.params.requirements[cmd], versions[cmd]));
           if (promise) {
             return promise;
           }
