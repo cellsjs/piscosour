@@ -16,6 +16,19 @@
       "system-checker",
       "skipper"
     ],
+    "versions": {
+      "java": {
+        "option" : "-version",
+        "regexp" : "\"(.*?)_"
+      },
+      "sass" : {
+        "regexp" : "s (.*?) "
+      },
+      "git": {
+        "option" : "--version",
+        "regexp" : "n (.*?)\\n"
+      }
+    },
     "contexts": {
       "node-module": [
         {
