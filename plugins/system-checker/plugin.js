@@ -7,8 +7,6 @@ const os = require('os');
 const path = require('path');
 const fs = require('fs');
 
-let versions;
-
 module.exports = {
   description: 'System requirements checker',
 
@@ -85,14 +83,11 @@ module.exports = {
     };
 
     const fileName = 'requirements.json';
-    if (!versions) {
-      versions = this.fsReadConfig(path.join(__dirname, 'versions.json'));
-    }
 
     if (this.params.requirements) {
       for (let cmd in this.params.requirements) {
         if (this.params.requirements.hasOwnProperty(cmd)) {
-          let promise = _check(cmd, this.config.mergeObject(this.params.requirements[cmd], versions[cmd]));
+          let promise = _check(cmd, this.config.mergeObject(this.params.requirements[cmd], this.params.versions[cmd]));
           if (promise) {
             return promise;
           }
