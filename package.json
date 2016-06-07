@@ -1,6 +1,6 @@
 {
   "name": "piscosour",
-  "version": "0.6.2",
+  "version": "0.6.3",
   "description": "Get all your devops tools wrapped-up!",
   "main": "index.js",
   "homepage": "https://github.com/cellsjs/piscosour",
@@ -44,6 +44,7 @@
     "moment": "^2.10.6",
     "nopt": "^3.0.6",
     "semver": "^5.1.0",
+    "stripcolorcodes": "^0.1.0",
     "universal-analytics": "^0.3.11",
     "update-notifier": "^0.7.0",
     "uuid": "^2.0.2",
