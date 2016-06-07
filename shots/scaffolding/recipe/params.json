@@ -21,9 +21,9 @@
       "message": "Write a brief description for your recipe"
     }
   ],
-  "requirements": {
-    "npm" : {
-      "module" : "generator-pisco-recipe",
+  "npm-requirements": {
+    "generator-pisco-recipe" : {
+      "module" : true,
       "version" : "0.0.2"
     },
     "yo" : {}

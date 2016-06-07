@@ -1,5 +1,9 @@
 {
   "npm-requirements": {
+    "generator-pisco-recipe" : {
+      "module" : true,
+      "version" : "0.0.2"
+    },
     "cordova" : {
       "version" : "5.4.1"
     },
