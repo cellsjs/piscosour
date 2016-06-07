@@ -24,8 +24,8 @@ module.exports = {
     };
     const _sh = (cmd, option, module) => {
       if (module) {
-        const result = this.sh(`npm list ${module} --depth 0 -g`, null, false);
-        const version = result.stdout.toString().match(`${module}\@(.*?) `);
+        const result = this.sh(`npm list ${cmd} --depth 0 -g`, null, false);
+        const version = result.stdout.toString().match(`${cmd}\@(.*?) `);
         if (version && version.length > 1) {
           result.stdout = new Buffer(version[1]);
         }
@@ -37,12 +37,6 @@ module.exports = {
       }
     };
     const _check = (cmd, options) => {
-      if (options.module) {
-        if (cmd !== 'npm') {
-          this.logger.warn('#yellow', 'Module was defined on a command diferent to "npm"');
-        }
-        cmd = options.module;
-      }
       if (options.version) {
         let option = options.option ? options.option : '-v';
         const result = _sh(cmd, option, options.module);
@@ -84,24 +78,30 @@ module.exports = {
 
     const fileName = 'requirements.json';
 
-    if (this.params.requirements) {
-      for (let cmd in this.params.requirements) {
-        if (this.params.requirements.hasOwnProperty(cmd)) {
-          let promise = _check(cmd, this.config.mergeObject(this.params.requirements[cmd], this.params.versions[cmd]));
-          if (promise) {
-            return promise;
+    ['requirements', 'npm-requirements'].forEach((paramName) => {
+      if (this.params[paramName]) {
+        for (let cmd in this.params[paramName]) {
+          if (this.params[paramName].hasOwnProperty(cmd)) {
+            const option = this.config.mergeObject(this.params[paramName][cmd], this.params.versions[cmd]);
+            let promise = _check(cmd, option);
+            if (promise) {
+              if (paramName.startsWith('npm')) {
+                this.sh(`npm install -g ${cmd}`, null, true);
+              } else {
+                return promise;
+              }
+            }
           }
         }
       }
-
-      if (this.params.saveRequirements) {
-        let requirements = this.fsReadConfig(fileName);
-        if (requirements.empty) {
-          delete requirements.empty;
-        }
-        requirements = _sumRequirements(requirements, this.params.requirements);
-        fs.writeFileSync(fileName, JSON.stringify(requirements, null, 2));
+    });
+    if (this.params.requirements && this.params.saveRequirements) {
+      let requirements = this.fsReadConfig(fileName);
+      if (requirements.empty) {
+        delete requirements.empty;
       }
+      requirements = _sumRequirements(requirements, this.params.requirements);
+      fs.writeFileSync(fileName, JSON.stringify(requirements, null, 2));
     }
   }
 };
