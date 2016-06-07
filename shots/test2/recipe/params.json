@@ -1,23 +1,19 @@
 {
-  "requirements": {
-    "npm" : {
-      "module" : "generator-pisco-recipe",
-      "version" : "0.0.2"
-    },
-    "java": {
-      "version": "1.7.0",
-      "npm" : false
-    },
+  "npm-requirements": {
     "cordova" : {
       "version" : "5.4.1"
     },
     "yo" : {},
     "bower" : {
       "version" : "1.0.0"
+    }
+  },
+  "requirements": {
+    "java": {
+      "version": "1.7.0"
     },
     "sass" : {
-      "version": "3.1.0",
-      "npm" : false
+      "version": "3.1.0"
     }
   },
   "workingDir": "nohay",
