@@ -1,8 +1,9 @@
 'use strict';
 
-let spawn = require('child_process').spawn;
-let chalk = require('chalk');
-let spawnSync = require('child_process').spawnSync;
+const spawn = require('child_process').spawn;
+const chalk = require('chalk');
+const spawnSync = require('child_process').spawnSync;
+const stripcolorcodes = require('stripcolorcodes');
 
 module.exports = {
   description: 'Launcher plugin',
@@ -33,17 +34,28 @@ module.exports = {
         args = patch.args;
       }
       this.logger.trace('#cyan', 'executing', cmd, args);
-      var result = spawnSync(cmd, args);
+      let result;
+      if (loud) {
+        let std = {out: '', err: ''};
+        this.streamWriteHook(process.stdout, function(chunk, encoding, cb) {
+          std.out += stripcolorcodes(chunk.toString(encoding));
+        });
+        this.streamWriteHook(process.stderr, function(chunk, encoding, cb) {
+          std.err += stripcolorcodes(chunk.toString(encoding));
+        });
+        result = spawnSync(cmd, args, {stdio: ['ignore', process.stdout, process.stderr]});
+        this.streamWriteUnhook(process.stdout);
+        this.streamWriteUnhook(process.stderr);
+        result.stdout = std.out;
+        result.stderr = std.err;
+      } else {
+        result = spawnSync(cmd, args);
+      }
+
 
       if ((result.error || result.status !== 0) && reject) {
         reject({error: result.error, stderr: result.stderr.toString()});
       }
-
-      if (loud) {
-        this.logger.out(result.stdout.toString());
-        this.logger.err(chalk.red(result.stderr.toString()));
-      }
-
       return result;
     },
     /**
