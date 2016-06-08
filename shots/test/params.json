@@ -1,24 +1,4 @@
 {
-  "npm-requirements": {
-    "cordova" : {
-      "version" : "5.4.1"
-    },
-    "yo" : {},
-    "bower" : {
-      "version" : "1.0.0"
-    }
-  },
-  "requirements": {
-    "java": {
-      "version": "1.6.0"
-    },
-    "sass" : {
-      "version": "3.1.0"
-    },
-    "git": {
-      "version": "2.6.0"
-    }
-  },
   "plugins": [
     "test"
   ],
