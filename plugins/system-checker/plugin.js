@@ -75,26 +75,38 @@ module.exports = {
       }
       return sum;
     };
-
     const fileName = 'requirements.json';
 
+    let promise;
     ['requirements', 'npm-requirements'].forEach((paramName) => {
       if (this.params[paramName]) {
         for (let cmd in this.params[paramName]) {
           if (this.params[paramName].hasOwnProperty(cmd)) {
             const option = this.config.mergeObject(this.params[paramName][cmd], this.params.versions[cmd]);
-            let promise = _check(cmd, option);
-            if (promise) {
-              if (paramName.startsWith('npm')) {
-                this.sh(`npm install -g ${cmd}`, null, true);
+            promise = _check(cmd, option);
+            if (promise && paramName.startsWith('npm')) {
+              let p = option.uri ? `git+${option.uri}` : (option.pkg ? option.pkg : cmd);
+              p = option.version ? `${p}@${option.version}` : p;
+              this.logger.info('#cyan', cmd, 'is required -> ', '#green', cmd, 'is installing...');
+              let res = this.sh(`npm install -g ${p}`, null, true);
+              if (res.status !== 0) {
+                promise = Promise.reject({error: `impossible to install ${p}`});
+                return;
               } else {
-                return promise;
+                promise = undefined;
               }
+            } else {
+              return;
             }
           }
         }
       }
     });
+
+    if (promise) {
+      return promise;
+    }
+
     if (this.params.requirements && this.params.saveRequirements) {
       let requirements = this.fsReadConfig(fileName);
       if (requirements.empty) {
