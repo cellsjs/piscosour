@@ -597,7 +597,7 @@ If any system requirement is not satisfied the command will throw an error and s
 
 #### 4. Write the requirements into a global file 'requirements.json': NOT npm-requirements.
 
-    cells component:validate --pstage check --b-saveRequirements --b-disablePrompts --b-disableContextCheck
+    cells component:validate --pstage check --b-saveRequirements --b-disablePrompts --b-disableContextCheck --b-disableSystemCheck
     
 Command explanation:
 
@@ -606,6 +606,7 @@ Command explanation:
 - **--b-saveRequirements**: tells pisco to save all system requirements in one file.
 - **--b-disablePrompts**: disable all prompts for the command. 
 - **--b-disableContextCheck**: disable context checks for commands that need one.
+- **--b-disableSystemCheck**: disable system checks in order to avoid vicious cycle.
 
 this is the file resulting of the execution: the mix of all system requirements for all shots.
 
