@@ -1,6 +1,7 @@
 'use strict';
 
 const spawn = require('child_process').spawn;
+const stream = require('stream');
 const chalk = require('chalk');
 const spawnSync = require('child_process').spawnSync;
 const stripcolorcodes = require('stripcolorcodes');
@@ -36,18 +37,10 @@ module.exports = {
       this.logger.trace('#cyan', 'executing', cmd, args);
       let result;
       if (loud) {
-        let std = {out: '', err: ''};
-        this.streamWriteHook(process.stdout, function(chunk, encoding, cb) {
-          std.out += stripcolorcodes(chunk.toString(encoding));
-        });
-        this.streamWriteHook(process.stderr, function(chunk, encoding, cb) {
-          std.err += stripcolorcodes(chunk.toString(encoding));
-        });
         result = spawnSync(cmd, args, {stdio: ['ignore', process.stdout, process.stderr]});
-        this.streamWriteUnhook(process.stdout);
-        this.streamWriteUnhook(process.stderr);
-        result.stdout = std.out;
-        result.stderr = std.err;
+        const message = 'WARNING!! Use \'loud=false\' if you want to use stdout or stderr';
+        result.stdout = message;
+        result.stderr = message;
       } else {
         result = spawnSync(cmd, args);
       }
