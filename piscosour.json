@@ -1,8 +1,8 @@
 {
   "cmd": "pisco",
-  "analytics" : {
+  "analytics": {
     "id": "UA-23096868-2",
-    "ask" : true
+    "ask": true
   },
   "params": {
     "workingDir": "",
@@ -18,15 +18,15 @@
     ],
     "versions": {
       "java": {
-        "option" : "-version",
-        "regexp" : "\"(.*?)_"
+        "option": "-version",
+        "regexp": "\"(.*?)_"
       },
-      "sass" : {
-        "regexp" : "s (.*?) "
+      "sass": {
+        "regexp": "s (.*?) "
       },
       "git": {
-        "option" : "--version",
-        "regexp" : "n (.*?)\\n"
+        "option": "--version",
+        "regexp": "n (.*?)\\n"
       }
     },
     "contexts": {
