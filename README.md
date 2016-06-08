@@ -47,7 +47,7 @@ Install piscosour globally
 |Name|Version|Description|
 |---|---|---|
 |pisco-user|-|User Piscosour Recipe|
-|piscosour|0.6.2|Get all your devops tools wrapped-up!|
+|piscosour|0.6.3|Get all your devops tools wrapped-up!|
 
 
 
@@ -55,7 +55,7 @@ Install piscosour globally
 
 
 
-**from piscosour  v.0.6.2:**
+**from piscosour  v.0.6.3:**
 
 - **pisco node-module::convert** ( Convert any nodejs module into a piscosour recipe )
 - **pisco recipe::generate-docs** ( Generate one file per straw inside a directory )
@@ -81,7 +81,7 @@ Add a shot to a piscosour recipe
 ### 1. shots: 'Create new pisco shot inside this module'
 ```
 Repository types:  recipe
-Recipes: piscosour (0.6.2)
+Recipes: piscosour (0.6.3)
 ```
 shot shots
 
@@ -92,7 +92,7 @@ Add a straw to a piscosour recipe
 ### 1. straws: 'Adding shot to a straw'
 ```
 Repository types:  recipe
-Recipes: piscosour (0.6.2)
+Recipes: piscosour (0.6.3)
 ```
 shot straws
 
@@ -103,7 +103,7 @@ Manage a piscosour recipe
 ### 1. piscosour: 'Configure piscosour.json'
 ```
 Repository types:  recipe
-Recipes: piscosour (0.6.2)
+Recipes: piscosour (0.6.3)
 ```
 shot piscosour
 
@@ -114,7 +114,7 @@ Convert any module into a piscosour recipe
 ### 1. convert: 'Convert any nodejs module into a piscosour recipe'
 ```
 Repository types:  node-module
-Recipes: piscosour (0.6.2)
+Recipes: piscosour (0.6.3)
 ```
 shot convert
 
@@ -135,18 +135,10 @@ Mientras pisco genera tu primera receta usando un generator de yeoman. Te explic
 
 Listo! ya tienes tu primer ejecutable de pisco creado! pruebalo
 
-### 1. npm: 'Checking all npm commands needed'
-```
-Repository types:  all
-Recipes: piscosour (0.6.2)
-```
-shot npm
-
-
-### 2. scaffolding: 'Create a piscosour recipe from a scaffold template'
+### 1. scaffolding: 'Create a piscosour recipe from a scaffold template'
 ```
 Repository types:  recipe
-Recipes: piscosour (0.6.2)
+Recipes: piscosour (0.6.3)
 ```
 shot scaffolding
 
@@ -165,7 +157,7 @@ Info.md is a regular md file, so you can use all the markdown specification. The
 ### 1. generate-docs: 'Generate one file per straw inside a directory'
 ```
 Repository types:  recipe
-Recipes: piscosour (0.6.2)
+Recipes: piscosour (0.6.3)
 ```
 shot generate-docs
 
@@ -420,24 +412,131 @@ return the literal: 'package.json'
 
 Skips the shot execution when receiving the param "\_skip": true
 
+## stream-write-hook
+
+### Intercepts any stream flow in order to be able to manage the information inside.
+
+This way you can capture all the output of any stream and do whatever you want with it. The way to do this has two stages:
+
+#### 1. Start intercepting the stream
+
+At any place in yor code is posible to intercept any stream the only thing you have to do is use streamWriteHook method:
+
+```
+   let capture = '';
+   this.streamWriteHook(process.stdout, function(chunk, encoding, cb) {
+     capture += stripcolorcodes(chunk.toString(encoding));
+   });
+```
+
+(*) stripcolorcodes() is used to deleting all coloured characters from stream. 
+  
+Capture will contain all from content of process.stdout
+
+#### 2. Stop intercepting the stream.
+
+Is necesary to do release all system resources, so do this:
+
+```
+   this.streamWriteUnhook(process.stdout);
+```
+
+### Addons:
+
+#### this.streamWriteHook
+
+starts the hook
+
+| Param | Description |
+| --- | --- |
+|stream |Stream to be hooked |
+|cb |Function to call each time chunk is append to stream |
+
+#### this.streamWriteUnhook
+
+stops the hook
+
+| Param | Description |
+| --- | --- |
+|stream |Stream to be Unhooked |
+
+
+
 ## system-checker
 
 ### How to check system requirements of a piscosour command.
 
 The system requirements are other commands that pisco needs for a pipeline execution. This plugin checks if everything is installed and ready to use by piscosour.
 
-#### 1. Define system requirements in all your shots.
+#### 1. Define version match (Only in the cases where could be diferent)
+
+By default version is taken asking the command with -v and assume that command return version plain without test.
+
+    bower -v 
+    > 1.7.9
+
+But in some cases this is not true, in this cases you can define matches inside **piscosour.json**:  
+
+Example of piscosour.json
+```
+{
+  [...]  
+  "params": {
+    [...]
+    "versions": {
+      "java": {
+        "option" : "-version",
+        "regexp" : "\"(.*?)_"
+      },
+      [...]
+    },
+  [...]
+}
+```
+
+By default this is the versions defined inside core:
+
+```
+    "versions": {
+      "java": {
+        "option" : "-version",
+        "regexp" : "\"(.*?)_"
+      },
+      "sass" : {
+        "regexp" : "s (.*?) "
+      },
+      "git": {
+        "option" : "--version",
+        "regexp" : "n (.*?)\\n"
+      }
+    }
+```
+
+- **key** (for example 'java'): is the command that you need inside your shot.
+- **option**: (optional, default is '-v') if version is set the way to check this version.
+- **regexp**: (optional) if version is on a string the way to extract only the version. Overwrite version defined on piscosour.json
+
+#### 2. Define system requirements in all your shots.
 
 The system requirements are defined in **params.json** file inside every shot.
+
+both requirements and npm-requirements are the same the only diference is:
+
+-**requirements** external dependencies, never tries to install this dependencies.
+-**npm-requirements** npm dependencies, this plugin tries to install dependencies.
 
 Example of params.json:
 ```
 {
-  "requirements": {
-    "java": {
-      "version": "1.7.0",
-      "option" : "-version",
-      "regexp" : "\"(.*?)\""
+  "npm-requirements": {
+    "generator-cells-cordova-plugin" : {
+      "uri" : "https://descinet.bbva.es/stash/scm/cellsnative/generator-cells-cordova-plugin.git",
+      "module" : true,
+      "version" : "0.0.15"
+    },  
+    "pisco" : {
+      "pkg" : "piscosour",
+      "version" : "0.5.0"
     },
     "cordova" : {
       "version" : "5.4.1"
@@ -445,15 +544,19 @@ Example of params.json:
     "yo" : {},
     "bower" : {
       "version" : "1.0.0"
+    }
+  },
+  "requirements": {
+    "generator-pisco-recipe" : {
+      "module" : true,
+      "version" : "0.0.2"
+    },
+    "java": {
+      "version": "1.7.0"
     },
     "sass" : {
-      "version": "3.1.0",
-      "regexp" : "s (.*?) "
-    },
-    "npm" : {
-      "module" : "generator-pisco-recipe",
-      "version" : "0.0.2"
-    }    
+      "version": "3.1.0"
+    }
   },
   [...]
 }
@@ -462,12 +565,14 @@ Example of params.json:
 This is the possible parameters that you need in order to define a system requirement.
 
 - **key** (for example 'java'): is the command that you need inside your shot.
-- **version**: (optional) is the minimum version that you need for the command.
+- **version**: (optional) is the minimum version that you need for the command. Overwrite version defined on piscosour.json
 - **option**: (optional, default is '-v') if version is set the way to check this version.
-- **regexp**: (optional) if version is on a string the way to extract only the version.
-- **module**: (optional) only with npm command. Check if a node_module is installed globally.
+- **regexp**: (optional) if version is on a string the way to extract only the version. Overwrite version defined on piscosour.json
+- **module**: (optional) only apply in npm commands. Check if a node_module is installed globally.
+- **uri**: (optional) only apply in npm commands. Uri of the git repo.
+- **pkg**: (optional) only apply in npm commands. Used when executable and pkg are different.
  
-#### 2. Check if a pisco command has all system requirements satisfied
+#### 3. Check if a pisco command has all system requirements satisfied
 
     cells component:validate --pstage check --b-disablePrompts --b-disableContextCheck
     
@@ -490,7 +595,7 @@ this is the result of the execution for every shot that would have system requir
 
 If any system requirement is not satisfied the command will throw an error and stops...
 
-#### 3. Write the requirements into a global file 'requirements.json'
+#### 4. Write the requirements into a global file 'requirements.json': NOT npm-requirements.
 
     cells component:validate --pstage check --b-saveRequirements --b-disablePrompts --b-disableContextCheck
     
