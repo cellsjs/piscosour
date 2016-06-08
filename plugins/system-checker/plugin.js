@@ -75,33 +75,41 @@ module.exports = {
       }
       return sum;
     };
+
+    const _installable = (cmd, option) => {
+      let p = option.uri ? `git+${option.uri}` : (option.pkg ? option.pkg : cmd);
+      const versionchar = option.uri ? '#' : '@';
+      p = option.version ? `${p}${versionchar}${option.version}` : p;
+      return p;
+    };
     const fileName = 'requirements.json';
 
     let promise;
-    ['requirements', 'npm-requirements'].forEach((paramName) => {
-      if (this.params[paramName]) {
-        for (let cmd in this.params[paramName]) {
-          if (this.params[paramName].hasOwnProperty(cmd)) {
-            const option = this.config.mergeObject(this.params[paramName][cmd], this.params.versions[cmd]);
-            promise = _check(cmd, option);
-            if (promise && paramName.startsWith('npm')) {
-              let p = option.uri ? `git+${option.uri}` : (option.pkg ? option.pkg : cmd);
-              p = option.version ? `${p}@${option.version}` : p;
-              this.logger.info('#cyan', cmd, 'is required -> ', '#green', cmd, 'is installing...');
-              let res = this.sh(`npm install -g ${p}`, null, true);
-              if (res.status !== 0) {
-                promise = Promise.reject({error: `impossible to install ${p}`});
+    if (!this.params.disableSystemCheck) {
+      ['requirements', 'npm-requirements'].forEach((paramName) => {
+        if (this.params[paramName]) {
+          for (let cmd in this.params[paramName]) {
+            if (this.params[paramName].hasOwnProperty(cmd)) {
+              const option = this.config.mergeObject(this.params[paramName][cmd], this.params.versions[cmd]);
+              promise = _check(cmd, option);
+              if (promise && paramName.startsWith('npm')) {
+                this.logger.info('#cyan', cmd, 'is required -> ', '#green', cmd, 'is installing...');
+                const installable = _installable(cmd, option);
+                let res = this.sh(`npm install -g ${installable}`, null, true);
+                if (res.status !== 0) {
+                  promise = Promise.reject({error: `impossible to install ${installable}`});
+                  return;
+                } else {
+                  promise = undefined;
+                }
+              } else if (promise) {
                 return;
-              } else {
-                promise = undefined;
               }
-            } else {
-              return;
             }
           }
         }
-      }
-    });
+      });
+    }
 
     if (promise) {
       return promise;
