@@ -9,7 +9,6 @@
     "plugins": [
       "os",
       "context",
-      "stream-write-hook",
       "launcher",
       "inquirer",
       "fsutils",
