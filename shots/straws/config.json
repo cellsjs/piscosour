@@ -1,5 +1,7 @@
 {
+  "name": "straws",
   "description": "Adding shot to a straw",
+  "contexts": ["recipe"],
   "prompts": [
     {
       "type": "input",

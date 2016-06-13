@@ -1,5 +1,7 @@
 {
+  "name": "scaffolding",
   "description": "Create a piscosour recipe from a scaffold template",
+  "contexts": ["recipe"],
   "contextFree": true,
   "prompts": [
     {

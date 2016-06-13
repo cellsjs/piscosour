@@ -1,5 +1,7 @@
 {
+  "name": "piscosour",
   "description": "Configure piscosour.json",
+  "contexts": ["recipe"],
   "prompts": [
     {
       "type": "confirm",

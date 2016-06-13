@@ -1,4 +1,5 @@
 {
+  "name": "weather",
   "description": "See your city weather",
   "city": "madrid",
   "isTest": true

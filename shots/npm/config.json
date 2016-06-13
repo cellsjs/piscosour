@@ -1,4 +1,5 @@
 {
+  "name": "npm",
   "description": "Checking all npm commands needed",
   "contextFree": true,
   "installCmds": [

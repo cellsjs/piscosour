@@ -2,9 +2,15 @@
 
 module.exports = {
 
+  check(resolve) {
+    console.log('==========================');
+    console.log(this);
+    console.log('==========================');
+    this.logger.info('#magenta', 'check', 'Check all pre-requisites for the execution');
+  },
+
   config: function(resolve, reject) {
     this.logger.info('this.params.saludo: ', this.params.saludo);
-    this.sh('ls -las', null, true);
   },
 
   run: function(resolve, reject) {

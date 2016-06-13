@@ -1,5 +1,7 @@
 {
+  "name": "shots",
   "description": "Create new pisco shot inside this module",
+  "contexts": ["recipe"],
   "prompts": [
     {
       "type": "input",

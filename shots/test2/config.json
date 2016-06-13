@@ -1,4 +1,8 @@
 {
+  "name": "test2",
+  "description": "TEST 2 Brief description of shot",
+  "contextFree" : true,
+  "isTest": true,
   "requirements": {
     "npm" : {
       "module" : "generator-pisco-recipe",
@@ -23,6 +27,5 @@
   },
   "workingDir": "nohay",
   "flying": "ohyeah!!",
-  "other": "good!!",
-  "contextFree" : true
+  "other": "good!!"
 }

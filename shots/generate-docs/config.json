@@ -1,0 +1,5 @@
+{
+  "name": "generate-docs",
+  "description": "Generate one file per straw inside a directory",
+  "contexts": ["recipe"]
+}
