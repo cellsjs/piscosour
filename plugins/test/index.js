@@ -1,8 +1,6 @@
 'use strict';
 
 module.exports = {
-  description: 'Test plugin',
-
   check: function() {
     this.logger.info('---------PLUGIN TEST--------');
     this.testPluginAddon('Azucar!');

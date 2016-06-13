@@ -5,7 +5,6 @@ let fsUtils = require('../../lib/utils/fsUtils');
 let path = require('path');
 
 module.exports = {
-  description: 'fs utils',
 
   addons: {
     fsCreateDir: fsUtils.createDir,

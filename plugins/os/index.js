@@ -1,8 +1,6 @@
 'use strict';
 
 module.exports = {
-  description: 'OS plugin',
-
   addons: {
     isWin: function() {
       return process.env.OS && process.env.OS.indexOf('Windows') >= 0;

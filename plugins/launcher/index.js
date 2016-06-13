@@ -5,7 +5,6 @@ let chalk = require('chalk');
 let spawnSync = require('child_process').spawnSync;
 
 module.exports = {
-  description: 'Launcher plugin',
 
   addons: {
     sh: function(cmdsh, reject, loud) {

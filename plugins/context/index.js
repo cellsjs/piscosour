@@ -3,8 +3,6 @@
 let context = require('../../lib/context');
 
 module.exports = {
-  description: 'Get automatic context of execution',
-
   check: function() {
     if (!this.params.contextFree) {
       let ami = this.ctxWhoami();

@@ -3,7 +3,6 @@
 var inquirer = require('inquirer');
 
 module.exports = {
-  description: 'Plugin inquirer',
 
   check: function() {
     if (this.params.prompts && !this.params.disablePrompts) {
