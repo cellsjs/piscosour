@@ -15,39 +15,7 @@
       "system-checker",
       "piscosour",
       "skipper"
-    ],
-    "contexts": {
-      "node-module": [
-        {
-          "file": "package.json",
-          "conditions": [
-            "that.version"
-          ]
-        },
-        {
-          "file": "piscosour.json",
-          "noexists": "true"
-        }
-      ],
-      "recipe": [
-        {
-          "sufficient": true,
-          "file": ".piscosour/piscosour.json",
-          "conditions": [
-            "that.repoType==='recipe'"
-          ]
-        },
-        {
-          "file": "package.json",
-          "conditions": [
-            "that.keywords && that.keywords.indexOf('piscosour-recipe')>=0"
-          ]
-        },
-        {
-          "file": "piscosour.json"
-        }
-      ]
-    }
+    ]
   },
   "defaultType": "recipe",
   "repoTypes": [
