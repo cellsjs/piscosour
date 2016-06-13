@@ -2,7 +2,7 @@
   "shots": {
     "generate-docs": {}
   },
-  "name": "Generate Documentation",
+  "name": "docs",
   "description": "Append documentation from info.md to readme.md of the recipe",
   "type": "normal"
 }

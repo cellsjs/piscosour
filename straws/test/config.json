@@ -1,6 +1,6 @@
 {
   "type": "util",
-  "name": "Mock test",
+  "name": "test",
   "description": "Testing for piscosour",
   "params": {
     "plugins": [

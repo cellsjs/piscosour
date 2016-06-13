@@ -1,6 +1,6 @@
 {
   "type": "normal",
-  "name": "Add a shot",
+  "name": "add-shot",
   "description": "Add a shot to a piscosour recipe",
   "shots": {
     "shots": {}
