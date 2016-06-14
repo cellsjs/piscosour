@@ -1,8 +1,8 @@
 {
   "cmd": "pisco",
-  "analytics" : {
+  "analytics": {
     "id": "UA-23096868-2",
-    "ask" : true
+    "ask": true
   },
   "params": {
     "workingDir": "",
@@ -18,10 +18,6 @@
     ]
   },
   "defaultType": "recipe",
-  "repoTypes": [
-    "recipe",
-    "node-module"
-  ],
   "junitDir": "test-reports",
   "junitPiscoFile": "pisco-junit.xml",
   "stages": [
