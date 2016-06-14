@@ -2,10 +2,7 @@
 
 module.exports = {
 
-  check(resolve) {
-    console.log('==========================');
-    console.log(this);
-    console.log('==========================');
+  check: function(resolve) {
     this.logger.info('#magenta', 'check', 'Check all pre-requisites for the execution');
   },
 
