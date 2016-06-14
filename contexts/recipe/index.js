@@ -13,7 +13,7 @@ module.exports = {
 
     return pkgfile.keywords !== undefined
       && pkgfile.keywords.indexOf('piscosour-recipe') >= 0
-      && fsUtils.exists('piscosour.json');
+      && fsUtils.exists('piscosour.json') !== false;
   }
 
 };
