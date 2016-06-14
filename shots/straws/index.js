@@ -15,9 +15,9 @@ module.exports = {
 
     var file = path.join('straws', this.params.strawKey, 'straw.json');
 
-    this.runner.straw = this.fsReadConfig(file, true);
-    if (!this.runner.straw.shots) {
-      this.runner.straw.shots = {};
+    this.straw = this.fsReadConfig(file, true);
+    if (!this.straw.shots) {
+      this.straw.shots = {};
       this.inquire('promptsStraw').then(resolve);
       return true;
     }
@@ -27,12 +27,12 @@ module.exports = {
     this.logger.info('#magenta', 'run', 'Creating/managing straw', this.params.strawKey);
 
     if (this.params.strawName) {
-      this.runner.straw.name = this.params.strawName;
-      this.runner.straw.description = this.params.strawDescription;
-      this.runner.straw.type = 'normal';
+      this.straw.name = this.params.strawName;
+      this.straw.description = this.params.strawDescription;
+      this.straw.type = 'normal';
     }
 
     var file = path.join('straws', this.params.strawKey, 'straw.json');
-    fs.writeFileSync(file, JSON.stringify(this.runner.straw, null, 2));
+    fs.writeFileSync(file, JSON.stringify(this.straw, null, 2));
   }
 };

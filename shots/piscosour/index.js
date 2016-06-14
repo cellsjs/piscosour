@@ -37,7 +37,7 @@ module.exports = {
       if (configLocal.straws) {
         Object.getOwnPropertyNames(configLocal.straws).forEach((name) => {
           var local = configLocal.straws[name];
-          var strawFile = path.join(this.config.rootDir, 'straws', name, 'straw.json');
+          var strawFile = path.join(this.piscoConfig.rootDir, 'straws', name, 'straw.json');
           var straw = this.fsReadConfig(strawFile);
           straw.type = local.type;
           straw.name = local.name;

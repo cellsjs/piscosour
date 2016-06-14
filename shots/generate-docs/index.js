@@ -9,26 +9,26 @@ module.exports = {
   pkg: {},
 
   run: function() {
-    this.runner.pkg = this.fsReadConfig(this.pkgFile);
+    this.pkg = this.fsReadConfig(this.pkgFile);
     this.logger.info('#magenta', 'run', 'Merge all info.md of straws and shots in the readme.md');
 
     var bundle = [];
 
-    bundle = this.runner._addBundle(this.runner._getStarted(), null, bundle);
-    bundle = this.runner._addBundle('# Recipes', null, bundle);
-    bundle = this.runner._addBundle(this.runner._infoRecipe(), null, bundle);
-    bundle = this.runner._addBundle('# Commands', null, bundle);
-    bundle = this.runner._addBundle(this.runner._commandsIndex(), null, bundle);
-    this.runner._infoStraws(bundle);
-    bundle = this.runner._addBundle('\n# Plugins', null, bundle);
-    this.runner._infoPlugins(bundle);
+    bundle = this._addBundle(this._getStarted(), null, bundle);
+    bundle = this._addBundle('# Recipes', null, bundle);
+    bundle = this._addBundle(this._infoRecipe(), null, bundle);
+    bundle = this._addBundle('# Commands', null, bundle);
+    bundle = this._addBundle(this._commandsIndex(), null, bundle);
+    this._infoStraws(bundle);
+    bundle = this._addBundle('\n# Plugins', null, bundle);
+    this._infoPlugins(bundle);
 
-    this.fsAppendBundle(bundle, 'README.md', ' Installing ' + this.runner.pkg.name);
+    this.fsAppendBundle(bundle, 'README.md', ' Installing ' + this.pkg.name);
   },
 
   _getStarted: function() {
-    var content = `Install ${this.runner.pkg.name} globally\n\n`;
-    content += `    npm install -g ${this.runner.pkg.name}`;
+    var content = `Install ${this.pkg.name} globally\n\n`;
+    content += `    npm install -g ${this.pkg.name}`;
     return content;
   },
 
@@ -59,8 +59,8 @@ module.exports = {
   _infoRecipe: function() {
     var content = '|Name|Version|Description|\n';
     content += '|---|---|---|\n';
-    Object.getOwnPropertyNames(this.config.recipes).forEach((recipeName) => {
-      var recipe = this.config.recipes[recipeName];
+    Object.getOwnPropertyNames(this.piscoConfig.recipes).forEach((recipeName) => {
+      var recipe = this.piscoConfig.recipes[recipeName];
       if (recipe.name) {
         content += '|' + recipe.name + '|' + recipe.version + '|' + recipe.description + '|\n';
       }
@@ -69,8 +69,8 @@ module.exports = {
   },
 
   _infoPlugins: function(bundle) {
-    Object.getOwnPropertyNames(this.config.recipes).forEach((recipeName) => {
-      var recipe = this.config.recipes[recipeName];
+    Object.getOwnPropertyNames(this.piscoConfig.recipes).forEach((recipeName) => {
+      var recipe = this.piscoConfig.recipes[recipeName];
       var dirPlugins = path.join(recipe.dir, 'plugins');
       if (recipe.name && this.fsExists(dirPlugins) && recipeName !== 'piscosour') {
         this.logger.info('#green', 'reading', dirPlugins);
@@ -80,15 +80,15 @@ module.exports = {
           this.logger.info('processing plugin', '#cyan', dir, '...');
           var fileMd = path.join(recipe.dir, 'plugins', dir, 'info.md');
           var file = path.join(recipe.dir, 'plugins', dir, 'plugin.js');
-          bundle = this.runner._addBundle('## ' + dir, fileMd, bundle, true);
+          bundle = this._addBundle('## ' + dir, fileMd, bundle, true);
         });
       }
     });
   },
 
   _infoStraws: function(bundle) {
-    Object.getOwnPropertyNames(this.config.recipes).forEach((recipeName) => {
-      var recipe = this.config.recipes[recipeName];
+    Object.getOwnPropertyNames(this.piscoConfig.recipes).forEach((recipeName) => {
+      var recipe = this.piscoConfig.recipes[recipeName];
       var dirStraw = path.join(recipe.dir, 'straws');
       if (recipe.name && this.fsExists(dirStraw) && recipeName !== 'piscosour') {
         this.logger.info('#green', 'reading', dirStraw);
@@ -97,7 +97,7 @@ module.exports = {
           this.logger.info('processing straw', '#cyan', dir, '...');
           var straw = this.fsReadConfig(path.join(recipe.dir, 'straws', dir, 'straw.json'));
           if (straw.type === 'normal') {
-            this.runner._infoStraw(bundle, straw, dir);
+            this._infoStraw(bundle, straw, dir);
           }
         });
       }
@@ -106,7 +106,7 @@ module.exports = {
 
   _infoStraw: function(bundle, straw, dir, p) {
     var file = path.join(process.cwd(), 'straws', dir, 'info.md');
-    bundle = this.runner._addBundle('## ' + dir + ': \'' + straw.name + '\'', file, bundle, true, straw.description);
+    bundle = this._addBundle('## ' + dir + ': \'' + straw.name + '\'', file, bundle, true, straw.description);
 
     var n = 1;
     Object.getOwnPropertyNames(straw.shots).forEach((shotName) => {
@@ -115,20 +115,20 @@ module.exports = {
       shotName = shotName.indexOf(':') >= 0 ? shotName.split(':')[0] : shotName;
       if (shot.type === 'straw') {
         var strawShot = this.fsReadConfig(path.join(process.cwd(), 'straws', shotName, 'straw.json'));
-        this.runner._infoStraw(bundle, strawShot, '# ' + n + '. (Straw) ' + shotName, n);
+        this._infoStraw(bundle, strawShot, '# ' + n + '. (Straw) ' + shotName, n);
         n++;
       } else {
-        Object.getOwnPropertyNames(this.config.recipes).forEach((recipeName) => {
-          var recipe = this.config.recipes[recipeName];
+        Object.getOwnPropertyNames(this.piscoConfig.recipes).forEach((recipeName) => {
+          var recipe = this.piscoConfig.recipes[recipeName];
           if (recipe.name && recipe.shots && recipe.shots[shotName]) {
             file = path.join(recipe.dir, 'shots', shotName, 'info.md');
-            var info = this.config.getShotInfo(shotName);
-            bundle = this.runner._addBundle('\n### ' + n + (p ? '.' + p : '') + '. ' + shotName + ': \'' + info.description + '\'', file, bundle, true, this.runner._infomd(info));
+            var info = this.piscoConfig.getShotInfo(shotName);
+            bundle = this._addBundle('\n### ' + n + (p ? '.' + p : '') + '. ' + shotName + ': \'' + info.description + '\'', file, bundle, true, this._infomd(info));
             n++;
 
-            this.config.repoTypes.forEach((type) => {
+            this.piscoConfig.repoTypes.forEach((type) => {
               file = path.join(recipe.dir, 'shots', shotName, type, 'info.md');
-              bundle = this.runner._addBundle('\n#### For type ' + type + ':', file, bundle);
+              bundle = this._addBundle('\n#### For type ' + type + ':', file, bundle);
             });
           }
         });

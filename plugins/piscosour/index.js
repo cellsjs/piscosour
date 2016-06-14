@@ -5,7 +5,7 @@ var Waterfall = require('../../lib/utils/waterfall');
 
 module.exports = {
   addons: {
-    config: config,
+    piscoConfig: config,
     pkgFile: 'package.json',
     piscoFile: 'piscosour.json',
     Waterfall: Waterfall

@@ -31,7 +31,7 @@ module.exports = {
     this.logger.info('#magenta', 'run', 'Creating new shot for this recipe');
 
     var dest = path.join('shots', this.params.shotName, this.params.repoType);
-    var origin = path.join(this.config.getDir('piscosour'), 'templates', '_shot');
+    var origin = path.join(this.piscoConfig.getDir('piscosour'), 'templates', '_shot');
 
     this.fsCreateDir('shots');
     this.fsCreateDir(path.join('shots', this.params.shotName));

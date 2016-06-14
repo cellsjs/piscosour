@@ -22,7 +22,7 @@ module.exports = {
       var result = this.executeSync('npm', ['list', '-g', '--depth', '1', command]);
 
       if (result.status === 0) {
-        let version = this.runner._getVersion(result.stdout.toString());
+        let version = this._getVersion(result.stdout.toString());
         if (cmd.version && semver.lt(version, cmd.version)) {
           this.logger.info(command, 'is installed .................', '#yellow', 'OUT OF DATE!');
           this.logger.info('version: ', version, 'must to be up to', cmd.version);

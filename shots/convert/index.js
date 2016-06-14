@@ -43,8 +43,8 @@ module.exports = {
 
   config: function() {
     this.logger.info('#magenta', 'config', 'Configurating package.json');
-    this.runner.modifyPkg();
-    this.runner.writePiscosour();
+    this.modifyPkg();
+    this.writePiscosour();
   },
 
   run: function(resolve, reject) {
@@ -53,8 +53,8 @@ module.exports = {
 
     this.logger.info('#magenta', 'run', 'Copying files to node module');
 
-    var origin = path.join(this.config.getDir('piscosour'), 'templates', 'bin', 'pisco_');
-    var dest = path.join(this.config.rootDir, 'bin');
+    var origin = path.join(this.piscoConfig.getDir('piscosour'), 'templates', 'bin', 'pisco_');
+    var dest = path.join(this.piscoConfig.rootDir, 'bin');
     var destFile = path.join(dest, 'pisco.js');
     this.fsCreateDir(dest);
 

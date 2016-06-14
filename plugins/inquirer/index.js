@@ -24,7 +24,7 @@ module.exports = {
       var shotResolution = function(prompt, attr) {
         if (prompt[attr] !== undefined && Object.prototype.toString.call(prompt[attr]) !== '[object Function]' && typeof prompt[attr] !== 'boolean' && prompt[attr].indexOf('#') === 0) {
           var functionName = prompt[attr].replace('#', '');
-          var func = this.runner[functionName];
+          var func = this[functionName];
           if (func) {
             prompt[attr] = func;
           } else {
