@@ -20,12 +20,12 @@ module.exports = {
 
     if (this.params.defaultType) {
 
-      if (!configLocal.repoTypes) {
-        configLocal.repoTypes = [];
+      if (!configLocal.contexts) {
+        configLocal.contexts = [];
       }
 
-      if (configLocal.repoTypes.indexOf(this.params.defaultType) < 0) {
-        configLocal.repoTypes.push(this.params.defaultType);
+      if (configLocal.contexts.indexOf(this.params.defaultType) < 0) {
+        configLocal.contexts.push(this.params.defaultType);
       }
 
       configLocal.defaultType = this.params.defaultType;

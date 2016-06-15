@@ -6,8 +6,8 @@ module.exports = {
   check: function() {
     if (!this.params.contextFree) {
       let ami = this.ctxWhoami();
-      if (!this.params.disableContextCheck && this._repoType && ami.indexOf(this._repoType) < 0) {
-        throw {error: 'This is not the root of a ' + this._repoType};
+      if (!this.params.disableContextCheck && this._context && ami.indexOf(this._context) < 0) {
+        throw {error: 'This is not the root of a ' + this._context};
       }
       this.logger.info('Context checked: ' + ami, '#green', 'OK');
     }

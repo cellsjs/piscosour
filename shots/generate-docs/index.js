@@ -126,7 +126,7 @@ module.exports = {
             bundle = this._addBundle('\n### ' + n + (p ? '.' + p : '') + '. ' + shotName + ': \'' + info.description + '\'', file, bundle, true, this._infomd(info));
             n++;
 
-            this.piscoConfig.repoTypes.forEach((type) => {
+            this.piscoConfig.contexts.forEach((type) => {
               file = path.join(recipe.dir, 'shots', shotName, type, 'info.md');
               bundle = this._addBundle('\n#### For type ' + type + ':', file, bundle);
             });

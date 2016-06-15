@@ -6,7 +6,7 @@ module.exports = {
 
   check() {
     const piscofile = fsUtils.readConfig('.piscosour/piscosour.json', true);
-    if (piscofile.repoType === 'recipe') {
+    if (piscofile.context === 'recipe') {
       return true;
     }
     const pkgfile = fsUtils.readConfig('package.json', true);

@@ -11,7 +11,7 @@
     },
     {
       "type": "input",
-      "name": "repoType",
+      "name": "context",
       "required": true,
       "message": "Write the repository type for your new shot"
     }
