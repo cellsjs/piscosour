@@ -1,8 +1,10 @@
 'use strict';
 
-let spawn = require('child_process').spawn;
-let chalk = require('chalk');
-let spawnSync = require('child_process').spawnSync;
+const spawn = require('child_process').spawn;
+const stream = require('stream');
+const chalk = require('chalk');
+const spawnSync = require('child_process').spawnSync;
+const stripcolorcodes = require('stripcolorcodes');
 
 module.exports = {
   description: 'Launcher plugin',
@@ -33,17 +35,20 @@ module.exports = {
         args = patch.args;
       }
       this.logger.trace('#cyan', 'executing', cmd, args);
-      var result = spawnSync(cmd, args);
+      let result;
+      if (loud) {
+        result = spawnSync(cmd, args, {stdio: ['ignore', process.stdout, process.stderr]});
+        const message = 'WARNING!! Use \'loud=false\' if you want to use stdout or stderr';
+        result.stdout = message;
+        result.stderr = message;
+      } else {
+        result = spawnSync(cmd, args);
+      }
+
 
       if ((result.error || result.status !== 0) && reject) {
         reject({error: result.error, stderr: result.stderr.toString()});
       }
-
-      if (loud) {
-        this.logger.out(result.stdout.toString());
-        this.logger.err(chalk.red(result.stderr.toString()));
-      }
-
       return result;
     },
     /**

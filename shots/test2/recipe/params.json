@@ -1,13 +1,17 @@
 {
-  "requirements": {
-    "npm" : {
-      "module" : "generator-pisco-recipe",
+  "npm-requirements": {
+    "generator-cells-cordova-plugin" : {
+      "uri" : "https://descinet.bbva.es/stash/scm/cellsnative/generator-cells-cordova-plugin.git",
+      "module" : true,
+      "version" : "0.0.15"
+    },
+    "generator-pisco-recipe" : {
+      "module" : true,
       "version" : "0.0.2"
     },
-    "java": {
-      "version": "1.7.0",
-      "option" : "-version",
-      "regexp" : "\"(.*?)_"
+    "pisco" : {
+      "pkg" : "piscosour",
+      "version" : "0.5.0"
     },
     "cordova" : {
       "version" : "5.4.1"
@@ -15,10 +19,14 @@
     "yo" : {},
     "bower" : {
       "version" : "1.0.0"
+    }
+  },
+  "requirements": {
+    "java": {
+      "version": "1.7.0"
     },
     "sass" : {
-      "version": "3.1.0",
-      "regexp" : "s (.*?) "
+      "version": "3.1.0"
     }
   },
   "workingDir": "nohay",

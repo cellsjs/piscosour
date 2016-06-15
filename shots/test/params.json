@@ -1,27 +1,4 @@
 {
-  "requirements": {
-    "java": {
-      "version": "1.6.0",
-      "option" : "-version",
-      "regexp" : "\"(.*?)_"
-    },
-    "cordova" : {
-      "version" : "5.4.1"
-    },
-    "yo" : {},
-    "bower" : {
-      "version" : "1.0.0"
-    },
-    "sass" : {
-      "version": "3.1.0",
-      "regexp" : "s (.*?) "
-    },
-    "git": {
-      "version": "2.6.0",
-      "option" : "--version",
-      "regexp" : "n (.*?)\\n"
-    }
-  },
   "plugins": [
     "test"
   ],
