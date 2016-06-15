@@ -1,6 +1,6 @@
 {
   "name": "straws",
-  "description": "Adding shot to a straw",
+  "description": "Adding step to a straw",
   "contexts": ["recipe"],
   "prompts": [
     {

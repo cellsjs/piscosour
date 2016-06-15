@@ -1,8 +1,8 @@
 {
   "type": "normal",
-  "name": "add-shot",
-  "description": "Add a shot to a piscosour recipe",
-  "shots": {
-    "shots": {}
+  "name": "add-step",
+  "description": "Add a step to a piscosour recipe",
+  "steps": {
+    "steps": {}
   }
 }

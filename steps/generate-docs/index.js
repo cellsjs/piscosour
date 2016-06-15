@@ -10,7 +10,7 @@ module.exports = {
 
   run: function() {
     this.pkg = this.fsReadConfig(this.pkgFile);
-    this.logger.info('#magenta', 'run', 'Merge all info.md of straws and shots in the readme.md');
+    this.logger.info('#magenta', 'run', 'Merge all info.md of straws and steps in the readme.md');
 
     var bundle = [];
 
@@ -109,25 +109,25 @@ module.exports = {
     bundle = this._addBundle('## ' + dir + ': \'' + straw.name + '\'', file, bundle, true, straw.description);
 
     var n = 1;
-    Object.getOwnPropertyNames(straw.shots).forEach((shotName) => {
-      var shot = straw.shots[shotName];
-      this.logger.info('#green', 'reading', 'shot', '#cyan', shotName);
-      shotName = shotName.indexOf(':') >= 0 ? shotName.split(':')[0] : shotName;
-      if (shot.type === 'straw') {
-        var strawShot = this.fsReadConfig(path.join(process.cwd(), 'straws', shotName, 'straw.json'));
-        this._infoStraw(bundle, strawShot, '# ' + n + '. (Straw) ' + shotName, n);
+    Object.getOwnPropertyNames(straw.steps).forEach((stepName) => {
+      var step = straw.steps[stepName];
+      this.logger.info('#green', 'reading', 'step', '#cyan', stepName);
+      stepName = stepName.indexOf(':') >= 0 ? stepName.split(':')[0] : stepName;
+      if (step.type === 'straw') {
+        var strawStep = this.fsReadConfig(path.join(process.cwd(), 'straws', stepName, 'straw.json'));
+        this._infoStraw(bundle, strawStep, '# ' + n + '. (Straw) ' + stepName, n);
         n++;
       } else {
         Object.getOwnPropertyNames(this.piscoConfig.recipes).forEach((recipeName) => {
           var recipe = this.piscoConfig.recipes[recipeName];
-          if (recipe.name && recipe.shots && recipe.shots[shotName]) {
-            file = path.join(recipe.dir, 'shots', shotName, 'info.md');
-            var info = this.piscoConfig.getShotInfo(shotName);
-            bundle = this._addBundle('\n### ' + n + (p ? '.' + p : '') + '. ' + shotName + ': \'' + info.description + '\'', file, bundle, true, this._infomd(info));
+          if (recipe.name && recipe.steps && recipe.steps[stepName]) {
+            file = path.join(recipe.dir, 'steps', stepName, 'info.md');
+            var info = this.piscoConfig.getStepInfo(stepName);
+            bundle = this._addBundle('\n### ' + n + (p ? '.' + p : '') + '. ' + stepName + ': \'' + info.description + '\'', file, bundle, true, this._infomd(info));
             n++;
 
             this.piscoConfig.contexts.forEach((type) => {
-              file = path.join(recipe.dir, 'shots', shotName, type, 'info.md');
+              file = path.join(recipe.dir, 'steps', stepName, type, 'info.md');
               bundle = this._addBundle('\n#### For type ' + type + ':', file, bundle);
             });
           }

@@ -2,7 +2,7 @@
   "type": "normal",
   "name": "add-straw",
   "description": "Add a straw to a piscosour recipe",
-  "shots": {
+  "steps": {
     "straws": {}
   }
 }

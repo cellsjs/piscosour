@@ -2,7 +2,7 @@
   "type": "normal",
   "name": "create",
   "description": "Starting a repository from scratch",
-  "shots": {
+  "steps": {
     "npm": {},
     "scaffolding": {}
   }

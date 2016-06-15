@@ -21,7 +21,7 @@ module.exports = {
         };
       };
 
-      var shotResolution = function(prompt, attr) {
+      var stepResolution = function(prompt, attr) {
         if (prompt[attr] !== undefined && Object.prototype.toString.call(prompt[attr]) !== '[object Function]' && typeof prompt[attr] !== 'boolean' && prompt[attr].indexOf('#') === 0) {
           var functionName = prompt[attr].replace('#', '');
           var func = this[functionName];
@@ -29,7 +29,7 @@ module.exports = {
             prompt[attr] = func;
           } else {
             prompt[attr] = undefined;
-            this.logger.info('#yellow', 'WARNING', 'value', functionName, 'doesn\'t exists!! in this shot');
+            this.logger.info('#yellow', 'WARNING', 'value', functionName, 'doesn\'t exists!! in this step');
           }
         }
       }.bind(this);
@@ -39,10 +39,10 @@ module.exports = {
       if (prompts) {
         prompts.forEach((prompt) => {
 
-          shotResolution(prompt, 'when');
-          shotResolution(prompt, 'validate');
-          shotResolution(prompt, 'choices');
-          shotResolution(prompt, 'default');
+          stepResolution(prompt, 'when');
+          stepResolution(prompt, 'validate');
+          stepResolution(prompt, 'choices');
+          stepResolution(prompt, 'default');
 
           if (prompt.required && !prompt.validate) {
             prompt.validate = getValidate(prompt);

@@ -16,8 +16,8 @@ module.exports = {
     var file = path.join('straws', this.params.strawKey, 'straw.json');
 
     this.straw = this.fsReadConfig(file, true);
-    if (!this.straw.shots) {
-      this.straw.shots = {};
+    if (!this.straw.steps) {
+      this.straw.steps = {};
       this.inquire('promptsStraw').then(resolve);
       return true;
     }

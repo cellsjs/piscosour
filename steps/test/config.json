@@ -1,6 +1,6 @@
 {
   "name": "test",
-  "description": "TEST Brief description of shot",
+  "description": "TEST Brief description of step",
   "isTest": true,
   "requirements": {
     "java": {

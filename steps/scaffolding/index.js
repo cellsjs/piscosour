@@ -3,7 +3,7 @@
 let fs = require('fs');
 
 /**
- * Create a recipe using a yeoman generator. This shot execute yeoman and generate a new recipe using the user introduced parameters.
+ * Create a recipe using a yeoman generator. This step execute yeoman and generate a new recipe using the user introduced parameters.
  */
 module.exports = {
 

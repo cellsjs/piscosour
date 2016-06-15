@@ -1,6 +1,6 @@
 {
   "name": "test2",
-  "description": "TEST 2 Brief description of shot",
+  "description": "TEST 2 Brief description of step",
   "contextFree" : true,
   "isTest": true,
   "requirements": {

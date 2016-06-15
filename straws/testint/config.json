@@ -3,7 +3,7 @@
   "name": "testint",
   "description": "test",
   "params": {},
-  "shots": {
+  "steps": {
     "test2": {
       "params": {
         "saludo": "holadefault"
