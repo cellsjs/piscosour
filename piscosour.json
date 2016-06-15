@@ -28,7 +28,7 @@
     "notify",
     "emit"
   ],
-  "strawTypes": [
+  "flowTypes": [
     "normal",
     "utils",
     "internal"

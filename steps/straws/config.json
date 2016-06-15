@@ -1,25 +1,25 @@
 {
-  "name": "straws",
-  "description": "Adding step to a straw",
+  "name": "flows",
+  "description": "Adding step to a flow",
   "contexts": ["recipe"],
   "prompts": [
     {
       "type": "input",
-      "name": "strawKey",
+      "name": "flowKey",
       "required": true,
-      "message": "Write the command of the straw"
+      "message": "Write the command of the flow"
     },
     {
       "type": "input",
-      "name": "strawName",
+      "name": "flowName",
       "required": true,
-      "message": "Write a short name for the straw"
+      "message": "Write a short name for the flow"
     },
     {
       "type": "input",
-      "name": "strawDescription",
+      "name": "flowDescription",
       "required": true,
-      "message": "Write a description for the of the straw"
+      "message": "Write a description for the of the flow"
     }
   ]
 }

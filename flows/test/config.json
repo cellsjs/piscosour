@@ -6,7 +6,7 @@
     "plugins": [
       "test"
     ],
-    "saludo": "holastraw"
+    "saludo": "holaflow"
   },
   "steps": {
     "test2": {},

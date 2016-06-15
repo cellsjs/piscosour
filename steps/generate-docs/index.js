@@ -10,7 +10,7 @@ module.exports = {
 
   run: function() {
     this.pkg = this.fsReadConfig(this.pkgFile);
-    this.logger.info('#magenta', 'run', 'Merge all info.md of straws and steps in the readme.md');
+    this.logger.info('#magenta', 'run', 'Merge all info.md of flows and steps in the readme.md');
 
     var bundle = [];
 
@@ -19,7 +19,7 @@ module.exports = {
     bundle = this._addBundle(this._infoRecipe(), null, bundle);
     bundle = this._addBundle('# Commands', null, bundle);
     bundle = this._addBundle(this._commandsIndex(), null, bundle);
-    this._infoStraws(bundle);
+    this._infoFlows(bundle);
     bundle = this._addBundle('\n# Plugins', null, bundle);
     this._infoPlugins(bundle);
 
@@ -86,36 +86,36 @@ module.exports = {
     });
   },
 
-  _infoStraws: function(bundle) {
+  _infoFlows: function(bundle) {
     Object.getOwnPropertyNames(this.piscoConfig.recipes).forEach((recipeName) => {
       var recipe = this.piscoConfig.recipes[recipeName];
-      var dirStraw = path.join(recipe.dir, 'straws');
-      if (recipe.name && this.fsExists(dirStraw) && recipeName !== 'piscosour') {
-        this.logger.info('#green', 'reading', dirStraw);
-        var straws = fs.readdirSync(dirStraw);
-        straws.forEach((dir) => {
-          this.logger.info('processing straw', '#cyan', dir, '...');
-          var straw = this.fsReadConfig(path.join(recipe.dir, 'straws', dir, 'straw.json'));
-          if (straw.type === 'normal') {
-            this._infoStraw(bundle, straw, dir);
+      var dirFlow = path.join(recipe.dir, 'flows');
+      if (recipe.name && this.fsExists(dirFlow) && recipeName !== 'piscosour') {
+        this.logger.info('#green', 'reading', dirFlow);
+        var flows = fs.readdirSync(dirFlow);
+        flows.forEach((dir) => {
+          this.logger.info('processing flow', '#cyan', dir, '...');
+          var flow = this.fsReadConfig(path.join(recipe.dir, 'flows', dir, 'flow.json'));
+          if (flow.type === 'normal') {
+            this._infoFlow(bundle, flow, dir);
           }
         });
       }
     });
   },
 
-  _infoStraw: function(bundle, straw, dir, p) {
-    var file = path.join(process.cwd(), 'straws', dir, 'info.md');
-    bundle = this._addBundle('## ' + dir + ': \'' + straw.name + '\'', file, bundle, true, straw.description);
+  _infoFlow: function(bundle, flow, dir, p) {
+    var file = path.join(process.cwd(), 'flows', dir, 'info.md');
+    bundle = this._addBundle('## ' + dir + ': \'' + flow.name + '\'', file, bundle, true, flow.description);
 
     var n = 1;
-    Object.getOwnPropertyNames(straw.steps).forEach((stepName) => {
-      var step = straw.steps[stepName];
+    Object.getOwnPropertyNames(flow.steps).forEach((stepName) => {
+      var step = flow.steps[stepName];
       this.logger.info('#green', 'reading', 'step', '#cyan', stepName);
       stepName = stepName.indexOf(':') >= 0 ? stepName.split(':')[0] : stepName;
-      if (step.type === 'straw') {
-        var strawStep = this.fsReadConfig(path.join(process.cwd(), 'straws', stepName, 'straw.json'));
-        this._infoStraw(bundle, strawStep, '# ' + n + '. (Straw) ' + stepName, n);
+      if (step.type === 'flow') {
+        var flowStep = this.fsReadConfig(path.join(process.cwd(), 'flows', stepName, 'flow.json'));
+        this._infoFlow(bundle, flowStep, '# ' + n + '. (Flow) ' + stepName, n);
         n++;
       } else {
         Object.getOwnPropertyNames(this.piscoConfig.recipes).forEach((recipeName) => {

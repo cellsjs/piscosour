@@ -5,34 +5,34 @@ let fs = require('fs');
 
 module.exports = {
 
-  straw: {},
+  flow: {},
 
   config: function(resolve) {
-    this.logger.info('#magenta', 'config', 'Configuring straw', this.params.strawKey);
+    this.logger.info('#magenta', 'config', 'Configuring flow', this.params.flowKey);
 
-    this.fsCreateDir('straws');
-    this.fsCreateDir(path.join('straws', this.params.strawKey));
+    this.fsCreateDir('flows');
+    this.fsCreateDir(path.join('flows', this.params.flowKey));
 
-    var file = path.join('straws', this.params.strawKey, 'straw.json');
+    var file = path.join('flows', this.params.flowKey, 'flow.json');
 
-    this.straw = this.fsReadConfig(file, true);
-    if (!this.straw.steps) {
-      this.straw.steps = {};
-      this.inquire('promptsStraw').then(resolve);
+    this.flow = this.fsReadConfig(file, true);
+    if (!this.flow.steps) {
+      this.flow.steps = {};
+      this.inquire('promptsFlow').then(resolve);
       return true;
     }
   },
 
   run: function() {
-    this.logger.info('#magenta', 'run', 'Creating/managing straw', this.params.strawKey);
+    this.logger.info('#magenta', 'run', 'Creating/managing flow', this.params.flowKey);
 
-    if (this.params.strawName) {
-      this.straw.name = this.params.strawName;
-      this.straw.description = this.params.strawDescription;
-      this.straw.type = 'normal';
+    if (this.params.flowName) {
+      this.flow.name = this.params.flowName;
+      this.flow.description = this.params.flowDescription;
+      this.flow.type = 'normal';
     }
 
-    var file = path.join('straws', this.params.strawKey, 'straw.json');
-    fs.writeFileSync(file, JSON.stringify(this.straw, null, 2));
+    var file = path.join('flows', this.params.flowKey, 'flow.json');
+    fs.writeFileSync(file, JSON.stringify(this.flow, null, 2));
   }
 };

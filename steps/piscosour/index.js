@@ -34,24 +34,24 @@ module.exports = {
     }
 
     var fixDeprecated = function() {
-      if (configLocal.straws) {
-        Object.getOwnPropertyNames(configLocal.straws).forEach((name) => {
-          var local = configLocal.straws[name];
-          var strawFile = path.join(this.piscoConfig.rootDir, 'straws', name, 'straw.json');
-          var straw = this.fsReadConfig(strawFile);
-          straw.type = local.type;
-          straw.name = local.name;
-          straw.description = local.description;
-          fs.writeFileSync(strawFile, JSON.stringify(straw, null, 2));
+      if (configLocal.flows) {
+        Object.getOwnPropertyNames(configLocal.flows).forEach((name) => {
+          var local = configLocal.flows[name];
+          var flowFile = path.join(this.piscoConfig.rootDir, 'flows', name, 'flow.json');
+          var flow = this.fsReadConfig(flowFile);
+          flow.type = local.type;
+          flow.name = local.name;
+          flow.description = local.description;
+          fs.writeFileSync(flowFile, JSON.stringify(flow, null, 2));
         });
       }
-      delete configLocal.straws;
+      delete configLocal.flows;
       fs.writeFileSync(this.piscoFile, JSON.stringify(configLocal, null, 2));
       this.logger.info('#green', 'piscosour.json fixed!');
       go();
     };
 
-    if (configLocal.straws) {
+    if (configLocal.flows) {
       this.inquire('promptsPisco').then(fixDeprecated);
       return true;
     }
