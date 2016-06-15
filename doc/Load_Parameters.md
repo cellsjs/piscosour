@@ -4,9 +4,27 @@ Todos los parametros que recibimos en un shot están centralizados en **this.par
 
 ## (1) Opción en la línea de comando. 
 
-    pisco --workingDir workspace
+    pisco --workingDir workspace --params1 value1 --params2 value2
 
 el parámetro this.params.workingDir="workspace"
+
+También es posible pasar como parámetro de línea de comando un fichero json con definiciones de parámetros más complejas: Objetos y Arrays.
+
+    pisco --paramsFile params.json
+
+Donde params.json será algo así:
+
+```
+{
+  "workingDir": "workspace",
+  "params1": "value1",
+  "params2": "value2" 
+  "objParam": {
+    "params3": "value3" 
+  },
+  "arrayParam": [1,2,3]
+ }
+```
 
 ## (2) Configuración en el fichero piscosour.json 
 
