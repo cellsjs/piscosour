@@ -12,10 +12,10 @@
     },
     {
       "type": "input",
-      "name": "defaultType",
+      "name": "defaultContext",
       "required": true,
       "message": "Set the default repository type for this recipe",
-      "when": "#whenDefaultType",
+      "when": "#whendefaultContext",
       "default": "#getDefault"
     }
   ],

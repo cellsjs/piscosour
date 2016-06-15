@@ -5,30 +5,30 @@ let path = require('path');
 
 module.exports = {
 
-  whenDefaultType: function(answer) {
+  whendefaultContext: function(answer) {
     return answer.doDefault;
   },
 
   getDefault: function() {
     var configLocal = this.fsReadConfig(this.piscoFile);
-    return configLocal.defaultType;
+    return configLocal.defaultContext;
   },
 
   config: function(go, stop) {
     this.logger.info('#magenta', 'config', 'Configure recipe', this.piscoFile);
     var configLocal = this.fsReadConfig(this.piscoFile);
 
-    if (this.params.defaultType) {
+    if (this.params.defaultContext) {
 
       if (!configLocal.contexts) {
         configLocal.contexts = [];
       }
 
-      if (configLocal.contexts.indexOf(this.params.defaultType) < 0) {
-        configLocal.contexts.push(this.params.defaultType);
+      if (configLocal.contexts.indexOf(this.params.defaultContext) < 0) {
+        configLocal.contexts.push(this.params.defaultContext);
       }
 
-      configLocal.defaultType = this.params.defaultType;
+      configLocal.defaultContext = this.params.defaultContext;
 
       fs.writeFileSync(this.piscoFile, JSON.stringify(configLocal, null, 2));
     }

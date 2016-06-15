@@ -17,7 +17,7 @@
       "skipper"
     ]
   },
-  "defaultType": "recipe",
+  "defaultContext": "recipe",
   "junitDir": "test-reports",
   "junitPiscoFile": "pisco-junit.xml",
   "stages": [
