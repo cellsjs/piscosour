@@ -41,13 +41,13 @@ module.exports = {
         let option = options.option ? options.option : '-v';
         const result = _sh(cmd, option, options.module);
         if (result.status !== 0) {
-          return Promise.reject({error: `'${cmd}' is not accesible!!`, data: result.stderr.toString()});
+          return {error: `'${cmd}' is not accesible!!`, data: result.stderr.toString()};
         } else {
           let actual = _getVersion(options.regexp, result.stdout.toString(), result.stderr.toString());
           if (!semver.valid(actual)) {
             this.logger.info('#cyan', cmd, '(', options.version, ') is required -> ', '#red', cmd, '(', actual, ') impossible to parse ...', '#yellow', 'WARNING!');
           } else if (actual && semver.lt(actual, options.version)) {
-            return Promise.reject({error: `'${cmd}' is not up to date!! version is: '${actual}' required: '${options.version}'`});
+            return {error: `'${cmd}' is not up to date!! version is: '${actual}' required: '${options.version}'`};
           } else {
             this.logger.info('#cyan', cmd, '(', options.version, ') is required -> ', '#green', cmd, '(', actual, ') is installed ...', '#green', 'OK');
           }
@@ -55,10 +55,11 @@ module.exports = {
       } else {
         const result = _sh(cmd, null, options.module);
         if (result.status === 127) {
-          return Promise.reject({error: `'${cmd}' is not accesible!!`, data: result.stderr.toString()});
+          return {error: `'${cmd}' is not accesible!!`, data: result.stderr.toString()};
         }
         this.logger.info('#cyan', cmd, '( any version ) is required -> ', '#green', cmd, 'is installed ...', '#green', 'OK');
       }
+      return {ok: true};
     };
     const _sumRequirements = (sum, added) => {
       for (let cmd in added) {
@@ -75,44 +76,41 @@ module.exports = {
       }
       return sum;
     };
-
     const _installable = (cmd, option) => {
       let p = option.uri ? `git+${option.uri}` : (option.pkg ? option.pkg : cmd);
       const versionchar = option.uri ? '#' : '@';
       p = option.version ? `${p}${versionchar}${option.version}` : p;
       return p;
     };
+    const _install = (cmd, option) => {
+      this.logger.info('#cyan', cmd, 'is required -> ', '#green', cmd, 'is installing...');
+      const installable = _installable(cmd, option);
+      let res = this.sh(`npm install -g ${installable}`, null, true);
+      if (res.status !== 0) {
+        throw {error: `impossible to install ${installable}`};
+      }
+      return true;
+    };
     const fileName = 'requirements.json';
 
-    let promise;
     if (!this.params.disableSystemCheck || this.params.disableSystemCheck === 'null') {
       ['requirements', 'npm-requirements'].forEach((paramName) => {
         if (this.params[paramName]) {
           for (let cmd in this.params[paramName]) {
             if (this.params[paramName].hasOwnProperty(cmd)) {
               const option = this.config.mergeObject(this.params[paramName][cmd], this.params.versions[cmd]);
-              promise = _check(cmd, option);
-              if (promise && paramName.startsWith('npm')) {
-                this.logger.info('#cyan', cmd, 'is required -> ', '#green', cmd, 'is installing...');
-                const installable = _installable(cmd, option);
-                let res = this.sh(`npm install -g ${installable}`, null, true);
-                if (res.status !== 0) {
-                  promise = Promise.reject({error: `impossible to install ${installable}`});
-                  return;
+              const checked = _check(cmd, option);
+              if (checked.error) {
+                if (paramName.startsWith('npm')) {
+                  _install(cmd, option);
                 } else {
-                  promise = undefined;
+                  throw checked;
                 }
-              } else if (promise) {
-                return;
               }
             }
           }
         }
       });
-    }
-
-    if (promise) {
-      return promise;
     }
 
     if (this.params.requirements && this.params.saveRequirements) {
