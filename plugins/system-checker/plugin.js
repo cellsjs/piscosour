@@ -24,16 +24,16 @@ module.exports = {
     };
     const _sh = (cmd, option, module) => {
       if (module) {
-        const result = this.sh(`npm list ${cmd} --depth 0 -g`, null, false);
+        const result = this.sh(`npm list ${cmd} --depth 0 -g`);
         const version = result.stdout.toString().match(`${cmd}\@(.*?) `);
         if (version && version.length > 1) {
           result.stdout = new Buffer(version[1]);
         }
         return result;
       } else if (option) {
-        return this.sh(`${cmd} ${option}`, null, false);
+        return this.sh(`${cmd} ${option}`);
       } else {
-        return this.sh(cmd, null, false);
+        return this.sh(cmd);
       }
     };
     const _check = (cmd, options) => {
