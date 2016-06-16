@@ -37,29 +37,32 @@ module.exports = {
       }
     };
     const _check = (cmd, options) => {
+      let out = {version: options.version};
       if (options.version) {
         let option = options.option ? options.option : '-v';
         const result = _sh(cmd, option, options.module);
         if (result.status !== 0) {
-          return {error: `'${cmd}' is not accesible!!`, data: result.stderr.toString()};
+          out.error = `'${cmd}' is not accesible!!`;
+          out.data = result.stderr.toString();
         } else {
           let actual = _getVersion(options.regexp, result.stdout.toString(), result.stderr.toString());
           if (!semver.valid(actual)) {
-            this.logger.info('#cyan', cmd, '(', options.version, ') is required -> ', '#red', cmd, '(', actual, ') impossible to parse ...', '#yellow', 'WARNING!');
+            out.message = ['#red', cmd, '(', actual, ') impossible to parse ...', '#yellow', 'WARNING!'];
           } else if (actual && semver.lt(actual, options.version)) {
-            return {error: `'${cmd}' is not up to date!! version is: '${actual}' required: '${options.version}'`};
+            out.error = `'${cmd}' is not up to date!! version is: '${actual}' required: '${options.version}'`;
           } else {
-            this.logger.info('#cyan', cmd, '(', options.version, ') is required -> ', '#green', cmd, '(', actual, ') is installed ...', '#green', 'OK');
+            out.message = ['#green', cmd, '(', actual, ') is installed ...', '#green', 'OK'];
           }
         }
       } else {
         const result = _sh(cmd, null, options.module);
         if (result.status === 127) {
-          return {error: `'${cmd}' is not accesible!!`, data: result.stderr.toString()};
+          out.error = `'${cmd}' is not accesible!!`;
+          out.data = result.stderr.toString();
         }
-        this.logger.info('#cyan', cmd, '( any version ) is required -> ', '#green', cmd, 'is installed ...', '#green', 'OK');
       }
-      return {ok: true};
+      this.logger.info.apply(this.logger, ['#cyan', cmd, '(', out.version, ') is required -> '].concat(out.message ? out.message : [out.error, '...', '#red', 'ERROR!']));
+      return out;
     };
     const _sumRequirements = (sum, added) => {
       for (let cmd in added) {
@@ -103,7 +106,7 @@ module.exports = {
               if (checked.error) {
                 if (paramName.startsWith('npm')) {
                   _install(cmd, option);
-                } else {
+                } else if (!this.params.neverStop) {
                   throw checked;
                 }
               }
