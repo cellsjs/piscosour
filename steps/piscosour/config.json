@@ -8,13 +8,13 @@
       "name": "doDefault",
       "default": true,
       "required": true,
-      "message": "Do you want to set default repository type?"
+      "message": "Do you want to set default context?"
     },
     {
       "type": "input",
       "name": "defaultContext",
       "required": true,
-      "message": "Set the default repository type for this recipe",
+      "message": "Set the default context for this recipe",
       "when": "#whendefaultContext",
       "default": "#getDefault"
     }

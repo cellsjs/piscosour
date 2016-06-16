@@ -13,7 +13,7 @@
       "type": "input",
       "name": "context",
       "required": true,
-      "message": "Write the repository type for your new step"
+      "message": "Write the context for your new step"
     }
   ]
 }
