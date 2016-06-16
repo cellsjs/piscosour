@@ -9,7 +9,7 @@ module.exports = {
     this.logger.info('#magenta', 'check', 'Check if this is a piscosour recipe');
     var dest = path.join('steps', this.params.stepName, this.params.context);
     if (this.fsExists(dest)) {
-      stop('Step "' + this.params.stepName + '" already exists for repository type: "' + this.params.context + '" in this recipe, edit it to change!');
+      stop('Step "' + this.params.stepName + '" already exists for context: "' + this.params.context + '" in this recipe, edit it to change!');
     }
   },
 

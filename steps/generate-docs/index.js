@@ -138,7 +138,7 @@ module.exports = {
 
   _infomd: function(info) {
     var r = '```\n';
-    r += 'Repository types:';
+    r += 'Contexts:';
     info.types.forEach((type, i, a) => {
       r += '  ' + type;
       if (i < a.length - 1) {
