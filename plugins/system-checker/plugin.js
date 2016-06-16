@@ -85,7 +85,7 @@ module.exports = {
     const fileName = 'requirements.json';
 
     let promise;
-    if (!this.params.disableSystemCheck) {
+    if (!this.params.disableSystemCheck || this.params.disableSystemCheck === 'null') {
       ['requirements', 'npm-requirements'].forEach((paramName) => {
         if (this.params[paramName]) {
           for (let cmd in this.params[paramName]) {
