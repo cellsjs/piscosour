@@ -35,8 +35,7 @@ module.exports = {
   writePiscosour: function() {
     this.logger.info('#cyan', 'Write', 'piscosour.json');
     var piscosour = {
-      'cmd': this.params.cmd,
-      'contexts': []
+      'cmd': this.params.cmd
     };
     fs.writeFileSync('piscosour.json', JSON.stringify(piscosour, null, 2));
   },
