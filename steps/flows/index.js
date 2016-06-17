@@ -13,7 +13,7 @@ module.exports = {
     this.fsCreateDir('flows');
     this.fsCreateDir(path.join('flows', this.params.flowKey));
 
-    var file = path.join('flows', this.params.flowKey, 'flow.json');
+    var file = path.join('flows', this.params.flowKey, 'config.json');
 
     this.flow = this.fsReadConfig(file, true);
     if (!this.flow.steps) {
@@ -26,13 +26,11 @@ module.exports = {
   run: function() {
     this.logger.info('#magenta', 'run', 'Creating/managing flow', this.params.flowKey);
 
-    if (this.params.flowName) {
-      this.flow.name = this.params.flowName;
-      this.flow.description = this.params.flowDescription;
-      this.flow.type = 'normal';
-    }
+    this.flow.name = this.params.flowKey;
+    this.flow.description = this.params.flowDescription;
+    this.flow.type = 'normal';
 
-    var file = path.join('flows', this.params.flowKey, 'flow.json');
+    var file = path.join('flows', this.params.flowKey, 'config.json');
     fs.writeFileSync(file, JSON.stringify(this.flow, null, 2));
   }
 };

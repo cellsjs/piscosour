@@ -7,13 +7,7 @@
       "type": "input",
       "name": "flowKey",
       "required": true,
-      "message": "Write the command of the flow"
-    },
-    {
-      "type": "input",
-      "name": "flowName",
-      "required": true,
-      "message": "Write a short name for the flow"
+      "message": "Write the name of the flow"
     },
     {
       "type": "input",
