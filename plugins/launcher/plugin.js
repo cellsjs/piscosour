@@ -73,8 +73,10 @@ module.exports = {
       return child;
     },
     execute: function(cmd, args) {
-      var child = this.executeStreamed(cmd, args);
-      var error;
+      let child = this.executeStreamed(cmd, args);
+      let error;
+      let command = cmd;
+      args.forEach((item)=> command += ' ' + item);
 
       child.on('disconnect', () => {
         this.logger.info('Child process disconnected!', arguments);
@@ -91,11 +93,11 @@ module.exports = {
       });
 
       child.on('error', () => {
-        this.logger.error('#red', 'Child process error!', arguments);
+        this.logger.error('#red', 'Child process error!', command);
       });
 
       child.on('exit', () => {
-        this.logger.info('Child process exit!', arguments);
+        this.logger.info('#cyan', command, 'executed', '#green', 'ok!');
       });
 
       return new Promise((resolve, reject) => {
