@@ -17,6 +17,9 @@
       "skipper"
     ],
     "versions": {
+      "yo": {
+        "option": "--version"
+      },
       "java": {
         "option": "-version",
         "regexp": "\"(.*?)_"
