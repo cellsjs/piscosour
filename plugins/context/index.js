@@ -4,9 +4,9 @@ let context = require('../../lib/context');
 
 module.exports = {
   check: function() {
-    if (!this.params.contextFree) {
+    if (!this.params.disableContextCheck) {
       let ami = this.ctxWhoami();
-      if (!this.params.disableContextCheck && this._context && ami.indexOf(this._context) < 0) {
+      if (this._context && ami.indexOf(this._context) < 0) {
         throw {error: 'This is not the root of a ' + this._context};
       }
       this.logger.info('Context checked: ' + ami, '#green', 'OK');

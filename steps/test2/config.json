@@ -1,7 +1,7 @@
 {
   "name": "test2",
   "description": "TEST 2 Brief description of step",
-  "contextFree" : true,
+  "disableContextCheck" : true,
   "isTest": true,
   "requirements": {
     "npm" : {
