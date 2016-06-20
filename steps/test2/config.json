@@ -1,6 +1,7 @@
 {
   "name": "test2",
   "description": "TEST 2 Brief description of step",
+  "contexts": "*",
   "disableContextCheck" : true,
   "isTest": true,
   "requirements": {

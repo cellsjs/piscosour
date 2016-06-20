@@ -1,6 +1,7 @@
 {
   "name": "npm",
   "description": "Checking all npm commands needed",
+  "contexts": "*",
   "disableContextCheck": true,
   "installCmds": [
     {

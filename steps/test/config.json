@@ -1,6 +1,7 @@
 {
   "name": "test",
   "description": "TEST Brief description of step",
+  "contexts": "*",
   "isTest": true,
   "requirements": {
     "java": {
