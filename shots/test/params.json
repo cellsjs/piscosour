@@ -1,4 +1,37 @@
 {
+  "requirements": {
+    "generator-cells-cordova-plugin" : {
+      "npm": true,
+      "listedIn": "npm",
+      "uri" : "https://descinet.bbva.es/stash/scm/cellsnative/generator-cells-cordova-plugin.git",
+      "version" : "0.0.15"
+    },
+    "generator-pisco-recipe" : {
+      "npm": true,
+      "listedIn": "npm",
+      "version" : "0.0.2"
+    },
+    "pisco" : {
+      "npm": true,
+      "pkg" : "piscosour",
+      "version" : "0.5.0"
+    },
+    "cordova" : {
+      "npm": true,
+      "version" : "5.4.1"
+    },
+    "yo" : {"npm": true},
+    "bower" : {
+      "npm": true,
+      "version" : "1.7.9"
+    },
+    "java": {
+      "version": "1.7.0"
+    },
+    "sass" : {
+      "version": "3.1.0"
+    }
+  },
   "plugins": [
     "test"
   ],
