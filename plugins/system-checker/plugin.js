@@ -59,6 +59,9 @@ module.exports = {
         if (result.status === 127) {
           out.error = `'${cmd}' is not accesible!!`;
           out.data = result.stderr.toString();
+        } else {
+          out.version = 'any';
+          out.message = ['#green', cmd, 'is installed ...', '#green', 'OK'];
         }
       }
       this.logger.info.apply(this.logger, ['#cyan', cmd, '(', out.version, ') is required -> '].concat(out.message ? out.message : [out.error, '...', '#red', 'ERROR!']));
@@ -66,15 +69,17 @@ module.exports = {
     };
     const _sumRequirements = (sum, added) => {
       for (let cmd in added) {
-        if (sum[cmd]) {
-          if (!sum[cmd].version || (added[cmd].version && semver.lt(sum[cmd].version, added[cmd].version))) {
-            sum[cmd].version = added[cmd].version;
+        if (!added[cmd].npm) {
+          if (sum[cmd]) {
+            if (!sum[cmd].version || (added[cmd].version && semver.lt(sum[cmd].version, added[cmd].version))) {
+              sum[cmd].version = added[cmd].version;
+            }
+            if (sum[cmd].option !== added[cmd].option || sum[cmd].regexp !== added[cmd].regexp) {
+              this.logger.warn('#yellow', 'Uncoherent definition of requirements', 'option: "' + sum[cmd].option + '"  =>  "' + added[cmd].option + '" ; regexp: "' + sum[cmd].regexp + '"  =>  "' + added[cmd].regexp + '"');
+            }
+          } else {
+            sum[cmd] = added[cmd];
           }
-          if (sum[cmd].option !== added[cmd].option || sum[cmd].regexp !== added[cmd].regexp) {
-            this.logger.warn('#yellow', 'Uncoherent definition of requirements', 'option: "' + sum[cmd].option + '"  =>  "' + added[cmd].option + '" ; regexp: "' + sum[cmd].regexp + '"  =>  "' + added[cmd].regexp + '"');
-          }
-        } else {
-          sum[cmd] = added[cmd];
         }
       }
       return sum;
@@ -96,24 +101,20 @@ module.exports = {
     };
     const fileName = 'requirements.json';
 
-    if (!this.params.disableSystemCheck || this.params.disableSystemCheck === 'null') {
-      ['requirements', 'npm-requirements'].forEach((paramName) => {
-        if (this.params[paramName]) {
-          for (let cmd in this.params[paramName]) {
-            if (this.params[paramName].hasOwnProperty(cmd)) {
-              const option = this.config.mergeObject(this.params[paramName][cmd], this.params.versions[cmd]);
-              const checked = _check(cmd, option);
-              if (checked.error) {
-                if (paramName.startsWith('npm')) {
-                  _install(cmd, option);
-                } else if (!this.params.neverStop) {
-                  throw checked;
-                }
-              }
+    if (this.params.requirements && (!this.params.disableSystemCheck || this.params.disableSystemCheck === 'null')) {
+      for (let cmd in this.params.requirements) {
+        if (this.params.requirements.hasOwnProperty(cmd)) {
+          const option = this.config.mergeObject(this.params.requirements[cmd], this.params.versions[cmd]);
+          const checked = _check(cmd, option);
+          if (checked.error) {
+            if (option.npm) {
+              _install(cmd, option);
+            } else if (!this.params.neverStop) {
+              throw checked;
             }
           }
         }
-      });
+      }
     }
 
     if (this.params.requirements && this.params.saveRequirements) {
