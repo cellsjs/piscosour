@@ -17,6 +17,13 @@
       "skipper"
     ],
     "versions": {
+      "bower" : {
+        "list": "bower cache list"
+      },
+      "npm" : {
+        "list": "cat txt",
+        "regexp": "\\@(.*?) "
+      },
       "yo": {
         "option": "--version"
       },
