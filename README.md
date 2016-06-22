@@ -47,7 +47,7 @@ Install piscosour globally
 |Name|Version|Description|
 |---|---|---|
 |pisco-user|-|User Piscosour Recipe|
-|piscosour|0.6.3|Get all your devops tools wrapped-up!|
+|piscosour|0.6.5|Get all your devops tools wrapped-up!|
 
 
 
@@ -55,7 +55,7 @@ Install piscosour globally
 
 
 
-**from piscosour  v.0.6.3:**
+**from piscosour  v.0.6.5:**
 
 - **pisco node-module::convert** ( Convert any nodejs module into a piscosour recipe )
 - **pisco recipe::generate-docs** ( Generate one file per straw inside a directory )
@@ -81,7 +81,7 @@ Add a shot to a piscosour recipe
 ### 1. shots: 'Create new pisco shot inside this module'
 ```
 Repository types:  recipe
-Recipes: piscosour (0.6.3)
+Recipes: piscosour (0.6.5)
 ```
 shot shots
 
@@ -92,7 +92,7 @@ Add a straw to a piscosour recipe
 ### 1. straws: 'Adding shot to a straw'
 ```
 Repository types:  recipe
-Recipes: piscosour (0.6.3)
+Recipes: piscosour (0.6.5)
 ```
 shot straws
 
@@ -103,7 +103,7 @@ Manage a piscosour recipe
 ### 1. piscosour: 'Configure piscosour.json'
 ```
 Repository types:  recipe
-Recipes: piscosour (0.6.3)
+Recipes: piscosour (0.6.5)
 ```
 shot piscosour
 
@@ -114,7 +114,7 @@ Convert any module into a piscosour recipe
 ### 1. convert: 'Convert any nodejs module into a piscosour recipe'
 ```
 Repository types:  node-module
-Recipes: piscosour (0.6.3)
+Recipes: piscosour (0.6.5)
 ```
 shot convert
 
@@ -138,7 +138,7 @@ Listo! ya tienes tu primer ejecutable de pisco creado! pruebalo
 ### 1. scaffolding: 'Create a piscosour recipe from a scaffold template'
 ```
 Repository types:  recipe
-Recipes: piscosour (0.6.3)
+Recipes: piscosour (0.6.5)
 ```
 shot scaffolding
 
@@ -157,7 +157,7 @@ Info.md is a regular md file, so you can use all the markdown specification. The
 ### 1. generate-docs: 'Generate one file per straw inside a directory'
 ```
 Repository types:  recipe
-Recipes: piscosour (0.6.3)
+Recipes: piscosour (0.6.5)
 ```
 shot generate-docs
 
