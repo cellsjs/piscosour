@@ -1,6 +1,6 @@
 {
   "name": "piscosour",
-  "version": "0.6.4",
+  "version": "0.6.5",
   "description": "Get all your devops tools wrapped-up!",
   "main": "index.js",
   "homepage": "https://github.com/cellsjs/piscosour",
@@ -38,6 +38,10 @@
   "bin": {
     "pisco": "bin/pisco.js"
   },
+  "scripts": {
+    "deps": "npm install",
+    "test": "node_modules/.bin/mocha"
+  },
   "dependencies": {
     "chalk": "^1.1.1",
     "inquirer": "^0.10.0",
@@ -54,7 +58,11 @@
     "node": ">=4.0.0"
   },
   "devDependencies": {
-    "cz-conventional-changelog": "^1.1.5"
+    "cz-conventional-changelog": "^1.1.5",
+    "chai": "*",
+    "mocha": "*",
+    "pisco-test-helper": "git+https://descinet.bbva.es/stash/scm/ctool/pisco-test-helper.git",
+    "rimraf": "^2.5.2"
   },
   "config": {
     "commitizen": {
