@@ -1,4 +1,4 @@
-### 4. Write the requirements into a global file 'requirements.json'
+### Write the requirements into a global file 'requirements.json'
 
     cells component:validate --pstage check --b-saveRequirements --b-disablePrompts --b-disableContextCheck --b-disableSystemCheck
     
