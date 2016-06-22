@@ -14,6 +14,7 @@
       "fsutils",
       "piscosour",
       "system-checker",
+      "system-saver",
       "skipper"
     ],
     "versions": {
@@ -21,8 +22,10 @@
         "list": "bower cache list"
       },
       "npm" : {
-        "list": "cat txt",
-        "regexp": "\\@(.*?) "
+        "disableCheck": true,
+        "npm": true,
+        "list": "npm list -g --depth 0",
+        "regexp": "\\@(.*?)\\s"
       },
       "yo": {
         "option": "--version"
