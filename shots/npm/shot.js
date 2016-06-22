@@ -26,7 +26,7 @@ module.exports = {
         if (cmd.version && semver.lt(version, cmd.version)) {
           this.logger.info(command, 'is installed .................', '#yellow', 'OUT OF DATE!');
           this.logger.info('version: ', version, 'must to be up to', cmd.version);
-          cmd.args[0] = 'update';
+          cmd.args[0] = 'install';
           resolve({skip: false});
         } else {
           this.logger.info(command, 'is installed .................', '#green', 'OK');
