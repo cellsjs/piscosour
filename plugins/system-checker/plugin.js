@@ -6,6 +6,7 @@ const semver = require('semver');
 const os = require('os');
 const path = require('path');
 const fs = require('fs');
+const cache = {};
 
 module.exports = {
   description: 'System requirements checker',
@@ -22,25 +23,45 @@ module.exports = {
         }
       }
     };
-    const _sh = (cmd, option, module) => {
-      if (module) {
-        const result = this.sh(`npm list ${cmd} --depth 0 -g`);
-        const version = result.stdout.toString().match(`${cmd}\@(.*?) `);
-        if (version && version.length > 1) {
-          result.stdout = new Buffer(version[1]);
-        }
-        return result;
-      } else if (option) {
-        return this.sh(`${cmd} ${option}`);
-      } else {
-        return this.sh(cmd);
+    const _processVersion = (result, regexp) => {
+      const version = result.stdout.toString().match(regexp);
+      if (version && version.length > 1) {
+        return {stdout: new Buffer(version[1]), stderr: new Buffer(version[1]), status: 0};
       }
     };
-    const _check = (cmd, options) => {
+    const _cachedExec = (command) => {
+      let result = cache[command];
+      if (!result) {
+        result = new Promise((ok, ko) => {
+          this.logger.info('Waiting for', '#green', command, '...');
+          cache[command] = this.sh(command);
+          ok(cache[command]);
+        });
+        cache[command] = result;
+      } else if (!result.then) {
+        result = Promise.resolve(result);
+      }
+      return result;
+    };
+    const _sh = (cmd, options) => {
+      if (options.listedIn) {
+        const father = this.params.requirements[options.listedIn];
+        if (father && father.list) {
+          this.logger.trace('Getting list for', cmd);
+          return Promise.resolve()
+            .then(() => _cachedExec(father.list))
+            .then((result) => _processVersion(result, `${cmd}${father.regexp}`));
+        } else {
+          return Promise.reject({error: `There is no definition for listing in ${options.listedIn}`});
+        }
+      } else {
+        let option = options.option ? options.option : '-v';
+        return _cachedExec(options.version ? `${cmd} ${option}` : cmd);
+      }
+    };
+    const _check = (cmd, options, result) => new Promise((ok, ko) => {
       let out = {version: options.version};
       if (options.version) {
-        let option = options.option ? options.option : '-v';
-        const result = _sh(cmd, option, options.module);
         if (result.status !== 0) {
           out.error = `'${cmd}' is not accesible!!`;
           out.data = result.stderr.toString();
@@ -55,7 +76,6 @@ module.exports = {
           }
         }
       } else {
-        const result = _sh(cmd, null, options.module);
         if (result.status === 127) {
           out.error = `'${cmd}' is not accesible!!`;
           out.data = result.stderr.toString();
@@ -65,25 +85,12 @@ module.exports = {
         }
       }
       this.logger.info.apply(this.logger, ['#cyan', cmd, '(', out.version, ') is required -> '].concat(out.message ? out.message : [out.error, '...', '#red', 'ERROR!']));
-      return out;
-    };
-    const _sumRequirements = (sum, added) => {
-      for (let cmd in added) {
-        if (!added[cmd].npm) {
-          if (sum[cmd]) {
-            if (!sum[cmd].version || (added[cmd].version && semver.lt(sum[cmd].version, added[cmd].version))) {
-              sum[cmd].version = added[cmd].version;
-            }
-            if (sum[cmd].option !== added[cmd].option || sum[cmd].regexp !== added[cmd].regexp) {
-              this.logger.warn('#yellow', 'Uncoherent definition of requirements', 'option: "' + sum[cmd].option + '"  =>  "' + added[cmd].option + '" ; regexp: "' + sum[cmd].regexp + '"  =>  "' + added[cmd].regexp + '"');
-            }
-          } else {
-            sum[cmd] = added[cmd];
-          }
-        }
+      if (out.error) {
+        ko(out);
+      } else {
+        ok(out);
       }
-      return sum;
-    };
+    });
     const _installable = (cmd, option) => {
       let p = option.uri ? `git+${option.uri}` : (option.pkg ? option.pkg : cmd);
       const versionchar = option.uri ? '#' : '@';
@@ -102,28 +109,25 @@ module.exports = {
     const fileName = 'requirements.json';
 
     if (this.params.requirements && (!this.params.disableSystemCheck || this.params.disableSystemCheck === 'null')) {
-      for (let cmd in this.params.requirements) {
-        if (this.params.requirements.hasOwnProperty(cmd)) {
-          const option = this.config.mergeObject(this.params.requirements[cmd], this.params.versions[cmd]);
-          const checked = _check(cmd, option);
-          if (checked.error) {
-            if (option.npm) {
-              _install(cmd, option);
-            } else if (!this.params.neverStop) {
-              throw checked;
-            }
-          }
+      this.params.requirements = this.config.mergeObject(this.params.requirements, this.params.versions);
+      const promises = [];
+      Object.getOwnPropertyNames(this.params.requirements).forEach((cmd) => {
+        const options = this.params.requirements[cmd];
+        if (!options.disableCheck) {
+          promises.push(Promise.resolve()
+            .then(() => _sh(cmd, options))
+            .then((result) => _check(cmd, options, result))
+            .catch((checked) => {
+              if (options.npm) {
+                _install(cmd, options);
+              } else if (!this.params.neverStop) {
+                throw checked;
+              }
+            })
+          );
         }
-      }
-    }
-
-    if (this.params.requirements && this.params.saveRequirements) {
-      let requirements = this.fsReadConfig(fileName);
-      if (requirements.empty) {
-        delete requirements.empty;
-      }
-      requirements = _sumRequirements(requirements, this.params.requirements);
-      fs.writeFileSync(fileName, JSON.stringify(requirements, null, 2));
+      });
+      return Promise.all(promises);
     }
   }
 };
