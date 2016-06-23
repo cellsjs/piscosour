@@ -33,7 +33,6 @@ By default this is the versions defined inside core:
 ```
     "versions": {
       "npm" : {
-        "disableCheck": true,
         "list": "npm list -g --depth 0",
         "regexp": "\\@(.*?)\\s"
       },    
@@ -54,7 +53,6 @@ By default this is the versions defined inside core:
 - **key** (for example 'java'): is the command that you need inside your shot.
 - **option**: (optional, default is '-v') if version is set the way to check this version.
 - **regexp**: (optional) if version is on a string the way to extract only the version. Overwrite version defined on piscosour.json
-- **disableCheck:** (optional) used by tools as npm that asume are allways installed.
 - **list:** (optional) command used to get a stdout to use the regexp function in orther to get the version of the item you want to check.
 
 ##### List tip

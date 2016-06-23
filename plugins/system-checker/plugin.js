@@ -11,7 +11,7 @@ const cache = {};
 module.exports = {
   description: 'System requirements checker',
 
-  check: function() {
+  'core-check': function() {
 
     const _getVersion = (regexp, out, err) => {
       let txt = !out || out.length === 0 ? err : out;
@@ -109,23 +109,22 @@ module.exports = {
     const fileName = 'requirements.json';
 
     if (this.params.requirements && (!this.params.disableSystemCheck || this.params.disableSystemCheck === 'null')) {
+      const tmp = this.params.requirements;
       this.params.requirements = this.config.mergeObject(this.params.requirements, this.params.versions);
       const promises = [];
-      Object.getOwnPropertyNames(this.params.requirements).forEach((cmd) => {
+      Object.getOwnPropertyNames(tmp).forEach((cmd) => {
         const options = this.params.requirements[cmd];
-        if (!options.disableCheck) {
-          promises.push(Promise.resolve()
-            .then(() => _sh(cmd, options))
-            .then((result) => _check(cmd, options, result))
-            .catch((checked) => {
-              if (options.npm) {
-                _install(cmd, options);
-              } else if (!this.params.neverStop) {
-                throw checked;
-              }
-            })
-          );
-        }
+        promises.push(Promise.resolve()
+          .then(() => _sh(cmd, options))
+          .then((result) => _check(cmd, options, result))
+          .catch((checked) => {
+            if (options.npm) {
+              _install(cmd, options);
+            } else if (!this.params.neverStop) {
+              throw checked;
+            }
+          })
+        );
       });
       return Promise.all(promises);
     }
