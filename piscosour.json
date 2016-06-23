@@ -19,6 +19,7 @@
     ],
     "versions": {
       "bower" : {
+        "npm": true,
         "list": "bower cache list"
       },
       "npm" : {
@@ -27,6 +28,7 @@
         "regexp": "\\@(.*?)\\s"
       },
       "yo": {
+        "npm": true,
         "option": "--version"
       },
       "java": {
