@@ -50,7 +50,7 @@ module.exports = {
           this.logger.trace('Getting list for', cmd);
           return Promise.resolve()
             .then(() => _cachedExec(father.list))
-            .then((result) => _processVersion(result, `${cmd}${father.regexp}`));
+            .then((result) => _processVersion(result, `${options.key ? options.key : cmd}${father.regexp}`));
         } else {
           return Promise.reject({error: `There is no definition for listing in ${options.listedIn}`});
         }
