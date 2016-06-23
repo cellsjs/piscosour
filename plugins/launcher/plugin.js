@@ -76,6 +76,7 @@ module.exports = {
       let child = this.executeStreamed(cmd, args);
       let error;
       let command = cmd;
+      let output = '';
       args.forEach((item)=> command += ' ' + item);
 
       child.on('disconnect', () => {
@@ -84,6 +85,7 @@ module.exports = {
 
       child.stdout.on('data', (data) => {
         this.logger.out(data.toString());
+        output += data.toString();
       });
 
       child.stderr.on('data', (data) => {
@@ -104,9 +106,9 @@ module.exports = {
         child.on('close', (code) => {
           this.logger.info('child process exited with code ', code);
           if (code !== 0) {
-            reject({cmd: cmd, args: args, status: 'ERROR', error: error});
+            reject({cmd: cmd, args: args, status: 'ERROR', error: error, output: output});
           } else {
-            resolve({cmd: cmd, args: args, status: 'OK'});
+            resolve({cmd: cmd, args: args, status: 'OK', output: output});
           }
         });
       });
