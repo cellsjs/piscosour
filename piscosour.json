@@ -22,7 +22,6 @@
         "list": "bower cache list"
       },
       "npm" : {
-        "disableCheck": true,
         "npm": true,
         "list": "npm list -g --depth 0",
         "regexp": "\\@(.*?)\\s"
@@ -83,6 +82,7 @@
   "junitDir": "test-reports",
   "junitPiscoFile": "pisco-junit.xml",
   "stages": [
+    "core-check",
     "check",
     "config",
     "run",
