@@ -3,6 +3,6 @@
   "name": "Configure piscosour",
   "description": "Manage a piscosour recipe",
   "shots": {
-    "piscosour": {}
+    "configure": {}
   }
 }

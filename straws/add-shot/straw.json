@@ -3,6 +3,6 @@
   "name": "Add a shot",
   "description": "Add a shot to a piscosour recipe",
   "shots": {
-    "shots": {}
+    "add-shots": {}
   }
 }
