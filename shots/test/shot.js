@@ -1,7 +1,6 @@
 'use strict';
 
 module.exports = {
-
   config: function(resolve) {
     this.logger.info('this.params.inflying:', this.params.inflying);
     this.logger.info('this.params.otracosa:', this.params.otracosa);
