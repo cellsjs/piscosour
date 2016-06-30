@@ -11,7 +11,7 @@ const cache = {};
 module.exports = {
   description: 'System requirements checker',
 
-  check: function() {
+  'core-check': function() {
 
     const _getVersion = (regexp, out, err) => {
       let txt = !out || out.length === 0 ? err : out;
@@ -25,9 +25,14 @@ module.exports = {
     };
     const _processVersion = (result, regexp) => {
       const version = result.stdout.toString().match(regexp);
+      let res;
       if (version && version.length > 1) {
-        return {stdout: new Buffer(version[1]), stderr: new Buffer(version[1]), status: 0};
+        res = {stdout: new Buffer(version[1]), stderr: new Buffer(version[1]), status: 0};
+      } else {
+        const msg = 'not found';
+        res = {stdout: new Buffer(msg), stderr: new Buffer(msg), status: 1};
       }
+      return res;
     };
     const _cachedExec = (command) => {
       let result = cache[command];
@@ -50,7 +55,7 @@ module.exports = {
           this.logger.trace('Getting list for', cmd);
           return Promise.resolve()
             .then(() => _cachedExec(father.list))
-            .then((result) => _processVersion(result, `${cmd}${father.regexp}`));
+            .then((result) => _processVersion(result, `${options.key ? options.key : cmd}${options.regexp !== undefined ? options.regexp : father.regexp}`));
         } else {
           return Promise.reject({error: `There is no definition for listing in ${options.listedIn}`});
         }
@@ -63,7 +68,7 @@ module.exports = {
       let out = {version: options.version};
       if (options.version) {
         if (result.status !== 0) {
-          out.error = `'${cmd}' is not accesible!!`;
+          out.error = `'${cmd}' is not found!!`;
           out.data = result.stderr.toString();
         } else {
           let actual = _getVersion(options.regexp, result.stdout.toString(), result.stderr.toString());
@@ -109,23 +114,22 @@ module.exports = {
     const fileName = 'requirements.json';
 
     if (this.params.requirements && (!this.params.disableSystemCheck || this.params.disableSystemCheck === 'null')) {
-      this.params.requirements = this.config.mergeObject(this.params.requirements, this.params.versions);
+      const tmp = this.params.requirements;
+      this.params.requirements = this.config.mergeObject(this.params.versions, this.params.requirements);
       const promises = [];
-      Object.getOwnPropertyNames(this.params.requirements).forEach((cmd) => {
+      Object.getOwnPropertyNames(tmp).forEach((cmd) => {
         const options = this.params.requirements[cmd];
-        if (!options.disableCheck) {
-          promises.push(Promise.resolve()
-            .then(() => _sh(cmd, options))
-            .then((result) => _check(cmd, options, result))
-            .catch((checked) => {
-              if (options.npm) {
-                _install(cmd, options);
-              } else if (!this.params.neverStop) {
-                throw checked;
-              }
-            })
-          );
-        }
+        promises.push(Promise.resolve()
+          .then(() => _sh(cmd, options))
+          .then((result) => _check(cmd, options, result))
+          .catch((checked) => {
+            if (options.npm) {
+              _install(cmd, options);
+            } else if (!this.params.neverStop) {
+              throw checked;
+            }
+          })
+        );
       });
       return Promise.all(promises);
     }

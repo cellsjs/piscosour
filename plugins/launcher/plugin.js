@@ -4,7 +4,6 @@ const spawn = require('child_process').spawn;
 const stream = require('stream');
 const chalk = require('chalk');
 const spawnSync = require('child_process').spawnSync;
-const stripcolorcodes = require('stripcolorcodes');
 
 module.exports = {
   description: 'Launcher plugin',
