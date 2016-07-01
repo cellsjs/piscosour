@@ -38,7 +38,7 @@ So, you can use all your favorites tools keeping it under control and versioned.
 
 - [All Commands Availables](#commands)
   - from **piscosour  v.0.6.8**
-    - [pisco recipe::add-shots](#recipe::add-shots) - Create new pisco shot inside this module
+    - [pisco recipe::add-shots](#recipeadd-shots-create-new-pisco-shot-inside-this-module) - Create new pisco shot inside this module
     - [pisco recipe::add-straws](#recipe::add-straws) - Adding shot to a straw
     - [pisco recipe::configure](#recipe::configure) - Configure piscosour.json
     - [pisco node-module::convert](#node-module::convert) - Convert any nodejs module into a piscosour recipe
