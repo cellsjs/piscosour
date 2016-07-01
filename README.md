@@ -34,11 +34,13 @@ So, you can use all your favorites tools keeping it under control and versioned.
 * [Complete documentation](doc/README.md) - Complete documentation, howtos, api, examples...
 * [Spanish documentation](doc/spanish/README.md) - Spanish documentation for piscosour.
 
-# Installing piscosour
+#Documentation Index (piscosour)
 
-Install piscosour globally
+- [Contexts](#contexts)
+- [Commands](#commands)
+- [Plugins](#plugins)
+- [Recipes](#recipes)
 
-    npm install -g piscosour
 
 
 # Recipes
@@ -46,8 +48,7 @@ Install piscosour globally
 
 |Name|Version|Description|
 |---|---|---|
-|pisco-user|-|User Piscosour Recipe|
-|piscosour|0.6.5|Get all your devops tools wrapped-up!|
+|piscosour|0.6.8|Get all your devops tools wrapped-up!|
 
 
 
@@ -55,19 +56,19 @@ Install piscosour globally
 
 
 
-**from piscosour  v.0.6.5:**
+**from piscosour  v.0.6.8:**
 
+- **pisco recipe::add-shots** ( Create new pisco shot inside this module )
+- **pisco recipe::add-straws** ( Adding shot to a straw )
+- **pisco recipe::configure** ( Configure piscosour.json )
 - **pisco node-module::convert** ( Convert any nodejs module into a piscosour recipe )
 - **pisco recipe::generate-docs** ( Generate one file per straw inside a directory )
 - **pisco all::npm** ( Checking all npm commands needed )
-- **pisco recipe::piscosour** ( Configure piscosour.json )
 - **pisco recipe::scaffolding** ( Create a piscosour recipe from a scaffold template )
-- **pisco recipe::shots** ( Create new pisco shot inside this module )
-- **pisco recipe::straws** ( Adding shot to a straw )
-- **pisco recipe::updateversion** ( Update tool )
+- **pisco recipe::update** ( Update tool )
 - **pisco recipe:add-shot** ( Add a shot to a piscosour recipe )
 - **pisco recipe:add-straw** ( Add a straw to a piscosour recipe )
-- **pisco recipe:config** ( Manage a piscosour recipe )
+- **pisco recipe:configure** ( Manage a piscosour recipe )
 - **pisco node-module:convert** ( Convert any module into a piscosour recipe )
 - **pisco recipe:create** ( Starting a repository from scratch )
 - **pisco recipe:docs** ( Append documentation from info.md to readme.md of the recipe )
@@ -78,10 +79,10 @@ Install piscosour globally
 Add a shot to a piscosour recipe
 
 
-### 1. shots: 'Create new pisco shot inside this module'
+### 1. add-shots: 'Create new pisco shot inside this module'
 ```
 Repository types:  recipe
-Recipes: piscosour (0.6.5)
+Recipes: piscosour (0.6.8)
 ```
 shot shots
 
@@ -89,21 +90,21 @@ shot shots
 Add a straw to a piscosour recipe
 
 
-### 1. straws: 'Adding shot to a straw'
+### 1. add-straws: 'Adding shot to a straw'
 ```
 Repository types:  recipe
-Recipes: piscosour (0.6.5)
+Recipes: piscosour (0.6.8)
 ```
 shot straws
 
-## config: 'Configure piscosour'
+## configure: 'Configure piscosour'
 Manage a piscosour recipe
 
 
-### 1. piscosour: 'Configure piscosour.json'
+### 1. configure: 'Configure piscosour.json'
 ```
 Repository types:  recipe
-Recipes: piscosour (0.6.5)
+Recipes: piscosour (0.6.8)
 ```
 shot piscosour
 
@@ -114,7 +115,7 @@ Convert any module into a piscosour recipe
 ### 1. convert: 'Convert any nodejs module into a piscosour recipe'
 ```
 Repository types:  node-module
-Recipes: piscosour (0.6.5)
+Recipes: piscosour (0.6.8)
 ```
 shot convert
 
@@ -138,7 +139,7 @@ Listo! ya tienes tu primer ejecutable de pisco creado! pruebalo
 ### 1. scaffolding: 'Create a piscosour recipe from a scaffold template'
 ```
 Repository types:  recipe
-Recipes: piscosour (0.6.5)
+Recipes: piscosour (0.6.8)
 ```
 shot scaffolding
 
@@ -157,7 +158,7 @@ Info.md is a regular md file, so you can use all the markdown specification. The
 ### 1. generate-docs: 'Generate one file per straw inside a directory'
 ```
 Repository types:  recipe
-Recipes: piscosour (0.6.5)
+Recipes: piscosour (0.6.8)
 ```
 shot generate-docs
 
@@ -499,7 +500,6 @@ By default this is the versions defined inside core:
 ```
     "versions": {
       "npm" : {
-        "disableCheck": true,
         "list": "npm list -g --depth 0",
         "regexp": "\\@(.*?)\\s"
       },    
@@ -520,7 +520,6 @@ By default this is the versions defined inside core:
 - **key** (for example 'java'): is the command that you need inside your shot.
 - **option**: (optional, default is '-v') if version is set the way to check this version.
 - **regexp**: (optional) if version is on a string the way to extract only the version. Overwrite version defined on piscosour.json
-- **disableCheck:** (optional) used by tools as npm that asume are allways installed.
 - **list:** (optional) command used to get a stdout to use the regexp function in orther to get the version of the item you want to check.
 
 ##### List tip
