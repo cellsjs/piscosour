@@ -34,24 +34,25 @@ So, you can use all your favorites tools keeping it under control and versioned.
 * [Complete documentation](doc/README.md) - Complete documentation, howtos, api, examples...
 * [Spanish documentation](doc/spanish/README.md) - Spanish documentation for piscosour.
 
-# piscosour: Index
+
+# Index: 'piscosour'
 
 - [All Commands Availables](#commands)
   - from **piscosour  v.0.6.8**
-    - [pisco recipe::add-shots](#recipeadd-shots-create-new-pisco-shot-inside-this-module) - Create new pisco shot inside this module
-    - [pisco recipe::add-straws](#recipe::add-straws) - Adding shot to a straw
-    - [pisco recipe::configure](#recipe::configure) - Configure piscosour.json
-    - [pisco node-module::convert](#node-module::convert) - Convert any nodejs module into a piscosour recipe
-    - [pisco recipe::generate-docs](#recipe::generate-docs) - Generate one file per straw inside a directory
-    - [pisco all::npm](#all::npm) - Checking all npm commands needed
-    - [pisco recipe::scaffolding](#recipe::scaffolding) - Create a piscosour recipe from a scaffold template
-    - [pisco recipe::update](#recipe::update) - Update tool
-    - [pisco recipe:add-shot](#recipe:add-shot) - Add a shot to a piscosour recipe
-    - [pisco recipe:add-straw](#recipe:add-straw) - Add a straw to a piscosour recipe
-    - [pisco recipe:configure](#recipe:configure) - Manage a piscosour recipe
-    - [pisco node-module:convert](#node-module:convert) - Convert any module into a piscosour recipe
-    - [pisco recipe:create](#recipe:create) - Starting a repository from scratch
-    - [pisco recipe:docs](#recipe:docs) - Append documentation from info.md to readme.md of the recipe
+    - [recipe::add-shots (Create new pisco shot inside this module)](#recipeadd-shots-create-new-pisco-shot-inside-this-module)
+    - [recipe::add-straws (Adding shot to a straw)](#recipeadd-straws-adding-shot-to-a-straw)
+    - [recipe::configure (Configure piscosour.json)](#recipeconfigure-configure-piscosour.json)
+    - [node-module::convert (Convert any nodejs module into a piscosour recipe)](#node-moduleconvert-convert-any-nodejs-module-into-a-piscosour-recipe)
+    - [recipe::generate-docs (Generate one file per straw inside a directory)](#recipegenerate-docs-generate-one-file-per-straw-inside-a-directory)
+    - [all::npm (Checking all npm commands needed)](#allnpm-checking-all-npm-commands-needed)
+    - [recipe::scaffolding (Create a piscosour recipe from a scaffold template)](#recipescaffolding-create-a-piscosour-recipe-from-a-scaffold-template)
+    - [recipe::update (Update tool)](#recipeupdate-update-tool)
+    - [recipe:add-shot (Add a shot to a piscosour recipe)](#recipeadd-shot-add-a-shot-to-a-piscosour-recipe)
+    - [recipe:add-straw (Add a straw to a piscosour recipe)](#recipeadd-straw-add-a-straw-to-a-piscosour-recipe)
+    - [recipe:configure (Manage a piscosour recipe)](#recipeconfigure-manage-a-piscosour-recipe)
+    - [node-module:convert (Convert any module into a piscosour recipe)](#node-moduleconvert-convert-any-module-into-a-piscosour-recipe)
+    - [recipe:create (Starting a repository from scratch)](#recipecreate-starting-a-repository-from-scratch)
+    - [recipe:docs (Append documentation from info.md to readme.md of the recipe)](#recipedocs-append-documentation-from-info.md-to-readme.md-of-the-recipe)
 - [Plugins](#plugins)
 - [Contexts Table](#recipes)
 - [Recipes Table](#recipes)
@@ -65,7 +66,7 @@ So, you can use all your favorites tools keeping it under control and versioned.
 Add a shot to a piscosour recipe
 
 
-### recipe::add-shots: 'Create new pisco shot inside this module'
+### 1. add-shots: 'Create new pisco shot inside this module'
 ```
 Repository types:  recipe
 Recipes: piscosour (0.6.8)
