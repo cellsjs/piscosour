@@ -34,7 +34,8 @@ So, you can use all your favorites tools keeping it under control and versioned.
 * [Complete documentation](doc/README.md) - Complete documentation, howtos, api, examples...
 * [Spanish documentation](doc/spanish/README.md) - Spanish documentation for piscosour.
 
-#Documentation Index (piscosour)
+
+# In this recipe: (piscosour)
 
 - [Contexts](#contexts)
 - [Commands](#commands)
