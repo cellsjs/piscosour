@@ -34,10 +34,9 @@ So, you can use all your favorites tools keeping it under control and versioned.
 * [Complete documentation](doc/README.md) - Complete documentation, howtos, api, examples...
 * [Spanish documentation](doc/spanish/README.md) - Spanish documentation for piscosour.
 
+# piscosour: Index
 
-# In this recipe: (piscosour)
-
-- [Commands Availables](#commands)
+- [All Commands Availables](#commands)
   - from **piscosour  v.0.6.8**
     - [pisco recipe::add-shots](#recipe::add-shots) - Create new pisco shot inside this module
     - [pisco recipe::add-straws](#recipe::add-straws) - Adding shot to a straw
@@ -54,7 +53,7 @@ So, you can use all your favorites tools keeping it under control and versioned.
     - [pisco recipe:create](#recipe:create) - Starting a repository from scratch
     - [pisco recipe:docs](#recipe:docs) - Append documentation from info.md to readme.md of the recipe
 - [Plugins](#plugins)
-- [Context Table](#recipes)
+- [Contexts Table](#recipes)
 - [Recipes Table](#recipes)
 
 
@@ -66,7 +65,7 @@ So, you can use all your favorites tools keeping it under control and versioned.
 Add a shot to a piscosour recipe
 
 
-### 1. add-shots: 'Create new pisco shot inside this module'
+### recipe::add-shots: 'Create new pisco shot inside this module'
 ```
 Repository types:  recipe
 Recipes: piscosour (0.6.8)
