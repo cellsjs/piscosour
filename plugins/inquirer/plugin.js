@@ -1,6 +1,6 @@
 'use strict';
 
-var inquirer = require('inquirer');
+const inquirer = require('inquirer');
 
 module.exports = {
   description: 'Plugin inquirer',
@@ -14,20 +14,28 @@ module.exports = {
   addons: {
 
     inquire: function(name) {
-      var prompts = this.params[name];
+      const prompts = this.params[name];
 
-      var getValidate = function(prompt) {
+      const getValidate = function(prompt) {
         return function(userInput) {
           return userInput ? true : '"' + prompt.name + '" is required. ' + prompt.message;
         };
       };
 
-      var shotResolution = function(prompt, attr) {
-        if (prompt[attr] !== undefined && Object.prototype.toString.call(prompt[attr]) !== '[object Function]' && typeof prompt[attr] !== 'boolean' && prompt[attr].indexOf('#') === 0) {
-          var functionName = prompt[attr].replace('#', '');
-          var func = this.runner[functionName];
+      const shotResolution = function(prompt, attr) {
+        if (prompt[attr] !== undefined
+          && Object.prototype.toString.call(prompt[attr]) !== '[object Function]'
+          && typeof prompt[attr] !== 'boolean'
+          && prompt[attr].indexOf('#') === 0) {
+          let functionName = prompt[attr].replace('#', '');
+          let exec = false;
+          if (functionName.indexOf('(') !== 0) {
+            functionName = functionName.replace('()', '');
+            exec = true;
+          }
+          const func = this.runner[functionName];
           if (func) {
-            prompt[attr] = func;
+            prompt[attr] = exec ? func() : func;
           } else {
             prompt[attr] = undefined;
             this.logger.info('#yellow', 'WARNING', 'value', functionName, 'doesn\'t exists!! in this shot');
@@ -35,7 +43,7 @@ module.exports = {
         }
       }.bind(this);
 
-      var reqs = [];
+      const reqs = [];
 
       if (prompts) {
         prompts.forEach((prompt) => {
@@ -43,6 +51,7 @@ module.exports = {
           shotResolution(prompt, 'when');
           shotResolution(prompt, 'validate');
           shotResolution(prompt, 'choices');
+          shotResolution(prompt, 'type');
           shotResolution(prompt, 'default');
 
           if (prompt.required && !prompt.validate) {
