@@ -37,7 +37,7 @@ So, you can use all your favorites tools keeping it under control and versioned.
 # Main Index:
 
 - [Plugins](#plugins)
-    - from **piscosour  v.0.6.8**
+    - from **piscosour  v.0.6.11**
         - [context](#context)
         - [fsutils](#fsutils)
         - [inquirer](#inquirer)
@@ -52,7 +52,7 @@ So, you can use all your favorites tools keeping it under control and versioned.
 - [Contexts](#contexts)
 - [Recipes](#recipes)
 - [All Commands Availables](#all-commands-availables)
-    - from **piscosour  v.0.6.8**
+    - from **piscosour  v.0.6.11**
         - [node-module:convert (Convert any module into a piscosour recipe)](#node-moduleconvert-convert-any-module-into-a-piscosour-recipe)
         - [recipe:add-shot (Add a shot to a piscosour recipe)](#recipeadd-shot-add-a-shot-to-a-piscosour-recipe)
         - [recipe:add-straw (Add a straw to a piscosour recipe)](#recipeadd-straw-add-a-straw-to-a-piscosour-recipe)
@@ -88,7 +88,7 @@ General info:
 
 ```
 Contexts:  node-module
-From: piscosour (0.6.8)
+From: piscosour (0.6.11)
 ```
 shot convert
 
@@ -107,7 +107,7 @@ General info:
 
 ```
 Contexts:  recipe
-From: piscosour (0.6.8)
+From: piscosour (0.6.11)
 ```
 shot shots
 
@@ -126,7 +126,7 @@ General info:
 
 ```
 Contexts:  recipe
-From: piscosour (0.6.8)
+From: piscosour (0.6.11)
 ```
 shot straws
 
@@ -145,7 +145,7 @@ General info:
 
 ```
 Contexts:  recipe
-From: piscosour (0.6.8)
+From: piscosour (0.6.11)
 ```
 shot piscosour
 
@@ -177,7 +177,7 @@ General info:
 
 ```
 Contexts:  recipe
-From: piscosour (0.6.8)
+From: piscosour (0.6.11)
 ```
 shot scaffolding
 
@@ -204,7 +204,7 @@ General info:
 
 ```
 Contexts:  recipe
-From: piscosour (0.6.8)
+From: piscosour (0.6.11)
 ```
 shot generate-docs
 
@@ -220,7 +220,7 @@ General info:
 
 ```
 Contexts:  all
-From: piscosour (0.6.8)
+From: piscosour (0.6.11)
 ```
 shot npm
 
@@ -236,7 +236,7 @@ General info:
 
 ```
 Contexts:  node-module
-From: piscosour (0.6.8)
+From: piscosour (0.6.11)
 ```
 shot convert
 
@@ -252,7 +252,7 @@ General info:
 
 ```
 Contexts:  recipe
-From: piscosour (0.6.8)
+From: piscosour (0.6.11)
 ```
 shot shots
 
@@ -268,7 +268,7 @@ General info:
 
 ```
 Contexts:  recipe
-From: piscosour (0.6.8)
+From: piscosour (0.6.11)
 ```
 shot straws
 
@@ -284,7 +284,7 @@ General info:
 
 ```
 Contexts:  recipe
-From: piscosour (0.6.8)
+From: piscosour (0.6.11)
 ```
 shot piscosour
 
@@ -300,7 +300,7 @@ General info:
 
 ```
 Contexts:  recipe
-From: piscosour (0.6.8)
+From: piscosour (0.6.11)
 ```
 shot generate-docs
 
@@ -316,7 +316,7 @@ General info:
 
 ```
 Contexts:  recipe
-From: piscosour (0.6.8)
+From: piscosour (0.6.11)
 ```
 shot scaffolding
 
@@ -332,7 +332,7 @@ General info:
 
 ```
 Contexts:  recipe
-From: piscosour (0.6.8)
+From: piscosour (0.6.11)
 ```
 ### Update version of recipe
 
@@ -343,7 +343,7 @@ This shot execute npm install -g **recipeName**. recipeName has to be in params.
 
 
 ## context
-from: **piscosour (0.6.8)**  [Go Index](#main-index)
+from: **piscosour (0.6.11)**  [Go Index](#main-index)
 
 ### Context for the pisco execution
 
@@ -450,7 +450,7 @@ let repos = this.ctxWhoami();
 
 repos is an Array of types that match the place where your recipe was executed.
 ## fsutils
-from: **piscosour (0.6.8)**  [Go Index](#main-index)
+from: **piscosour (0.6.11)**  [Go Index](#main-index)
 
 ### fs plugin (fs addons for piscosour)
 
@@ -497,11 +497,35 @@ from: **piscosour (0.6.8)**  [Go Index](#main-index)
 | | |
 
 ## inquirer
-from: **piscosour (0.6.8)**  [Go Index](#main-index)
+from: **piscosour (0.6.11)**  [Go Index](#main-index)
 
 ### Inquirer plugin
 
 This plugin use inquirer library [Inquirer documentation](https://www.npmjs.com/package/inquirer)
+
+set type 
+
+params.json
+```
+  "prompts": [
+    {
+      "type": "#setType()",
+      "name": "doDefault",
+      "required": true,
+      "message": "Do you want to set default repository type?"
+    }
+  ],
+```
+
+- '#' indicate that is necesary to use a function in the shot in order to resolve the type value.
+- '()' set that pisco needs to execute this function on order to get the value. 
+
+shot.js
+```
+  setType: function() {
+    return 'confirm';
+  },
+```
 
 #### this.inquire
 
@@ -509,7 +533,7 @@ This plugin use inquirer library [Inquirer documentation](https://www.npmjs.com/
 | --- | --- |
 | | |
 ## launcher
-from: **piscosour (0.6.8)**  [Go Index](#main-index)
+from: **piscosour (0.6.11)**  [Go Index](#main-index)
 
 ### Execute any command with pisco.
 
@@ -555,7 +579,7 @@ Syncronous method use to execute any command in your environment.
 | --- | --- |
 | | |
 ## os
-from: **piscosour (0.6.8)**  [Go Index](#main-index)
+from: **piscosour (0.6.11)**  [Go Index](#main-index)
 
 
 Plugins used to check Operating System where pisco is running
@@ -570,7 +594,7 @@ return true if the Operation System where pisco is executed is Windows.
 
 return true if the Operation System where pisco is executed is MacOS.
 ## piscosour
-from: **piscosour (0.6.8)**  [Go Index](#main-index)
+from: **piscosour (0.6.11)**  [Go Index](#main-index)
 
 ### Expose piscosour config
 
@@ -590,14 +614,14 @@ return the literal: 'package.json'
 
 
 ## skipper
-from: **piscosour (0.6.8)**  [Go Index](#main-index)
+from: **piscosour (0.6.11)**  [Go Index](#main-index)
 
 ### Skipper plugin
 
 Skips the shot execution when receiving the param "\_skip": true
 
 ## stream-write-hook
-from: **piscosour (0.6.8)**  [Go Index](#main-index)
+from: **piscosour (0.6.11)**  [Go Index](#main-index)
 
 ### Intercepts any stream flow in order to be able to manage the information inside.
 
@@ -648,7 +672,7 @@ stops the hook
 
 
 ## system-checker
-from: **piscosour (0.6.8)**  [Go Index](#main-index)
+from: **piscosour (0.6.11)**  [Go Index](#main-index)
 
 ### How to check system requirements of a piscosour command.
 
@@ -796,7 +820,7 @@ this is the result of the execution for every shot that would have system requir
 
 If any system requirement is not satisfied the command will throw an error and stops...
 ## system-saver
-from: **piscosour (0.6.8)**  [Go Index](#main-index)
+from: **piscosour (0.6.11)**  [Go Index](#main-index)
 
 ### Write the requirements into a global file 'requirements.json'
 
@@ -838,7 +862,7 @@ this is the file resulting of the execution: the mix of all system requirements 
 }
 ```
 ## test
-from: **piscosour (0.6.8)**  [Go Index](#main-index)
+from: **piscosour (0.6.11)**  [Go Index](#main-index)
 
 Testing plugin. NO FUNCTIONALITY.
 # Contexts
@@ -860,6 +884,6 @@ Testing plugin. NO FUNCTIONALITY.
 
 |Name|Version|Description|
 |---|---|---|
-|piscosour|0.6.8|Get all your devops tools wrapped-up!|
+|piscosour|0.6.11|Get all your devops tools wrapped-up!|
 
 
