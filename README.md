@@ -34,92 +34,88 @@ So, you can use all your favorites tools keeping it under control and versioned.
 * [Complete documentation](doc/README.md) - Complete documentation, howtos, api, examples...
 * [Spanish documentation](doc/spanish/README.md) - Spanish documentation for piscosour.
 
-# Installing piscosour
 
-Install piscosour globally
+# Index: 'piscosour'
 
-    npm install -g piscosour
-
-
-# Recipes
-
-
-|Name|Version|Description|
-|---|---|---|
-|pisco-user|-|User Piscosour Recipe|
-|piscosour|0.6.5|Get all your devops tools wrapped-up!|
+- [ Commands Availables](#commands-availables)
+- [Plugins](#plugins)
+- [Contexts](#recipes)
+- [Recipes](#recipes)
 
 
 
-# Commands
+#  Commands Availables
+
+
+## Index:
+
+
+- from **piscosour  v.0.6.8**
+    - straws
+        - [node-module:convert (Convert any module into a piscosour recipe)](#node-moduleconvert-convert-any-module-into-a-piscosour-recipe)
+        - [recipe:add-shot (Add a shot to a piscosour recipe)](#recipeadd-shot-add-a-shot-to-a-piscosour-recipe)
+        - [recipe:add-straw (Add a straw to a piscosour recipe)](#recipeadd-straw-add-a-straw-to-a-piscosour-recipe)
+        - [recipe:configure (Manage a piscosour recipe)](#recipeconfigure-manage-a-piscosour-recipe)
+        - [recipe:create (Starting a repository from scratch)](#recipecreate-starting-a-repository-from-scratch)
+        - [recipe:docs (Append documentation from info.md to readme.md of the recipe)](#recipedocs-append-documentation-from-info.md-to-readme.md-of-the-recipe)
+    - shots
+        - [all::npm (Checking all npm commands needed)](#allnpm-checking-all-npm-commands-needed)
+        - [node-module::convert (Convert any nodejs module into a piscosour recipe)](#node-moduleconvert-convert-any-nodejs-module-into-a-piscosour-recipe)
+        - [recipe::add-shots (Create new pisco shot inside this module)](#recipeadd-shots-create-new-pisco-shot-inside-this-module)
+        - [recipe::add-straws (Adding shot to a straw)](#recipeadd-straws-adding-shot-to-a-straw)
+        - [recipe::configure (Configure piscosour.json)](#recipeconfigure-configure-piscosour.json)
+        - [recipe::generate-docs (Generate one file per straw inside a directory)](#recipegenerate-docs-generate-one-file-per-straw-inside-a-directory)
+        - [recipe::scaffolding (Create a piscosour recipe from a scaffold template)](#recipescaffolding-create-a-piscosour-recipe-from-a-scaffold-template)
+        - [recipe::update (Update tool)](#recipeupdate-update-tool)
 
 
 
-**from piscosour  v.0.6.5:**
+## node-module:convert (Convert any module into a piscosour recipe)
 
-- **pisco node-module::convert** ( Convert any nodejs module into a piscosour recipe )
-- **pisco recipe::generate-docs** ( Generate one file per straw inside a directory )
-- **pisco all::npm** ( Checking all npm commands needed )
-- **pisco recipe::piscosour** ( Configure piscosour.json )
-- **pisco recipe::scaffolding** ( Create a piscosour recipe from a scaffold template )
-- **pisco recipe::shots** ( Create new pisco shot inside this module )
-- **pisco recipe::straws** ( Adding shot to a straw )
-- **pisco recipe::updateversion** ( Update tool )
-- **pisco recipe:add-shot** ( Add a shot to a piscosour recipe )
-- **pisco recipe:add-straw** ( Add a straw to a piscosour recipe )
-- **pisco recipe:config** ( Manage a piscosour recipe )
-- **pisco node-module:convert** ( Convert any module into a piscosour recipe )
-- **pisco recipe:create** ( Starting a repository from scratch )
-- **pisco recipe:docs** ( Append documentation from info.md to readme.md of the recipe )
-
-
-
-## add-shot: 'Add a shot'
-Add a shot to a piscosour recipe
-
-
-### 1. shots: 'Create new pisco shot inside this module'
-```
-Repository types:  recipe
-Recipes: piscosour (0.6.5)
-```
-shot shots
-
-## add-straw: 'Add straw'
-Add a straw to a piscosour recipe
-
-
-### 1. straws: 'Adding shot to a straw'
-```
-Repository types:  recipe
-Recipes: piscosour (0.6.5)
-```
-shot straws
-
-## config: 'Configure piscosour'
-Manage a piscosour recipe
-
-
-### 1. piscosour: 'Configure piscosour.json'
-```
-Repository types:  recipe
-Recipes: piscosour (0.6.5)
-```
-shot piscosour
-
-## convert: 'Module to recipe'
-Convert any module into a piscosour recipe
-
+convert straw
 
 ### 1. convert: 'Convert any nodejs module into a piscosour recipe'
 ```
 Repository types:  node-module
-Recipes: piscosour (0.6.5)
+Recipes: piscosour (0.6.8)
 ```
 shot convert
 
-## create: 'Create from scratch'
-Starting a repository from scratch
+## recipe:add-shot (Add a shot to a piscosour recipe)
+
+
+
+### 1. add-shots: 'Create new pisco shot inside this module'
+```
+Repository types:  recipe
+Recipes: piscosour (0.6.8)
+```
+shot shots
+
+## recipe:add-straw (Add a straw to a piscosour recipe)
+
+
+
+### 1. add-straws: 'Adding shot to a straw'
+```
+Repository types:  recipe
+Recipes: piscosour (0.6.8)
+```
+shot straws
+
+## recipe:configure (Manage a piscosour recipe)
+
+
+
+### 1. configure: 'Configure piscosour.json'
+```
+Repository types:  recipe
+Recipes: piscosour (0.6.8)
+```
+shot piscosour
+
+## recipe:create (Starting a repository from scratch)
+
 
 - Pisco te preguntará por el nombre de la receta que quieres crear. Este será el nombre de tu paquete npm que usarás para compartir la funcionalidad y las herramientas que envuelvas. Introduce el nombre que más te guste.
 - Deberás introducir el comando que quieres usar para hacer correr los "straws" (flujos) que vas a introducir en este módulo.
@@ -138,12 +134,12 @@ Listo! ya tienes tu primer ejecutable de pisco creado! pruebalo
 ### 1. scaffolding: 'Create a piscosour recipe from a scaffold template'
 ```
 Repository types:  recipe
-Recipes: piscosour (0.6.5)
+Recipes: piscosour (0.6.8)
 ```
 shot scaffolding
 
-## docs: 'Generate Documentation'
-Append documentation from info.md to readme.md of the recipe
+## recipe:docs (Append documentation from info.md to readme.md of the recipe)
+
 Command: **node bin/pisco.js recipe:docs**
 
 Generate documentation for your recipe.
@@ -157,7 +153,7 @@ Info.md is a regular md file, so you can use all the markdown specification. The
 ### 1. generate-docs: 'Generate one file per straw inside a directory'
 ```
 Repository types:  recipe
-Recipes: piscosour (0.6.5)
+Recipes: piscosour (0.6.8)
 ```
 shot generate-docs
 
@@ -499,7 +495,6 @@ By default this is the versions defined inside core:
 ```
     "versions": {
       "npm" : {
-        "disableCheck": true,
         "list": "npm list -g --depth 0",
         "regexp": "\\@(.*?)\\s"
       },    
@@ -520,7 +515,6 @@ By default this is the versions defined inside core:
 - **key** (for example 'java'): is the command that you need inside your shot.
 - **option**: (optional, default is '-v') if version is set the way to check this version.
 - **regexp**: (optional) if version is on a string the way to extract only the version. Overwrite version defined on piscosour.json
-- **disableCheck:** (optional) used by tools as npm that asume are allways installed.
 - **list:** (optional) command used to get a stdout to use the regexp function in orther to get the version of the item you want to check.
 
 ##### List tip
@@ -655,3 +649,11 @@ this is the file resulting of the execution: the mix of all system requirements 
 ## test
 
 Testing plugin. NO FUNCTIONALITY.
+# Recipes
+
+
+|Name|Version|Description|
+|---|---|---|
+|piscosour|0.6.8|Get all your devops tools wrapped-up!|
+
+
