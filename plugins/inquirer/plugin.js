@@ -29,7 +29,7 @@ module.exports = {
           && prompt[attr].indexOf('#') === 0) {
           let functionName = prompt[attr].replace('#', '');
           let exec = false;
-          if (functionName.indexOf('(') !== 0) {
+          if (functionName.indexOf('(') >= 0) {
             functionName = functionName.replace('()', '');
             exec = true;
           }
