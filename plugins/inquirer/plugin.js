@@ -67,19 +67,13 @@ module.exports = {
           }
         });
       }
-
-      return new Promise((resolve, reject) => {
-        if (reqs.length > 0) {
-          inquirer.prompt(reqs, (answers) => {
-            reqs.forEach((req) => {
-              this.params[req.name] = answers[req.name];
-            });
-            resolve(answers);
+      if (reqs.length > 0) {
+        return inquirer.prompt(reqs).then((answers) => {
+          reqs.forEach((req) => {
+            this.params[req.name] = answers[req.name];
           });
-        } else {
-          resolve();
-        }
-      });
+        });
+      }
     },
 
     promptArgs: function(array) {
