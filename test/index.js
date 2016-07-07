@@ -105,7 +105,7 @@ describe('Pisco \'app:install\' straw test', function() {
     it('Should \'bower.json\' be well formed', function(done) {
       expect.file(`${testFolder}/bower.json`).exist();
       expect.file(`${testFolder}/bower.json`).have.changed(50000);
-      expect.file(`${testFolder}/bower.json`).contain('bbva-buzz-ui');
+      expect.file(`${testFolder}/bower.json`).contain('xxxx-buzz-ui');
       done();
     });
 
@@ -164,7 +164,7 @@ describe('Pisco \'app:install\' straw test', function() {
 
             expect.file(`${testFolder}/bower.json`).exist();
             expect.file(`${testFolder}/bower.json`).have.changed(50000);
-            expect.file(`${testFolder}/bower.json`).not.contain('bbva-buzz-ui');
+            expect.file(`${testFolder}/bower.json`).not.contain('xxxx-buzz-ui');
 
             expect.folder(`${testFolder}/components`).exist();
             done();
@@ -187,7 +187,7 @@ describe('Pisco \'app:install\' straw test', function() {
 
             expect.file(`${testFolder}/bower.json`).exist();
             expect.file(`${testFolder}/bower.json`).have.changed(50000);
-            expect.file(`${testFolder}/bower.json`).contain('bbva-buzz-ui');
+            expect.file(`${testFolder}/bower.json`).contain('xxxx-buzz-ui');
             expect.file(`${testFolder}/bower.json`).contain('organisms-family');
             expect.file(`${testFolder}/bower.json`).contain('molecule-components-family');
 
@@ -214,7 +214,7 @@ describe('Pisco \'app:create\' straw test', function() {
         assert.equal(error, null, error);
 
         expect.folder(`${testFolder}`).exist();
-        expect.file(`${testFolder}/bower.json`).contain('bbva-buzz-ui');
+        expect.file(`${testFolder}/bower.json`).contain('xxxx-buzz-ui');
         expect.folder(`${testFolder}/components`).exist();
         done();
       });
