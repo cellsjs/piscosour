@@ -22,7 +22,7 @@ module.exports = {
         };
       };
 
-      const shotResolution = function(prompt, attr) {
+      const shotResolution = ((prompt, attr) => {
         if (prompt[attr] !== undefined
           && Object.prototype.toString.call(prompt[attr]) !== '[object Function]'
           && typeof prompt[attr] !== 'boolean'
@@ -41,7 +41,7 @@ module.exports = {
             this.logger.info('#yellow', 'WARNING', 'value', functionName, 'doesn\'t exists!! in this shot');
           }
         }
-      }.bind(this);
+      });
 
       const reqs = [];
 
