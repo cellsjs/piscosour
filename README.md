@@ -34,92 +34,129 @@ So, you can use all your favorites tools keeping it under control and versioned.
 * [Complete documentation](doc/README.md) - Complete documentation, howtos, api, examples...
 * [Spanish documentation](doc/spanish/README.md) - Spanish documentation for piscosour.
 
-# Installing piscosour
+# Main Index:
 
-Install piscosour globally
-
-    npm install -g piscosour
-
-
-# Recipes
-
-
-|Name|Version|Description|
-|---|---|---|
-|pisco-user|-|User Piscosour Recipe|
-|piscosour|0.6.2|Get all your devops tools wrapped-up!|
-
-
-
-# Commands
-
-
-
-**from piscosour  v.0.6.2:**
-
-- **pisco node-module::convert** ( Convert any nodejs module into a piscosour recipe )
-- **pisco recipe::generate-docs** ( Generate one file per straw inside a directory )
-- **pisco all::npm** ( Checking all npm commands needed )
-- **pisco recipe::piscosour** ( Configure piscosour.json )
-- **pisco recipe::scaffolding** ( Create a piscosour recipe from a scaffold template )
-- **pisco recipe::shots** ( Create new pisco shot inside this module )
-- **pisco recipe::straws** ( Adding shot to a straw )
-- **pisco recipe::updateversion** ( Update tool )
-- **pisco recipe:add-shot** ( Add a shot to a piscosour recipe )
-- **pisco recipe:add-straw** ( Add a straw to a piscosour recipe )
-- **pisco recipe:config** ( Manage a piscosour recipe )
-- **pisco node-module:convert** ( Convert any module into a piscosour recipe )
-- **pisco recipe:create** ( Starting a repository from scratch )
-- **pisco recipe:docs** ( Append documentation from info.md to readme.md of the recipe )
+- [Plugins](#plugins)
+    - from **piscosour  v.0.6.11**
+        - [context](#context)
+        - [fsutils](#fsutils)
+        - [inquirer](#inquirer)
+        - [launcher](#launcher)
+        - [os](#os)
+        - [piscosour](#piscosour)
+        - [skipper](#skipper)
+        - [stream-write-hook](#stream-write-hook)
+        - [system-checker](#system-checker)
+        - [system-saver](#system-saver)
+        - [test](#test)
+- [Contexts](#contexts)
+- [Recipes](#recipes)
+- [All Commands Availables](#all-commands-availables)
+    - from **piscosour  v.0.6.11**
+        - [node-module:convert (Convert any module into a piscosour recipe)](#node-moduleconvert-convert-any-module-into-a-piscosour-recipe)
+        - [recipe:add-shot (Add a shot to a piscosour recipe)](#recipeadd-shot-add-a-shot-to-a-piscosour-recipe)
+        - [recipe:add-straw (Add a straw to a piscosour recipe)](#recipeadd-straw-add-a-straw-to-a-piscosour-recipe)
+        - [recipe:configure (Manage a piscosour recipe)](#recipeconfigure-manage-a-piscosour-recipe)
+        - [recipe:create (Starting a repository from scratch)](#recipecreate-starting-a-repository-from-scratch)
+        - [recipe:docs (Append documentation from info.md to readme.md of the recipe)](#recipedocs-append-documentation-from-infomd-to-readmemd-of-the-recipe)
+        - [all::npm (Checking all npm commands needed)](#allnpm-checking-all-npm-commands-needed)
+        - [node-module::convert (Convert any nodejs module into a piscosour recipe)](#node-moduleconvert-convert-any-nodejs-module-into-a-piscosour-recipe)
+        - [recipe::add-shots (Create new pisco shot inside this module)](#recipeadd-shots-create-new-pisco-shot-inside-this-module)
+        - [recipe::add-straws (Adding shot to a straw)](#recipeadd-straws-adding-shot-to-a-straw)
+        - [recipe::configure (Configure piscosour.json)](#recipeconfigure-configure-piscosourjson)
+        - [recipe::generate-docs (Generate one file per straw inside a directory)](#recipegenerate-docs-generate-one-file-per-straw-inside-a-directory)
+        - [recipe::scaffolding (Create a piscosour recipe from a scaffold template)](#recipescaffolding-create-a-piscosour-recipe-from-a-scaffold-template)
+        - [recipe::update (Update tool)](#recipeupdate-update-tool)
 
 
 
-## add-shot: 'Add a shot'
-Add a shot to a piscosour recipe
+# All Commands Availables
 
 
-### 1. shots: 'Create new pisco shot inside this module'
+###node-module:convert (Convert any module into a piscosour recipe)
+[Go Index](#main-index):
+
+How to execute this command:
+
+    pisco node-module:convert
+
+
+convert straw
+
+#### 1. node-module:convert 'Convert any nodejs module into a piscosour recipe'
+General info:
+
 ```
-Repository types:  recipe
-Recipes: piscosour (0.6.2)
-```
-shot shots
-
-## add-straw: 'Add straw'
-Add a straw to a piscosour recipe
-
-
-### 1. straws: 'Adding shot to a straw'
-```
-Repository types:  recipe
-Recipes: piscosour (0.6.2)
-```
-shot straws
-
-## config: 'Configure piscosour'
-Manage a piscosour recipe
-
-
-### 1. piscosour: 'Configure piscosour.json'
-```
-Repository types:  recipe
-Recipes: piscosour (0.6.2)
-```
-shot piscosour
-
-## convert: 'Module to recipe'
-Convert any module into a piscosour recipe
-
-
-### 1. convert: 'Convert any nodejs module into a piscosour recipe'
-```
-Repository types:  node-module
-Recipes: piscosour (0.6.2)
+Contexts:  node-module
+From: piscosour (0.6.11)
 ```
 shot convert
 
-## create: 'Create from scratch'
-Starting a repository from scratch
+###recipe:add-shot (Add a shot to a piscosour recipe)
+[Go Index](#main-index):
+
+How to execute this command:
+
+    pisco recipe:add-shot
+
+
+
+
+#### 1. recipe:add-shots 'Create new pisco shot inside this module'
+General info:
+
+```
+Contexts:  recipe
+From: piscosour (0.6.11)
+```
+shot shots
+
+###recipe:add-straw (Add a straw to a piscosour recipe)
+[Go Index](#main-index):
+
+How to execute this command:
+
+    pisco recipe:add-straw
+
+
+
+
+#### 1. recipe:add-straws 'Adding shot to a straw'
+General info:
+
+```
+Contexts:  recipe
+From: piscosour (0.6.11)
+```
+shot straws
+
+###recipe:configure (Manage a piscosour recipe)
+[Go Index](#main-index):
+
+How to execute this command:
+
+    pisco recipe:configure
+
+
+
+
+#### 1. recipe:configure 'Configure piscosour.json'
+General info:
+
+```
+Contexts:  recipe
+From: piscosour (0.6.11)
+```
+shot piscosour
+
+###recipe:create (Starting a repository from scratch)
+[Go Index](#main-index):
+
+How to execute this command:
+
+    pisco recipe:create
+
+
 
 - Pisco te preguntará por el nombre de la receta que quieres crear. Este será el nombre de tu paquete npm que usarás para compartir la funcionalidad y las herramientas que envuelvas. Introduce el nombre que más te guste.
 - Deberás introducir el comando que quieres usar para hacer correr los "straws" (flujos) que vas a introducir en este módulo.
@@ -135,23 +172,23 @@ Mientras pisco genera tu primera receta usando un generator de yeoman. Te explic
 
 Listo! ya tienes tu primer ejecutable de pisco creado! pruebalo
 
-### 1. npm: 'Checking all npm commands needed'
-```
-Repository types:  all
-Recipes: piscosour (0.6.2)
-```
-shot npm
+#### 1. recipe:scaffolding 'Create a piscosour recipe from a scaffold template'
+General info:
 
-
-### 2. scaffolding: 'Create a piscosour recipe from a scaffold template'
 ```
-Repository types:  recipe
-Recipes: piscosour (0.6.2)
+Contexts:  recipe
+From: piscosour (0.6.11)
 ```
 shot scaffolding
 
-## docs: 'Generate Documentation'
-Append documentation from info.md to readme.md of the recipe
+###recipe:docs (Append documentation from info.md to readme.md of the recipe)
+[Go Index](#main-index):
+
+How to execute this command:
+
+    pisco recipe:docs
+
+
 Command: **node bin/pisco.js recipe:docs**
 
 Generate documentation for your recipe.
@@ -162,18 +199,151 @@ Info.md is a regular md file, so you can use all the markdown specification. The
  
 **Inside a info.md use title from third level and beyond**
 
-### 1. generate-docs: 'Generate one file per straw inside a directory'
+#### 1. recipe:generate-docs 'Generate one file per straw inside a directory'
+General info:
+
 ```
-Repository types:  recipe
-Recipes: piscosour (0.6.2)
+Contexts:  recipe
+From: piscosour (0.6.11)
 ```
 shot generate-docs
+
+
+### all::npm 'Checking all npm commands needed'
+[Go Index](#main-index):
+
+How to execute this command:
+
+    pisco all::npm
+
+General info:
+
+```
+Contexts:  all
+From: piscosour (0.6.11)
+```
+shot npm
+
+
+### node-module::convert 'Convert any nodejs module into a piscosour recipe'
+[Go Index](#main-index):
+
+How to execute this command:
+
+    pisco node-module::convert
+
+General info:
+
+```
+Contexts:  node-module
+From: piscosour (0.6.11)
+```
+shot convert
+
+
+### recipe::add-shots 'Create new pisco shot inside this module'
+[Go Index](#main-index):
+
+How to execute this command:
+
+    pisco recipe::add-shots
+
+General info:
+
+```
+Contexts:  recipe
+From: piscosour (0.6.11)
+```
+shot shots
+
+
+### recipe::add-straws 'Adding shot to a straw'
+[Go Index](#main-index):
+
+How to execute this command:
+
+    pisco recipe::add-straws
+
+General info:
+
+```
+Contexts:  recipe
+From: piscosour (0.6.11)
+```
+shot straws
+
+
+### recipe::configure 'Configure piscosour.json'
+[Go Index](#main-index):
+
+How to execute this command:
+
+    pisco recipe::configure
+
+General info:
+
+```
+Contexts:  recipe
+From: piscosour (0.6.11)
+```
+shot piscosour
+
+
+### recipe::generate-docs 'Generate one file per straw inside a directory'
+[Go Index](#main-index):
+
+How to execute this command:
+
+    pisco recipe::generate-docs
+
+General info:
+
+```
+Contexts:  recipe
+From: piscosour (0.6.11)
+```
+shot generate-docs
+
+
+### recipe::scaffolding 'Create a piscosour recipe from a scaffold template'
+[Go Index](#main-index):
+
+How to execute this command:
+
+    pisco recipe::scaffolding
+
+General info:
+
+```
+Contexts:  recipe
+From: piscosour (0.6.11)
+```
+shot scaffolding
+
+
+### recipe::update 'Update tool'
+[Go Index](#main-index):
+
+How to execute this command:
+
+    pisco recipe::update
+
+General info:
+
+```
+Contexts:  recipe
+From: piscosour (0.6.11)
+```
+### Update version of recipe
+
+This shot execute npm install -g **recipeName**. recipeName has to be in params._pkgName
 
 
 # Plugins
 
 
 ## context
+from: **piscosour (0.6.11)**  [Go Index](#main-index)
 
 ### Context for the pisco execution
 
@@ -280,6 +450,7 @@ let repos = this.ctxWhoami();
 
 repos is an Array of types that match the place where your recipe was executed.
 ## fsutils
+from: **piscosour (0.6.11)**  [Go Index](#main-index)
 
 ### fs plugin (fs addons for piscosour)
 
@@ -326,10 +497,35 @@ repos is an Array of types that match the place where your recipe was executed.
 | | |
 
 ## inquirer
+from: **piscosour (0.6.11)**  [Go Index](#main-index)
 
 ### Inquirer plugin
 
 This plugin use inquirer library [Inquirer documentation](https://www.npmjs.com/package/inquirer)
+
+set type 
+
+params.json
+```
+  "prompts": [
+    {
+      "type": "#setType()",
+      "name": "doDefault",
+      "required": true,
+      "message": "Do you want to set default repository type?"
+    }
+  ],
+```
+
+- '#' indicate that is necesary to use a function in the shot in order to resolve the type value.
+- '()' set that pisco needs to execute this function on order to get the value. 
+
+shot.js
+```
+  setType: function() {
+    return 'confirm';
+  },
+```
 
 #### this.inquire
 
@@ -337,6 +533,7 @@ This plugin use inquirer library [Inquirer documentation](https://www.npmjs.com/
 | --- | --- |
 | | |
 ## launcher
+from: **piscosour (0.6.11)**  [Go Index](#main-index)
 
 ### Execute any command with pisco.
 
@@ -382,6 +579,7 @@ Syncronous method use to execute any command in your environment.
 | --- | --- |
 | | |
 ## os
+from: **piscosour (0.6.11)**  [Go Index](#main-index)
 
 
 Plugins used to check Operating System where pisco is running
@@ -396,6 +594,7 @@ return true if the Operation System where pisco is executed is Windows.
 
 return true if the Operation System where pisco is executed is MacOS.
 ## piscosour
+from: **piscosour (0.6.11)**  [Go Index](#main-index)
 
 ### Expose piscosour config
 
@@ -415,45 +614,173 @@ return the literal: 'package.json'
 
 
 ## skipper
+from: **piscosour (0.6.11)**  [Go Index](#main-index)
 
 ### Skipper plugin
 
 Skips the shot execution when receiving the param "\_skip": true
 
+## stream-write-hook
+from: **piscosour (0.6.11)**  [Go Index](#main-index)
+
+### Intercepts any stream flow in order to be able to manage the information inside.
+
+This way you can capture all the output of any stream and do whatever you want with it. The way to do this has two stages:
+
+#### 1. Start intercepting the stream
+
+At any place in yor code is posible to intercept any stream the only thing you have to do is use streamWriteHook method:
+
+```
+   let capture = '';
+   this.streamWriteHook(process.stdout, function(chunk, encoding, cb) {
+     capture += stripcolorcodes(chunk.toString(encoding));
+   });
+```
+
+(*) stripcolorcodes() is used to deleting all coloured characters from stream. 
+  
+Capture will contain all from content of process.stdout
+
+#### 2. Stop intercepting the stream.
+
+Is necesary to do release all system resources, so do this:
+
+```
+   this.streamWriteUnhook(process.stdout);
+```
+
+### Addons:
+
+#### this.streamWriteHook
+
+starts the hook
+
+| Param | Description |
+| --- | --- |
+|stream |Stream to be hooked |
+|cb |Function to call each time chunk is append to stream |
+
+#### this.streamWriteUnhook
+
+stops the hook
+
+| Param | Description |
+| --- | --- |
+|stream |Stream to be Unhooked |
+
+
+
 ## system-checker
+from: **piscosour (0.6.11)**  [Go Index](#main-index)
 
 ### How to check system requirements of a piscosour command.
 
 The system requirements are other commands that pisco needs for a pipeline execution. This plugin checks if everything is installed and ready to use by piscosour.
 
-#### 1. Define system requirements in all your shots.
+#### 1. Define version match (Only in the cases where could be diferent)
+
+By default version is taken asking the command with -v and assume that command return version plain without test.
+
+    bower -v 
+    > 1.7.9
+
+But in some cases this is not true, in this cases you can define matches inside **piscosour.json**:  
+
+Example of piscosour.json
+```
+{
+  [...]  
+  "params": {
+    [...]
+    "versions": {
+      "java": {
+        "option" : "-version",
+        "regexp" : "\"(.*?)_"
+      },
+      [...]
+    },
+  [...]
+}
+```
+
+By default this is the versions defined inside core:
+
+```
+    "versions": {
+      "npm" : {
+        "list": "npm list -g --depth 0",
+        "regexp": "\\@(.*?)\\s"
+      },    
+      "java": {
+        "option" : "-version",
+        "regexp" : "\"(.*?)_"
+      },
+      "sass" : {
+        "regexp" : "s (.*?) "
+      },
+      "git": {
+        "option" : "--version",
+        "regexp" : "n (.*?)\\n"
+      }
+    }
+```
+
+- **key** (for example 'java'): is the command that you need inside your shot.
+- **option**: (optional, default is '-v') if version is set the way to check this version.
+- **regexp**: (optional) if version is on a string the way to extract only the version. Overwrite version defined on piscosour.json
+- **list:** (optional) command used to get a stdout to use the regexp function in orther to get the version of the item you want to check.
+
+##### List tip
+
+Useful when you want to check if some dependency is listed by any command. 
+ 
+ 1. Set list in version (f.i. in npm)
+ 2. In any other requirement set listedIn: (f.i. module: set listedIn: npm)
+
+this pugling is going to check the version returned when the match with regexp is done.
+
+#### 2. Define system requirements in all your shots.
 
 The system requirements are defined in **params.json** file inside every shot.
+
+-**requirements** All dependencies are defined inside requirements
 
 Example of params.json:
 ```
 {
   "requirements": {
-    "java": {
-      "version": "1.7.0",
-      "option" : "-version",
-      "regexp" : "\"(.*?)\""
+    "generator-cells-cordova-plugin" : {
+      "npm": true,
+      "listedIn": "npm",
+      "uri" : "https://descinet.bbva.es/stash/scm/cellsnative/generator-cells-cordova-plugin.git",
+      "version" : "0.0.15"
+    },
+    "generator-pisco-recipe" : {
+      "npm": true,
+      "listedIn": "npm",
+      "version" : "0.0.2"
+    },
+    "pisco" : {
+      "npm": true,
+      "pkg" : "piscosour",
+      "version" : "0.5.0"
     },
     "cordova" : {
+      "npm": true,
       "version" : "5.4.1"
     },
-    "yo" : {},
+    "yo" : {"npm": true},
     "bower" : {
-      "version" : "1.0.0"
+      "npm": true,
+      "version" : "1.7.9"
+    },
+    "java": {
+      "version": "1.7.0"
     },
     "sass" : {
-      "version": "3.1.0",
-      "regexp" : "s (.*?) "
-    },
-    "npm" : {
-      "module" : "generator-pisco-recipe",
-      "version" : "0.0.2"
-    }    
+      "version": "3.1.0"
+    }
   },
   [...]
 }
@@ -462,12 +789,15 @@ Example of params.json:
 This is the possible parameters that you need in order to define a system requirement.
 
 - **key** (for example 'java'): is the command that you need inside your shot.
-- **version**: (optional) is the minimum version that you need for the command.
+- **npm** (optional): (default: false): if is set true,  this plugin is going to try to resolve this dependency using npm.
+- **version**: (optional) is the minimum version that you need for the command. Overwrite version defined on piscosour.json
 - **option**: (optional, default is '-v') if version is set the way to check this version.
-- **regexp**: (optional) if version is on a string the way to extract only the version.
-- **module**: (optional) only with npm command. Check if a node_module is installed globally.
+- **regexp**: (optional) if version is on a string the way to extract only the version. Overwrite version defined on piscosour.json
+- **listedIn**: (optional) use the 'list' value of this parameter in order to check if this dependency is available.
+- **uri**: (optional) only apply in npm commands. Uri of the git repo.
+- **pkg**: (optional) only apply in npm commands. Used when executable and pkg are different.
  
-#### 2. Check if a pisco command has all system requirements satisfied
+#### 3. Check if a pisco command has all system requirements satisfied
 
     cells component:validate --pstage check --b-disablePrompts --b-disableContextCheck
     
@@ -489,10 +819,12 @@ this is the result of the execution for every shot that would have system requir
 ```
 
 If any system requirement is not satisfied the command will throw an error and stops...
+## system-saver
+from: **piscosour (0.6.11)**  [Go Index](#main-index)
 
-#### 3. Write the requirements into a global file 'requirements.json'
+### Write the requirements into a global file 'requirements.json'
 
-    cells component:validate --pstage check --b-saveRequirements --b-disablePrompts --b-disableContextCheck
+    cells component:validate --pstage check --b-saveRequirements --b-disablePrompts --b-disableContextCheck --b-disableSystemCheck
     
 Command explanation:
 
@@ -501,6 +833,7 @@ Command explanation:
 - **--b-saveRequirements**: tells pisco to save all system requirements in one file.
 - **--b-disablePrompts**: disable all prompts for the command. 
 - **--b-disableContextCheck**: disable context checks for commands that need one.
+- **--b-disableSystemCheck**: disable system checks in order to avoid vicious cycle.
 
 this is the file resulting of the execution: the mix of all system requirements for all shots.
 
@@ -529,5 +862,28 @@ this is the file resulting of the execution: the mix of all system requirements 
 }
 ```
 ## test
+from: **piscosour (0.6.11)**  [Go Index](#main-index)
 
 Testing plugin. NO FUNCTIONALITY.
+# Contexts
+
+
+[Go Index](#main-index):
+
+|Name|Description|
+|---|---|
+|node-module| |
+|recipe| |
+
+
+
+# Recipes
+
+
+[Go Index](#main-index):
+
+|Name|Version|Description|
+|---|---|---|
+|piscosour|0.6.11|Get all your devops tools wrapped-up!|
+
+

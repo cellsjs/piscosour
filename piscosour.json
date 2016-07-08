@@ -12,15 +12,43 @@
       "launcher",
       "inquirer",
       "fsutils",
-      "system-checker",
       "piscosour",
+      "system-checker",
+      "system-saver",
       "skipper"
-    ]
+    ],
+    "versions": {
+      "bower" : {
+        "npm": true,
+        "list": "bower cache list"
+      },
+      "npm" : {
+        "npm": true,
+        "list": "npm list -g --depth 0",
+        "regexp": "\\@(.*?)\\s"
+      },
+      "yo": {
+        "npm": true,
+        "option": "--version"
+      },
+      "java": {
+        "option": "-version",
+        "regexp": "\"(.*?)_"
+      },
+      "sass": {
+        "regexp": "s (.*?) "
+      },
+      "git": {
+        "option": "--version",
+        "regexp": "n (.*?)\\n"
+      }
+    },
   },
   "defaultContext": "recipe",
   "junitDir": "test-reports",
   "junitPiscoFile": "pisco-junit.xml",
   "stages": [
+    "core-check",
     "check",
     "config",
     "run",

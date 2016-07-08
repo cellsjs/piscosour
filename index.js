@@ -10,7 +10,9 @@ module.exports = {
     logger.trace('Loading time', '-', '#duration', moment() - init);
     sour().gush(init).then(this.onFulfilled, this.onReject);
   },
-  onFulfilled: function() {},
+  onFulfilled: function() {
+    process.exit(0);
+  },
   onReject: function(e) {
     let message = e;
     let fatal = false;

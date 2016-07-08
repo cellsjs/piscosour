@@ -1,0 +1,17 @@
+{
+  "description": "Create new pisco shot inside this module",
+  "prompts": [
+    {
+      "type": "input",
+      "name": "shotName",
+      "required": true,
+      "message": "Write a name for your pisco shot"
+    },
+    {
+      "type": "input",
+      "name": "repoType",
+      "required": true,
+      "message": "Write the repository type for your new shot"
+    }
+  ]
+}
