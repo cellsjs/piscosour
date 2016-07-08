@@ -1,11 +1,11 @@
 'use strict';
 
-let spawn = require('child_process').spawn;
-let chalk = require('chalk');
-let spawnSync = require('child_process').spawnSync;
+const spawn = require('child_process').spawn;
+const stream = require('stream');
+const chalk = require('chalk');
+const spawnSync = require('child_process').spawnSync;
 
 module.exports = {
-
   addons: {
     sh: function(cmdsh, reject, loud) {
       var result;
@@ -32,17 +32,20 @@ module.exports = {
         args = patch.args;
       }
       this.logger.trace('#cyan', 'executing', cmd, args);
-      var result = spawnSync(cmd, args);
+      let result;
+      if (loud) {
+        result = spawnSync(cmd, args, {stdio: ['ignore', process.stdout, process.stderr]});
+        const message = 'WARNING!! Use \'loud=false\' if you want to use stdout or stderr';
+        result.stdout = message;
+        result.stderr = message;
+      } else {
+        result = spawnSync(cmd, args);
+      }
+
 
       if ((result.error || result.status !== 0) && reject) {
         reject({error: result.error, stderr: result.stderr.toString()});
       }
-
-      if (loud) {
-        this.logger.out(result.stdout.toString());
-        this.logger.err(chalk.red(result.stderr.toString()));
-      }
-
       return result;
     },
     /**
@@ -67,8 +70,11 @@ module.exports = {
       return child;
     },
     execute: function(cmd, args) {
-      var child = this.executeStreamed(cmd, args);
-      var error;
+      let child = this.executeStreamed(cmd, args);
+      let error;
+      let command = cmd;
+      let output = '';
+      args.forEach((item)=> command += ' ' + item);
 
       child.on('disconnect', () => {
         this.logger.info('Child process disconnected!', arguments);
@@ -76,6 +82,7 @@ module.exports = {
 
       child.stdout.on('data', (data) => {
         this.logger.out(data.toString());
+        output += data.toString();
       });
 
       child.stderr.on('data', (data) => {
@@ -85,20 +92,20 @@ module.exports = {
       });
 
       child.on('error', () => {
-        this.logger.error('#red', 'Child process error!', arguments);
+        this.logger.error('#red', 'Child process error!', command);
       });
 
       child.on('exit', () => {
-        this.logger.info('Child process exit!', arguments);
+        this.logger.info('#cyan', command, 'executed', '#green', 'ok!');
       });
 
       return new Promise((resolve, reject) => {
         child.on('close', (code) => {
           this.logger.info('child process exited with code ', code);
           if (code !== 0) {
-            reject({cmd: cmd, args: args, status: 'ERROR', error: error});
+            reject({cmd: cmd, args: args, status: 'ERROR', error: error, output: output});
           } else {
-            resolve({cmd: cmd, args: args, status: 'OK'});
+            resolve({cmd: cmd, args: args, status: 'OK', output: output});
           }
         });
       });

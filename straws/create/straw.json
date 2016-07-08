@@ -1,8 +1,0 @@
-{
-  "type": "normal",
-  "name": "Create from scratch",
-  "description": "Starting a repository from scratch",
-  "shots": {
-    "scaffolding": {}
-  }
-}

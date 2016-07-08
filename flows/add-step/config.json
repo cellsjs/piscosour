@@ -3,6 +3,6 @@
   "name": "add-step",
   "description": "Add a step to a piscosour recipe",
   "steps": {
-    "steps": {}
+    "add-steps": {}
   }
 }

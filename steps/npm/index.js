@@ -6,7 +6,7 @@ let semver = require('semver');
 module.exports = {
 
   check: function(resolve) {
-    this.logger.info('Checking all npm commands are already installed');
+    this.logger.error('#yellow', 'THIS SHOT IS DEPRECATED!! WILL BE DELETED SOON!!', 'use requirements in params.json instead!!!', 'Checking all npm commands are already installed');
 
     this.params.installCmds.forEach((cmd) => {
       var command = cmd.args[2];
@@ -26,7 +26,7 @@ module.exports = {
         if (cmd.version && semver.lt(version, cmd.version)) {
           this.logger.info(command, 'is installed .................', '#yellow', 'OUT OF DATE!');
           this.logger.info('version: ', version, 'must to be up to', cmd.version);
-          cmd.args[0] = 'update';
+          cmd.args[0] = 'install';
           resolve({skip: false});
         } else {
           this.logger.info(command, 'is installed .................', '#green', 'OK');
@@ -46,7 +46,7 @@ module.exports = {
   },
 
   run: function(resolve, reject) {
-    this.logger.info('Installing npm dependencies...');
+    this.logger.error('#yellow', 'THIS SHOT IS DEPRECATED!! WILL BE DELETED SOON!!', 'use requirements in params.json instead!!!', 'Installing npm dependencies...');
     return this.executeParallel(this.params.installCmds).then(resolve, reject);
   }
 };

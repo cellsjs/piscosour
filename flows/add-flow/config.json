@@ -3,6 +3,6 @@
   "name": "add-flow",
   "description": "Add a flow to a piscosour recipe",
   "steps": {
-    "flows": {}
+    "add-flows": {}
   }
 }

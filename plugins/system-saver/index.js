@@ -5,7 +5,6 @@
 const fs = require('fs');
 
 module.exports = {
-  description: 'System requirements saver',
 
   //TODO: Mejorar esto 1) guardar el resultado en una variable global en lugar de escribir en disco 2) detectar (this.isLast) el último shot del straw y escribir entonces
   'core-check': function() {
@@ -22,7 +21,7 @@ module.exports = {
           tmp[cmd] = options;
         }
       });
-      requirements = this.config.mergeObject(requirements, tmp);
+      requirements = this.piscoConfig.mergeObject(requirements, tmp);
       fs.writeFileSync(fileName, JSON.stringify(requirements, null, 2));
     }
   }

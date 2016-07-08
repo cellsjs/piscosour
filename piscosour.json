@@ -42,7 +42,7 @@
         "option": "--version",
         "regexp": "n (.*?)\\n"
       }
-    },
+    }
   },
   "defaultContext": "recipe",
   "junitDir": "test-reports",

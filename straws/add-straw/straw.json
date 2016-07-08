@@ -1,8 +1,0 @@
-{
-  "type": "normal",
-  "name": "Add straw",
-  "description": "Add a straw to a piscosour recipe",
-  "shots": {
-    "add-straws": {}
-  }
-}

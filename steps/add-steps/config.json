@@ -1,5 +1,5 @@
 {
-  "name": "steps",
+  "name": "add-steps",
   "description": "Create new pisco step inside this module",
   "contexts": ["recipe"],
   "prompts": [

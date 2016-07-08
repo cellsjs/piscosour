@@ -8,6 +8,7 @@ module.exports = {
 
   config: function(resolve, reject) {
     this.logger.info('this.params.saludo: ', this.params.saludo);
+    this.sh('ls -las', null, true);
   },
 
   run: function(resolve, reject) {

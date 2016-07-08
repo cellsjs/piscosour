@@ -1,7 +1,8 @@
 'use strict';
 
-let fs = require('fs');
-let path = require('path');
+const fs = require('fs');
+const path = require('path');
+const rimraf = require('rimraf');
 
 module.exports = {
 
@@ -50,7 +51,7 @@ module.exports = {
     var result = this.sh('node bin/pisco.js ' + this.params.context + '::' + this.params.stepName, reject, true);
     if (result.status !== 0) {
       this.logger.error('#red', 'Error: step not propelly created!', 'cleaning files!');
-      this.sh('rm -rf ' + dest, reject, true);
+      rimraf.sync(dest);
     }
   },
 

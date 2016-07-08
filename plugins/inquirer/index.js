@@ -1,8 +1,9 @@
 'use strict';
 
-var inquirer = require('inquirer');
+const inquirer = require('inquirer');
 
 module.exports = {
+  description: 'Plugin inquirer',
 
   check: function() {
     if (this.params.prompts && !this.params.disablePrompts) {
@@ -13,36 +14,41 @@ module.exports = {
   addons: {
 
     inquire: function(name) {
-      var prompts = this.params[name];
+      const prompts = this.params[name];
 
-      var getValidate = function(prompt) {
+      const getValidate = function(prompt) {
         return function(userInput) {
           return userInput ? true : '"' + prompt.name + '" is required. ' + prompt.message;
         };
       };
 
-      var stepResolution = function(prompt, attr) {
-        if (prompt[attr] !== undefined && Object.prototype.toString.call(prompt[attr]) !== '[object Function]' && typeof prompt[attr] !== 'boolean' && prompt[attr].indexOf('#') === 0) {
-          var functionName = prompt[attr].replace('#', '');
-          var func = this[functionName];
+      const stepResolution = ((prompt, attr) => {
+        if (prompt[attr] !== undefined
+          && Object.prototype.toString.call(prompt[attr]) !== '[object Function]'
+          && typeof prompt[attr] !== 'boolean'
+          && prompt[attr].indexOf('#') === 0) {
+          let functionName = prompt[attr].replace('#', '');
+          let exec = false;
+          if (functionName.indexOf('(') >= 0) {
+            functionName = functionName.replace('()', '');
+            exec = true;
+          }
+          const func = this.runner[functionName];
           if (func) {
-            prompt[attr] = func;
+            prompt[attr] = exec ? func() : func;
           } else {
             prompt[attr] = undefined;
             this.logger.info('#yellow', 'WARNING', 'value', functionName, 'doesn\'t exists!! in this step');
           }
         }
-      }.bind(this);
+      });
 
-      var reqs = [];
+      const reqs = [];
 
       if (prompts) {
         prompts.forEach((prompt) => {
 
-          stepResolution(prompt, 'when');
-          stepResolution(prompt, 'validate');
-          stepResolution(prompt, 'choices');
-          stepResolution(prompt, 'default');
+          ['when', 'validate', 'choices', 'type', 'default'].forEach((method) => stepResolution(prompt, method));
 
           if (prompt.required && !prompt.validate) {
             prompt.validate = getValidate(prompt);
@@ -61,19 +67,13 @@ module.exports = {
           }
         });
       }
-
-      return new Promise((resolve, reject) => {
-        if (reqs.length > 0) {
-          inquirer.prompt(reqs, (answers) => {
-            reqs.forEach((req) => {
-              this.params[req.name] = answers[req.name];
-            });
-            resolve(answers);
+      if (reqs.length > 0) {
+        return inquirer.prompt(reqs).then((answers) => {
+          reqs.forEach((req) => {
+            this.params[req.name] = answers[req.name];
           });
-        } else {
-          resolve();
-        }
-      });
+        });
+      }
     },
 
     promptArgs: function(array) {

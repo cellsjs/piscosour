@@ -1,8 +1,9 @@
 'use strict';
 
-let fs = require('fs');
-let path = require('path');
-let docs = require('../../../lib/docs');
+const fs = require('fs');
+const path = require('path');
+const docs = require('../../lib/docs');
+const enriched = docs.enrichCommands(null, true);
 
 module.exports = {
 
@@ -10,134 +11,218 @@ module.exports = {
 
   run: function() {
     this.pkg = this.fsReadConfig(this.pkgFile);
-    this.logger.info('#magenta', 'run', 'Merge all info.md of flows and steps in the readme.md');
 
-    var bundle = [];
+    let bundle = [];
 
-    bundle = this._addBundle(this._getStarted(), null, bundle);
-    bundle = this._addBundle('# Recipes', null, bundle);
-    bundle = this._addBundle(this._infoRecipe(), null, bundle);
-    bundle = this._addBundle('# Commands', null, bundle);
-    bundle = this._addBundle(this._commandsIndex(), null, bundle);
+    bundle = this._addBundle(this._menu(), null, bundle);
+    bundle = this._addBundle('# All Commands Availables', null, bundle);
     this._infoFlows(bundle);
     bundle = this._addBundle('\n# Plugins', null, bundle);
     this._infoPlugins(bundle);
+    bundle = this._addBundle('# Contexts', null, bundle);
+    bundle = this._addBundle(this._infoContexts(), null, bundle);
+    bundle = this._addBundle('# Recipes', null, bundle);
+    bundle = this._addBundle(this._infoRecipe(), null, bundle);
 
-    this.fsAppendBundle(bundle, 'README.md', ' Installing ' + this.pkg.name);
+    this.fsAppendBundle(bundle, 'README.md', ' Main Index:');
   },
 
-  _getStarted: function() {
-    var content = `Install ${this.pkg.name} globally\n\n`;
-    content += `    npm install -g ${this.pkg.name}`;
+  _menu() {
+    let content = '';
+    if (this.piscoConfig.commands) {
+      content += '- User Commands\n';
+      content = this._userCommandsIndex(content);
+    }
+    content += '- [Plugins](#plugins)\n';
+    content = this._pluginsIndex(content);
+    content += '- [Contexts](#contexts)\n';
+    content += '- [Recipes](#recipes)\n';
+    content += `- [All Commands Availables](#all-commands-availables)\n`;
+    content = this._commandsIndex(content);
     return content;
   },
 
-  _commandsIndex: function() {
+  _getStarted: function() {
+    let content = `Install ${this.pkg.name} globally\n\n`;
+    content += `    npm install -g ${this.pkg.name}`;
+    content += `\n\nOnce installed, ${this.piscoConfig.cmd} command will be available for you`;
+    return content;
+  },
 
-    var content = '';
-    var enriched = docs.enrichCommands(null, true);
+  _formatMdLink(link) {
+    link = link.trim();
+    link = link.replace(/:/g, '');
+    link = link.replace(/\./g, '');
+    link = link.replace(/ /g, '-');
+    link = link.toLowerCase();
+    return link;
+  },
 
-    Object.getOwnPropertyNames(enriched).forEach((recipeKey) => {
-      var recipe = enriched[recipeKey].___recipe;
+  _commandsIndex: function(content) {
+    const tab = '    ';
+
+    Object.getOwnPropertyNames(enriched).sort().forEach((recipeKey) => {
+      const recipe = enriched[recipeKey].___recipe;
       if (recipe) {
         if (recipeKey !== 'piscosour') {
-          content += `\n**from ${recipe.name}  v.${recipe.version}:**\n\n`;
-          Object.getOwnPropertyNames(enriched[recipeKey]).forEach((command) => {
-            if (command !== '___recipe') {
-              var enrich = enriched[recipeKey][command];
-              var piscoCfg = this.fsReadConfig(this.piscoFile);
-              content += `- **${piscoCfg.cmd} ${command}** ( ${enrich.description} )\n`;
-            }
+          content += `${tab}- from **${recipe.name}  v.${recipe.version}**\n`;
+          const iterable = Object.getOwnPropertyNames(enriched[recipeKey]).sort();
+          ['flow', 'step'].forEach((type) => {
+            iterable.forEach((command) => {
+              const enrich = enriched[recipeKey][command];
+              if (command !== '___recipe' && enrich.type === type) {
+                const piscoCfg = this.fsReadConfig(this.piscoFile);
+                content += `${tab}${tab}- [${command} (${enrich.description})](#${this._formatMdLink(`${command} ${enrich.description}`)})\n`;
+              }
+            });
           });
         }
       }
     });
     return content;
+  },
 
+  _userCommandsIndex: function(content) {
+    const tab = '    ';
+    this.piscoConfig.commands.sort().forEach((command) => {
+      const enrich = enriched.search(command);
+      content += `${tab}- [${command} (${enrich.description})](#${this._formatMdLink(`${command} ${enrich.description}`)})\n`;
+    });
+    return content;
+  },
+
+  _pluginsIndex: function(content) {
+    const tab = '    ';
+
+    Object.getOwnPropertyNames(this.piscoConfig.recipes).forEach((recipeName) => {
+      const recipe = this.piscoConfig.recipes[recipeName];
+      const dirPlugins = path.join(recipe.dir, 'plugins');
+      if (recipe.name && this.fsExists(dirPlugins) && recipeName !== 'piscosour') {
+        content += `${tab}- from **${recipe.name}  v.${recipe.version}**\n`;
+        const plugins = fs.readdirSync(dirPlugins);
+        plugins.sort().forEach((dir) => {
+          content += `${tab}${tab}- [${dir}](#${dir})\n`;
+        });
+      }
+    });
+    return content;
+  },
+
+  _infoFlows: function(bundle) {
+    Object.getOwnPropertyNames(enriched).sort().forEach((recipeKey) => {
+      const recipe = enriched[recipeKey].___recipe;
+      if (recipe) {
+        if (recipeKey !== 'piscosour') {
+
+          const iterable = Object.getOwnPropertyNames(enriched[recipeKey]).sort();
+          iterable.forEach((command) => {
+            const enrich = enriched[recipeKey][command];
+            if (command !== '___recipe' && enrich.type === 'flow') {
+              const flow = this.fsReadConfig(path.join(recipe.dir, 'flows', enrich.name, 'config.json'));
+              if (flow.type === 'normal') {
+                this._infoFlow(bundle, flow, enrich.name, command);
+              }
+            }
+          });
+
+          iterable.forEach((command) => {
+            const enrich = enriched[recipeKey][command];
+            if (command !== '___recipe' && enrich.type === 'step') {
+              this._infoStep(bundle, command);
+            }
+          });
+        }
+      }
+    });
+  },
+
+  _infoFlow: function(bundle, flow, name, command, p) {
+    this.logger.info('#green', 'reading', 'flow', '#cyan', flow.name);
+    let file = path.join('flows', name, 'info.md');
+    let precontent = '[Go Index](#main-index):\n\n';
+    precontent += `How to execute this command:\n\n`;
+    precontent += `    ${this.piscoConfig.cmd} ${command}\n\n`;
+    bundle = this._addBundle(`###${command} (${flow.description})`, file, bundle, true, precontent);
+
+    let n = 1;
+    Object.getOwnPropertyNames(flow.steps).forEach((stepName) => {
+      const step = flow.steps[stepName];
+      this.logger.info('#green', 'reading', 'step', '#cyan', stepName);
+      stepName = stepName.indexOf(':') >= 0 ? stepName.split(':')[0] : stepName;
+      if (step.type === 'flow') {
+        const flowStep = this.fsReadConfig(path.join('flows', stepName, 'config.json'));
+        this._infoFlow(bundle, flowStep, stepName, '# ' + n + '. (Flow) ' + stepName, n);
+      } else {
+        this._infoStep(bundle, `${command.split(':')[0]}:${stepName}`, '####', n, p);
+      }
+      n++;
+    });
+  },
+
+  _infoStep: function(bundle, command, base, n, p) {
+    let precontent = '';
+    if (!base) {
+      base = '###';
+      precontent += '[Go Index](#main-index):\n\n';
+      precontent += `How to execute this command:\n\n`;
+      precontent += `    ${this.piscoConfig.cmd} ${command}\n\n`;
+    }
+    precontent += 'General info:\n\n';
+
+    const tmp = command.split(':');
+    const stepName = tmp[tmp.length - 1];
+    const info = this.piscoConfig.getStepInfo(stepName);
+    info.recipes.forEach((recipe) => {
+      let file = path.join(recipe.dir, 'steps', stepName, 'info.md');
+      bundle = this._addBundle(`\n${base} ${(n ? (n + (p ? '.' + p : '') + '. ') : '')}${command} '${info.description}'`, file, bundle, true, `${precontent}${this._infomd(info)}`);
+    });
   },
 
   _infoRecipe: function() {
-    var content = '|Name|Version|Description|\n';
+    let content = '[Go Index](#main-index):\n\n';
+    content += '|Name|Version|Description|\n';
     content += '|---|---|---|\n';
     Object.getOwnPropertyNames(this.piscoConfig.recipes).forEach((recipeName) => {
-      var recipe = this.piscoConfig.recipes[recipeName];
-      if (recipe.name) {
+      const recipe = this.piscoConfig.recipes[recipeName];
+      if (recipe.name && recipe.version !== '-') {
         content += '|' + recipe.name + '|' + recipe.version + '|' + recipe.description + '|\n';
       }
     });
     return content;
   },
 
+  _infoContexts: function() {
+    let content = '[Go Index](#main-index):\n\n';
+    content += '|Name|Description|\n';
+    content += '|---|---|\n';
+    Object.getOwnPropertyNames(this.piscoConfig.contexts).forEach((context) => {
+      content += `|${this.piscoConfig.contexts[context].name}|${this.piscoConfig.contexts[context].description}|\n`;
+    });
+    return content;
+  },
+
   _infoPlugins: function(bundle) {
     Object.getOwnPropertyNames(this.piscoConfig.recipes).forEach((recipeName) => {
-      var recipe = this.piscoConfig.recipes[recipeName];
-      var dirPlugins = path.join(recipe.dir, 'plugins');
+      const recipe = this.piscoConfig.recipes[recipeName];
+      const dirPlugins = path.join(recipe.dir, 'plugins');
       if (recipe.name && this.fsExists(dirPlugins) && recipeName !== 'piscosour') {
         this.logger.info('#green', 'reading', dirPlugins);
-        var plugins = fs.readdirSync(dirPlugins);
+        const plugins = fs.readdirSync(dirPlugins);
 
         plugins.forEach((dir) => {
           this.logger.info('processing plugin', '#cyan', dir, '...');
-          var fileMd = path.join(recipe.dir, 'plugins', dir, 'info.md');
-          var file = path.join(recipe.dir, 'plugins', dir, 'plugin.js');
-          bundle = this._addBundle('## ' + dir, fileMd, bundle, true);
-        });
-      }
-    });
-  },
-
-  _infoFlows: function(bundle) {
-    Object.getOwnPropertyNames(this.piscoConfig.recipes).forEach((recipeName) => {
-      var recipe = this.piscoConfig.recipes[recipeName];
-      var dirFlow = path.join(recipe.dir, 'flows');
-      if (recipe.name && this.fsExists(dirFlow) && recipeName !== 'piscosour') {
-        this.logger.info('#green', 'reading', dirFlow);
-        var flows = fs.readdirSync(dirFlow);
-        flows.forEach((dir) => {
-          this.logger.info('processing flow', '#cyan', dir, '...');
-          var flow = this.fsReadConfig(path.join(recipe.dir, 'flows', dir, 'flow.json'));
-          if (flow.type === 'normal') {
-            this._infoFlow(bundle, flow, dir);
-          }
-        });
-      }
-    });
-  },
-
-  _infoFlow: function(bundle, flow, dir, p) {
-    var file = path.join(process.cwd(), 'flows', dir, 'info.md');
-    bundle = this._addBundle('## ' + dir + ': \'' + flow.name + '\'', file, bundle, true, flow.description);
-
-    var n = 1;
-    Object.getOwnPropertyNames(flow.steps).forEach((stepName) => {
-      var step = flow.steps[stepName];
-      this.logger.info('#green', 'reading', 'step', '#cyan', stepName);
-      stepName = stepName.indexOf(':') >= 0 ? stepName.split(':')[0] : stepName;
-      if (step.type === 'flow') {
-        var flowStep = this.fsReadConfig(path.join(process.cwd(), 'flows', stepName, 'flow.json'));
-        this._infoFlow(bundle, flowStep, '# ' + n + '. (Flow) ' + stepName, n);
-        n++;
-      } else {
-        Object.getOwnPropertyNames(this.piscoConfig.recipes).forEach((recipeName) => {
-          var recipe = this.piscoConfig.recipes[recipeName];
-          if (recipe.name && recipe.steps && recipe.steps[stepName]) {
-            file = path.join(recipe.dir, 'steps', stepName, 'info.md');
-            var info = this.piscoConfig.getStepInfo(stepName);
-            bundle = this._addBundle('\n### ' + n + (p ? '.' + p : '') + '. ' + stepName + ': \'' + info.description + '\'', file, bundle, true, this._infomd(info));
-            n++;
-
-            this.piscoConfig.contexts.forEach((type) => {
-              file = path.join(recipe.dir, 'steps', stepName, type, 'info.md');
-              bundle = this._addBundle('\n#### For type ' + type + ':', file, bundle);
-            });
-          }
+          const fileMd = path.join(recipe.dir, 'plugins', dir, 'info.md');
+          let precontent = '';
+          precontent += `from: **${recipe.name} (${recipe.version})**`;
+          precontent += '  [Go Index](#main-index)\n';
+          bundle = this._addBundle('## ' + dir, fileMd, bundle, true, precontent);
         });
       }
     });
   },
 
   _infomd: function(info) {
-    var r = '```\n';
+    let r = '```\n';
     r += 'Contexts:';
     info.types.forEach((type, i, a) => {
       r += '  ' + type;
@@ -145,7 +230,7 @@ module.exports = {
         r += ',';
       }
     });
-    r += '\nRecipes:';
+    r += '\nFrom:';
     info.recipes.forEach((recipe, i, a) => {
       r += ' ' + recipe.name + ' (' + recipe.version + ')';
       if (i < a.length - 1) {
