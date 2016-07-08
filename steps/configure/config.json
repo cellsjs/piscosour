@@ -1,0 +1,30 @@
+{
+  "name": "configure",
+  "description": "Configure piscosour.json",
+  "contexts": ["recipe"],
+  "prompts": [
+    {
+      "type": "confirm",
+      "name": "doDefault",
+      "default": true,
+      "required": true,
+      "message": "Do you want to set default context?"
+    },
+    {
+      "type": "input",
+      "name": "defaultContext",
+      "required": true,
+      "message": "Set the default context for this recipe",
+      "when": "#whendefaultContext",
+      "default": "#getDefault"
+    }
+  ],
+  "promptsPisco": [
+    {
+      "type": "confirm",
+      "name": "doFixPiscosour",
+      "required": true,
+      "message": "Your piscosour.json file is deprecated. Do you want to fix it?"
+    }
+  ]
+}

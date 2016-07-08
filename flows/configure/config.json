@@ -1,0 +1,8 @@
+{
+  "type": "normal",
+  "name": "config",
+  "description": "Manage a piscosour recipe",
+  "steps": {
+    "configure": {}
+  }
+}

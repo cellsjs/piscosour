@@ -1,0 +1,18 @@
+{
+  "type": "util",
+  "name": "testint",
+  "description": "test",
+  "params": {},
+  "steps": {
+    "test2": {
+      "params": {
+        "saludo": "holadefault"
+      },
+      "recipe": {
+        "params": {
+          "saludo": "holarecipe"
+        }
+      }
+    }
+  }
+}

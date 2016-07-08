@@ -1,0 +1,19 @@
+{
+  "name": "add-steps",
+  "description": "Create new pisco step inside this module",
+  "contexts": ["recipe"],
+  "prompts": [
+    {
+      "type": "input",
+      "name": "stepName",
+      "required": true,
+      "message": "Write a name for your pisco step"
+    },
+    {
+      "type": "input",
+      "name": "context",
+      "required": true,
+      "message": "Write the context for your new step"
+    }
+  ]
+}

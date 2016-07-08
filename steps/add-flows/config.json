@@ -1,0 +1,19 @@
+{
+  "name": "add-flows",
+  "description": "Adding step to a flow",
+  "contexts": ["recipe"],
+  "prompts": [
+    {
+      "type": "input",
+      "name": "flowKey",
+      "required": true,
+      "message": "Write the name of the flow"
+    },
+    {
+      "type": "input",
+      "name": "flowDescription",
+      "required": true,
+      "message": "Write a description for the of the flow"
+    }
+  ]
+}

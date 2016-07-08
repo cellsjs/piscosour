@@ -1,0 +1,8 @@
+{
+  "type": "normal",
+  "name": "convert",
+  "description": "Convert any module into a piscosour recipe",
+  "steps": {
+    "convert": {}
+  }
+}

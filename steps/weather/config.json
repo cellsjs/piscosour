@@ -1,0 +1,7 @@
+{
+  "name": "weather",
+  "description": "See your city weather",
+  "contexts": "*",
+  "city": "madrid",
+  "isTest": true
+}
