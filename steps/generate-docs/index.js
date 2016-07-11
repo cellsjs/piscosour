@@ -33,12 +33,12 @@ module.exports = {
       content += '- User Commands\n';
       content = this._userCommandsIndex(content);
     }
+    content += `- [All Commands Availables](#all-commands-availables)\n`;
+    content = this._commandsIndex(content);
     content += '- [Plugins](#plugins)\n';
     content = this._pluginsIndex(content);
     content += '- [Contexts](#contexts)\n';
     content += '- [Recipes](#recipes)\n';
-    content += `- [All Commands Availables](#all-commands-availables)\n`;
-    content = this._commandsIndex(content);
     return content;
   },
 

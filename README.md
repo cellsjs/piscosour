@@ -36,21 +36,6 @@ So, you can use all your favorites tools keeping it under control and versioned.
 
 # Main Index:
 
-- [Plugins](#plugins)
-    - from **piscosour  v.1.0.0-alpha-2**
-        - [context](#context)
-        - [fsutils](#fsutils)
-        - [inquirer](#inquirer)
-        - [launcher](#launcher)
-        - [os](#os)
-        - [piscosour](#piscosour)
-        - [skipper](#skipper)
-        - [stream-write-hook](#stream-write-hook)
-        - [system-checker](#system-checker)
-        - [system-saver](#system-saver)
-        - [test](#test)
-- [Contexts](#contexts)
-- [Recipes](#recipes)
 - [All Commands Availables](#all-commands-availables)
     - from **piscosour  v.1.0.0-alpha-2**
         - [node-module:convert (Convert any module into a piscosour recipe)](#node-moduleconvert-convert-any-module-into-a-piscosour-recipe)
@@ -68,6 +53,21 @@ So, you can use all your favorites tools keeping it under control and versioned.
         - [recipe::scaffolding (Create a piscosour recipe from a scaffold template)](#recipescaffolding-create-a-piscosour-recipe-from-a-scaffold-template)
         - [recipe::update (Update tool)](#recipeupdate-update-tool)
         - [recipe::yeah (Brief description of step)](#recipeyeah-brief-description-of-step)
+- [Plugins](#plugins)
+    - from **piscosour  v.1.0.0-alpha-2**
+        - [context](#context)
+        - [fsutils](#fsutils)
+        - [inquirer](#inquirer)
+        - [launcher](#launcher)
+        - [os](#os)
+        - [piscosour](#piscosour)
+        - [skipper](#skipper)
+        - [stream-write-hook](#stream-write-hook)
+        - [system-checker](#system-checker)
+        - [system-saver](#system-saver)
+        - [test](#test)
+- [Contexts](#contexts)
+- [Recipes](#recipes)
 
 
 
@@ -161,7 +161,7 @@ General info:
 Contexts:  all
 From: piscosour (1.0.0-alpha-2)
 ```
-
+#### Deprecated! Use requirements instead!
 
 #### 2. recipe:scaffolding 'Create a piscosour recipe from a scaffold template'
 General info:
@@ -213,7 +213,7 @@ General info:
 Contexts:  all
 From: piscosour (1.0.0-alpha-2)
 ```
-
+#### Deprecated! Use requirements instead!
 
 ### node-module::convert 'Convert any nodejs module into a piscosour recipe'
 [Go Index](#main-index):
