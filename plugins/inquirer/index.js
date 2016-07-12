@@ -33,7 +33,7 @@ module.exports = {
             functionName = functionName.replace('()', '');
             exec = true;
           }
-          const func = this.runner[functionName];
+          const func = this[functionName];
           if (func) {
             prompt[attr] = exec ? func() : func;
           } else {
