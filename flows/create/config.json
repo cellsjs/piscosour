@@ -1,9 +1,7 @@
 {
-  "type": "normal",
   "name": "create",
-  "description": "Starting a repository from scratch",
+  "description": "Create new recipe from scratch",
   "steps": {
-    "npm": {},
     "scaffolding": {}
   }
 }
