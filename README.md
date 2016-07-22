@@ -37,12 +37,12 @@ So, you can use all your favorites tools keeping it under control and versioned.
 # Main Index:
 
 - [All Commands Availables](#all-commands-availables)
-    - from **piscosour  v.1.0.0-alpha-2**
+    - from **piscosour  v.1.0.0-alpha.4**
         - [node-module:convert (Convert any module into a piscosour recipe)](#node-moduleconvert-convert-any-module-into-a-piscosour-recipe)
         - [recipe:add-flow (Add a flow to a piscosour recipe)](#recipeadd-flow-add-a-flow-to-a-piscosour-recipe)
         - [recipe:add-step (Add a step to a piscosour recipe)](#recipeadd-step-add-a-step-to-a-piscosour-recipe)
         - [recipe:config (Manage a piscosour recipe)](#recipeconfig-manage-a-piscosour-recipe)
-        - [recipe:create (Starting a repository from scratch)](#recipecreate-starting-a-repository-from-scratch)
+        - [recipe:create (Create new recipe from scratch)](#recipecreate-create-new-recipe-from-scratch)
         - [recipe:docs (Append documentation from info.md to readme.md of the recipe)](#recipedocs-append-documentation-from-infomd-to-readmemd-of-the-recipe)
         - [all::npm (DEPRECATED)](#allnpm-deprecated)
         - [node-module::convert (Convert any nodejs module into a piscosour recipe)](#node-moduleconvert-convert-any-nodejs-module-into-a-piscosour-recipe)
@@ -54,7 +54,7 @@ So, you can use all your favorites tools keeping it under control and versioned.
         - [recipe::update (Update tool)](#recipeupdate-update-tool)
         - [recipe::yeah (Brief description of step)](#recipeyeah-brief-description-of-step)
 - [Plugins](#plugins)
-    - from **piscosour  v.1.0.0-alpha-2**
+    - from **piscosour  v.1.0.0-alpha.4**
         - [context](#context)
         - [fsutils](#fsutils)
         - [inquirer](#inquirer)
@@ -89,7 +89,7 @@ General info:
 
 ```
 Contexts:  node-module
-From: piscosour (1.0.0-alpha-2)
+From: piscosour (1.0.0-alpha.4)
 ```
 shot convert
 
@@ -108,7 +108,7 @@ General info:
 
 ```
 Contexts:  recipe
-From: piscosour (1.0.0-alpha-2)
+From: piscosour (1.0.0-alpha.4)
 ```
 shot straws
 
@@ -127,50 +127,9 @@ General info:
 
 ```
 Contexts:  recipe
-From: piscosour (1.0.0-alpha-2)
+From: piscosour (1.0.0-alpha.4)
 ```
 shot shots
-
-###recipe:create (Starting a repository from scratch)
-[Go Index](#main-index):
-
-How to execute this command:
-
-    pisco recipe:create
-
-
-
-- Pisco te preguntará por el nombre de la receta que quieres crear. Este será el nombre de tu paquete npm que usarás para compartir la funcionalidad y las herramientas que envuelvas. Introduce el nombre que más te guste.
-- Deberás introducir el comando que quieres usar para hacer correr los "straws" (flujos) que vas a introducir en este módulo.
-- También deberás introducir una breve descripción para tu módulo.
-
-Mientras pisco genera tu primera receta usando un generator de yeoman. Te explicamos brevemente lo que está pasando ante tus ojos. (no te preocupes, más adelante podrás profundizar más). 
-
-"Pisco create" también es un comando envuelto de pisco que está ejecutando otras herramientas. Cada uno de los mensajes que ves aparecer es la ejecución de un shot (paso). Concretamente este comando conlleva la ejecución de estos pasos.
-
-- system: Comprueba que tu sistema es compatible con la ejecución de piscosour
-- npm: Comprueba que tienes instalado todos los módulos npm necesarios (yeoman y el generator-pisco-recipe)
-- scaffolding: Hace las preguntas y llama a yeoman para generar el esqueleto del módulo.
-
-Listo! ya tienes tu primer ejecutable de pisco creado! pruebalo
-
-#### 1. recipe:npm 'DEPRECATED'
-General info:
-
-```
-Contexts:  all
-From: piscosour (1.0.0-alpha-2)
-```
-#### Deprecated! Use requirements instead!
-
-#### 2. recipe:scaffolding 'Create a piscosour recipe from a scaffold template'
-General info:
-
-```
-Contexts:  recipe
-From: piscosour (1.0.0-alpha-2)
-```
-shot scaffolding
 
 ###recipe:docs (Append documentation from info.md to readme.md of the recipe)
 [Go Index](#main-index):
@@ -195,7 +154,7 @@ General info:
 
 ```
 Contexts:  recipe
-From: piscosour (1.0.0-alpha-2)
+From: piscosour (1.0.0-alpha.4)
 ```
 shot generate-docs
 
@@ -211,7 +170,7 @@ General info:
 
 ```
 Contexts:  all
-From: piscosour (1.0.0-alpha-2)
+From: piscosour (1.0.0-alpha.4)
 ```
 #### Deprecated! Use requirements instead!
 
@@ -226,7 +185,7 @@ General info:
 
 ```
 Contexts:  node-module
-From: piscosour (1.0.0-alpha-2)
+From: piscosour (1.0.0-alpha.4)
 ```
 shot convert
 
@@ -242,7 +201,7 @@ General info:
 
 ```
 Contexts:  recipe
-From: piscosour (1.0.0-alpha-2)
+From: piscosour (1.0.0-alpha.4)
 ```
 shot straws
 
@@ -258,7 +217,7 @@ General info:
 
 ```
 Contexts:  recipe
-From: piscosour (1.0.0-alpha-2)
+From: piscosour (1.0.0-alpha.4)
 ```
 shot shots
 
@@ -274,7 +233,7 @@ General info:
 
 ```
 Contexts:  recipe
-From: piscosour (1.0.0-alpha-2)
+From: piscosour (1.0.0-alpha.4)
 ```
 shot piscosour
 
@@ -290,7 +249,7 @@ General info:
 
 ```
 Contexts:  recipe
-From: piscosour (1.0.0-alpha-2)
+From: piscosour (1.0.0-alpha.4)
 ```
 shot generate-docs
 
@@ -306,7 +265,7 @@ General info:
 
 ```
 Contexts:  recipe
-From: piscosour (1.0.0-alpha-2)
+From: piscosour (1.0.0-alpha.4)
 ```
 shot scaffolding
 
@@ -322,7 +281,7 @@ General info:
 
 ```
 Contexts:  recipe
-From: piscosour (1.0.0-alpha-2)
+From: piscosour (1.0.0-alpha.4)
 ```
 ### Update version of recipe
 
@@ -340,15 +299,15 @@ General info:
 
 ```
 Contexts:  recipe
-From: piscosour (1.0.0-alpha-2)
+From: piscosour (1.0.0-alpha.4)
 ```
-### Documentation of shot here!
+
 
 # Plugins
 
 
 ## context
-from: **piscosour (1.0.0-alpha-2)**  [Go Index](#main-index)
+from: **piscosour (1.0.0-alpha.4)**  [Go Index](#main-index)
 
 ### Context for the pisco execution
 
@@ -455,7 +414,7 @@ let repos = this.ctxWhoami();
 
 repos is an Array of types that match the place where your recipe was executed.
 ## fsutils
-from: **piscosour (1.0.0-alpha-2)**  [Go Index](#main-index)
+from: **piscosour (1.0.0-alpha.4)**  [Go Index](#main-index)
 
 ### fs plugin (fs addons for piscosour)
 
@@ -502,7 +461,7 @@ from: **piscosour (1.0.0-alpha-2)**  [Go Index](#main-index)
 | | |
 
 ## inquirer
-from: **piscosour (1.0.0-alpha-2)**  [Go Index](#main-index)
+from: **piscosour (1.0.0-alpha.4)**  [Go Index](#main-index)
 
 ### Inquirer plugin
 
@@ -538,7 +497,7 @@ shot.js
 | --- | --- |
 | | |
 ## launcher
-from: **piscosour (1.0.0-alpha-2)**  [Go Index](#main-index)
+from: **piscosour (1.0.0-alpha.4)**  [Go Index](#main-index)
 
 ### Execute any command with pisco.
 
@@ -584,7 +543,7 @@ Syncronous method use to execute any command in your environment.
 | --- | --- |
 | | |
 ## os
-from: **piscosour (1.0.0-alpha-2)**  [Go Index](#main-index)
+from: **piscosour (1.0.0-alpha.4)**  [Go Index](#main-index)
 
 
 Plugins used to check Operating System where pisco is running
@@ -599,7 +558,7 @@ return true if the Operation System where pisco is executed is Windows.
 
 return true if the Operation System where pisco is executed is MacOS.
 ## piscosour
-from: **piscosour (1.0.0-alpha-2)**  [Go Index](#main-index)
+from: **piscosour (1.0.0-alpha.4)**  [Go Index](#main-index)
 
 ### Expose piscosour config
 
@@ -619,14 +578,14 @@ return the literal: 'package.json'
 
 
 ## skipper
-from: **piscosour (1.0.0-alpha-2)**  [Go Index](#main-index)
+from: **piscosour (1.0.0-alpha.4)**  [Go Index](#main-index)
 
 ### Skipper plugin
 
 Skips the shot execution when receiving the param "\_skip": true
 
 ## stream-write-hook
-from: **piscosour (1.0.0-alpha-2)**  [Go Index](#main-index)
+from: **piscosour (1.0.0-alpha.4)**  [Go Index](#main-index)
 
 ### Intercepts any stream flow in order to be able to manage the information inside.
 
@@ -677,7 +636,7 @@ stops the hook
 
 
 ## system-checker
-from: **piscosour (1.0.0-alpha-2)**  [Go Index](#main-index)
+from: **piscosour (1.0.0-alpha.4)**  [Go Index](#main-index)
 
 ### How to check system requirements of a piscosour command.
 
@@ -804,7 +763,7 @@ This is the possible parameters that you need in order to define a system requir
  
 #### 3. Check if a pisco command has all system requirements satisfied
 
-    cells component:validate --pstage check --b-disablePrompts --b-disableContextCheck
+    cells component:validate --pstage core-check --b-disablePrompts --b-disableContextCheck
     
 Command explanation:
 
@@ -825,7 +784,7 @@ this is the result of the execution for every shot that would have system requir
 
 If any system requirement is not satisfied the command will throw an error and stops...
 ## system-saver
-from: **piscosour (1.0.0-alpha-2)**  [Go Index](#main-index)
+from: **piscosour (1.0.0-alpha.4)**  [Go Index](#main-index)
 
 ### Write the requirements into a global file 'requirements.json'
 
@@ -867,7 +826,7 @@ this is the file resulting of the execution: the mix of all system requirements 
 }
 ```
 ## test
-from: **piscosour (1.0.0-alpha-2)**  [Go Index](#main-index)
+from: **piscosour (1.0.0-alpha.4)**  [Go Index](#main-index)
 
 Testing plugin. NO FUNCTIONALITY.
 # Contexts
@@ -889,6 +848,6 @@ Testing plugin. NO FUNCTIONALITY.
 
 |Name|Version|Description|
 |---|---|---|
-|piscosour|1.0.0-alpha-2|Get all your devops tools wrapped-up!|
+|piscosour|1.0.0-alpha.4|Get all your devops tools wrapped-up!|
 
 
