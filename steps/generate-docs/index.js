@@ -86,7 +86,9 @@ module.exports = {
     const tab = '    ';
     this.piscoConfig.commands.sort().forEach((command) => {
       const enrich = enriched.search(command);
-      content += `${tab}- [${command} (${enrich.description})](#${this._formatMdLink(`${command} ${enrich.description}`)})\n`;
+      if (enrich) {
+        content += `${tab}- [${command} (${enrich.description})](#${this._formatMdLink(`${command} ${enrich.description}`)})\n`;
+      }
     });
     return content;
   },
@@ -145,18 +147,20 @@ module.exports = {
     bundle = this._addBundle(`###${command} (${flow.description})`, file, bundle, true, precontent);
 
     let n = 1;
-    Object.getOwnPropertyNames(flow.steps).forEach((stepName) => {
-      const step = flow.steps[stepName];
-      this.logger.info('#green', 'reading', 'step', '#cyan', stepName);
-      stepName = stepName.indexOf(':') >= 0 ? stepName.split(':')[0] : stepName;
-      if (step.type === 'flow') {
-        const flowStep = this.fsReadConfig(path.join('flows', stepName, 'config.json'));
-        this._infoFlow(bundle, flowStep, stepName, '# ' + n + '. (Flow) ' + stepName, n);
-      } else {
-        this._infoStep(bundle, `${command.split(':')[0]}:${stepName}`, '####', n, p);
-      }
-      n++;
-    });
+    if (flow.steps) {
+      Object.getOwnPropertyNames(flow.steps).forEach((stepName) => {
+        const step = flow.steps[stepName];
+        this.logger.info('#green', 'reading', 'step', '#cyan', stepName);
+        stepName = stepName.indexOf(':') >= 0 ? stepName.split(':')[0] : stepName;
+        if (step.type === 'flow') {
+          const flowStep = this.fsReadConfig(path.join('flows', stepName, 'config.json'));
+          this._infoFlow(bundle, flowStep, stepName, '# ' + n + '. (Flow) ' + stepName, n);
+        } else {
+          this._infoStep(bundle, `${command.split(':')[0]}:${stepName}`, '####', n, p);
+        }
+        n++;
+      });
+    }
   },
 
   _infoStep: function(bundle, command, base, n, p) {
