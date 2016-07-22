@@ -4,7 +4,7 @@ let context = require('../../lib/context');
 
 module.exports = {
   check: function() {
-    if (!this.params.disableContextCheck) {
+    if (!this.params.disableContextCheck && !this.params.isGenerator) {
       let ami = this.ctxWhoami();
       if (this._context && ami.indexOf(this._context) < 0) {
         throw {error: 'This is not the root of a ' + this._context};
