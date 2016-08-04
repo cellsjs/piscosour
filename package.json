@@ -41,7 +41,7 @@
   "scripts": {
     "deps": "npm install",
     "test": "node_modules/.bin/mocha",
-    "postinstall": "node bin/pisco.js -w"
+    "postinstall": "node bin/pisco.js -h"
   },
   "dependencies": {
     "chalk": "^1.1.1",
