@@ -123,7 +123,7 @@ This is the possible parameters that you need in order to define a system requir
  
 #### 3. Check if a pisco command has all system requirements satisfied
 
-    cells component:validate --pstage check --b-disablePrompts --b-disableContextCheck
+    cells component:validate --pstage core-check --b-disablePrompts --b-disableContextCheck
     
 Command explanation:
 
