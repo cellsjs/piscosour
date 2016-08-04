@@ -39,7 +39,8 @@
     "pisco": "bin/pisco.js"
   },
   "scripts": {
-    "deps": "npm install"
+    "deps": "npm install",
+    "postinstall": "node bin/pisco.js -w"
   },
   "dependencies": {
     "chalk": "^1.1.1",
