@@ -30,7 +30,7 @@ module.exports = {
         res = {stdout: new Buffer(version[1]), stderr: new Buffer(version[1]), status: 0};
       } else {
         const msg = 'not found';
-        res = {stdout: new Buffer(msg), stderr: new Buffer(msg), status: 1};
+        res = {stdout: new Buffer(msg), stderr: new Buffer(msg), status: -100};
       }
       return res;
     };
@@ -84,8 +84,12 @@ module.exports = {
         if (result.status === 127) {
           out.error = `'${cmd}' is not accesible!!`;
           out.data = result.stderr.toString();
+        } else if (result.status === -100) {
+          out.version = out.version ? out.version : 'any';
+          out.error = `'${options.key}' is not in list!!`;
+          out.data = result.stderr.toString();
         } else {
-          out.version = 'any';
+          out.version = out.version ? out.version : 'any';
           out.message = ['#green', cmd, 'is installed ...', '#green', 'OK'];
         }
       }
