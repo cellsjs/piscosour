@@ -37,7 +37,7 @@ So, you can use all your favorites tools keeping it under control and versioned.
 # Main Index:
 
 - [Plugins](#plugins)
-    - from **piscosour  v.0.6.11**
+    - from **piscosour  v.0.6.14**
         - [context](#context)
         - [fsutils](#fsutils)
         - [inquirer](#inquirer)
@@ -52,7 +52,7 @@ So, you can use all your favorites tools keeping it under control and versioned.
 - [Contexts](#contexts)
 - [Recipes](#recipes)
 - [All Commands Availables](#all-commands-availables)
-    - from **piscosour  v.0.6.11**
+    - from **piscosour  v.0.6.14**
         - [node-module:convert (Convert any module into a piscosour recipe)](#node-moduleconvert-convert-any-module-into-a-piscosour-recipe)
         - [recipe:add-shot (Add a shot to a piscosour recipe)](#recipeadd-shot-add-a-shot-to-a-piscosour-recipe)
         - [recipe:add-straw (Add a straw to a piscosour recipe)](#recipeadd-straw-add-a-straw-to-a-piscosour-recipe)
@@ -88,7 +88,7 @@ General info:
 
 ```
 Contexts:  node-module
-From: piscosour (0.6.11)
+From: piscosour (0.6.14)
 ```
 shot convert
 
@@ -107,7 +107,7 @@ General info:
 
 ```
 Contexts:  recipe
-From: piscosour (0.6.11)
+From: piscosour (0.6.14)
 ```
 shot shots
 
@@ -126,7 +126,7 @@ General info:
 
 ```
 Contexts:  recipe
-From: piscosour (0.6.11)
+From: piscosour (0.6.14)
 ```
 shot straws
 
@@ -145,7 +145,7 @@ General info:
 
 ```
 Contexts:  recipe
-From: piscosour (0.6.11)
+From: piscosour (0.6.14)
 ```
 shot piscosour
 
@@ -177,7 +177,7 @@ General info:
 
 ```
 Contexts:  recipe
-From: piscosour (0.6.11)
+From: piscosour (0.6.14)
 ```
 shot scaffolding
 
@@ -204,7 +204,7 @@ General info:
 
 ```
 Contexts:  recipe
-From: piscosour (0.6.11)
+From: piscosour (0.6.14)
 ```
 shot generate-docs
 
@@ -220,7 +220,7 @@ General info:
 
 ```
 Contexts:  all
-From: piscosour (0.6.11)
+From: piscosour (0.6.14)
 ```
 shot npm
 
@@ -236,7 +236,7 @@ General info:
 
 ```
 Contexts:  node-module
-From: piscosour (0.6.11)
+From: piscosour (0.6.14)
 ```
 shot convert
 
@@ -252,7 +252,7 @@ General info:
 
 ```
 Contexts:  recipe
-From: piscosour (0.6.11)
+From: piscosour (0.6.14)
 ```
 shot shots
 
@@ -268,7 +268,7 @@ General info:
 
 ```
 Contexts:  recipe
-From: piscosour (0.6.11)
+From: piscosour (0.6.14)
 ```
 shot straws
 
@@ -284,7 +284,7 @@ General info:
 
 ```
 Contexts:  recipe
-From: piscosour (0.6.11)
+From: piscosour (0.6.14)
 ```
 shot piscosour
 
@@ -300,7 +300,7 @@ General info:
 
 ```
 Contexts:  recipe
-From: piscosour (0.6.11)
+From: piscosour (0.6.14)
 ```
 shot generate-docs
 
@@ -316,7 +316,7 @@ General info:
 
 ```
 Contexts:  recipe
-From: piscosour (0.6.11)
+From: piscosour (0.6.14)
 ```
 shot scaffolding
 
@@ -332,7 +332,7 @@ General info:
 
 ```
 Contexts:  recipe
-From: piscosour (0.6.11)
+From: piscosour (0.6.14)
 ```
 ### Update version of recipe
 
@@ -343,7 +343,7 @@ This shot execute npm install -g **recipeName**. recipeName has to be in params.
 
 
 ## context
-from: **piscosour (0.6.11)**  [Go Index](#main-index)
+from: **piscosour (0.6.14)**  [Go Index](#main-index)
 
 ### Context for the pisco execution
 
@@ -450,7 +450,7 @@ let repos = this.ctxWhoami();
 
 repos is an Array of types that match the place where your recipe was executed.
 ## fsutils
-from: **piscosour (0.6.11)**  [Go Index](#main-index)
+from: **piscosour (0.6.14)**  [Go Index](#main-index)
 
 ### fs plugin (fs addons for piscosour)
 
@@ -497,7 +497,7 @@ from: **piscosour (0.6.11)**  [Go Index](#main-index)
 | | |
 
 ## inquirer
-from: **piscosour (0.6.11)**  [Go Index](#main-index)
+from: **piscosour (0.6.14)**  [Go Index](#main-index)
 
 ### Inquirer plugin
 
@@ -533,7 +533,7 @@ shot.js
 | --- | --- |
 | | |
 ## launcher
-from: **piscosour (0.6.11)**  [Go Index](#main-index)
+from: **piscosour (0.6.14)**  [Go Index](#main-index)
 
 ### Execute any command with pisco.
 
@@ -579,7 +579,7 @@ Syncronous method use to execute any command in your environment.
 | --- | --- |
 | | |
 ## os
-from: **piscosour (0.6.11)**  [Go Index](#main-index)
+from: **piscosour (0.6.14)**  [Go Index](#main-index)
 
 
 Plugins used to check Operating System where pisco is running
@@ -594,7 +594,7 @@ return true if the Operation System where pisco is executed is Windows.
 
 return true if the Operation System where pisco is executed is MacOS.
 ## piscosour
-from: **piscosour (0.6.11)**  [Go Index](#main-index)
+from: **piscosour (0.6.14)**  [Go Index](#main-index)
 
 ### Expose piscosour config
 
@@ -614,14 +614,14 @@ return the literal: 'package.json'
 
 
 ## skipper
-from: **piscosour (0.6.11)**  [Go Index](#main-index)
+from: **piscosour (0.6.14)**  [Go Index](#main-index)
 
 ### Skipper plugin
 
 Skips the shot execution when receiving the param "\_skip": true
 
 ## stream-write-hook
-from: **piscosour (0.6.11)**  [Go Index](#main-index)
+from: **piscosour (0.6.14)**  [Go Index](#main-index)
 
 ### Intercepts any stream flow in order to be able to manage the information inside.
 
@@ -672,7 +672,7 @@ stops the hook
 
 
 ## system-checker
-from: **piscosour (0.6.11)**  [Go Index](#main-index)
+from: **piscosour (0.6.14)**  [Go Index](#main-index)
 
 ### How to check system requirements of a piscosour command.
 
@@ -708,9 +708,15 @@ By default this is the versions defined inside core:
 
 ```
     "versions": {
+      "bower" : {
+        "npm": true,
+        "list": "bower cache list",
+        "cmdInstaller": "bower install"        
+      },
       "npm" : {
         "list": "npm list -g --depth 0",
         "regexp": "\\@(.*?)\\s"
+        "cmdInstaller": "npm install -g"
       },    
       "java": {
         "option" : "-version",
@@ -730,6 +736,7 @@ By default this is the versions defined inside core:
 - **option**: (optional, default is '-v') if version is set the way to check this version.
 - **regexp**: (optional) if version is on a string the way to extract only the version. Overwrite version defined on piscosour.json
 - **list:** (optional) command used to get a stdout to use the regexp function in orther to get the version of the item you want to check.
+- **cmdInstaller:** (optional) command used to install packages using this key (for example 'npm install -g' or 'bower install')
 
 ##### List tip
 
@@ -750,29 +757,29 @@ Example of params.json:
 ```
 {
   "requirements": {
-    "generator-cells-cordova-plugin" : {
-      "npm": true,
-      "listedIn": "npm",
-      "uri" : "https://descinet.bbva.es/stash/scm/cellsnative/generator-cells-cordova-plugin.git",
-      "version" : "0.0.15"
+    "polymer" : {
+      "installer": "bower",
+      "listedIn": "bower",
+      "uri": "https://github.com/Polymer/polymer.git#v1.6.1",
+      "regexp": "=(.*?)"
     },
     "generator-pisco-recipe" : {
-      "npm": true,
+      "installer": "npm",
       "listedIn": "npm",
       "version" : "0.0.2"
     },
     "pisco" : {
-      "npm": true,
+      "installer": "npm",
       "pkg" : "piscosour",
       "version" : "0.5.0"
     },
     "cordova" : {
-      "npm": true,
+      "installer": "npm",
       "version" : "5.4.1"
     },
     "yo" : {"npm": true},
     "bower" : {
-      "npm": true,
+      "installer": "npm",
       "version" : "1.7.9"
     },
     "java": {
@@ -789,7 +796,7 @@ Example of params.json:
 This is the possible parameters that you need in order to define a system requirement.
 
 - **key** (for example 'java'): is the command that you need inside your shot.
-- **npm** (optional): (default: false): if is set true,  this plugin is going to try to resolve this dependency using npm.
+- **installer** (optional): package command, search inside requirements to check the cmdInstaller.
 - **version**: (optional) is the minimum version that you need for the command. Overwrite version defined on piscosour.json
 - **option**: (optional, default is '-v') if version is set the way to check this version.
 - **regexp**: (optional) if version is on a string the way to extract only the version. Overwrite version defined on piscosour.json
@@ -799,12 +806,12 @@ This is the possible parameters that you need in order to define a system requir
  
 #### 3. Check if a pisco command has all system requirements satisfied
 
-    cells component:validate --pstage check --b-disablePrompts --b-disableContextCheck
+    cells component:validate --pstage core-check --b-disablePrompts --b-disableContextCheck
     
 Command explanation:
 
 - **cells component:validate**: is the pisco command that you want to check.
-- **--pstage check**: this means that only the check stage is executed for all the pipeline. System requirements check is a **pre-hook** of the stage **check** so you have to execute only this stage.
+- **--pstage core-check**: this means that only the core-check stage is executed for all the pipeline. System requirements check is a **pre-hook** of the stage **core-check** so you have to execute only this stage.
 - **--b-disablePrompts**: disable all prompts for the command.
 - **--b-disableContextCheck**: disable context checks for commands that need one.
 
@@ -820,7 +827,7 @@ this is the result of the execution for every shot that would have system requir
 
 If any system requirement is not satisfied the command will throw an error and stops...
 ## system-saver
-from: **piscosour (0.6.11)**  [Go Index](#main-index)
+from: **piscosour (0.6.14)**  [Go Index](#main-index)
 
 ### Write the requirements into a global file 'requirements.json'
 
@@ -862,7 +869,7 @@ this is the file resulting of the execution: the mix of all system requirements 
 }
 ```
 ## test
-from: **piscosour (0.6.11)**  [Go Index](#main-index)
+from: **piscosour (0.6.14)**  [Go Index](#main-index)
 
 Testing plugin. NO FUNCTIONALITY.
 # Contexts
@@ -884,6 +891,6 @@ Testing plugin. NO FUNCTIONALITY.
 
 |Name|Version|Description|
 |---|---|---|
-|piscosour|0.6.11|Get all your devops tools wrapped-up!|
+|piscosour|0.6.14|Get all your devops tools wrapped-up!|
 
 
