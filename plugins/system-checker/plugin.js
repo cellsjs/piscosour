@@ -109,9 +109,9 @@ module.exports = {
     const _install = (cmd, option) => {
       this.logger.info('#cyan', cmd, 'is required -> ', '#green', cmd, 'is installing...');
       const installable = _installable(cmd, option);
-      let res = this.sh(`npm install -g ${installable}`, null, true);
+      let res = this.sh(`${option.cmdInstaller} ${installable}`, null, true);
       if (res.status !== 0) {
-        throw {error: `impossible to install ${installable}`};
+        throw {error: `impossible to install ${installable} using ${option.cmdInstaller}`};
       }
       return true;
     };
@@ -127,7 +127,8 @@ module.exports = {
           .then(() => _sh(cmd, options))
           .then((result) => _check(cmd, options, result))
           .catch((checked) => {
-            if (options.npm) {
+            if (options.installer && this.params.requirements[options.installer]) {
+              options.cmdInstaller = this.params.requirements[options.installer].cmdInstaller;
               _install(cmd, options);
             } else if (!this.params.neverStop) {
               throw checked;
