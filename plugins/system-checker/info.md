@@ -32,9 +32,15 @@ By default this is the versions defined inside core:
 
 ```
     "versions": {
+      "bower" : {
+        "npm": true,
+        "list": "bower cache list",
+        "cmdInstaller": "bower install"        
+      },
       "npm" : {
         "list": "npm list -g --depth 0",
         "regexp": "\\@(.*?)\\s"
+        "cmdInstaller": "npm install -g"
       },    
       "java": {
         "option" : "-version",
@@ -54,6 +60,7 @@ By default this is the versions defined inside core:
 - **option**: (optional, default is '-v') if version is set the way to check this version.
 - **regexp**: (optional) if version is on a string the way to extract only the version. Overwrite version defined on piscosour.json
 - **list:** (optional) command used to get a stdout to use the regexp function in orther to get the version of the item you want to check.
+- **cmdInstaller:** (optional) command used to install packages using this key (for example 'npm install -g' or 'bower install')
 
 ##### List tip
 
@@ -74,29 +81,29 @@ Example of params.json:
 ```
 {
   "requirements": {
-    "generator-cells-cordova-plugin" : {
-      "npm": true,
-      "listedIn": "npm",
-      "uri" : "https://descinet.bbva.es/stash/scm/cellsnative/generator-cells-cordova-plugin.git",
-      "version" : "0.0.15"
+    "polymer" : {
+      "installer": "bower",
+      "listedIn": "bower",
+      "uri": "https://github.com/Polymer/polymer.git#v1.6.1",
+      "regexp": "=(.*?)"
     },
     "generator-pisco-recipe" : {
-      "npm": true,
+      "installer": "npm",
       "listedIn": "npm",
       "version" : "0.0.2"
     },
     "pisco" : {
-      "npm": true,
+      "installer": "npm",
       "pkg" : "piscosour",
       "version" : "0.5.0"
     },
     "cordova" : {
-      "npm": true,
+      "installer": "npm",
       "version" : "5.4.1"
     },
     "yo" : {"npm": true},
     "bower" : {
-      "npm": true,
+      "installer": "npm",
       "version" : "1.7.9"
     },
     "java": {
@@ -113,7 +120,7 @@ Example of params.json:
 This is the possible parameters that you need in order to define a system requirement.
 
 - **key** (for example 'java'): is the command that you need inside your shot.
-- **npm** (optional): (default: false): if is set true,  this plugin is going to try to resolve this dependency using npm.
+- **installer** (optional): package command, search inside requirements to check the cmdInstaller.
 - **version**: (optional) is the minimum version that you need for the command. Overwrite version defined on piscosour.json
 - **option**: (optional, default is '-v') if version is set the way to check this version.
 - **regexp**: (optional) if version is on a string the way to extract only the version. Overwrite version defined on piscosour.json
@@ -128,7 +135,7 @@ This is the possible parameters that you need in order to define a system requir
 Command explanation:
 
 - **cells component:validate**: is the pisco command that you want to check.
-- **--pstage check**: this means that only the check stage is executed for all the pipeline. System requirements check is a **pre-hook** of the stage **check** so you have to execute only this stage.
+- **--pstage core-check**: this means that only the core-check stage is executed for all the pipeline. System requirements check is a **pre-hook** of the stage **core-check** so you have to execute only this stage.
 - **--b-disablePrompts**: disable all prompts for the command.
 - **--b-disableContextCheck**: disable context checks for commands that need one.
 

@@ -5,35 +5,29 @@
   "isGenerator": true,
   "isTest": true,
   "requirements": {
-    "bbva-components-catalog" : {
-      "key": "bbva-web-components",
+    "polymer" : {
       "listedIn": "bower",
-      "uri": "https://descinet.bbva.es/stash/scm/cat/bbva-components-catalog.git#1.1.1",
+      "installer": "bower",
+      "uri": "https://github.com/Polymer/polymer.git#v1.6.1",
       "regexp": "=(.*?)"
     },
-    "generator-cells-cordova-plugin" : {
-      "npm": true,
-      "listedIn": "npm",
-      "uri" : "https://descinet.bbva.es/stash/scm/cellsnative/generator-cells-cordova-plugin.git",
-      "version" : "0.0.15"
-    },
     "generator-pisco-recipe" : {
-      "npm": true,
+      "installer": "npm",
       "listedIn": "npm",
       "version" : "0.0.2"
     },
     "pisco" : {
-      "npm": true,
+      "installer": "npm",
       "pkg" : "piscosour",
       "version" : "0.5.0"
     },
     "cordova" : {
-      "npm": true,
+      "installer": "npm",
       "version" : "5.4.1"
     },
-    "yo" : {"npm": true},
+    "yo" : {"installer": "npm"},
     "bower" : {
-      "npm": true,
+      "installer": "npm",
       "version" : "1.7.9"
     },
     "java": {
