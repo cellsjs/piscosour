@@ -30,7 +30,7 @@ module.exports = {
         res = {stdout: new Buffer(version[1]), stderr: new Buffer(version[1]), status: 0};
       } else {
         const msg = 'not found';
-        res = {stdout: new Buffer(msg), stderr: new Buffer(msg), status: 1};
+        res = {stdout: new Buffer(msg), stderr: new Buffer(msg), status: -100};
       }
       return res;
     };
@@ -84,8 +84,12 @@ module.exports = {
         if (result.status === 127) {
           out.error = `'${cmd}' is not accesible!!`;
           out.data = result.stderr.toString();
+        } else if (result.status === -100) {
+          out.version = out.version ? out.version : 'any';
+          out.error = `'${options.key}' is not in list!!`;
+          out.data = result.stderr.toString();
         } else {
-          out.version = 'any';
+          out.version = out.version ? out.version : 'any';
           out.message = ['#green', cmd, 'is installed ...', '#green', 'OK'];
         }
       }
@@ -105,9 +109,10 @@ module.exports = {
     const _install = (cmd, option) => {
       this.logger.info('#cyan', cmd, 'is required -> ', '#green', cmd, 'is installing...');
       const installable = _installable(cmd, option);
-      let res = this.sh(`npm install -g ${installable}`, null, true);
+
+      let res = this.sh(`${option.cmdInstaller} ${installable}`, null, true);
       if (res.status !== 0) {
-        throw {error: `impossible to install ${installable}`};
+        throw {error: `impossible to install ${installable} using ${option.cmdInstaller}`};
       }
       return true;
     };
@@ -123,7 +128,8 @@ module.exports = {
           .then(() => _sh(cmd, options))
           .then((result) => _check(cmd, options, result))
           .catch((checked) => {
-            if (options.npm) {
+            if (options.installer && this.params.requirements[options.installer]) {
+              options.cmdInstaller = this.params.requirements[options.installer].cmdInstaller;
               _install(cmd, options);
             } else if (!this.params.neverStop) {
               throw checked;
