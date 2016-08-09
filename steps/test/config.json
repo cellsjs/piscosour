@@ -10,10 +10,12 @@
       "regexp" : "\"(.*?)_"
     },
     "cordova" : {
+      "installer": "npm",
       "version" : "5.4.1"
     },
-    "yo" : {},
+    "yo" : {"installer": "npm"},
     "bower" : {
+      "installer": "npm",
       "version" : "1.0.0"
     },
     "sass" : {
