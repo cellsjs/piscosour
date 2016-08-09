@@ -40,14 +40,15 @@
   },
   "scripts": {
     "deps": "npm install",
-    "test": "node_modules/.bin/mocha"
+    "postinstall": "node bin/pisco.js -w"
   },
   "dependencies": {
     "chalk": "^1.1.1",
+    "global-modules": "^0.2.2",
     "inquirer": "^1.1.1",
+    "lodash": "^4.13.1",
     "marked": "^0.3.5",
     "marked-terminal": "^1.6.1",
-    "lodash": "^4.13.1",
     "moment": "^2.10.6",
     "nopt": "^3.0.6",
     "rimraf": "^2.5.2",
@@ -62,10 +63,7 @@
     "node": ">=4.0.0"
   },
   "devDependencies": {
-    "cz-conventional-changelog": "^1.1.5",
-    "chai": "*",
-    "mocha": "*",
-    "pisco-test-helper": "git+https://descinet.bbva.es/stash/scm/ctool/pisco-test-helper.git"
+    "cz-conventional-changelog": "^1.1.5"
   },
   "config": {
     "commitizen": {

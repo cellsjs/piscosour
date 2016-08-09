@@ -1,5 +1,6 @@
 {
   "name": "yeah",
+  "isTest": true,
   "contexts": [
     "recipe"
   ],
