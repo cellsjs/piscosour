@@ -13,6 +13,7 @@
       "inquirer",
       "fsutils",
       "piscosour",
+      "installer",
       "system-checker",
       "system-saver",
       "skipper"
@@ -20,12 +21,14 @@
     "versions": {
       "bower" : {
         "npm": true,
-        "list": "bower cache list"
+        "list": "bower cache list",
+        "cmdInstaller": "bower install"
       },
       "npm" : {
         "npm": true,
         "list": "npm list -g --depth 0",
-        "regexp": "\\@(.*?)\\s"
+        "regexp": "\\@(.*?)\\s",
+        "cmdInstaller": "npm install -g"
       },
       "yo": {
         "npm": true,
@@ -48,6 +51,7 @@
   "junitDir": "test-reports",
   "junitPiscoFile": "pisco-junit.xml",
   "stages": [
+    "core-install",
     "core-check",
     "check",
     "config",
