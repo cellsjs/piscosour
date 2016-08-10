@@ -1,8 +1,6 @@
 {
   "name": "yeah",
   "isTest": true,
-  "contexts": [
-    "recipe"
-  ],
+  "contexts": "*",
   "description": "Brief description of step"
 }
