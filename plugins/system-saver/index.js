@@ -17,7 +17,7 @@ module.exports = {
       let tmp = {};
       Object.getOwnPropertyNames(this.params.requirements).forEach((cmd) => {
         const options = this.params.requirements[cmd];
-        if (!options.npm) {
+        if (!options.installer) {
           tmp[cmd] = options;
         }
       });
