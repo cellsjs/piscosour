@@ -19,18 +19,17 @@
     ],
     "versions": {
       "bower" : {
-        "npm": true,
+        "installer": "npm",
         "list": "bower cache list",
         "cmdInstaller": "bower install"        
       },
-      "npm" : {
-        "npm": true,
+      "npm" : {        
         "list": "npm list -g --depth 0",
         "regexp": "\\@(.*?)\\s",
         "cmdInstaller": "npm install -g"
       },
       "yo": {
-        "npm": true,
+        "installer": "npm",        
         "option": "--version"
       },
       "java": {
