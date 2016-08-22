@@ -9,9 +9,9 @@ module.exports = {
     if (installed) {
       const promises = [];
       Object.getOwnPropertyNames(this.requires).forEach((module) => {
-        this.logger.info('#green', 'installing', module, '->', this.requires[module]);
         let installable = this.requires[module];
         installable = installable.indexOf('git+') >= 0 ? installable : `${module}@${installable}`;
+        this.logger.info('#green', 'installing', module, '->', installable);
         promises.push(this.execute('npm', ['install', '-g', installable]));
       });
       return Promise.all(promises)
