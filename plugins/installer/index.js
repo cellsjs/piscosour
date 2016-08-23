@@ -1,5 +1,7 @@
 'use strict';
 
+const path = require('path');
+
 let installed = false;
 
 module.exports = {
@@ -25,7 +27,7 @@ module.exports = {
   config: function() {
     if (installed) {
       this.logger.trace('#green', 'updating scullion.json');
-      return this.execute(this.piscoConfig.cmd, [ '-w' ]);
+      return this.execute(process.execPath, [path.join(this.piscoConfig.getDir('module'), 'bin', 'pisco.js'), '-w']);
     }
   },
 
@@ -33,7 +35,7 @@ module.exports = {
     if (installed) {
       const command = `${this._context}::${this.name}`;
       this.logger.info('#green', 'executing', command);
-      return this.execute(this.piscoConfig.cmd, [ command ])
+      return this.execute(process.execPath, [path.join(this.piscoConfig.getDir('module'), 'bin', 'pisco.js'), command])
         .catch((err) => {
           err.keep = true;
           err.data = err.output;
