@@ -1,8 +1,15 @@
 'use strict';
 
 const path = require('path');
-
+const fs = require('fs');
+const tmpFile = 'tmpParams.json';
 let installed = false;
+
+function _addParams(params, array) {
+  delete params.plugins;
+  fs.writeFileSync(tmpFile, JSON.stringify(params, null, 2));
+  return array.concat(['--paramsFile', tmpFile]);
+}
 
 module.exports = {
 
@@ -35,12 +42,23 @@ module.exports = {
     if (installed) {
       const command = `${this._context}::${this.name}`;
       this.logger.info('#green', 'executing', command);
-      return this.execute(process.execPath, [path.join(this.piscoConfig.getDir('module'), 'bin', 'pisco.js'), command])
+      return this.execute(process.execPath, _addParams(this.params, [path.join(this.piscoConfig.getDir('module'), 'bin', 'pisco.js'), command]))
         .catch((err) => {
           err.keep = true;
           err.data = err.output;
           throw err;
         });
+    }
+  },
+
+  prove() {
+    if (installed) {
+      this.logger.info('Deleting', '#green', tmpFile);
+      try {
+        fs.unlinkSync(tmpFile);
+      } catch (e) {
+        this.logger.warn('Problem cleaning files!', e);
+      }
     }
   }
 
