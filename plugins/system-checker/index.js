@@ -116,7 +116,6 @@ module.exports = {
       }
       return true;
     };
-    const fileName = 'requirements.json';
 
     if (this.params.requirements && (!this.params.disableSystemCheck || this.params.disableSystemCheck === 'null')) {
       const tmp = this.params.requirements;
