@@ -23,10 +23,11 @@
       "message": "Write a brief description for your recipe"
     }
   ],
-  "npm-requirements": {
+  "requirements": {
     "generator-pisco-recipe" : {
-      "module" : true,
-      "version" : "0.0.2"
+      "installer": "npm",
+      "listedIn": "npm",
+      "version" : "0.1.0"
     },
     "yo" : {}
   }
