@@ -8,7 +8,8 @@
     "polymer" : {
       "listedIn": "bower",
       "installer": "bower",
-      "uri": "https://github.com/Polymer/polymer.git#v1.6.1",
+      "uri": "https://github.com/Polymer/polymer.git",
+      "version" : "1.6.1",
       "regexp": "=(.*?)"
     },
     "generator-pisco-recipe" : {
