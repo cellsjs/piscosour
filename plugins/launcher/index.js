@@ -1,9 +1,13 @@
 'use strict';
 
 const spawn = require('child_process').spawn;
-const stream = require('stream');
-const chalk = require('chalk');
 const spawnSync = require('child_process').spawnSync;
+const stream = require('stream');
+
+const chalk = require('chalk');
+const stripcolorcodes = require('stripcolorcodes');
+
+const streamWriteHook = require('../../lib/utils/stream-write-hook');
 
 module.exports = {
   addons: {
@@ -65,7 +69,7 @@ module.exports = {
       var patch = this._windowsPatch(cmd, args);
       cmd = patch.cmd;
       args = patch.args;
-      var child = spawn(cmd, args, {stdio: [ process.stdin ]});
+      var child = spawn(cmd, args, { stdio: 'inherit' });
       this.logger.trace('#cyan', 'executing async', cmd, args);
       return child;
     },
@@ -76,19 +80,17 @@ module.exports = {
       let output = '';
       args.forEach((item)=> command += ' ' + item);
 
+      streamWriteHook.hook(process.stdout, (chunk, encoding, cb) => {
+        output += chunk.toString(encoding);
+      });
+
+      streamWriteHook.hook(process.stderr, (chunk, encoding, cb) => {
+        error = error ? error : '';
+        error += chunk.toString(encoding);
+      });      
+
       child.on('disconnect', () => {
         this.logger.info('Child process disconnected!', arguments);
-      });
-
-      child.stdout.on('data', (data) => {
-        this.logger.out(data.toString());
-        output += data.toString();
-      });
-
-      child.stderr.on('data', (data) => {
-        this.logger.err(chalk.red(data.toString()));
-        error = error ? error : '';
-        error += data.toString();
       });
 
       child.on('error', () => {
@@ -102,10 +104,23 @@ module.exports = {
       return new Promise((resolve, reject) => {
         child.on('close', (code) => {
           this.logger.info('child process exited with code ', code);
+          streamWriteHook.unhook(process.stdout);
+          streamWriteHook.unhook(process.stderr);
           if (code !== 0) {
-            reject({cmd: cmd, args: args, status: 'ERROR', error: error, output: output});
+            reject({ 
+              cmd: cmd, 
+              args: args, 
+              status: 'ERROR', 
+              error: stripcolorcodes(error), 
+              output: stripcolorcodes(output) 
+            });
           } else {
-            resolve({cmd: cmd, args: args, status: 'OK', output: output});
+            resolve({
+              cmd: cmd, 
+              args: args, 
+              status: 'OK', 
+              output: stripcolorcodes(output)
+            });
           }
         });
       });
