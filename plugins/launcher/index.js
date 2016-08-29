@@ -111,7 +111,7 @@ module.exports = {
               cmd: cmd, 
               args: args, 
               status: 'ERROR', 
-              error: stripcolorcodes(error), 
+              error: stripcolorcodes(error || ''), 
               output: stripcolorcodes(output) 
             });
           } else {
