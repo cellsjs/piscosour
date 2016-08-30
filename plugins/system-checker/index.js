@@ -93,8 +93,8 @@ module.exports = {
           out.message = ['#green', cmd, 'is installed ...', '#green', 'OK'];
         }
       }
-      this.logger.info.apply(this.logger, ['#cyan', cmd, '(', out.version, ') is required -> '].concat(out.message ? out.message : [out.error, '...', '#red', 'ERROR!']));
-      if (out.error) {
+      this.logger.info.apply(this.logger, ['#cyan', cmd, '(', out.version, ') is required -> '].concat(out.message ? out.message : [out.error, '...', options.uncheckable ? '#green' : '#red', options.uncheckable ? 'OK (uncheckable)' : 'ERROR!']));
+      if (out.error && !options.uncheckable) {
         ko(out);
       } else {
         ok(out);
