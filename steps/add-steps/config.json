@@ -10,10 +10,11 @@
       "message": "Write a name for your pisco step"
     },
     {
-      "type": "input",
+      "type": "list",
       "name": "context",
       "required": true,
-      "message": "Write the context for your new step"
+      "message": "Choose context for the new step",
+      "choices": "#showContexts"
     }
   ]
 }
