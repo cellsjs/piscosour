@@ -1,0 +1,1076 @@
+{
+  "recipes": {
+    "userConfig": {
+      "name": "pisco-user",
+      "description": "User Piscosour Recipe",
+      "version": "-",
+      "dir": "/Users/jesusdiaz/.piscosour",
+      "config": {
+        "analytics": {
+          "userok": {
+            "piscosour": false,
+            "cells-cli": true,
+            "cells-component-ci": true
+          },
+          "uuid": "b403ee33-d6de-460b-b432-bba85d8c1cc6"
+        }
+      },
+      "plugins": {},
+      "steps": {},
+      "flows": {},
+      "contexts": {}
+    },
+    "module": {
+      "name": "piscosour",
+      "version": "1.0.0-alpha.23",
+      "description": "Get all your devops tools wrapped-up!",
+      "dir": "/Users/jesusdiaz/git/cells/pisco/piscosour",
+      "config": {
+        "cmd": "pisco",
+        "analytics": {
+          "id": "UA-23096868-2",
+          "ask": true
+        },
+        "params": {
+          "workingDir": "",
+          "plugins": [
+            "os",
+            "context",
+            "launcher",
+            "inquirer",
+            "fsutils",
+            "piscosour",
+            "installer",
+            "system-checker",
+            "system-saver",
+            "skipper"
+          ],
+          "versions": {
+            "bower": {
+              "installer": "npm",
+              "list": "bower cache list",
+              "cmdInstaller": "bower install"
+            },
+            "npm": {
+              "list": "npm list -g --depth 0",
+              "regexp": "\\@(.*?)\\s",
+              "cmdInstaller": "npm install -g"
+            },
+            "yo": {
+              "installer": "npm",
+              "option": "--version"
+            },
+            "java": {
+              "option": "-version",
+              "regexp": "\"(.*?)_"
+            },
+            "sass": {
+              "regexp": "s (.*?) "
+            },
+            "git": {
+              "option": "--version",
+              "regexp": "n (.*?)\\n"
+            }
+          }
+        },
+        "defaultContext": "recipe",
+        "junitDir": "test-reports",
+        "junitPiscoFile": "pisco-junit.xml",
+        "stages": [
+          "core-install",
+          "core-check",
+          "check",
+          "config",
+          "run",
+          "prove",
+          "notify",
+          "emit"
+        ],
+        "flowTypes": [
+          "normal",
+          "utils",
+          "internal"
+        ]
+      },
+      "plugins": {
+        "context": {
+          "name": "context",
+          "description": "Get automatic context of execution",
+          "_module": "/Users/jesusdiaz/git/cells/pisco/piscosour/plugins/context"
+        },
+        "fsutils": {
+          "name": "fsutils",
+          "description": "fs utils",
+          "_module": "/Users/jesusdiaz/git/cells/pisco/piscosour/plugins/fsutils"
+        },
+        "inquirer": {
+          "name": "inquirer",
+          "description": "Plugin inquirer",
+          "_module": "/Users/jesusdiaz/git/cells/pisco/piscosour/plugins/inquirer"
+        },
+        "installer": {
+          "name": "installer",
+          "description": "Lazy install plugin",
+          "_module": "/Users/jesusdiaz/git/cells/pisco/piscosour/plugins/installer"
+        },
+        "launcher": {
+          "name": "launcher",
+          "description": "Plugin launcher",
+          "_module": "/Users/jesusdiaz/git/cells/pisco/piscosour/plugins/launcher"
+        },
+        "os": {
+          "name": "os",
+          "description": "OS plugin",
+          "_module": "/Users/jesusdiaz/git/cells/pisco/piscosour/plugins/os"
+        },
+        "piscosour": {
+          "name": "piscosour",
+          "description": "Piscosour config plugin",
+          "_module": "/Users/jesusdiaz/git/cells/pisco/piscosour/plugins/piscosour"
+        },
+        "skipper": {
+          "name": "skipper",
+          "description": "Plugin skipper",
+          "_module": "/Users/jesusdiaz/git/cells/pisco/piscosour/plugins/skipper"
+        },
+        "stream-write-hook": {
+          "name": "stream-write-hook",
+          "description": "Stream hook plugin",
+          "_module": "/Users/jesusdiaz/git/cells/pisco/piscosour/plugins/stream-write-hook"
+        },
+        "system-checker": {
+          "name": "system-checker",
+          "description": "System requirements checker",
+          "_module": "/Users/jesusdiaz/git/cells/pisco/piscosour/plugins/system-checker"
+        },
+        "system-saver": {
+          "name": "system-saver",
+          "description": "System requirements saver",
+          "_module": "/Users/jesusdiaz/git/cells/pisco/piscosour/plugins/system-saver"
+        },
+        "test": {
+          "name": "test",
+          "description": "Test plugin",
+          "_module": "/Users/jesusdiaz/git/cells/pisco/piscosour/plugins/test"
+        }
+      },
+      "steps": {
+        "add-flows": {
+          "recipe": {
+            "name": "add-flows",
+            "description": "Adding step to a flow",
+            "contexts": [
+              "recipe"
+            ],
+            "prompts": [
+              {
+                "type": "input",
+                "name": "flowKey",
+                "required": true,
+                "message": "Write the name of the flow"
+              },
+              {
+                "type": "input",
+                "name": "flowDescription",
+                "required": true,
+                "message": "Write a description for the of the flow"
+              }
+            ],
+            "_module": "/Users/jesusdiaz/git/cells/pisco/piscosour/steps/add-flows"
+          }
+        },
+        "add-steps": {
+          "recipe": {
+            "name": "add-steps",
+            "description": "Create new pisco step inside this module",
+            "contexts": [
+              "recipe"
+            ],
+            "prompts": [
+              {
+                "type": "input",
+                "name": "stepName",
+                "required": true,
+                "message": "Write a name for your pisco step"
+              },
+              {
+                "type": "list",
+                "name": "context",
+                "required": true,
+                "message": "Choose context for the new step",
+                "choices": "#showContexts"
+              }
+            ],
+            "_module": "/Users/jesusdiaz/git/cells/pisco/piscosour/steps/add-steps"
+          }
+        },
+        "configure": {
+          "recipe": {
+            "name": "configure",
+            "description": "Configure piscosour.json",
+            "contexts": [
+              "recipe"
+            ],
+            "prompts": [
+              {
+                "type": "confirm",
+                "name": "doDefault",
+                "default": true,
+                "required": true,
+                "message": "Do you want to set default context?"
+              },
+              {
+                "type": "input",
+                "name": "defaultContext",
+                "required": true,
+                "message": "Set the default context for this recipe",
+                "when": "#whendefaultContext",
+                "default": "#getDefault"
+              }
+            ],
+            "promptsPisco": [
+              {
+                "type": "confirm",
+                "name": "doFixPiscosour",
+                "required": true,
+                "message": "Your piscosour.json file is deprecated. Do you want to fix it?"
+              }
+            ],
+            "_module": "/Users/jesusdiaz/git/cells/pisco/piscosour/steps/configure"
+          }
+        },
+        "convert": {
+          "node-module": {
+            "name": "convert",
+            "description": "Convert any nodejs module into a piscosour recipe",
+            "contexts": [
+              "node-module"
+            ],
+            "promptsPisco": [
+              {
+                "type": "input",
+                "name": "cmd",
+                "required": true,
+                "message": "Write the command line executable for this pisco recipe"
+              }
+            ],
+            "_module": "/Users/jesusdiaz/git/cells/pisco/piscosour/steps/convert"
+          }
+        },
+        "generate-docs": {
+          "recipe": {
+            "name": "generate-docs",
+            "description": "Generate one file per flow inside a directory",
+            "contexts": [
+              "recipe"
+            ],
+            "_module": "/Users/jesusdiaz/git/cells/pisco/piscosour/steps/generate-docs"
+          }
+        },
+        "npm": {
+          "default": {
+            "name": "npm",
+            "description": "DEPRECATED",
+            "contexts": "*",
+            "_module": "/Users/jesusdiaz/git/cells/pisco/piscosour/steps/npm"
+          }
+        },
+        "scaffolding": {
+          "recipe": {
+            "name": "scaffolding",
+            "description": "Create a piscosour recipe from a scaffold template",
+            "contexts": [
+              "recipe"
+            ],
+            "isGenerator": true,
+            "prompts": [
+              {
+                "type": "input",
+                "name": "recipeName",
+                "required": true,
+                "message": "Write a name for your pisco recipe"
+              },
+              {
+                "type": "input",
+                "name": "cmd",
+                "required": true,
+                "message": "Write the command line executable for your pisco recipe"
+              },
+              {
+                "type": "input",
+                "name": "description",
+                "required": false,
+                "message": "Write a brief description for your recipe"
+              }
+            ],
+            "requirements": {
+              "generator-pisco-recipe": {
+                "installer": "npm",
+                "listedIn": "npm",
+                "version": "0.1.0"
+              },
+              "yo": {}
+            },
+            "_module": "/Users/jesusdiaz/git/cells/pisco/piscosour/steps/scaffolding"
+          }
+        },
+        "test": {
+          "default": {
+            "name": "test",
+            "description": "TEST Brief description of step",
+            "contexts": "*",
+            "isTest": true,
+            "requirements": {
+              "java": {
+                "version": "1.6.0",
+                "option": "-version",
+                "regexp": "\"(.*?)_"
+              },
+              "cordova": {
+                "installer": "npm",
+                "version": "5.4.1"
+              },
+              "yo": {
+                "installer": "npm"
+              },
+              "bower": {
+                "installer": "npm",
+                "version": "1.0.0"
+              },
+              "sass": {
+                "version": "3.1.0",
+                "regexp": "s (.*?) "
+              },
+              "git": {
+                "version": "2.6.0",
+                "option": "--version",
+                "regexp": "n (.*?)\\n"
+              }
+            },
+            "plugins": [
+              "test"
+            ],
+            "_module": "/Users/jesusdiaz/git/cells/pisco/piscosour/steps/test"
+          }
+        },
+        "test2": {
+          "default": {
+            "name": "test2",
+            "description": "TEST 2 Brief description of step",
+            "contexts": "*",
+            "isGenerator": true,
+            "isTest": true,
+            "requirements": {
+              "polymer": {
+                "listedIn": "bower",
+                "installer": "bower",
+                "uri": "https://github.com/Polymer/polymer.git",
+                "version": "1.6.1",
+                "regexp": "=(.*?)"
+              },
+              "generator-pisco-recipe": {
+                "installer": "npm",
+                "listedIn": "npm",
+                "version": "0.0.2"
+              },
+              "pisco": {
+                "installer": "npm",
+                "pkg": "piscosour",
+                "version": "0.5.0"
+              },
+              "cordova": {
+                "installer": "npm",
+                "version": "5.4.1"
+              },
+              "yo": {
+                "installer": "npm"
+              },
+              "bower": {
+                "installer": "npm",
+                "version": "1.7.9"
+              },
+              "java": {
+                "version": "1.7.0"
+              },
+              "sass": {
+                "version": "3.1.0"
+              }
+            },
+            "workingDir": "nohay",
+            "flying": "ohyeah!!",
+            "other": "good!!",
+            "_module": "/Users/jesusdiaz/git/cells/pisco/piscosour/steps/test2"
+          }
+        },
+        "update": {
+          "recipe": {
+            "name": "update",
+            "description": "Update tool",
+            "contexts": [
+              "recipe"
+            ],
+            "contextFree": true,
+            "_module": "/Users/jesusdiaz/git/cells/pisco/piscosour/steps/update"
+          }
+        },
+        "weather": {
+          "default": {
+            "name": "weather",
+            "description": "See your city weather",
+            "contexts": "*",
+            "city": "madrid",
+            "isTest": true,
+            "_module": "/Users/jesusdiaz/git/cells/pisco/piscosour/steps/weather"
+          }
+        },
+        "yeah": {
+          "default": {
+            "name": "yeah",
+            "isTest": true,
+            "contexts": "*",
+            "description": "Brief description of step",
+            "_module": "/Users/jesusdiaz/git/cells/pisco/piscosour/steps/yeah"
+          }
+        }
+      },
+      "flows": {
+        "add-flow": {
+          "type": "normal",
+          "name": "add-flow",
+          "description": "Add a flow to a piscosour recipe",
+          "steps": {
+            "add-flows": {}
+          },
+          "_module": "/Users/jesusdiaz/git/cells/pisco/piscosour/flows/add-flow"
+        },
+        "add-step": {
+          "type": "normal",
+          "name": "add-step",
+          "description": "Add a step to a piscosour recipe",
+          "steps": {
+            "add-steps": {}
+          },
+          "_module": "/Users/jesusdiaz/git/cells/pisco/piscosour/flows/add-step"
+        },
+        "config": {
+          "type": "normal",
+          "name": "config",
+          "description": "Manage a piscosour recipe",
+          "steps": {
+            "configure": {}
+          },
+          "_module": "/Users/jesusdiaz/git/cells/pisco/piscosour/flows/configure"
+        },
+        "convert": {
+          "type": "normal",
+          "name": "convert",
+          "description": "Convert any module into a piscosour recipe",
+          "steps": {
+            "convert": {}
+          },
+          "_module": "/Users/jesusdiaz/git/cells/pisco/piscosour/flows/convert"
+        },
+        "create": {
+          "name": "create",
+          "description": "Create new recipe from scratch",
+          "steps": {
+            "scaffolding": {}
+          },
+          "_module": "/Users/jesusdiaz/git/cells/pisco/piscosour/flows/create",
+          "type": "normal"
+        },
+        "docs": {
+          "steps": {
+            "generate-docs": {}
+          },
+          "name": "docs",
+          "description": "Append documentation from info.md to readme.md of the recipe",
+          "type": "normal",
+          "_module": "/Users/jesusdiaz/git/cells/pisco/piscosour/flows/docs"
+        },
+        "test": {
+          "type": "util",
+          "name": "test",
+          "description": "Testing for piscosour",
+          "params": {
+            "plugins": [
+              "test"
+            ],
+            "saludo": "holaflow"
+          },
+          "steps": {
+            "test2": {},
+            "test:1": {
+              "inputs": {
+                "inflying": {
+                  "test2": "flying"
+                }
+              },
+              "params": {
+                "execution": "PRIMERA"
+              }
+            },
+            "test:2": {
+              "inputs": {
+                "inflying": {
+                  "test2": "flying"
+                },
+                "otracosa": {
+                  "test:1": "localmovida"
+                }
+              },
+              "params": {
+                "execution": "SEGUNDA"
+              }
+            },
+            "weather": {}
+          },
+          "_module": "/Users/jesusdiaz/git/cells/pisco/piscosour/flows/test"
+        },
+        "testint": {
+          "type": "util",
+          "name": "testint",
+          "description": "test",
+          "params": {},
+          "steps": {
+            "test2": {
+              "params": {
+                "saludo": "holadefault"
+              },
+              "recipe": {
+                "params": {
+                  "saludo": "holarecipe"
+                }
+              }
+            }
+          },
+          "_module": "/Users/jesusdiaz/git/cells/pisco/piscosour/flows/testint"
+        }
+      },
+      "contexts": {
+        "node-module": {
+          "name": "node-module",
+          "description": "node-module context",
+          "_module": "/Users/jesusdiaz/git/cells/pisco/piscosour/contexts/node-module"
+        },
+        "recipe": {
+          "name": "recipe",
+          "description": "Piscosour recipe context",
+          "_module": "/Users/jesusdiaz/git/cells/pisco/piscosour/contexts/recipe"
+        }
+      }
+    },
+    "cells-cli": {
+      "name": "cells-cli",
+      "version": "0.7.0-alpha.6",
+      "description": "cli tools for your cells components",
+      "dir": "/Users/jesusdiaz/.nvm/versions/node/v5.11.0/lib/node_modules/cells-cli",
+      "config": {
+        "cmd": "cells",
+        "analytics": {
+          "id": "UA-69454462-7"
+        },
+        "commands": [
+          "app:create",
+          "app:clean",
+          "app:dist",
+          "app:serve-app",
+          "app:check-mocks",
+          "app:cordova-deploy",
+          "component:create",
+          "component:serve",
+          "component:validate",
+          "component::lint",
+          "component::polylint",
+          "component::unit-tests",
+          "component::demo-tests",
+          "component::check-theme",
+          "component::check-version",
+          "component:version",
+          "cordova-app:restore",
+          "cordova-app:package",
+          "cordova-app:save",
+          "cordova-app:state",
+          "cordova-plugin:create",
+          "environment:download",
+          "environment:kpis"
+        ],
+        "defaultType": "component",
+        "repoTypes": [
+          "app",
+          "component",
+          "cordova-app",
+          "environment"
+        ]
+      },
+      "plugins": {},
+      "steps": {},
+      "flows": {},
+      "contexts": {}
+    },
+    "pisco-cells-contexts": {
+      "name": "pisco-cells-contexts",
+      "version": "1.1.4",
+      "description": "Pisco context definitions for Cells project",
+      "dir": "/Users/jesusdiaz/.nvm/versions/node/v5.11.0/lib/node_modules/cells-cli/node_modules/pisco-cells-contexts",
+      "config": {
+        "params": {
+          "versions": {
+            "chrome": {
+              "option": "--product-version"
+            }
+          }
+        }
+      },
+      "plugins": {},
+      "steps": {},
+      "flows": {
+        "check-mocks": {
+          "name": "check-mocks",
+          "description": "Check composer mocks",
+          "steps": {
+            "check-mocks": {
+              "app": {
+                "requires": {
+                  "pisco-cells-app-check-composer-mocks": "git+https://descinet.bbva.es/stash/scm/ctool/pisco-cells-app-check-composer-mocks.git#0.2.1"
+                }
+              }
+            }
+          },
+          "_module": "/Users/jesusdiaz/.nvm/versions/node/v5.11.0/lib/node_modules/cells-cli/node_modules/pisco-cells-contexts/flows/check-mocks",
+          "type": "normal"
+        },
+        "check-theme": {
+          "steps": {
+            "check-theme": {
+              "component": {
+                "requires": {
+                  "pisco-cells-component-theme": "git+https://descinet.bbva.es/stash/scm/ctool/pisco-cells-component-theme.git#0.2.1"
+                }
+              }
+            }
+          },
+          "name": "check-theme",
+          "description": "Check if a component is using a theme",
+          "_module": "/Users/jesusdiaz/.nvm/versions/node/v5.11.0/lib/node_modules/cells-cli/node_modules/pisco-cells-contexts/flows/check-theme",
+          "type": "normal"
+        },
+        "clean": {
+          "name": "clean",
+          "description": "Clean the distribution of a Cells application",
+          "steps": {
+            "gulpclean": {
+              "app": {
+                "requires": {
+                  "cells-app": "git+https://descinet.bbva.es/stash/scm/ctool/cells-app#0.5.1"
+                }
+              }
+            }
+          },
+          "_module": "/Users/jesusdiaz/.nvm/versions/node/v5.11.0/lib/node_modules/cells-cli/node_modules/pisco-cells-contexts/flows/clean",
+          "type": "normal"
+        },
+        "cordova-deploy": {
+          "name": "cordova-deploy",
+          "description": "Deploy the distribution in the folder ./www of a Cordova App",
+          "steps": {
+            "cordova-inquirer": {
+              "app": {
+                "requires": {
+                  "cells-app": "git+https://descinet.bbva.es/stash/scm/ctool/cells-app#0.5.1"
+                }
+              }
+            },
+            "gulpcordova": {
+              "app": {
+                "requires": {
+                  "cells-app": "git+https://descinet.bbva.es/stash/scm/ctool/cells-app#0.5.1"
+                }
+              },
+              "inputs": {
+                "type": {
+                  "cordova-inquirer": "type"
+                },
+                "environment": {
+                  "cordova-inquirer": "environment"
+                },
+                "startPoint": {
+                  "cordova-inquirer": "startPoint"
+                },
+                "cordovaApp": {
+                  "cordova-inquirer": "cordovaApp"
+                }
+              }
+            }
+          },
+          "_module": "/Users/jesusdiaz/.nvm/versions/node/v5.11.0/lib/node_modules/cells-cli/node_modules/pisco-cells-contexts/flows/cordova-deploy",
+          "type": "normal"
+        },
+        "create": {
+          "name": "create",
+          "description": "Context creation flow",
+          "isGenerator": true,
+          "steps": {
+            "create": {
+              "cordova-plugin": {
+                "requires": {
+                  "pisco-cells-cordova-plugin": "git+https://descinet.bbva.es/stash/scm/cellsnative/pisco-cells-cordova-plugin.git#0.1.2"
+                }
+              },
+              "app": {
+                "requires": {
+                  "pisco-cells-app-create": "git+https://descinet.bbva.es/stash/scm/ctool/pisco-cells-app-create.git#0.5.3"
+                }
+              },
+              "component": {
+                "requires": {
+                  "pisco-cells-component-create": "git+https://descinet.bbva.es/stash/scm/ctool/pisco-cells-component-create.git#0.3.1"
+                }
+              }
+            }
+          },
+          "_module": "/Users/jesusdiaz/.nvm/versions/node/v5.11.0/lib/node_modules/cells-cli/node_modules/pisco-cells-contexts/flows/create",
+          "type": "normal"
+        },
+        "dist": {
+          "name": "dist",
+          "description": "Make the distribution of a Cells application",
+          "steps": {
+            "gulpdist": {
+              "app": {
+                "requires": {
+                  "cells-app": "git+https://descinet.bbva.es/stash/scm/ctool/cells-app#0.5.1"
+                }
+              }
+            }
+          },
+          "_module": "/Users/jesusdiaz/.nvm/versions/node/v5.11.0/lib/node_modules/cells-cli/node_modules/pisco-cells-contexts/flows/dist",
+          "type": "normal"
+        },
+        "download": {
+          "name": "download",
+          "description": "Environment download for project cells",
+          "isGenerator": true,
+          "steps": {
+            "download": {
+              "environment": {
+                "requires": {
+                  "pisco-cells-environment-download": "git+https://descinet.bbva.es/stash/scm/ctool/pisco-cells-environment-download.git#0.4.1"
+                }
+              }
+            }
+          },
+          "_module": "/Users/jesusdiaz/.nvm/versions/node/v5.11.0/lib/node_modules/cells-cli/node_modules/pisco-cells-contexts/flows/download",
+          "type": "normal"
+        },
+        "kpis": {
+          "name": "kpis",
+          "description": "Show cells kpis",
+          "steps": {
+            "show-kpis": {
+              "environment": {
+                "requires": {
+                  "cells-stats": "git+https://descinet.bbva.es/stash/scm/ctool/cells-stats.git#0.3.1"
+                }
+              }
+            }
+          },
+          "_module": "/Users/jesusdiaz/.nvm/versions/node/v5.11.0/lib/node_modules/cells-cli/node_modules/pisco-cells-contexts/flows/kpis",
+          "type": "normal"
+        },
+        "package": {
+          "steps": {
+            "cordova-check": {
+              "cordova-app": {
+                "requires": {
+                  "cells-cordova-cli": "git+https://descinet.bbva.es/stash/scm/cel/cells-cordova-cli.git#0.3.1"
+                }
+              }
+            },
+            "package": {
+              "cordova-app": {
+                "requires": {
+                  "cells-cordova-cli": "git+https://descinet.bbva.es/stash/scm/cel/cells-cordova-cli.git#0.3.1"
+                }
+              }
+            }
+          },
+          "name": "package",
+          "description": "Command to package platforms",
+          "_module": "/Users/jesusdiaz/.nvm/versions/node/v5.11.0/lib/node_modules/cells-cli/node_modules/pisco-cells-contexts/flows/package",
+          "type": "normal"
+        },
+        "polylint": {
+          "name": "polylint",
+          "description": "Cells components polylinter",
+          "type": "normal",
+          "steps": {
+            "polylint": {
+              "component": {
+                "requires": {
+                  "pisco-polylint": "git+https://descinet.bbva.es/stash/scm/ctool/pisco-polylint.git#0.2.1"
+                }
+              }
+            }
+          },
+          "_module": "/Users/jesusdiaz/.nvm/versions/node/v5.11.0/lib/node_modules/cells-cli/node_modules/pisco-cells-contexts/flows/polylint"
+        },
+        "restore": {
+          "steps": {
+            "cordova-check": {
+              "cordova-app": {
+                "requires": {
+                  "cells-cordova-cli": "git+https://descinet.bbva.es/stash/scm/cel/cells-cordova-cli.git#0.3.1"
+                }
+              }
+            },
+            "restore": {
+              "cordova-app": {
+                "requires": {
+                  "cells-cordova-cli": "git+https://descinet.bbva.es/stash/scm/cel/cells-cordova-cli.git#0.3.1"
+                }
+              }
+            }
+          },
+          "name": "restore",
+          "description": "Restore your application from package.json configuration",
+          "_module": "/Users/jesusdiaz/.nvm/versions/node/v5.11.0/lib/node_modules/cells-cli/node_modules/pisco-cells-contexts/flows/restore",
+          "type": "normal"
+        },
+        "save": {
+          "steps": {
+            "cordova-check": {
+              "cordova-app": {
+                "requires": {
+                  "cells-cordova-cli": "git+https://descinet.bbva.es/stash/scm/cel/cells-cordova-cli.git#0.3.1"
+                }
+              }
+            },
+            "save": {
+              "cordova-app": {
+                "requires": {
+                  "cells-cordova-cli": "git+https://descinet.bbva.es/stash/scm/cel/cells-cordova-cli.git#0.3.1"
+                }
+              }
+            }
+          },
+          "name": "save",
+          "description": "Save the current state of cordova application in package.json",
+          "_module": "/Users/jesusdiaz/.nvm/versions/node/v5.11.0/lib/node_modules/cells-cli/node_modules/pisco-cells-contexts/flows/save",
+          "type": "normal"
+        },
+        "serve-app": {
+          "name": "serve-app",
+          "description": "Serve the distribution of a Cells application",
+          "steps": {
+            "serve-inquirer": {
+              "app": {
+                "requires": {
+                  "cells-app": "git+https://descinet.bbva.es/stash/scm/ctool/cells-app#0.5.1"
+                }
+              }
+            },
+            "gulpdist": {
+              "app": {
+                "requires": {
+                  "cells-app": "git+https://descinet.bbva.es/stash/scm/ctool/cells-app#0.5.1"
+                }
+              },
+              "inputs": {
+                "type": {
+                  "serve-inquirer": "type"
+                },
+                "environment": {
+                  "serve-inquirer": "environment"
+                },
+                "startPoint": {
+                  "serve-inquirer": "startPoint"
+                }
+              }
+            },
+            "gulpserve": {
+              "app": {
+                "requires": {
+                  "cells-app": "git+https://descinet.bbva.es/stash/scm/ctool/cells-app#0.5.1"
+                }
+              },
+              "inputs": {
+                "type": {
+                  "serve-inquirer": "type"
+                },
+                "environment": {
+                  "serve-inquirer": "environment"
+                },
+                "mocks": {
+                  "serve-inquirer": "mocks"
+                },
+                "startPoint": {
+                  "serve-inquirer": "startPoint"
+                }
+              }
+            }
+          },
+          "_module": "/Users/jesusdiaz/.nvm/versions/node/v5.11.0/lib/node_modules/cells-cli/node_modules/pisco-cells-contexts/flows/serve",
+          "type": "normal"
+        },
+        "serve": {
+          "name": "serve",
+          "description": "Serve your components",
+          "steps": {
+            "bower-install": {
+              "component": {
+                "requires": {
+                  "pisco-cells-serve": "git+https://descinet.bbva.es/stash/scm/cellslabs/pisco-cells-serve.git#0.3.1"
+                }
+              }
+            },
+            "polyserve": {
+              "component": {
+                "requires": {
+                  "pisco-cells-serve": "git+https://descinet.bbva.es/stash/scm/cellslabs/pisco-cells-serve.git#0.3.1"
+                }
+              }
+            },
+            "browser-sync": {
+              "component": {
+                "requires": {
+                  "pisco-cells-serve": "git+https://descinet.bbva.es/stash/scm/cellslabs/pisco-cells-serve.git#0.3.1"
+                }
+              },
+              "inputs": {
+                "proxyPort": {
+                  "polyserve": "port"
+                }
+              }
+            }
+          },
+          "_module": "/Users/jesusdiaz/.nvm/versions/node/v5.11.0/lib/node_modules/cells-cli/node_modules/pisco-cells-contexts/flows/serve-component",
+          "type": "normal"
+        },
+        "state": {
+          "steps": {
+            "cordova-check": {
+              "cordova-app": {
+                "requires": {
+                  "cells-cordova-cli": "git+https://descinet.bbva.es/stash/scm/cel/cells-cordova-cli.git#0.3.1"
+                }
+              }
+            },
+            "check": {
+              "cordova-app": {
+                "requires": {
+                  "cells-cordova-cli": "git+https://descinet.bbva.es/stash/scm/cel/cells-cordova-cli.git#0.3.1"
+                }
+              }
+            },
+            "update": {
+              "cordova-app": {
+                "requires": {
+                  "cells-cordova-cli": "git+https://descinet.bbva.es/stash/scm/cel/cells-cordova-cli.git#0.3.1"
+                }
+              }
+            }
+          },
+          "name": "state",
+          "description": "Command to help you manage the state of your Cordova Project",
+          "_module": "/Users/jesusdiaz/.nvm/versions/node/v5.11.0/lib/node_modules/cells-cli/node_modules/pisco-cells-contexts/flows/state",
+          "type": "normal"
+        },
+        "theme": {
+          "steps": {
+            "theme": {
+              "component": {
+                "requires": {
+                  "pisco-cells-component-theme": "git+https://descinet.bbva.es/stash/scm/ctool/pisco-cells-component-theme.git#0.2.1"
+                }
+              }
+            }
+          },
+          "name": "theme",
+          "description": "Check if a component is using a theme",
+          "_module": "/Users/jesusdiaz/.nvm/versions/node/v5.11.0/lib/node_modules/cells-cli/node_modules/pisco-cells-contexts/flows/theme",
+          "type": "normal"
+        },
+        "validate": {
+          "name": "validate",
+          "description": "Cells components validation flow",
+          "params": {},
+          "steps": {
+            "lint": {
+              "component": {
+                "requires": {
+                  "pisco-cells-component-lint": "git+https://descinet.bbva.es/stash/scm/ctool/pisco-cells-component-lint.git#0.4.3"
+                }
+              }
+            },
+            "unit-tests": {
+              "component": {
+                "requires": {
+                  "pisco-cells-component-unit-tests": "git+https://descinet.bbva.es/stash/scm/ctool/pisco-cells-component-unit-tests.git"
+                }
+              }
+            },
+            "demo-tests": {
+              "component": {
+                "requires": {
+                  "pisco-cells-component-demo-tests": "git+ssh://git@globaldevtools.bbva.com:7999/ctool/pisco-cells-component-demo-tests.git#0.4.0"
+                }
+              }
+            },
+            "check-version": {
+              "component": {
+                "requires": {
+                  "pisco-cells-component-check-version": "git+https://descinet.bbva.es/stash/scm/ctool/pisco-cells-component-check-version.git#0.2.1"
+                }
+              }
+            }
+          },
+          "_module": "/Users/jesusdiaz/.nvm/versions/node/v5.11.0/lib/node_modules/cells-cli/node_modules/pisco-cells-contexts/flows/validate",
+          "type": "normal"
+        },
+        "version": {
+          "name": "version",
+          "description": "Versioning process for components",
+          "steps": {
+            "version": {
+              "component": {
+                "requires": {
+                  "pisco-cells-component-version": "git+https://descinet.bbva.es/stash/scm/ctool/pisco-cells-component-version.git#0.2.1"
+                }
+              }
+            }
+          },
+          "_module": "/Users/jesusdiaz/.nvm/versions/node/v5.11.0/lib/node_modules/cells-cli/node_modules/pisco-cells-contexts/flows/version",
+          "type": "normal"
+        }
+      },
+      "contexts": {
+        "app": {
+          "name": "app",
+          "description": "Cells app context",
+          "_module": "/Users/jesusdiaz/.nvm/versions/node/v5.11.0/lib/node_modules/cells-cli/node_modules/pisco-cells-contexts/contexts/app"
+        },
+        "component": {
+          "name": "component",
+          "description": "Cells component context",
+          "_module": "/Users/jesusdiaz/.nvm/versions/node/v5.11.0/lib/node_modules/cells-cli/node_modules/pisco-cells-contexts/contexts/component"
+        },
+        "cordova-app": {
+          "name": "cordova-app",
+          "description": "Cells cordova app context",
+          "_module": "/Users/jesusdiaz/.nvm/versions/node/v5.11.0/lib/node_modules/cells-cli/node_modules/pisco-cells-contexts/contexts/cordova-app"
+        },
+        "cordova-plugin": {
+          "name": "cordova-plugin",
+          "description": "Cordova plugin",
+          "_module": "/Users/jesusdiaz/.nvm/versions/node/v5.11.0/lib/node_modules/cells-cli/node_modules/pisco-cells-contexts/contexts/cordova-plugin"
+        },
+        "environment": {
+          "name": "environment",
+          "description": "Cells environment context",
+          "_module": "/Users/jesusdiaz/.nvm/versions/node/v5.11.0/lib/node_modules/cells-cli/node_modules/pisco-cells-contexts/contexts/environment"
+        }
+      }
+    }
+  }
+}
