@@ -15,10 +15,10 @@ module.exports = {
 
   addons: {
     ctxIs: function(name) {
-      return context.cis(name, this.params.workingDir);
+      return context.cis(name);
     },
     ctxWhoami: function() {
-      return context.whoami(this.params.workingDir);
+      return context.whoami();
     }
   }
 };
