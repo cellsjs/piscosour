@@ -1,21 +1,18 @@
 'use strict';
 
-const path = require('path');
 const fs = require('fs');
-const tmpFile = 'tmpParams.json';
-let installed = false;
+const path = require('path');
 
-function _addParams(params, array) {
-  delete params.plugins;
-  fs.writeFileSync(tmpFile, JSON.stringify(params, null, 2));
-  return array.concat(['--paramsFile', tmpFile]);
-}
+const relaunchFile = '.relaunch';
+let installed = false;
 
 module.exports = {
 
   'core-install': function() {
-    installed = this.requires && !this.installed;
-    if (installed) {
+    installed = this.requires && !this.installed && this.params._installer;
+    this.params._skip = this.params._installer;
+
+    const install = () => {
       const promises = [];
       Object.getOwnPropertyNames(this.requires).forEach((module) => {
         let installable = this.requires[module];
@@ -23,42 +20,34 @@ module.exports = {
         this.logger.info('#green', 'installing', module, '->', installable);
         promises.push(this.execute('npm', ['install', '-g', installable]));
       });
-      return Promise.all(promises)
+      return Promise.all(promises);
+    };
+
+    const update = () => {
+      this.logger.trace('#green', 'updating scullion.json');
+      this.piscoConfig.refresh(true);
+      return Promise.resolve();
+    };
+
+    const relaunch = () => new Promise((ok, ko) => {
+      try {
+        this.logger.trace('#green', 'writing .relaunch');
+        fs.writeFileSync(relaunchFile, '');
+        return ok();
+      } catch (e) {
+        return ko(e);
+      }
+    });
+
+    if (installed) {
+      return Promise.resolve()
+        .then(() => install())
+        .then(() => update())
+        .then(() => relaunch())
         .catch((err) => {
           installed = false;
           throw err;
         });
-    }
-  },
-
-  config: function() {
-    if (installed) {
-      this.logger.trace('#green', 'updating scullion.json');
-      return this.execute(process.execPath, [path.join(this.piscoConfig.getDir('module'), 'bin', 'pisco.js'), '-w']);
-    }
-  },
-
-  run: function() {
-    if (installed) {
-      const command = `${this._context}::${this.name}`;
-      this.logger.info('#green', 'executing', command);
-      return this.execute(process.execPath, _addParams(this.params, [path.join(this.piscoConfig.getDir('module'), 'bin', 'pisco.js'), command]))
-        .catch((err) => {
-          err.keep = true;
-          err.data = err.output;
-          throw err;
-        });
-    }
-  },
-
-  prove() {
-    if (installed) {
-      this.logger.info('Deleting', '#green', tmpFile);
-      try {
-        fs.unlinkSync(tmpFile);
-      } catch (e) {
-        this.logger.warn('Problem cleaning files!', e);
-      }
     }
   }
 
