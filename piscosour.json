@@ -14,9 +14,9 @@
       "fsutils",
       "piscosour",
       "installer",
+      "skipper",
       "system-checker",
-      "system-saver",
-      "skipper"
+      "system-saver"
     ],
     "versions": {
       "bower" : {
