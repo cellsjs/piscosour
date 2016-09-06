@@ -37,7 +37,7 @@ module.exports = {
       if (configLocal.flows) {
         Object.getOwnPropertyNames(configLocal.flows).forEach((name) => {
           var local = configLocal.flows[name];
-          var flowFile = path.join(this.piscoConfig.rootDir, 'flows', name, 'flow.json');
+          var flowFile = path.join(this.piscoConfig.get().rootDir, 'flows', name, 'flow.json');
           var flow = this.fsReadConfig(flowFile);
           flow.type = local.type;
           flow.name = local.name;
