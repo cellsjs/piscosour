@@ -23,6 +23,7 @@ const onFulfilled = function() {
       fs.unlinkSync(relaunch);
     } catch (e) {
     }
+    process.stdout.write('\n');
     gush();
   } else {
     process.exit(0);
