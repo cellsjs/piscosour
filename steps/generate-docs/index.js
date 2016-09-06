@@ -29,7 +29,7 @@ module.exports = {
 
   _menu() {
     let content = '';
-    if (this.piscoConfig.commands) {
+    if (this.piscoConfig.get().commands) {
       content += '- User Commands\n';
       content = this._userCommandsIndex(content);
     }
@@ -45,7 +45,7 @@ module.exports = {
   _getStarted: function() {
     let content = `Install ${this.pkg.name} globally\n\n`;
     content += `    npm install -g ${this.pkg.name}`;
-    content += `\n\nOnce installed, ${this.piscoConfig.cmd} command will be available for you`;
+    content += `\n\nOnce installed, ${this.piscoConfig.get().cmd} command will be available for you`;
     return content;
   },
 
@@ -96,8 +96,8 @@ module.exports = {
   _pluginsIndex: function(content) {
     const tab = '    ';
 
-    Object.getOwnPropertyNames(this.piscoConfig.recipes).forEach((recipeName) => {
-      const recipe = this.piscoConfig.recipes[recipeName];
+    Object.getOwnPropertyNames(this.piscoConfig.get().recipes).forEach((recipeName) => {
+      const recipe = this.piscoConfig.get().recipes[recipeName];
       const dirPlugins = path.join(recipe.dir, 'plugins');
       if (recipe.name && this.fsExists(dirPlugins) && recipeName !== 'piscosour') {
         content += `${tab}- from **${recipe.name}  v.${recipe.version}**\n`;
@@ -143,7 +143,7 @@ module.exports = {
     let file = path.join('flows', name, 'info.md');
     let precontent = '[Go Index](#main-index):\n\n';
     precontent += `How to execute this command:\n\n`;
-    precontent += `    ${this.piscoConfig.cmd} ${command}\n\n`;
+    precontent += `    ${this.piscoConfig.get().cmd} ${command}\n\n`;
     bundle = this._addBundle(`###${command} (${flow.description})`, file, bundle, true, precontent);
 
     let n = 1;
@@ -169,7 +169,7 @@ module.exports = {
       base = '###';
       precontent += '[Go Index](#main-index):\n\n';
       precontent += `How to execute this command:\n\n`;
-      precontent += `    ${this.piscoConfig.cmd} ${command}\n\n`;
+      precontent += `    ${this.piscoConfig.get().cmd} ${command}\n\n`;
     }
     precontent += 'General info:\n\n';
 
@@ -186,8 +186,8 @@ module.exports = {
     let content = '[Go Index](#main-index):\n\n';
     content += '|Name|Version|Description|\n';
     content += '|---|---|---|\n';
-    Object.getOwnPropertyNames(this.piscoConfig.recipes).forEach((recipeName) => {
-      const recipe = this.piscoConfig.recipes[recipeName];
+    Object.getOwnPropertyNames(this.piscoConfig.get().recipes).forEach((recipeName) => {
+      const recipe = this.piscoConfig.get().recipes[recipeName];
       if (recipe.name && recipe.version !== '-') {
         content += '|' + recipe.name + '|' + recipe.version + '|' + recipe.description + '|\n';
       }
@@ -199,15 +199,15 @@ module.exports = {
     let content = '[Go Index](#main-index):\n\n';
     content += '|Name|Description|\n';
     content += '|---|---|\n';
-    Object.getOwnPropertyNames(this.piscoConfig.contexts).forEach((context) => {
-      content += `|${this.piscoConfig.contexts[context].name}|${this.piscoConfig.contexts[context].description}|\n`;
+    Object.getOwnPropertyNames(this.piscoConfig.get().contexts).forEach((context) => {
+      content += `|${this.piscoConfig.get().contexts[context].name}|${this.piscoConfig.get().contexts[context].description}|\n`;
     });
     return content;
   },
 
   _infoPlugins: function(bundle) {
-    Object.getOwnPropertyNames(this.piscoConfig.recipes).forEach((recipeName) => {
-      const recipe = this.piscoConfig.recipes[recipeName];
+    Object.getOwnPropertyNames(this.piscoConfig.get().recipes).forEach((recipeName) => {
+      const recipe = this.piscoConfig.get().recipes[recipeName];
       const dirPlugins = path.join(recipe.dir, 'plugins');
       if (recipe.name && this.fsExists(dirPlugins) && recipeName !== 'piscosour') {
         this.logger.info('#green', 'reading', dirPlugins);
