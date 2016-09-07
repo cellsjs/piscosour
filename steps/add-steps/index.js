@@ -12,9 +12,10 @@ module.exports = {
       name: 'all contexts',
       value: '*'
     });
-    Object.getOwnPropertyNames(this.piscoConfig.contexts).forEach((name) => {
+    const piscoConfig = this.piscoConfig.get();
+    Object.getOwnPropertyNames(piscoConfig.contexts).forEach((name) => {
       choices.push({
-        name: `${this.piscoConfig.contexts[name].name} (${this.piscoConfig.contexts[name].description})`,
+        name: `${piscoConfig.contexts[name].name} (${piscoConfig.contexts[name].description})`,
         value: name
       });
     });

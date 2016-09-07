@@ -1,21 +1,18 @@
 'use strict';
 
-const path = require('path');
 const fs = require('fs');
-const tmpFile = 'tmpParams.json';
-let installed = false;
+const path = require('path');
 
-function _addParams(params, array) {
-  delete params.plugins;
-  fs.writeFileSync(tmpFile, JSON.stringify(params, null, 2));
-  return array.concat(['--paramsFile', tmpFile]);
-}
+const relaunchFile = '.relaunch';
 
 module.exports = {
 
   'core-install': function() {
-    installed = this.requires && !this.installed;
-    if (installed) {
+    const flowInstaller = this._flow && !this.piscoConfig.isInstalledFlow(this._context, this._flow);
+    const stepInstaller = this.requires && !this.installed && flowInstaller;
+    this.params._skip = flowInstaller;
+
+    const install = () => {
       const promises = [];
       Object.getOwnPropertyNames(this.requires).forEach((module) => {
         let installable = this.requires[module];
@@ -23,42 +20,29 @@ module.exports = {
         this.logger.info('#green', 'installing', module, '->', installable);
         promises.push(this.execute('npm', ['install', '-g', installable]));
       });
-      return Promise.all(promises)
-        .catch((err) => {
-          installed = false;
-          throw err;
-        });
-    }
-  },
+      return Promise.all(promises);
+    };
 
-  config: function() {
-    if (installed) {
-      this.logger.trace('#green', 'updating scullion.json');
-      return this.execute(process.execPath, [path.join(this.piscoConfig.getDir('module'), 'bin', 'pisco.js'), '-w']);
-    }
-  },
-
-  run: function() {
-    if (installed) {
-      const command = `${this._context}::${this.name}`;
-      this.logger.info('#green', 'executing', command);
-      return this.execute(process.execPath, _addParams(this.params, [path.join(this.piscoConfig.getDir('module'), 'bin', 'pisco.js'), command]))
-        .catch((err) => {
-          err.keep = true;
-          err.data = err.output;
-          throw err;
-        });
-    }
-  },
-
-  prove() {
-    if (installed) {
-      this.logger.info('Deleting', '#green', tmpFile);
+    const relaunch = () => new Promise((ok, ko) => {
       try {
-        fs.unlinkSync(tmpFile);
+        this.logger.trace('#green', 'writing .relaunch');
+        fs.writeFileSync(relaunchFile, '');
+        return ok();
       } catch (e) {
-        this.logger.warn('Problem cleaning files!', e);
+        return ko(e);
       }
+    });
+
+    if (stepInstaller) {
+      return Promise.resolve()
+        .then(() => install())
+        .then(() => relaunch())
+        .then(() => this.logger.info('#magenta', 'core-install', '#green', 'step installed'))
+        .catch((err) => {
+          throw err;
+        });
+    } else {
+      this.logger.info('#magenta', 'core-install', '#green', 'step installed');
     }
   }
 
