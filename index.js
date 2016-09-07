@@ -4,6 +4,7 @@ const fs = require('fs');
 
 const moment = require('moment');
 
+const config = require('./lib/config');
 const fsUtils = require('./lib/utils/fsUtils');
 const logger = require('./lib/logger');
 
@@ -24,6 +25,7 @@ const onFulfilled = function() {
     } catch (e) {
     }
     process.stdout.write('\n');
+    config.refresh(true);
     gush();
   } else {
     process.exit(0);
