@@ -4,13 +4,13 @@ const fs = require('fs');
 const path = require('path');
 
 const relaunchFile = '.relaunch';
-let installed = false;
 
 module.exports = {
 
   'core-install': function() {
-    installed = this.requires && !this.installed && this.params._installer;
-    this.params._skip = this.params._installer;
+    const flowInstaller = this._flow && !this.piscoConfig.isInstalledFlow(this._context, this._flow);
+    const stepInstaller = this.requires && !this.installed && flowInstaller;
+    this.params._skip = flowInstaller;
 
     const install = () => {
       const promises = [];
@@ -23,12 +23,6 @@ module.exports = {
       return Promise.all(promises);
     };
 
-    const update = () => {
-      this.logger.trace('#green', 'updating scullion.json');
-      this.piscoConfig.refresh(true);
-      return Promise.resolve();
-    };
-
     const relaunch = () => new Promise((ok, ko) => {
       try {
         this.logger.trace('#green', 'writing .relaunch');
@@ -39,15 +33,16 @@ module.exports = {
       }
     });
 
-    if (installed) {
+    if (stepInstaller) {
       return Promise.resolve()
         .then(() => install())
-        .then(() => update())
         .then(() => relaunch())
+        .then(() => this.logger.info('#magenta', 'core-install', '#green', 'step installed'))
         .catch((err) => {
-          installed = false;
           throw err;
         });
+    } else {
+      this.logger.info('#magenta', 'core-install', '#green', 'step installed');
     }
   }
 
