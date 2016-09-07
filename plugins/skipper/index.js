@@ -2,9 +2,9 @@
 
 module.exports = {
 
-  check: function() {
+  'core-check': function() {
     if (this.params._skip) {
-      this.logger.info('#magenta', 'check', '#yellow', 'Skipping step execution!');
+      this.logger.info('#magenta', 'core-check', '#yellow', 'skip step execution');
       return Promise.resolve({ skip: true });
     }
   }
