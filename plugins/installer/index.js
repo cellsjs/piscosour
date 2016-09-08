@@ -41,8 +41,6 @@ module.exports = {
         .catch((err) => {
           throw err;
         });
-    } else {
-      this.logger.info('#magenta', 'core-install', '#green', 'step installed');
     }
   }
 
