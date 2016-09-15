@@ -42,13 +42,6 @@ module.exports = {
     return content;
   },
 
-  _getStarted: function() {
-    let content = `Install ${this.pkg.name} globally\n\n`;
-    content += `    npm install -g ${this.pkg.name}`;
-    content += `\n\nOnce installed, ${this.piscoConfig.get().cmd} command will be available for you`;
-    return content;
-  },
-
   _formatMdLink(link) {
     link = link.trim();
     link = link.replace(/:/g, '');
@@ -71,7 +64,6 @@ module.exports = {
             iterable.forEach((command) => {
               const enrich = enriched[recipeKey][command];
               if (command !== '___recipe' && enrich.type === type) {
-                const piscoCfg = this.fsReadConfig(this.piscoFile);
                 content += `${tab}${tab}- [${command} (${enrich.description})](#${this._formatMdLink(`${command} ${enrich.description}`)})\n`;
               }
             });
@@ -84,12 +76,14 @@ module.exports = {
 
   _userCommandsIndex: function(content) {
     const tab = '    ';
-    this.piscoConfig.commands.sort().forEach((command) => {
-      const enrich = enriched.search(command);
-      if (enrich) {
-        content += `${tab}- [${command} (${enrich.description})](#${this._formatMdLink(`${command} ${enrich.description}`)})\n`;
-      }
-    });
+    if (this.piscoConfig.commands) {
+      this.piscoConfig.commands.sort().forEach((command) => {
+        const enrich = enriched.search(command);
+        if (enrich) {
+          content += `${tab}- [${command} (${enrich.description})](#${this._formatMdLink(`${command} ${enrich.description}`)})\n`;
+        }
+      });
+    }
     return content;
   },
 
