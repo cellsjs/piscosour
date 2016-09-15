@@ -41,6 +41,8 @@ module.exports = {
         .catch((err) => {
           throw err;
         });
+    } else if (flowInstaller) {
+      this.logger.info('#magenta', 'core-install', '#green', 'step already installed');
     }
   }
 
