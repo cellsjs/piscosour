@@ -10,7 +10,7 @@ module.exports = {
   'core-install': function() {
     const flowInstaller = this._flow && !this.piscoConfig.isInstalledFlow(this._context, this._flow);
     const stepInstaller = this.requires && !this.installed && flowInstaller;
-    this.params._skip = flowInstaller;
+    this.params._skip = this.params._skip || flowInstaller;
 
     const install = () => {
       const promises = [];
