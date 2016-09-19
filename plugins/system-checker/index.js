@@ -61,7 +61,13 @@ module.exports = {
         }
       } else {
         let option = options.option ? options.option : '-v';
-        return _cachedExec(options.version ? `${cmd} ${option}` : cmd);
+        if (options.uncheckable) {
+          return {
+            stderr: 'uncheckable'
+          };
+        } else {
+          return _cachedExec(options.version ? `${cmd} ${option}` : cmd);
+        }
       }
     };
     const _check = (cmd, options, result) => new Promise((ok, ko) => {
