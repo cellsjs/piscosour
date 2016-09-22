@@ -9,18 +9,17 @@
       "listedIn": "bower",
       "installer": "bower",
       "uri": "https://github.com/Polymer/polymer.git",
-      "version" : "1.6.1",
-      "regexp": "=(.*?)"
+      "version" : "^1.2.1"
     },
     "generator-pisco-recipe" : {
       "installer": "npm",
       "listedIn": "npm",
-      "version" : "0.0.2"
+      "version" : "^0.0.2"
     },
     "pisco" : {
       "installer": "npm",
       "pkg" : "piscosour",
-      "version" : "0.5.0"
+      "version" : "^1.0.0-alpha.1"
     },
     "cordova" : {
       "installer": "npm",
@@ -29,16 +28,15 @@
     "yo" : {"installer": "npm"},
     "bower" : {
       "installer": "npm",
-      "version" : "1.7.9"
+      "version" : "^1.7.9"
     },
     "java": {
-      "version": "1.7.0"
+      "version": "^1.7.0"
     },
     "sass" : {
-      "version": "3.1.0"
+      "version": "^3.1.0"
     }
   },
-
   "workingDir": "nohay",
   "flying": "ohyeah!!",
   "other": "good!!"
