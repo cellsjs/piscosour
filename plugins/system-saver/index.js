@@ -15,8 +15,9 @@ module.exports = {
         delete requirements.empty;
       }
       let tmp = {};
+      const reqTmp = this.piscoConfig.mergeObject(this.params.versions, this.params.requirements);
       Object.getOwnPropertyNames(this.params.requirements).forEach((cmd) => {
-        const options = this.params.requirements[cmd];
+        const options = reqTmp[cmd];
         if (!options.installer) {
           tmp[cmd] = options;
         }
