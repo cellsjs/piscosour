@@ -13,26 +13,23 @@ module.exports = {
 
   'core-check': function() {
 
-    const _getVersion = (regexp, out, err) => {
-      let txt = !out || out.length === 0 ? err : out;
-      if (txt && txt.length > 0) {
-        if (regexp) {
-          return txt.match(regexp)[1];
-        } else {
-          return txt.replace(os.EOL, '');
+    const _getVersion = (cmd, result, options) => {
+      let regexp;
+      if (options.listedIn) {
+        const father = this.params.requirements[options.listedIn];
+        regexp = `${options.key ? options.key : cmd}${options.regexp !== undefined ? options.regexp : father.regexp}`;
+      } else {
+        regexp = options.regexp;
+      }
+      let buffer = !result.stdout || result.stdout.toString().length === 0 ? result.stderr : result.stdout;
+      let version = buffer.toString().replace(os.EOL, '');
+      if (regexp) {
+        const match = buffer.toString().match(regexp);
+        if (match && match.length > 1) {
+          version = match[1].replace(os.EOL, '');
         }
       }
-    };
-    const _processVersion = (result, regexp) => {
-      const version = result.stdout.toString().match(regexp);
-      let res;
-      if (version && version.length > 1) {
-        res = {stdout: new Buffer(version[1]), stderr: new Buffer(version[1]), status: 0};
-      } else {
-        const msg = 'not found';
-        res = {stdout: new Buffer(msg), stderr: new Buffer(msg), status: -100};
-      }
-      return res;
+      return version;
     };
     const _cachedExec = (command) => {
       let result = cache[command];
@@ -53,9 +50,7 @@ module.exports = {
         const father = this.params.requirements[options.listedIn];
         if (father && father.list) {
           this.logger.trace('Getting list for', cmd);
-          return Promise.resolve()
-            .then(() => _cachedExec(father.list))
-            .then((result) => _processVersion(result, `${options.key ? options.key : cmd}${options.regexp !== undefined ? options.regexp : father.regexp}`));
+          return _cachedExec(father.list);
         } else {
           return Promise.reject({error: `There is no definition for listing in ${options.listedIn}`});
         }
@@ -77,11 +72,9 @@ module.exports = {
           out.error = `'${cmd}' is not found!!`;
           out.data = result.stderr.toString();
         } else {
-          let actual = _getVersion(options.regexp, result.stdout.toString(), result.stderr.toString());
-          if (!semver.valid(actual)) {
-            out.message = ['#red', cmd, '(', actual, ') impossible to parse ...', '#yellow', 'WARNING!'];
-          } else if (actual && semver.lt(actual, options.version)) {
-            out.error = `'${cmd}' is not up to date!! version is: '${actual}' required: '${options.version}'`;
+          let actual = _getVersion(cmd, result, options);
+          if (!semver.satisfies(actual, options.version)) {
+            out.error = `not satisfied by: '${actual}'`;
           } else {
             out.message = ['#green', cmd, '(', actual, ') is installed ...', '#green', 'OK'];
           }
