@@ -22,7 +22,8 @@
       "bower" : {
         "installer": "npm",
         "list": "bower cache list",
-        "cmdInstaller": "bower install"
+        "cmdInstaller": "bower install",
+        "regexp": "\\#(.*?)\\s"
       },
       "npm" : {
         "list": "npm list -g --depth 0",
