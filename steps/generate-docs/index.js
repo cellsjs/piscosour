@@ -202,9 +202,8 @@ module.exports = {
       plugins.forEach((dir) => {
         this.logger.info('processing plugin', '#cyan', dir, '...');
         const fileMd = path.join(recipe.dir, 'plugins', dir, 'info.md');
-        let precontent = '';
+        let precontent = '[[Index]](#main-index)\n\n';
         precontent += `from: **${recipe.name}(${recipe.version})**`;
-        precontent += '  [[Index]](#main-index)\n';
         bundle = this._addBundle('## ' + dir, fileMd, bundle, true, precontent);
       });
     }
