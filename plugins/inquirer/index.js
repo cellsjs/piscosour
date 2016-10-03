@@ -73,6 +73,8 @@ module.exports = {
             this.params[req.name] = answers[req.name];
           });
         });
+      } else {
+        return Promise.resolve();
       }
     },
 
