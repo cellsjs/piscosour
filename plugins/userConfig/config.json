@@ -1,0 +1,4 @@
+{
+  "name": "userConfig",
+  "description": "Operations on user configuration file ($HOME/.piscosour/piscosour.json)"
+}
