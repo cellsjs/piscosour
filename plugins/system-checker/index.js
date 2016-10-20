@@ -68,7 +68,7 @@ module.exports = {
     const _check = (cmd, options, result) => new Promise((ok, ko) => {
       let out = {version: options.version};
       if (options.version) {
-        if (result.status !== 0) {
+        if (result.status !== 0 && !options.listedIn) {
           out.error = `'${cmd}' is not found!!`;
           out.data = result.stderr.toString();
         } else {
