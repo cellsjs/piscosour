@@ -27,6 +27,8 @@ module.exports = {
         const match = buffer.toString().match(regexp);
         if (match && match.length > 1) {
           version = match[1].replace(os.EOL, '');
+        } else {
+          version = false;
         }
       }
       return version;
@@ -67,12 +69,12 @@ module.exports = {
     };
     const _check = (cmd, options, result) => new Promise((ok, ko) => {
       let out = {version: options.version};
+      const actual = _getVersion(cmd, result, options);
       if (options.version) {
         if (result.status !== 0 && !options.listedIn) {
           out.error = `'${cmd}' is not found!!`;
           out.data = result.stderr.toString();
         } else {
-          let actual = _getVersion(cmd, result, options);
           if (!semver.satisfies(actual, options.version)) {
             out.error = `not satisfied by: '${actual}'`;
           } else {
@@ -83,7 +85,7 @@ module.exports = {
         if (result.status === 127) {
           out.error = `'${cmd}' is not accesible!!`;
           out.data = result.stderr.toString();
-        } else if (result.status === -100) {
+        } else if (result.status === -100 || (options.listedIn && actual === false)) {
           out.version = out.version ? out.version : 'any';
           out.error = `'${options.key}' is not in list!!`;
           out.data = result.stderr.toString();
