@@ -43,6 +43,7 @@
     "postinstall": "node bin/pisco.js -w"
   },
   "dependencies": {
+    "async": "^2.1.2",
     "chalk": "^1.1.1",
     "global-modules": "^0.2.2",
     "inquirer": "^1.1.1",
