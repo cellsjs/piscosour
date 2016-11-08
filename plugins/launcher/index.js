@@ -115,7 +115,7 @@ module.exports = {
       });
 
       child.on('exit', () => {
-        this.logger.info('#cyan', command, 'executed', '#green', 'ok!');
+        this.logger.info('#cyan', command, 'executed');
       });
 
       return new Promise((resolve, reject) => {
