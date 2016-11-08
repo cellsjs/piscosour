@@ -91,7 +91,11 @@ module.exports = {
           out.data = result.stderr.toString();
         } else {
           out.version = out.version ? out.version : 'any';
-          out.message = ['#green', cmd, 'is installed ...', '#green', 'OK'];
+          if (options.uncheckable) {
+            out.message = ['#yellow', 'Uncheckable!'];
+          } else {
+            out.message = ['#green', cmd, 'is installed ...',  '#green', 'OK'];
+          }
         }
       }
       this.logger.info.apply(this.logger, ['#cyan', cmd, '(', out.version, ') is required -> '].concat(out.message ? out.message : [out.error, '...', options.uncheckable ? '#green' : '#red', options.uncheckable ? 'OK (uncheckable)' : 'ERROR!']));
