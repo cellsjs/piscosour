@@ -12,8 +12,7 @@ module.exports = {
     const pkgfile = fsUtils.readConfig('package.json', true);
 
     return pkgfile.keywords !== undefined
-      && pkgfile.keywords.indexOf('piscosour-recipe') >= 0
-      && fsUtils.exists('piscosour.json') !== false;
+      && pkgfile.keywords.indexOf('piscosour-recipe') >= 0;
   }
 
 };
