@@ -10,21 +10,23 @@ module.exports = {
   'core-check': function() {
     const fileName = 'requirements.json';
     let requirements = {};
-    if (this.params.requirements && this.params.saveRequirements) {
-      requirements = this.fsReadConfig(fileName);
-      if (requirements.empty) {
-        delete requirements.empty;
-      }
-      let tmp = {};
-      const reqTmp = this.piscoConfig.mergeObject(this.params.versions, this.params.requirements);
-      Object.getOwnPropertyNames(this.params.requirements).forEach((cmd) => {
-        const options = reqTmp[cmd];
-        if (!options.installer) {
-          tmp[cmd] = options;
+    if (this.params.saveRequirements) {
+      if (this.params.requirements) {
+        requirements = this.fsReadConfig(fileName);
+        if (requirements.empty) {
+          delete requirements.empty;
         }
-      });
-      requirements = this.piscoConfig.mergeObject(requirements, tmp);
+        let tmp = {};
+        const reqTmp = this.piscoConfig.mergeObject(this.params.versions, this.params.requirements);
+        Object.getOwnPropertyNames(this.params.requirements).forEach((cmd) => {
+          const options = reqTmp[cmd];
+          if (!options.installer) {
+            tmp[cmd] = options;
+          }
+        });
+        requirements = this.piscoConfig.mergeObject(requirements, tmp);
+      }
+      fs.writeFileSync(fileName, JSON.stringify(requirements, null, 2));
     }
-    fs.writeFileSync(fileName, JSON.stringify(requirements, null, 2));
   }
 };
