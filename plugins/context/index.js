@@ -9,7 +9,7 @@ module.exports = {
       if (this._context && ami.indexOf(this._context) < 0) {
         throw {error: 'This is not the root of a ' + this._context};
       }
-      this.logger.info('Context checked: ' + ami, '#green', 'OK');
+      this.logger.info('Context checked: ' + this._context, '#green', 'OK');
     }
   },
 
