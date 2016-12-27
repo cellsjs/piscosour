@@ -25,8 +25,10 @@ module.exports = {
           }
         });
         requirements = this.piscoConfig.mergeObject(requirements, tmp);
+        fs.writeFileSync(fileName, JSON.stringify(requirements, null, 2));
+      } else if (!this.fsExists(fileName)) {
+        fs.writeFileSync(fileName, JSON.stringify(requirements, null, 2));
       }
-      fs.writeFileSync(fileName, JSON.stringify(requirements, null, 2));
     }
   }
 };
