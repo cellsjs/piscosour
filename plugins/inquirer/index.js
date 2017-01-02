@@ -70,7 +70,9 @@ module.exports = {
       if (reqs.length > 0) {
         return inquirer.prompt(reqs).then((answers) => {
           reqs.forEach((req) => {
-            this.params[req.name] = answers[req.name];
+            if (answers[req.name]) {
+              this.params[req.name] = answers[req.name];
+            }
           });
         });
       } else {
