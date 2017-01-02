@@ -48,7 +48,7 @@ module.exports = {
       if (prompts) {
         prompts.forEach((prompt) => {
 
-          ['when', 'validate', 'choices', 'type', 'default'].forEach((method) => stepResolution(prompt, method));
+          ['when', 'validate', 'choices', 'type', 'default', 'message'].forEach((method) => stepResolution(prompt, method));
 
           if (prompt.required && !prompt.validate) {
             prompt.validate = getValidate(prompt);
