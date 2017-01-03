@@ -1,0 +1,321 @@
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Packaging best practices</title>
+    <link rel="stylesheet" type="text/css" href="../../css/main.css">
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc=" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <section class="docs">
+      <aside>
+
+        <div class="logo">
+          <a href="/">
+            <i class="icon-piscosour"></i>
+            Piscosour
+          </a>
+
+        </div>
+        <ul class="main_menu">
+          
+            
+          
+            
+          
+            
+          
+            
+            <li>
+              <h4>General</h4>
+              
+                
+              
+                
+                  
+                    <a href="../../users/get_started.html">Get started</a>
+                  
+                
+              
+                
+              
+                
+              
+            </li>
+
+            <li>
+              <h4>Guides</h4>
+              <ul>
+              
+                
+              
+                
+              
+                
+                  
+                  <li>
+                    
+                    <a href="../../users/guides/Load_Parameters.html">Load Parameters</a>
+                    
+                  </li>
+                  
+                  <li>
+                    
+                    <a href="../../users/guides/what_is_piscosour.html">What is Piscosour</a>
+                    
+                  </li>
+                  
+                
+              
+                
+              
+              </ul>
+            </li>
+
+            <li>
+              <h4>Tutorials</h4>
+              <ul>
+              
+                
+              
+                
+              
+                
+              
+                
+                  
+                  <li>
+                    
+                    <a href="../../users/tutorials/Parameters_between_shots.html">Parameters transmision between shots</a>
+                    
+                  </li>
+                  
+                  <li>
+                    
+                    <a href="../../users/tutorials/packaging.html" class="selected">Packaging best practices</a>
+                    
+                  </li>
+                  
+                
+              
+              </ul>
+            </li>
+
+            
+            <li>
+              <h4>API</h4>
+              <h5>FLOWS</h5>
+              <ul>
+                
+                  
+                    
+                      
+                        
+                        <li>
+                          
+                          <a href="../../users/documents/flows/add-flow.html">add-flow</a>
+                          
+                        </li>
+                        
+                        <li>
+                          
+                          <a href="../../users/documents/flows/add-step.html">add-step</a>
+                          
+                        </li>
+                        
+                        <li>
+                          
+                          <a href="../../users/documents/flows/config.html">config</a>
+                          
+                        </li>
+                        
+                        <li>
+                          
+                          <a href="../../users/documents/flows/create.html">create</a>
+                          
+                        </li>
+                        
+                        <li>
+                          
+                          <a href="../../users/documents/flows/docs.html">docs</a>
+                          
+                        </li>
+                        
+                      
+                    
+                      
+                    
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+              </ul>
+              <h5>STEPS</h5>
+              <ul>
+                
+                  
+                    
+                      
+                    
+                      
+                        
+                        <li>
+                          
+                          <a href="../../users/documents/steps/all_npm.html">all::npm</a>
+                          
+                        </li>
+                        
+                        <li>
+                          
+                          <a href="../../users/documents/steps/all_test.html">all::test</a>
+                          
+                        </li>
+                        
+                        <li>
+                          
+                          <a href="../../users/documents/steps/all_test2.html">all::test2</a>
+                          
+                        </li>
+                        
+                        <li>
+                          
+                          <a href="../../users/documents/steps/all_weather.html">all::weather</a>
+                          
+                        </li>
+                        
+                        <li>
+                          
+                          <a href="../../users/documents/steps/all_yeah.html">all::yeah</a>
+                          
+                        </li>
+                        
+                        <li>
+                          
+                          <a href="../../users/documents/steps/node-module_convert.html">node-module::convert</a>
+                          
+                        </li>
+                        
+                        <li>
+                          
+                          <a href="../../users/documents/steps/recipe_add-flows.html">recipe::add-flows</a>
+                          
+                        </li>
+                        
+                        <li>
+                          
+                          <a href="../../users/documents/steps/recipe_add-steps.html">recipe::add-steps</a>
+                          
+                        </li>
+                        
+                        <li>
+                          
+                          <a href="../../users/documents/steps/recipe_configure.html">recipe::configure</a>
+                          
+                        </li>
+                        
+                        <li>
+                          
+                          <a href="../../users/documents/steps/recipe_generate-docs.html">recipe::generate-docs</a>
+                          
+                        </li>
+                        
+                        <li>
+                          
+                          <a href="../../users/documents/steps/recipe_scaffolding.html">recipe::scaffolding</a>
+                          
+                        </li>
+                        
+                        <li>
+                          
+                          <a href="../../users/documents/steps/recipe_update.html">recipe::update</a>
+                          
+                        </li>
+                        
+                      
+                    
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+              </ul>
+            </li>
+            
+            
+          
+        </ul>
+
+        
+          
+          <a href="../../developers/get_started.html"
+            class="switch_target">
+            Docs for developers
+          </a>
+          
+        
+          
+        
+          
+        
+          
+        
+      </aside>
+      <article>
+        <h1 id="piscosour-packaging-best-practices">Piscosour Packaging Best Practices</h1>
+<p>The maximun power of Piscosour is when everything is separated, so is very convenient to pack shots, straws or plugins as separate as possible.</p>
+<h2 id="-1-recipe-module">(1) Recipe module</h2>
+<p>Is a node module with shots / straws / (even plugins) inside. Has a bin/pisco.js script with the executable of the recipe.</p>
+<p>recipe module has this structure</p>
+<pre><code>| package.json
+| piscocour.json
+| bin | pisco.js
+| shots | &lt;shotName&gt; | &lt;repoType&gt; | shot.js
+                                  | info.md
+                                  | params.js
+| straws | &lt;strawName&gt; | straw.json
+                       | info.md
+</code></pre><h2 id="-2-plugin-module">(2) Plugin module</h2>
+<p>If you want to share any kind of functionality between shots the best way to do this is using a plugin. Each plugin shout be package inside a independent node module in order to get maximun reuse capabilities.</p>
+<p>plugin module has this structure:</p>
+<pre><code>| package.json
+| piscocour.json
+| plugins | &lt;pluginName&gt; | plugin.js
+                         | info.md
+</code></pre><h2 id="wrappers-nomenclature">Wrappers nomenclature</h2>
+<p>When pisco wrapps any tool is a good practice to name the module this way:</p>
+<ol>
+<li>pisco-plugin-(toolName) (Plugin module with the tool functionality wrapped)</li>
+<li>pisco-(toolName) (Recipe module with the shots that use this tool)</li>
+</ol>
+<p>For example if you want to wrapp the git functionality, the plugin has to be named this way:</p>
+<ul>
+<li>pisco-plugin-git</li>
+</ul>
+<p>The shots has to be inside a recipe with this name</p>
+<ul>
+<li>pisco-git</li>
+</ul>
+
+      </article>
+    </section>
+    <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+    <script>
+      hljs.initHighlightingOnLoad();
+      $(function(){
+      	$('.toggle_section').on('click', function(ev) {
+          $(ev.currentTarget).parent('li').toggleClass('open');
+        });
+      });
+
+    </script>
+  </body>
+</html>
