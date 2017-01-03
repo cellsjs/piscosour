@@ -215,6 +215,11 @@ a {
 	text-decoration: none;
 }
 
+.logo {
+	display: inline-block;
+	width: 100px;
+}
+
 .main-content {
 	background-color: #74b328;
 	color: #FFF;
@@ -362,7 +367,7 @@ a {
 		overflow-y: auto;
 	}
 
-	.docs aside .logo{
+	.docs aside .logoContainer{
 		text-align: center;
 		background-color: #74b328;
 		height: inherit;
@@ -370,14 +375,14 @@ a {
 		padding: 30px 0;
 	}
 
-		.docs aside .logo a {
+		.docs aside .logoContainer a {
 			display: block;
 			color: #FFF;
 			font-size: 70px;
 			font-family: 'Yellowtail';
 		}
 
-		.docs aside .logo .selector {
+		.docs aside .logoContainer .selector {
 			font-family: 'Raleway';
 			font-size: 20px;
 			display: flex;
@@ -385,11 +390,10 @@ a {
 			align-items: center;
 		}
 
-		.docs aside .logo .selector a {
+		.docs aside .logoContainer .selector a {
 			font-family: 'Raleway';
 			font-size: 20px;
 		}
-
 
 		.docs aside .main_menu > li {
 			line-height: 35px;
