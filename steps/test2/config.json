@@ -6,19 +6,14 @@
   "isTest": true,
   "requirements": {
     "pisco" : {
-      "installer": "npm",
       "pkg" : "piscosour",
       "version" : "^1.0.0-alpha.1"
     },
     "cordova" : {
-      "installer": "npm",
       "version" : "5.4.1"
     },
-    "yo" : {"installer": "npm"},
-    "bower" : {
-      "installer": "npm",
-      "version" : "^1.7.9"
-    }
+    "yo" : {},
+    "bower" : {}
   },
   "workingDir": "nohay",
   "flying": "ohyeah!!",

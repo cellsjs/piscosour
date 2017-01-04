@@ -5,14 +5,10 @@
   "isTest": true,
   "requirements": {
     "cordova" : {
-      "installer": "npm",
       "version" : "5.4.1"
     },
-    "yo" : {"installer": "npm"},
-    "bower" : {
-      "installer": "npm",
-      "version" : "^1.0.0"
-    }
+    "yo" : {},
+    "bower" : {}
   },
   "plugins": [
     "test"
