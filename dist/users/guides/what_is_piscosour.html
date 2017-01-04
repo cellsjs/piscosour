@@ -1,0 +1,399 @@
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>What is Piscosour</title>
+    <link rel="stylesheet" type="text/css" href="../../css/main.css">
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc=" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <section class="docs">
+      <aside>
+
+        <div class="logoContainer">
+          <a href="/">
+            <img src="../../images/logo.svg" class="logo" />
+            Piscosour
+          </a>
+
+        </div>
+        <ul class="main_menu">
+          
+            
+          
+            
+          
+            
+          
+            
+            <li>
+              <h4>General</h4>
+              
+                
+              
+                
+                  
+                    <a href="../../users/get_started.html">Get started</a>
+                  
+                
+              
+                
+              
+                
+              
+            </li>
+
+            <li>
+              <h4>Guides</h4>
+              <ul>
+              
+                
+              
+                
+              
+                
+                  
+                  <li>
+                    
+                    <a href="../../users/guides/Load_Parameters.html">Load Parameters</a>
+                    
+                  </li>
+                  
+                  <li>
+                    
+                    <a href="../../users/guides/what_is_piscosour.html" class="selected">What is Piscosour</a>
+                    
+                  </li>
+                  
+                
+              
+                
+              
+              </ul>
+            </li>
+
+            <li>
+              <h4>Tutorials</h4>
+              <ul>
+              
+                
+              
+                
+              
+                
+              
+                
+                  
+                  <li>
+                    
+                    <a href="../../users/tutorials/Parameters_between_shots.html">Parameters transmision between shots</a>
+                    
+                  </li>
+                  
+                  <li>
+                    
+                    <a href="../../users/tutorials/packaging.html">Packaging best practices</a>
+                    
+                  </li>
+                  
+                
+              
+              </ul>
+            </li>
+
+            
+            <li>
+              <h4>API</h4>
+              <h5>FLOWS</h5>
+              <ul>
+                
+                  
+                    
+                      
+                        
+                        <li>
+                          
+                          <a href="../../users/documents/flows/add-flow.html">add-flow</a>
+                          
+                        </li>
+                        
+                        <li>
+                          
+                          <a href="../../users/documents/flows/add-step.html">add-step</a>
+                          
+                        </li>
+                        
+                        <li>
+                          
+                          <a href="../../users/documents/flows/config.html">config</a>
+                          
+                        </li>
+                        
+                        <li>
+                          
+                          <a href="../../users/documents/flows/create.html">create</a>
+                          
+                        </li>
+                        
+                        <li>
+                          
+                          <a href="../../users/documents/flows/docs.html">docs</a>
+                          
+                        </li>
+                        
+                      
+                    
+                      
+                    
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+              </ul>
+              <h5>STEPS</h5>
+              <ul>
+                
+                  
+                    
+                      
+                    
+                      
+                        
+                        <li>
+                          
+                          <a href="../../users/documents/steps/all_npm.html">all::npm</a>
+                          
+                        </li>
+                        
+                        <li>
+                          
+                          <a href="../../users/documents/steps/all_test.html">all::test</a>
+                          
+                        </li>
+                        
+                        <li>
+                          
+                          <a href="../../users/documents/steps/all_test2.html">all::test2</a>
+                          
+                        </li>
+                        
+                        <li>
+                          
+                          <a href="../../users/documents/steps/all_weather.html">all::weather</a>
+                          
+                        </li>
+                        
+                        <li>
+                          
+                          <a href="../../users/documents/steps/all_yeah.html">all::yeah</a>
+                          
+                        </li>
+                        
+                        <li>
+                          
+                          <a href="../../users/documents/steps/node-module_convert.html">node-module::convert</a>
+                          
+                        </li>
+                        
+                        <li>
+                          
+                          <a href="../../users/documents/steps/recipe_add-flows.html">recipe::add-flows</a>
+                          
+                        </li>
+                        
+                        <li>
+                          
+                          <a href="../../users/documents/steps/recipe_add-steps.html">recipe::add-steps</a>
+                          
+                        </li>
+                        
+                        <li>
+                          
+                          <a href="../../users/documents/steps/recipe_configure.html">recipe::configure</a>
+                          
+                        </li>
+                        
+                        <li>
+                          
+                          <a href="../../users/documents/steps/recipe_generate-docs.html">recipe::generate-docs</a>
+                          
+                        </li>
+                        
+                        <li>
+                          
+                          <a href="../../users/documents/steps/recipe_scaffolding.html">recipe::scaffolding</a>
+                          
+                        </li>
+                        
+                        <li>
+                          
+                          <a href="../../users/documents/steps/recipe_update.html">recipe::update</a>
+                          
+                        </li>
+                        
+                      
+                    
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+              </ul>
+            </li>
+            
+            
+          
+        </ul>
+
+        
+          
+          <a href="../../developers/get_started.html"
+            class="switch_target">
+            Docs for developers
+          </a>
+          
+        
+          
+        
+          
+        
+          
+        
+      </aside>
+      <article>
+        <h1 id="pisco-website-create-a-documentation-webpage-">pisco-website: Create a documentation webpage.</h1>
+<p>With this recipe you can create a documentation webpage for your recipe based in your .md files.</p>
+<p>This website is intended to show a different documentation for the users of your recipe and for the developers.</p>
+<p>For every target (users and developers), the documentation is organized in:</p>
+<ul>
+<li><code>guides</code> To explain everything related to your recipe.</li>
+<li><code>tutorials</code> Quick and guided examples.</li>
+<li><code>documentation</code> for the API documentation.</li>
+</ul>
+<p>If your documents are organized, just run:</p>
+<pre><code class="lang-shell">pisco-website recipe:create-website
+</code></pre>
+<p>This will create a folder with name <code>dist</code> containing your static documentation webpage.</p>
+<p>If you want a different folder name for your distribution, just tell it to pisco-website:</p>
+<pre><code class="lang-shell">pisco-website recipe:create-website --destination [your/dist/folder]
+</code></pre>
+<h2 id="docs-organization-">Docs organization.</h2>
+<p>In order to create your website correctly, you must organize your docs folder according to this criteria:</p>
+<h3 id="docs-folder-name">Docs folder name</h3>
+<p>By default, pisco-website will search for a folder with name <code>webDocs</code>. If your documentation is in another folder you should tell pisco-website where is it.</p>
+<pre><code class="lang-shell">  pisco-website recipe:create-website --docsSource [your-folder]
+</code></pre>
+<h3 id="create-the-tree-structure">Create the tree structure</h3>
+<p>Your documentation folder should have the following structure.</p>
+<pre><code>  webDocs
+  │    index.md
+  │
+  └─── users
+  │    │   get_started.md
+  |    |   general01.md
+  |    |   ...
+  │    └─── guides
+  │    │    | guide01.md
+  │    │    | ...
+  │    │    
+  │    └─── tutorials
+  │         | tutorial01.md
+  │         | ...
+  │       
+  └─── developers
+  │    │   get_started.md
+  |    |   general02.md
+  |    |   ...
+  │    └─── guides
+  │    │    | guide02.md
+  │    │    | ...
+  │    │    
+  │    └─── tutorials
+  │         | tutorial02.md
+  │         | ...
+  │
+  └─── images
+  │    │   image01.jpg
+  │    │   ...
+  │
+</code></pre><p>  <strong>IMPORTANT:</strong></p>
+<ul>
+<li>You should have an <code>index.md</code> (if you don&#39;t add one, pisco-website will create for you asking you a few questions).</li>
+<li>You should have at least one md document at first level into <code>users</code> and <code>developers</code> because this will be the entry point of each section. It&#39;s recommended to place there the &quot;get_started&quot; file.</li>
+<li>If your recipe only has information for <code>users</code> or <code>developers</code>, just delete the other folder.</li>
+<li>If you don&#39;t have <code>guides</code> or <code>tutorials</code> for any of your targets, just delete the folder.</li>
+</ul>
+<h3 id="create-an-index-md-file-">Create an <code>index.md</code> file.</h3>
+<p>It&#39;s necessary to create an <code>index.md</code> in the root of your documentation folder in order to have an entry point to your website.
+The content of this file should be only this metadata.</p>
+<pre><code class="lang-html">---
+toolName: [Your tool name]
+claim: [A short and fresh sentence]
+npmName: [Tool name in npm]
+layout: index.html
+---
+</code></pre>
+<ul>
+<li><code>layout</code> will be always <code>index.html</code> for the index.md file.</li>
+</ul>
+<h3 id="add-metadata-to-all-your-md-files">Add metadata to all your md files</h3>
+<p>It&#39;s necessary to provide a little bit of information about your documentation files to create the webpage correctly, so all your md files shoud have this metadata at the top.</p>
+<pre><code class="lang-html">---
+title: [Page title]
+layout: doc_page.html
+---
+</code></pre>
+<ul>
+<li><code>layout</code> will be always <code>doc_page.html</code> for your documentation files.</li>
+</ul>
+<h2 id="best-practices-writing-your-md-files-">Best practices writing your md files.</h2>
+<h3 id="use-only-one-h1-">Use only one h1.</h3>
+<p>Your md documents should have one and only one h1 (# whatever) which is the title of your document.</p>
+<h3 id="code-blocks">Code blocks</h3>
+<p>The markdown parser will guess which language are you using in your code blocks, but to ensure a good highlight just add to your code block what language are you adding the language name to it as follows:</p>
+<ul>
+<li>bash:</li>
+</ul>
+<pre><code>
+```bash
+[your code]
+```
+</code></pre><ul>
+<li>javascript:</li>
+</ul>
+<pre><code>```javascript
+[your code]
+```
+</code></pre><ul>
+<li>json</li>
+</ul>
+<pre><code>```json
+[your code]
+```
+</code></pre><ul>
+<li>You will find a complete list at this link: <a href="https://highlightjs.org/static/demo/">Highlight supported languages</a></li>
+</ul>
+
+      </article>
+    </section>
+    <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+    <script>
+      hljs.initHighlightingOnLoad();
+      $(function(){
+      	$('.toggle_section').on('click', function(ev) {
+          $(ev.currentTarget).parent('li').toggleClass('open');
+        });
+      });
+
+    </script>
+  </body>
+</html>

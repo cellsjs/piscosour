@@ -1,0 +1,258 @@
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Packaging best practices</title>
+    <link rel="stylesheet" type="text/css" href="../../css/main.css">
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc=" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <section class="docs">
+      <aside>
+
+        <div class="logoContainer">
+          <a href="/">
+            <img src="../../images/logo.svg" class="logo" />
+            Piscosour
+          </a>
+
+        </div>
+        <ul class="main_menu">
+          
+            
+            <li>
+              <h4>General</h4>
+              
+                
+              
+                
+                  
+                    <a href="../../developers/get_started.html">Get started</a>
+                  
+                
+              
+                
+              
+                
+              
+            </li>
+
+            <li>
+              <h4>Guides</h4>
+              <ul>
+              
+                
+              
+                
+              
+                
+                  
+                  <li>
+                    
+                    <a href="../../developers/guides/packaging.html" class="selected">Packaging best practices</a>
+                    
+                  </li>
+                  
+                
+              
+                
+              
+              </ul>
+            </li>
+
+            <li>
+              <h4>Tutorials</h4>
+              <ul>
+              
+                
+              
+                
+              
+                
+              
+                
+                  
+                  <li>
+                    
+                    <a href="../../developers/tutorials/convert_to_recipe.html">Convert to recipe</a>
+                    
+                  </li>
+                  
+                
+              
+              </ul>
+            </li>
+
+            
+            <li>
+              <h4>Plugins</h4>
+              <ul>
+                
+                  
+                    
+                    <li>
+                      
+                      <a href="../../developers/documents/context.html">context</a>
+                      
+                    </li>
+                    
+                    <li>
+                      
+                      <a href="../../developers/documents/fsutils.html">fsutils</a>
+                      
+                    </li>
+                    
+                    <li>
+                      
+                      <a href="../../developers/documents/inquirer.html">inquirer</a>
+                      
+                    </li>
+                    
+                    <li>
+                      
+                      <a href="../../developers/documents/installer.html">installer</a>
+                      
+                    </li>
+                    
+                    <li>
+                      
+                      <a href="../../developers/documents/launcher.html">launcher</a>
+                      
+                    </li>
+                    
+                    <li>
+                      
+                      <a href="../../developers/documents/os.html">os</a>
+                      
+                    </li>
+                    
+                    <li>
+                      
+                      <a href="../../developers/documents/piscosour.html">piscosour</a>
+                      
+                    </li>
+                    
+                    <li>
+                      
+                      <a href="../../developers/documents/skipper.html">skipper</a>
+                      
+                    </li>
+                    
+                    <li>
+                      
+                      <a href="../../developers/documents/stream-write-hook.html">stream-write-hook</a>
+                      
+                    </li>
+                    
+                    <li>
+                      
+                      <a href="../../developers/documents/system-checker.html">system-checker</a>
+                      
+                    </li>
+                    
+                    <li>
+                      
+                      <a href="../../developers/documents/system-saver.html">system-saver</a>
+                      
+                    </li>
+                    
+                    <li>
+                      
+                      <a href="../../developers/documents/test.html">test</a>
+                      
+                    </li>
+                    
+                    <li>
+                      
+                      <a href="../../developers/documents/userConfig.html">userConfig</a>
+                      
+                    </li>
+                    
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+              </ul>
+            </li>
+            
+            
+          
+            
+          
+            
+          
+            
+          
+        </ul>
+
+        
+          
+        
+          
+        
+          
+        
+          
+          <a href="../../users/get_started.html"
+            class="switch_target">
+            Docs for users
+          </a>
+          
+        
+      </aside>
+      <article>
+        <h1 id="piscosour-packaging-best-practices">Piscosour Packaging Best Practices</h1>
+<p>The maximun power of Piscosour is when everything is separated, so is very convenient to pack shots, straws or plugins as separate as possible.</p>
+<h2 id="-1-recipe-module">(1) Recipe module</h2>
+<p>Is a node module with shots / straws / (even plugins) inside. Has a bin/pisco.js script with the executable of the recipe.</p>
+<p>recipe module has this structure</p>
+<pre><code>| package.json
+| piscocour.json
+| bin | pisco.js
+| shots | &lt;shotName&gt; | &lt;repoType&gt; | shot.js
+                                  | info.md
+                                  | params.js
+| straws | &lt;strawName&gt; | straw.json
+                       | info.md
+</code></pre><h2 id="-2-plugin-module">(2) Plugin module</h2>
+<p>If you want to share any kind of functionality between shots the best way to do this is using a plugin. Each plugin shout be package inside a independent node module in order to get maximun reuse capabilities.</p>
+<p>plugin module has this structure:</p>
+<pre><code>| package.json
+| piscocour.json
+| plugins | &lt;pluginName&gt; | plugin.js
+                         | info.md
+</code></pre><h2 id="wrappers-nomenclature">Wrappers nomenclature</h2>
+<p>When pisco wrapps any tool is a good practice to name the module this way:</p>
+<ol>
+<li>pisco-plugin-(toolName) (Plugin module with the tool functionality wrapped)</li>
+<li>pisco-(toolName) (Recipe module with the shots that use this tool)</li>
+</ol>
+<p>For example if you want to wrapp the git functionality, the plugin has to be named this way:</p>
+<ul>
+<li>pisco-plugin-git</li>
+</ul>
+<p>The shots has to be inside a recipe with this name</p>
+<ul>
+<li>pisco-git</li>
+</ul>
+
+      </article>
+    </section>
+    <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+    <script>
+      hljs.initHighlightingOnLoad();
+      $(function(){
+      	$('.toggle_section').on('click', function(ev) {
+          $(ev.currentTarget).parent('li').toggleClass('open');
+        });
+      });
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,255 @@
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Convert to recipe</title>
+    <link rel="stylesheet" type="text/css" href="../../css/main.css">
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc=" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <section class="docs">
+      <aside>
+
+        <div class="logoContainer">
+          <a href="/">
+            <img src="../../images/logo.svg" class="logo" />
+            Piscosour
+          </a>
+
+        </div>
+        <ul class="main_menu">
+          
+            
+            <li>
+              <h4>General</h4>
+              
+                
+              
+                
+                  
+                    <a href="../../developers/get_started.html">Get started</a>
+                  
+                
+              
+                
+              
+                
+              
+            </li>
+
+            <li>
+              <h4>Guides</h4>
+              <ul>
+              
+                
+              
+                
+              
+                
+                  
+                  <li>
+                    
+                    <a href="../../developers/guides/packaging.html">Packaging best practices</a>
+                    
+                  </li>
+                  
+                
+              
+                
+              
+              </ul>
+            </li>
+
+            <li>
+              <h4>Tutorials</h4>
+              <ul>
+              
+                
+              
+                
+              
+                
+              
+                
+                  
+                  <li>
+                    
+                    <a href="../../developers/tutorials/convert_to_recipe.html" class="selected">Convert to recipe</a>
+                    
+                  </li>
+                  
+                
+              
+              </ul>
+            </li>
+
+            
+            <li>
+              <h4>Plugins</h4>
+              <ul>
+                
+                  
+                    
+                    <li>
+                      
+                      <a href="../../developers/documents/context.html">context</a>
+                      
+                    </li>
+                    
+                    <li>
+                      
+                      <a href="../../developers/documents/fsutils.html">fsutils</a>
+                      
+                    </li>
+                    
+                    <li>
+                      
+                      <a href="../../developers/documents/inquirer.html">inquirer</a>
+                      
+                    </li>
+                    
+                    <li>
+                      
+                      <a href="../../developers/documents/installer.html">installer</a>
+                      
+                    </li>
+                    
+                    <li>
+                      
+                      <a href="../../developers/documents/launcher.html">launcher</a>
+                      
+                    </li>
+                    
+                    <li>
+                      
+                      <a href="../../developers/documents/os.html">os</a>
+                      
+                    </li>
+                    
+                    <li>
+                      
+                      <a href="../../developers/documents/piscosour.html">piscosour</a>
+                      
+                    </li>
+                    
+                    <li>
+                      
+                      <a href="../../developers/documents/skipper.html">skipper</a>
+                      
+                    </li>
+                    
+                    <li>
+                      
+                      <a href="../../developers/documents/stream-write-hook.html">stream-write-hook</a>
+                      
+                    </li>
+                    
+                    <li>
+                      
+                      <a href="../../developers/documents/system-checker.html">system-checker</a>
+                      
+                    </li>
+                    
+                    <li>
+                      
+                      <a href="../../developers/documents/system-saver.html">system-saver</a>
+                      
+                    </li>
+                    
+                    <li>
+                      
+                      <a href="../../developers/documents/test.html">test</a>
+                      
+                    </li>
+                    
+                    <li>
+                      
+                      <a href="../../developers/documents/userConfig.html">userConfig</a>
+                      
+                    </li>
+                    
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+              </ul>
+            </li>
+            
+            
+          
+            
+          
+            
+          
+            
+          
+        </ul>
+
+        
+          
+        
+          
+        
+          
+        
+          
+          <a href="../../users/get_started.html"
+            class="switch_target">
+            Docs for users
+          </a>
+          
+        
+      </aside>
+      <article>
+        <h1 id="-por-qu-convertir-un-m-dudo-node-a-pisco-">¿Por qué convertir un módudo node a pisco?</h1>
+<p>Sencillo. Para poder crear un shot separado e independiente importarlo en cualquier otra receta y usarlo en un straw.</p>
+<h1 id="c-mo-convertir-cualquier-m-dulo-node-en-una-receta-pisco-">Cómo convertir cualquier módulo node en una receta pisco.</h1>
+<p>Es muy sencillo. Simplemente ve a la raiz de tu módulo nodejs y ejecuta pisco convert.</p>
+<pre><code>cd mymodule
+pisco convert
+</code></pre><p>te preguntará el nombre del comando usado para ejecutar la receta. p.ej. test-convert</p>
+<p><img src="images/convert1.png" alt="Questions to convert a recipe"></p>
+<p>Listo! Ya tienes tu nueva receta pisco. pruebala!</p>
+<pre><code>node bin/pisco.js
+</code></pre><p>Aparecerá la ayuda básica de pisco.</p>
+<pre><code>Name: mymodule 0.0.1 (piscosour 0.1.0) - Example of module nodejs
+ Usage: test-convert [Command] [Options...]
+
+ Commands:
+
+
+ Options:
+
+     --junitReport  [ -u] :  write junit report at the end
+     --help  [ -h] :  shows detailed info of a command: test-convert -h &lt;command&gt;
+     --all  [ -a] :  list all commands availables (repoType:straw[:shot])
+     --list ( all,recipes,straws,shots,repoTypes ) [ -la -lr -lst -lsh -lt] :  list piscosour elements
+     --output ( verbose,debug,silly ) [ -ov -od -os] :  set output level : &#39;test-convert -ov&#39; -&gt; set to verbose
+     --initShot  [ -i] :  from shot : test-convert -i &lt;shotname&gt;
+     --endShot  [ -e] :  to shot : test-convert -e &lt;shotname&gt;
+</code></pre><p>próximos pasos:</p>
+<ul>
+<li><a href="shots.md">Trabajar con shots</a> - Crear un shot y usar el API para sacarle el 100% del partido a piscosour.</li>
+<li><a href="straws.md">Trabajar con straws</a> - Crear un straw y configurarlo a partir de shots propios o de otras recetas.</li>
+</ul>
+
+      </article>
+    </section>
+    <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+    <script>
+      hljs.initHighlightingOnLoad();
+      $(function(){
+      	$('.toggle_section').on('click', function(ev) {
+          $(ev.currentTarget).parent('li').toggleClass('open');
+        });
+      });
+
+    </script>
+  </body>
+</html>
