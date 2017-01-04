@@ -115,15 +115,17 @@ module.exports = {
       });
 
       child.on('exit', () => {
-        this.logger.info('#cyan', command, 'executed');
+        this.logger.trace('#cyan', command, 'executed');
       });
 
       return new Promise((resolve, reject) => {
         child.on('close', (code) => {
-          this.logger.info('child process exited with code ', code);
+          this.logger.trace(command, 'close with code ', code);
           if (code !== 0) {
+            this.logger.info('#cyan', command, 'executed:', '#red', 'KO');
             reject({cmd: cmd, args: args, options: options, status: 'ERROR', error: error, output: output});
           } else {
+            this.logger.info('#cyan', command, 'executed:', '#green', 'OK');
             resolve({cmd: cmd, args: args, options: options, status: 'OK', output: output});
           }
         });
