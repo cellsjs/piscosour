@@ -519,6 +519,35 @@ a {
 		margin: 25px 0 10px 0;
 	}
 
+	.docs h4 {
+		font-weight: bold;
+	}
+
+	.docs table {
+		margin: 5px 0 25px 0;
+	}
+		.docs table thead {
+			border-bottom: 1px solid lightgrey;
+		}
+		.docs table th,
+		.docs table td {
+			padding: 0 25px 0 10px;
+			text-align: left;
+		}
+		.docs table th {
+			font-weight: bold;
+		}
+		.docs table td {
+			border-right: 1px solid lightgrey;
+		}
+		.docs table td:last-child {
+			border-right: none;
+		}
+
+		.docs table tbody tr {
+			border-bottom: 1px solid lightgrey;
+		}
+
 	.docs .step {
 		margin-bottom: 50px;
 	}
