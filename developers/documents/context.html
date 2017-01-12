@@ -227,36 +227,36 @@
 <p><strong>Is recommend to use the piscosour.json file of your recipe</strong></p>
 <p>The param is called contexts, and must be a Hash with the name of the repoType as key and Array with all the rules the repo must to match.</p>
 <p>example of piscosour.json:</p>
-<pre><code>    &amp;quot;params&amp;quot;: {
-        &amp;quot;contexts&amp;quot;: {
-            &amp;quot;node-module&amp;quot;: [
+<pre><code>    &quot;params&quot;: {
+        &quot;contexts&quot;: {
+            &quot;node-module&quot;: [
                 {
-                    &amp;quot;file&amp;quot;: &amp;quot;package.json&amp;quot;,
-                    &amp;quot;conditions&amp;quot;: [
-                        &amp;quot;that.version&amp;quot;
+                    &quot;file&quot;: &quot;package.json&quot;,
+                    &quot;conditions&quot;: [
+                        &quot;that.version&quot;
                     ]
                 },
                 {
-                    &amp;quot;file&amp;quot;: &amp;quot;piscosour.json&amp;quot;,
-                    &amp;quot;noexists&amp;quot;: &amp;quot;true&amp;quot;
+                    &quot;file&quot;: &quot;piscosour.json&quot;,
+                    &quot;noexists&quot;: &quot;true&quot;
                 }
             ],
-            &amp;quot;recipe&amp;quot;: [
+            &quot;recipe&quot;: [
                 {
-                    &amp;quot;sufficient&amp;quot;: true,
-                    &amp;quot;file&amp;quot;: &amp;quot;.piscosour/piscosour.json&amp;quot;,
-                    &amp;quot;conditions&amp;quot;: [
-                        &amp;quot;that.repoType===&amp;#39;recipe&amp;#39;&amp;quot;
+                    &quot;sufficient&quot;: true,
+                    &quot;file&quot;: &quot;.piscosour/piscosour.json&quot;,
+                    &quot;conditions&quot;: [
+                        &quot;that.repoType===&#39;recipe&#39;&quot;
                     ]
                 },
                 {
-                    &amp;quot;file&amp;quot;: &amp;quot;package.json&amp;quot;,
-                    &amp;quot;conditions&amp;quot;: [
-                        &amp;quot;that.keywords.indexOf(&amp;#39;piscosour-recipe&amp;#39;)&amp;gt;=0&amp;quot;
+                    &quot;file&quot;: &quot;package.json&quot;,
+                    &quot;conditions&quot;: [
+                        &quot;that.keywords.indexOf(&#39;piscosour-recipe&#39;)&gt;=0&quot;
                     ]
                 },
                 {
-                    &amp;quot;file&amp;quot;: &amp;quot;piscosour.json&amp;quot;
+                    &quot;file&quot;: &quot;piscosour.json&quot;
                 }
             ]
         }
@@ -280,7 +280,7 @@
 <p>only parametrized in params.json:</p>
 <pre><code>{
  [...]
-  &amp;quot;contextFree&amp;quot; : true
+  &quot;contextFree&quot; : true
 }
 </code></pre><p>A user command (straw) only could be contextFree if all of its shots are contextFree. If only one shot of a straw is not contextFree then the context will be checked.</p>
 <p><strong>Disable this check using options in the command line</strong>: Is possible to disable this check using this option in the command line: <strong>--b-disableContextCheck</strong>. Usefull for system requirements checks.</p>
@@ -300,7 +300,7 @@
 </tbody>
 </table>
 <p>Use this.ctxIs to ask pisco where was executed.</p>
-<pre><code>let isComponent = this.ctxIs(&amp;quot;component&amp;quot;);
+<pre><code>let isComponent = this.ctxIs(&quot;component&quot;);
 </code></pre><p>isComponent must to be true if your recipe was executed in the root of a component.</p>
 <h4 id="addon-this-ctxwhoami">addon: this.ctxWhoami</h4>
 <p>Ask pisco the repoTypes of the directory where you executed your recipe.</p>
