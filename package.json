@@ -1,6 +1,6 @@
 {
   "name": "piscosour",
-  "version": "1.0.0-alpha.46",
+  "version": "1.0.0-beta.1",
   "description": "Get all your devops tools wrapped-up!",
   "main": "index.js",
   "homepage": "https://github.com/cellsjs/piscosour",
@@ -13,8 +13,8 @@
     "email": "cells.tooling.group@bbva.com"
   },
   "author": {
-    "email": "sbonacho@gmail.com",
-    "name": "Santiago"
+    "email": "cells.tooling.group@bbva.com",
+    "name": "QPA"
   },
   "license": "ISC",
   "keywords": [
