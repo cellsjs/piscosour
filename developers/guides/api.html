@@ -1,0 +1,815 @@
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>API</title>
+    <link rel="stylesheet" type="text/css" href="../../css/main.css">
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc=" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <section class="docs">
+      <aside>
+
+        <div class="logoContainer">
+          <a href="/">
+            <img src="../../images/logo.svg" class="logo" />
+            Piscosour
+          </a>
+
+        </div>
+        <ul class="main_menu">
+          
+            
+            <li>
+              <h4>General</h4>
+              
+                
+              
+                
+                  
+                    <a href="../../developers/get_started.html">Getting started</a>
+                  
+                
+              
+                
+              
+                
+              
+            </li>
+
+            <li>
+              <h4>Guides</h4>
+              <ul>
+              
+                
+              
+                
+              
+                
+                  
+                  <li>
+                    
+                    <a href="../../developers/guides/configuration.html">Piscosour.json config file</a>
+                    
+                  </li>
+                  
+                  <li>
+                    
+                    <a href="../../developers/guides/analytics.html">Google Analytics Integration</a>
+                    
+                  </li>
+                  
+                  <li>
+                    
+                    <a href="../../developers/guides/api.html" class="selected">API</a>
+                    
+                  </li>
+                  
+                  <li>
+                    
+                    <a href="../../developers/guides/0.2.0_migration_guide.html">Migrate from 0.1.0 version to 0.2.0 version</a>
+                    
+                  </li>
+                  
+                  <li>
+                    
+                    <a href="../../developers/guides/convert_to_recipe.html">Transform a node-module to recipe</a>
+                    
+                  </li>
+                  
+                  <li>
+                    
+                    <a href="../../developers/guides/Load_Parameters.html">Load Parameters</a>
+                    
+                  </li>
+                  
+                  <li>
+                    
+                    <a href="../../developers/guides/packaging.html">Best practices</a>
+                    
+                  </li>
+                  
+                  <li>
+                    
+                    <a href="../../developers/guides/Parameters_between_shots.html">Communication between steps</a>
+                    
+                  </li>
+                  
+                  <li>
+                    
+                    <a href="../../developers/guides/plugins.html">Plugins</a>
+                    
+                  </li>
+                  
+                  <li>
+                    
+                    <a href="../../developers/guides/shots.html">Steps</a>
+                    
+                  </li>
+                  
+                  <li>
+                    
+                    <a href="../../developers/guides/straws.html">Flows</a>
+                    
+                  </li>
+                  
+                  <li>
+                    
+                    <a href="../../developers/guides/what_is_piscosour.html">What is piscosour</a>
+                    
+                  </li>
+                  
+                
+              
+                
+              
+              </ul>
+            </li>
+
+            <li>
+              <h4>Tutorials</h4>
+              <ul>
+              
+                
+              
+                
+              
+                
+              
+                
+                  
+                  <li>
+                    
+                    <a href="../../developers/tutorials/convert_to_recipe.html">Convert to recipe</a>
+                    
+                  </li>
+                  
+                
+              
+              </ul>
+            </li>
+
+            
+            <li>
+              <h4>Plugins</h4>
+              <ul>
+                
+                  
+                    
+                    <li>
+                      
+                      <a href="../../developers/documents/context.html">context</a>
+                      
+                    </li>
+                    
+                    <li>
+                      
+                      <a href="../../developers/documents/fsutils.html">fsutils</a>
+                      
+                    </li>
+                    
+                    <li>
+                      
+                      <a href="../../developers/documents/inquirer.html">inquirer</a>
+                      
+                    </li>
+                    
+                    <li>
+                      
+                      <a href="../../developers/documents/installer.html">installer</a>
+                      
+                    </li>
+                    
+                    <li>
+                      
+                      <a href="../../developers/documents/launcher.html">launcher</a>
+                      
+                    </li>
+                    
+                    <li>
+                      
+                      <a href="../../developers/documents/os.html">os</a>
+                      
+                    </li>
+                    
+                    <li>
+                      
+                      <a href="../../developers/documents/piscosour.html">piscosour</a>
+                      
+                    </li>
+                    
+                    <li>
+                      
+                      <a href="../../developers/documents/skipper.html">skipper</a>
+                      
+                    </li>
+                    
+                    <li>
+                      
+                      <a href="../../developers/documents/stream-write-hook.html">stream-write-hook</a>
+                      
+                    </li>
+                    
+                    <li>
+                      
+                      <a href="../../developers/documents/system-checker.html">system-checker</a>
+                      
+                    </li>
+                    
+                    <li>
+                      
+                      <a href="../../developers/documents/system-saver.html">system-saver</a>
+                      
+                    </li>
+                    
+                    <li>
+                      
+                      <a href="../../developers/documents/test.html">test</a>
+                      
+                    </li>
+                    
+                    <li>
+                      
+                      <a href="../../developers/documents/userConfig.html">userConfig</a>
+                      
+                    </li>
+                    
+                  
+                
+                  
+                
+                  
+                
+                  
+                
+              </ul>
+            </li>
+            
+            
+          
+            
+          
+            
+          
+            
+          
+        </ul>
+
+        
+          
+        
+          
+        
+          
+        
+          
+          <a href="../../users/get_started.html"
+            class="switch_target">
+            Docs for users
+          </a>
+          
+        
+      </aside>
+      <article>
+        <h2 id="modules">Modules</h2>
+<dl>
+<dt><a href="#module_Chef">Chef</a> ⇒ <code>Object</code></dt>
+<dd><p><strong>Internal:</strong></p>
+<p>Read all piscosour.json files of every recipes imported in one module and prepare one json object with all the information.</p>
+<p>This module is used only in module <strong>config.js</strong></p>
+</dd>
+<dt><a href="#module_docs">docs</a></dt>
+<dd><p>Module used for CLI help. Shows all CLI commands and options.</p>
+</dd>
+<dt><a href="#module_FinalCheck">FinalCheck</a> ⇒</dt>
+<dd><p>This module check all the information stored during the execution.
+If -u option is passed to the CLI junit.xml file is generated in this module.</p>
+</dd>
+<dt><a href="#module_logger">logger</a></dt>
+<dd><p>Generate logger wrapper to be use inside a Shot.</p>
+<p>There are 6 levels:</p>
+<ol>
+<li>silly,</li>
+<li>debug,</li>
+<li>verbose,</li>
+<li>info,</li>
+<li>warning,</li>
+<li>error</li>
+</ol>
+<p>Formating messages is possible with chalk tags...</p>
+<p>Example of use inside shot</p>
+<pre><code>this.logger.info(&quot;#green&quot;,&quot;text&quot;);
+</code></pre></dd>
+<dt><a href="#module_scullion">scullion</a> ⇒ <code>Object</code></dt>
+<dd><p><strong>Internal:</strong></p>
+<p>Prepare the config object to be use by the config module.</p>
+</dd>
+<dt><a href="#module_shooter">shooter</a> ⇒ <code>Object</code></dt>
+<dd><p>Run one shot. Is the responsible to run all the stages of a shot.</p>
+</dd>
+<dt><a href="#module_sipper">sipper</a></dt>
+<dd><p><strong>Internal:</strong></p>
+<p>Execute in waterfall all the shots of a straw.</p>
+</dd>
+</dl>
+
+<h2 id="classes">Classes</h2>
+<dl>
+<dt><a href="#Config">Config</a></dt>
+<dd></dd>
+<dt><a href="#Plugin">Plugin</a></dt>
+<dd></dd>
+<dt><a href="#Shot">Shot</a></dt>
+<dd></dd>
+<dt><a href="#Sour">Sour</a></dt>
+<dd></dd>
+</dl>
+
+<p><a name="module_Chef"></a></p>
+<h2 id="chef-code-object-code-">Chef ⇒ <code>Object</code></h2>
+<p><strong>Internal:</strong></p>
+<p>Read all piscosour.json files of every recipes imported in one module and prepare one json object with all the information.</p>
+<p>This module is used only in module <strong>config.js</strong></p>
+<p><a name="module_docs"></a></p>
+<h2 id="docs">docs</h2>
+<p>Module used for CLI help. Shows all CLI commands and options.</p>
+<p><a name="module_FinalCheck"></a></p>
+<h2 id="finalcheck-">FinalCheck ⇒</h2>
+<p>This module check all the information stored during the execution.
+If -u option is passed to the CLI junit.xml file is generated in this module.</p>
+<p><strong>Returns</strong>: true if there was no error in the execution<br><a name="module_logger"></a></p>
+<h2 id="logger">logger</h2>
+<p>Generate logger wrapper to be use inside a Shot.</p>
+<p>There are 6 levels:</p>
+<ol>
+<li>silly,</li>
+<li>debug,</li>
+<li>verbose,</li>
+<li>info,</li>
+<li>warning,</li>
+<li>error</li>
+</ol>
+<p>Formating messages is possible with chalk tags...</p>
+<p>Example of use inside shot</p>
+<pre><code>this.logger.info(&quot;#green&quot;,&quot;text&quot;);
+</code></pre><p><a name="module_scullion"></a></p>
+<h2 id="scullion-code-object-code-">scullion ⇒ <code>Object</code></h2>
+<p><strong>Internal:</strong></p>
+<p>Prepare the config object to be use by the config module.</p>
+<p><a name="module_shooter"></a></p>
+<h2 id="shooter-code-object-code-">shooter ⇒ <code>Object</code></h2>
+<p>Run one shot. Is the responsible to run all the stages of a shot.</p>
+<p><a name="module_sipper"></a></p>
+<h2 id="sipper">sipper</h2>
+<p><strong>Internal:</strong></p>
+<p>Execute in waterfall all the shots of a straw.</p>
+<p><a name="Config"></a></p>
+<h2 id="config">Config</h2>
+<p><strong>Kind</strong>: global class  </p>
+<ul>
+<li><a href="#Config">Config</a><ul>
+<li><a href="#new_Config_new">new Config()</a></li>
+<li><a href="#Config..getStraw">~getStraw(normal:)</a> ⇒</li>
+<li><a href="#Config..isAvailable">~isAvailable(normal)</a> ⇒ <code>boolean</code></li>
+<li><a href="#Config..getShotInfo">~getShotInfo(name)</a> ⇒ <code>Object</code></li>
+<li><a href="#Config..getShotParams">~getShotParams(normal)</a> ⇒ <code>*</code></li>
+<li><a href="#Config..getStrawParams">~getStrawParams(normalShot, normal)</a></li>
+<li><a href="#Config..getDir">~getDir(name)</a> ⇒</li>
+<li><a href="#Config..load">~load(normal)</a> ⇒ <code>Object</code></li>
+</ul>
+</li>
+</ul>
+<p><a name="new_Config_new"></a></p>
+<h3 id="new-config-">new Config()</h3>
+<p>Builds a config object with all the configuration of one execution. This object is build in the begging of every execution and is use by all the piscosour elements.</p>
+<p><a name="Config..getStraw"></a></p>
+<h3 id="config-getstraw-normal-">Config~getStraw(normal:) ⇒</h3>
+<p>Example inside a shot.</p>
+<pre><code>var straw = this.config.getStraw(normal);
+</code></pre><p><strong>Kind</strong>: inner method of <code><a href="#Config">Config</a></code><br><strong>Returns</strong>: Object with the configuration of a straw.  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>normal:</td>
+<td>Object with the repoType , name, recipeKey of the straw that you</td>
+</tr>
+</tbody>
+</table>
+<p><a name="Config..isAvailable"></a></p>
+<h3 id="config-isavailable-normal-code-boolean-code-">Config~isAvailable(normal) ⇒ <code>boolean</code></h3>
+<p>normal has this aspect:</p>
+<pre><code>normal = {name: *, repoType: *, orig: *, recipe: *, isShot: *}
+</code></pre><p>Checks if a normal object is available in this recipe</p>
+<p><strong>Kind</strong>: inner method of <code><a href="#Config">Config</a></code>  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>normal</td>
+</tr>
+</tbody>
+</table>
+<p><a name="Config..getShotInfo"></a></p>
+<h3 id="config-getshotinfo-name-code-object-code-">Config~getShotInfo(name) ⇒ <code>Object</code></h3>
+<p>Obtain all information of a shot.</p>
+<p><strong>Kind</strong>: inner method of <code><a href="#Config">Config</a></code><br><strong>Returns</strong>: <code>Object</code> - types: All types where implementation is available, recipes: All recipes that this shot is implemented, description: Text describing this shot.  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+</tr>
+</tbody>
+</table>
+<p><a name="Config..getShotParams"></a></p>
+<h3 id="config-getshotparams-normal-code-code-">Config~getShotParams(normal) ⇒ <code>*</code></h3>
+<p>set params in a shot context: with this order of preference</p>
+<ol>
+<li>.piscosour/piscosour.json</li>
+<li>your recipe piscosour.json</li>
+<li>params.json of default</li>
+<li>params.json of repoType</li>
+</ol>
+<p><strong>Kind</strong>: inner method of <code><a href="#Config">Config</a></code>  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>normal</td>
+</tr>
+</tbody>
+</table>
+<p><a name="Config..getStrawParams"></a></p>
+<h3 id="config-getstrawparams-normalshot-normal-">Config~getStrawParams(normalShot, normal)</h3>
+<p>set params in a straw context: with this order of preference</p>
+<ol>
+<li>.piscosour/piscosour.json</li>
+<li>your recipe piscosour.json</li>
+<li>straw.json (3.1 - params, 3.2 - defaul, 3.3 - repoType)</li>
+<li>params.json of default</li>
+<li>params.json of repoType</li>
+</ol>
+<p><strong>Kind</strong>: inner method of <code><a href="#Config">Config</a></code>  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>normalShot</td>
+</tr>
+<tr>
+<td>normal</td>
+</tr>
+</tbody>
+</table>
+<p><a name="Config..getDir"></a></p>
+<h3 id="config-getdir-name-">Config~getDir(name) ⇒</h3>
+<p>obtain the location of a recipe in the fileSystem.</p>
+<p><strong>Kind</strong>: inner method of <code><a href="#Config">Config</a></code><br><strong>Returns</strong>: String: Directory of one recipe  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td>recipeKey</td>
+</tr>
+</tbody>
+</table>
+<p><a name="Config..load"></a></p>
+<h3 id="config-load-normal-code-object-code-">Config~load(normal) ⇒ <code>Object</code></h3>
+<p>Instanciate a shot <strong>new Shot</strong> from all configurations in all recipes</p>
+<p><strong>Kind</strong>: inner method of <code><a href="#Config">Config</a></code><br><strong>Returns</strong>: <code>Object</code> - Object Shot, with all the plugins and configurations inyected  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>normal</td>
+</tr>
+</tbody>
+</table>
+<p><a name="Plugin"></a></p>
+<h2 id="plugin">Plugin</h2>
+<p><strong>Kind</strong>: global class<br><a name="new_Plugin_new"></a></p>
+<h3 id="new-plugin-hook-">new Plugin(hook:)</h3>
+<h1 id="what-is-a-plugin-">What is a plugin?</h1>
+<p>Plugin is prototype used to share functionality transversely between shots and straws. The prototype plugin works in two distinct ways.</p>
+<ol>
+<li>As hook (or prior interceptor) on each phase of the shot where is configured.</li>
+<li>As addons repository (methods added to the prototype shot) that add functionality to the object shot transparently.</li>
+</ol>
+<p>A plugin looks like this</p>
+<pre><code class="lang-Js">&#39;Use strict&#39;;
+
+module.exports = {
+    description: &quot;Test plugin&quot;
+
+    // ---- ---- HOOKS
+
+    check: function (shot) {
+        this.logger.info ( &quot;TEST -------- --------- PLUGIN&quot;);
+        shot.test_pluginAddon ( &quot;Example&quot;);
+    },
+
+    // ---- ---- ADDONS
+
+    addons: {
+
+        testPluginAddon: function (message) {
+            this.logger.info ( &quot;Test addon executed&quot;, name);
+        }
+    }
+};
+</code></pre>
+<h2 id="hooks">HOOKS</h2>
+<ul>
+<li>In hooks <strong>this</strong> will be the reference to the shot instance, so all the properties and functions are availables.</li>
+<li>The functions of the hooks must have the same name as the stage (stage) that will precede.</li>
+<li>They must return a Promise or undefined. <strong>It is not allowed to return other value</strong>.</li>
+</ul>
+<h2 id="addons">ADDONS</h2>
+<ul>
+<li>The methods addons are added to the prototype Shot will therefore be able to run from any reference to the prototype.</li>
+<li>Within a function addon <strong>this</strong> refers to the shot where is running, it will be a reference to the instance currently running yet fully charged.</li>
+<li><p><strong> ATTENTION: plugins add features to prototype Shot </strong>. To not overwrite sensitive functions Shot using one of two methods:</p>
+<ol>
+<li>(recommended): Preset functions added to the plugin name. In our example will be <strong>test</strong>.</li>
+<li>Create a namespace: This solution loses the reference to <strong>this</strong>, shot would have to be passed to the shot when calling the function. In our example:</li>
+</ol>
+<p><strong>Plugin.js :</strong></p>
+</li>
+</ul>
+<pre><code class="lang-Js">&#39;Use strict&#39;;
+
+module.exports = {
+    description: &quot;Test plugin&quot;
+
+    // ---- ---- HOOKS
+
+    check: function () {
+        this.logger.info ( &quot;TEST -------- --------- PLUGIN&quot;);
+        this.test.pluginAddon (this, &quot;Example&quot;);
+    },
+
+    // ---- ---- ADDONS
+
+    addons: {
+        test: {
+            pluginAddon: function (shot, message) {
+                shot.logger.info ( &quot;Test addon executed&quot;, message);
+            }
+        }
+    }
+};
+</code></pre>
+<h1 id="how-to-create-a-plugin-">How to create a plugin?</h1>
+<p>The plugins can be created in any recipe and use in other recipes just importing the dependency in the package.json file. Create a plugin is as simple as:</p>
+<ol>
+<li>Create a folder plugins in the root of your recipe.</li>
+<li>Create a folder with the name you want to give the plugin.</li>
+<li>Create a file called plugin.js <strong> </strong> within this folder with the content inidicado above. It is convenient to add a info.md ​​with specific documentation plugin file.</li>
+<li>Ready! you have your plugin created!</li>
+</ol>
+<p>It is advisable to create plugins in separate recipes, ie, create a recipe only with a plugin or several related in order to make a better management of the dependencies that these plugins needed.</p>
+<h1 id="how-to-use-a-plugin-">How to use a plugin?</h1>
+<p>Using a plugin is very simple, follow these steps:</p>
+<ol>
+<li><p>If the plug is not in your recipe matter npm package recipe where the plugin is located.</p>
+<p> npm install --save my-plugins</p>
+</li>
+<li><p>Define the name of the plugin in any of the &quot;Scopes&quot; pisco piscosour.json, straw.json, params.json [See definition of parameters] (Load_Parameters.md).</p>
+</li>
+</ol>
+<p>piscosour.json and straw.json</p>
+<pre><code class="lang-Js">[....]
+  &quot;Params&quot;: {
+   &quot;Plugins&quot;: [ &quot;test&quot;]
+ },
+[....]
+</code></pre>
+<p>params.json</p>
+<pre><code class="lang-Js">{
+    &quot;Plugins&quot;: [ &quot;test&quot;]
+}
+</code></pre>
+<ol>
+<li><p>Ready !. The plugin execute all hooks have partners and the shot will have all the addons that have been defined.</p>
+<p>In our example this would be the code test shot using the plugin:</p>
+</li>
+</ol>
+<pre><code class="lang-Js"> &#39;Use strict&#39;;
+
+ module.exports = {
+    description: &quot;test shot Plugins&quot;
+
+    config: function (resolve) {
+        this.logger.info ( &quot;magenta #&quot;, &quot;config&quot;, &quot;params Preparing for main execution&quot;);
+    },
+
+    run: function (RESOLVE) {
+        this.logger.info ( &quot;# magenta&quot;, &quot;run&quot;, &quot;Run main execution&quot;);
+        shot.test_pluginAddon ( &quot;our example !!&quot;);
+    },
+
+    prove: function (RESOLVE) {
+        this.logger.info ( &quot;magenta #&quot;, &quot;prove&quot;, &quot;Prove That the run execution was ok&quot;);
+    },
+
+    notify: function (RESOLVE) {
+        this.logger.info ( &quot;# magenta&quot;, &quot;notify&quot;, &quot;Recollect all execution information and notify&quot;);
+    }
+};
+</code></pre>
+<p>When you run the shot aand message:</p>
+<p><img src="images/plugins1.png" alt="First plugin execution"></p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>hook:</td>
+<td>is the stages of the shot that the plugin is going to hook executions of functions.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="Shot"></a></p>
+<h2 id="shot">Shot</h2>
+<p><strong>Kind</strong>: global class  </p>
+<ul>
+<li><a href="#Shot">Shot</a><ul>
+<li><a href="#new_Shot_new">new Shot(runner)</a></li>
+<li><a href="#Shot+report">.report(result)</a></li>
+<li><a href="#Shot+save">.save(key, obj, isGlobal)</a></li>
+<li><a href="#Shot+get">.get(key, shotName)</a> ⇒ <code>*</code></li>
+</ul>
+</li>
+</ul>
+<p><a name="new_Shot_new"></a></p>
+<h3 id="new-shot-runner-">new Shot(runner)</h3>
+<p>A shot is a <strong>Step</strong> in a execution. <strong>Straws</strong> are considered as a pipeline.</p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>runner</td>
+<td>this is the configuration object inside a shot.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="Shot+report"></a></p>
+<h3 id="shot-report-result-">shot.report(result)</h3>
+<p>Write reporting information of the shot.</p>
+<p>example:
+result has this aspect:</p>
+<pre><code>var result = {
+              status: 1|0,
+              message: &quot;some text&quot;,
+              content: &quot;some text&quot;,
+              time: time in milliseconds,
+              order: number,
+              last: last
+          };
+this.report(result);
+</code></pre><p><strong>Kind</strong>: instance method of <code><a href="#Shot">Shot</a></code>  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>result</td>
+<td>The object above</td>
+</tr>
+</tbody>
+</table>
+<p><a name="Shot+save"></a></p>
+<h3 id="shot-save-key-obj-isglobal-">shot.save(key, obj, isGlobal)</h3>
+<p>Save any object in the global context and is posible to use by any other shot in the straw.
+Example in any shot:</p>
+<pre><code class="lang-js">[...]
+this.save(&#39;key&#39;,{param: 1}, true);
+[...]
+</code></pre>
+<p><strong>Kind</strong>: instance method of <code><a href="#Shot">Shot</a></code>  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>key</td>
+<td>used to store the object in the global context.</td>
+</tr>
+<tr>
+<td>obj</td>
+<td>obj to be store</td>
+</tr>
+<tr>
+<td>isGlobal</td>
+<td>If is set name of shot is not necesary to retrive it.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="Shot+get"></a></p>
+<h3 id="shot-get-key-shotname-code-code-">shot.get(key, shotName) ⇒ <code>*</code></h3>
+<p>Get any other param store in global context using save
+Example:</p>
+<pre><code class="lang-js"> var other = this.get(&#39;key&#39;);
+</code></pre>
+<p><strong>Kind</strong>: instance method of <code><a href="#Shot">Shot</a></code><br><strong>Returns</strong>: <code>*</code> - - the value or undefined if is not found.  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>key</td>
+<td>used to store the object</td>
+</tr>
+<tr>
+<td>shotName</td>
+<td>name of the shot that store the object or undefined of isGlobal was true.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="Sour"></a></p>
+<h2 id="sour">Sour</h2>
+<p><strong>Kind</strong>: global class  </p>
+<ul>
+<li><a href="#Sour">Sour</a><ul>
+<li><a href="#new_Sour_new">new Sour()</a></li>
+<li><a href="#Sour..gush">~gush()</a> ⇒ <code>Promise</code></li>
+</ul>
+</li>
+</ul>
+<p><a name="new_Sour_new"></a></p>
+<h3 id="new-sour-">new Sour()</h3>
+<p>Sour is the commands line interface</p>
+<p><strong>Returns</strong>: gush : execute the commands.<br><a name="Sour..gush"></a></p>
+<h3 id="sour-gush-code-promise-code-">Sour~gush() ⇒ <code>Promise</code></h3>
+<p>Execute all the commands of the utility</p>
+<p><strong>Kind</strong>: inner method of <code><a href="#Sour">Sour</a></code>  </p>
+
+      </article>
+    </section>
+    <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+    <script>
+      hljs.initHighlightingOnLoad();
+      $(function(){
+      	$('.toggle_section').on('click', function(ev) {
+          $(ev.currentTarget).parent('li').toggleClass('open');
+        });
+      });
+
+    </script>
+  </body>
+</html>

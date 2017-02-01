@@ -4,7 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>context</title>
+    <title>Communication between steps</title>
     <link rel="stylesheet" type="text/css" href="../../css/main.css">
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc=" crossorigin="anonymous"></script>
   </head>
@@ -93,7 +93,7 @@
                   
                   <li>
                     
-                    <a href="../../developers/guides/Parameters_between_shots.html">Communication between steps</a>
+                    <a href="../../developers/guides/Parameters_between_shots.html" class="selected">Communication between steps</a>
                     
                   </li>
                   
@@ -160,7 +160,7 @@
                     
                     <li>
                       
-                      <a href="../../developers/documents/context.html" class="selected">context</a>
+                      <a href="../../developers/documents/context.html">context</a>
                       
                     </li>
                     
@@ -273,94 +273,51 @@
         
       </aside>
       <article>
-        <h1 id="plugins-context">Plugins: context</h1>
-<h3 id="context-for-the-pisco-execution">Context for the pisco execution</h3>
-<p>With this plugin you can automatically check where recipe was executed. This plugin take configuration from params and expose two method and make one pre-hook check.</p>
-<h4 id="how-two-configure-repotype-definitions">How two configure repoType definitions</h4>
-<p>You can configure the repoTypes definition in all the configurations files where pisco recipes are configured <a href="doc/Load_Parameters.md">see information for pisco configuration</a>. </p>
-<p><strong>Is recommend to use the piscosour.json file of your recipe</strong></p>
-<p>The param is called contexts, and must be a Hash with the name of the repoType as key and Array with all the rules the repo must to match.</p>
-<p>example of piscosour.json:</p>
-<pre><code>    &quot;params&quot;: {
-        &quot;contexts&quot;: {
-            &quot;node-module&quot;: [
-                {
-                    &quot;file&quot;: &quot;package.json&quot;,
-                    &quot;conditions&quot;: [
-                        &quot;that.version&quot;
-                    ]
-                },
-                {
-                    &quot;file&quot;: &quot;piscosour.json&quot;,
-                    &quot;noexists&quot;: &quot;true&quot;
-                }
-            ],
-            &quot;recipe&quot;: [
-                {
-                    &quot;sufficient&quot;: true,
-                    &quot;file&quot;: &quot;.piscosour/piscosour.json&quot;,
-                    &quot;conditions&quot;: [
-                        &quot;that.repoType===&#39;recipe&#39;&quot;
-                    ]
-                },
-                {
-                    &quot;file&quot;: &quot;package.json&quot;,
-                    &quot;conditions&quot;: [
-                        &quot;that.keywords.indexOf(&#39;piscosour-recipe&#39;)&gt;=0&quot;
-                    ]
-                },
-                {
-                    &quot;file&quot;: &quot;piscosour.json&quot;
-                }
-            ]
-        }
-    },
-</code></pre><p><strong>Rules:</strong></p>
-<p>Define all rules that a repoType must match. All rules not sufficient must to be satisfied.</p>
-<ul>
-<li><strong>file:</strong> The path of the file relative to the root of the repoType. (for exemple: package.json for a node-module)</li>
-<li><strong>sufficient:</strong> If this rule is matched the rest of the rules are ignored. If is not matched, the rule is ignored and the rest of rules are evaluated (default: false)</li>
-<li><strong>noexist:</strong> Check if the file is <strong>not</strong> present. (default: false)</li>
-<li><strong>conditions:</strong> Is an array with all the conditions that the file must to match. <ol>
-<li>The file must to be a correct json file.</li>
-<li><strong>that</strong> is the instance of the json object.</li>
-<li>write one condition per element in your array. </li>
-<li>The conditions were evaluated using javascript.</li>
+        <h1 id="parameters-transmision-between-shots">Parameters transmision between shots</h1>
+<p>Sometimes we need a generated parameter in one shot into another shot. This is the way to do this.</p>
+<h2 id="define-output-parameters">Define output parameters</h2>
+<p>There is a special stage in shots called <strong>&#39;emit&#39;</strong>. The emit behaviour is wide different from other stages behaviours.</p>
+<ol>
+<li>Allways has to return an key:value object with the parameters we want to expose to others shots.</li>
+<li><strong>emit</strong> doesn&#39;t recive resolve and reject method so allways is synchronous</li>
 </ol>
-</li>
+<p>As other stages <strong>emit</strong> is optional</p>
+<p>Example in any shot.js:</p>
+<pre><code class="lang-js">    emit : function(){
+        return {
+            whatever : &quot;any text value&quot;,
+            whatevermore : {
+                some: &quot;thing&quot;,
+                someArray: []
+            }
+        }
+    }
+</code></pre>
+<h2 id="connect-outputs-with-inputs-in-other-shots-">Connect outputs with inputs in other shots.</h2>
+<ul>
+<li>This is can be done only in <strong>straw.json</strong>.</li>
+<li>Input are always set into <strong>this.params</strong></li>
 </ul>
-<h4 id="pre-hook-check-one-shot-is-executed-in-the-root-of-any-repository-type-">Pre-hook: Check one shot is executed in the root of any repository type.</h4>
-<p>By default, the shot behaviour is assume that repoType is mandatory, if you need to execute one shot without this check of context, use <strong>contextFree</strong> parameter. <strong>contextFree</strong> usually is used for shotd like &quot;create&quot; or something like that.  </p>
-<p>only parametrized in params.json:</p>
-<pre><code>{
- [...]
-  &quot;contextFree&quot; : true
-}
-</code></pre><p>A user command (straw) only could be contextFree if all of its shots are contextFree. If only one shot of a straw is not contextFree then the context will be checked.</p>
-<p><strong>Disable this check using options in the command line</strong>: Is possible to disable this check using this option in the command line: <strong>--b-disableContextCheck</strong>. Usefull for system requirements checks.</p>
-<h4 id="addon-this-ctxis">addon: this.ctxIs</h4>
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>name</td>
-<td>name of the repoType to test</td>
-</tr>
-</tbody>
-</table>
-<p>Use this.ctxIs to ask pisco where was executed.</p>
-<pre><code>let isComponent = this.ctxIs(&quot;component&quot;);
-</code></pre><p>isComponent must to be true if your recipe was executed in the root of a component.</p>
-<h4 id="addon-this-ctxwhoami">addon: this.ctxWhoami</h4>
-<p>Ask pisco the repoTypes of the directory where you executed your recipe.</p>
-<pre><code>let repos = this.ctxWhoami();
-</code></pre><p>repos is an Array of types that match the place where your recipe was executed.</p>
+<p>straw.json example:</p>
+<pre><code class="lang-js">    [...]
 
+  &quot;shots&quot; : {
+    &quot;test1&quot; : {},
+    &quot;test2&quot; : {
+      &quot;inputs&quot; : {
+        &quot;inWhatever&quot; : {&quot;test1&quot;: &quot;whatever&quot;}
+      }
+    }
+
+    [...]
+</code></pre>
+<p>This example set <strong>this.params.inWhatever</strong> parameter of <strong>test2</strong> shot with the value of whatever output parameter emit by <strong>test1</strong> shot</p>
+<p><strong>(*) Important:</strong> Obviously inputs only can get values from previous shots.</p>
+<p>So in our example:</p>
+<pre><code>console.log(this.params.inWhatever)
+</code></pre><p>result:</p>
+<pre><code>any text value
+</code></pre>
       </article>
     </section>
     <script type="text/javascript" src="../../js/highlight.pack.js"></script>

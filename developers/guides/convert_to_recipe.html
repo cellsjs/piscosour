@@ -4,7 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>context</title>
+    <title>Transform a node-module to recipe</title>
     <link rel="stylesheet" type="text/css" href="../../css/main.css">
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc=" crossorigin="anonymous"></script>
   </head>
@@ -75,7 +75,7 @@
                   
                   <li>
                     
-                    <a href="../../developers/guides/convert_to_recipe.html">Transform a node-module to recipe</a>
+                    <a href="../../developers/guides/convert_to_recipe.html" class="selected">Transform a node-module to recipe</a>
                     
                   </li>
                   
@@ -160,7 +160,7 @@
                     
                     <li>
                       
-                      <a href="../../developers/documents/context.html" class="selected">context</a>
+                      <a href="../../developers/documents/context.html">context</a>
                       
                     </li>
                     
@@ -273,93 +273,37 @@
         
       </aside>
       <article>
-        <h1 id="plugins-context">Plugins: context</h1>
-<h3 id="context-for-the-pisco-execution">Context for the pisco execution</h3>
-<p>With this plugin you can automatically check where recipe was executed. This plugin take configuration from params and expose two method and make one pre-hook check.</p>
-<h4 id="how-two-configure-repotype-definitions">How two configure repoType definitions</h4>
-<p>You can configure the repoTypes definition in all the configurations files where pisco recipes are configured <a href="doc/Load_Parameters.md">see information for pisco configuration</a>. </p>
-<p><strong>Is recommend to use the piscosour.json file of your recipe</strong></p>
-<p>The param is called contexts, and must be a Hash with the name of the repoType as key and Array with all the rules the repo must to match.</p>
-<p>example of piscosour.json:</p>
-<pre><code>    &quot;params&quot;: {
-        &quot;contexts&quot;: {
-            &quot;node-module&quot;: [
-                {
-                    &quot;file&quot;: &quot;package.json&quot;,
-                    &quot;conditions&quot;: [
-                        &quot;that.version&quot;
-                    ]
-                },
-                {
-                    &quot;file&quot;: &quot;piscosour.json&quot;,
-                    &quot;noexists&quot;: &quot;true&quot;
-                }
-            ],
-            &quot;recipe&quot;: [
-                {
-                    &quot;sufficient&quot;: true,
-                    &quot;file&quot;: &quot;.piscosour/piscosour.json&quot;,
-                    &quot;conditions&quot;: [
-                        &quot;that.repoType===&#39;recipe&#39;&quot;
-                    ]
-                },
-                {
-                    &quot;file&quot;: &quot;package.json&quot;,
-                    &quot;conditions&quot;: [
-                        &quot;that.keywords.indexOf(&#39;piscosour-recipe&#39;)&gt;=0&quot;
-                    ]
-                },
-                {
-                    &quot;file&quot;: &quot;piscosour.json&quot;
-                }
-            ]
-        }
-    },
-</code></pre><p><strong>Rules:</strong></p>
-<p>Define all rules that a repoType must match. All rules not sufficient must to be satisfied.</p>
+        <h1 id="-por-qu-convertir-un-m-dudo-node-a-pisco-">¿Por qué convertir un módudo node a pisco?</h1>
+<p>Sencillo. Para poder crear un shot separado e independiente importarlo en cualquier otra receta y usarlo en un straw.</p>
+<h1 id="c-mo-convertir-cualquier-m-dulo-node-en-una-receta-pisco-">Cómo convertir cualquier módulo node en una receta pisco.</h1>
+<p>Es muy sencillo. Simplemente ve a la raiz de tu módulo nodejs y ejecuta pisco convert.</p>
+<pre><code>cd mymodule
+pisco convert
+</code></pre><p>te preguntará el nombre del comando usado para ejecutar la receta. p.ej. test-convert</p>
+<p><img src="images/convert1.png" alt="Questions to convert a recipe"></p>
+<p>Listo! Ya tienes tu nueva receta pisco. pruebala!</p>
+<pre><code>node bin/pisco.js
+</code></pre><p>Aparecerá la ayuda básica de pisco.</p>
+<pre><code>Name: mymodule 0.0.1 (piscosour 0.1.0) - Example of module nodejs
+ Usage: test-convert [Command] [Options...]
+
+ Commands:
+
+
+ Options:
+
+     --junitReport  [ -u] :  write junit report at the end
+     --help  [ -h] :  shows detailed info of a command: test-convert -h &lt;command&gt;
+     --all  [ -a] :  list all commands availables (repoType:straw[:shot])
+     --list ( all,recipes,straws,shots,repoTypes ) [ -la -lr -lst -lsh -lt] :  list piscosour elements
+     --output ( verbose,debug,silly ) [ -ov -od -os] :  set output level : &#39;test-convert -ov&#39; -&gt; set to verbose
+     --initShot  [ -i] :  from shot : test-convert -i &lt;shotname&gt;
+     --endShot  [ -e] :  to shot : test-convert -e &lt;shotname&gt;
+</code></pre><p>próximos pasos:</p>
 <ul>
-<li><strong>file:</strong> The path of the file relative to the root of the repoType. (for exemple: package.json for a node-module)</li>
-<li><strong>sufficient:</strong> If this rule is matched the rest of the rules are ignored. If is not matched, the rule is ignored and the rest of rules are evaluated (default: false)</li>
-<li><strong>noexist:</strong> Check if the file is <strong>not</strong> present. (default: false)</li>
-<li><strong>conditions:</strong> Is an array with all the conditions that the file must to match. <ol>
-<li>The file must to be a correct json file.</li>
-<li><strong>that</strong> is the instance of the json object.</li>
-<li>write one condition per element in your array. </li>
-<li>The conditions were evaluated using javascript.</li>
-</ol>
-</li>
+<li><a href="shots.md">Trabajar con shots</a> - Crear un shot y usar el API para sacarle el 100% del partido a piscosour.</li>
+<li><a href="straws.md">Trabajar con straws</a> - Crear un straw y configurarlo a partir de shots propios o de otras recetas.</li>
 </ul>
-<h4 id="pre-hook-check-one-shot-is-executed-in-the-root-of-any-repository-type-">Pre-hook: Check one shot is executed in the root of any repository type.</h4>
-<p>By default, the shot behaviour is assume that repoType is mandatory, if you need to execute one shot without this check of context, use <strong>contextFree</strong> parameter. <strong>contextFree</strong> usually is used for shotd like &quot;create&quot; or something like that.  </p>
-<p>only parametrized in params.json:</p>
-<pre><code>{
- [...]
-  &quot;contextFree&quot; : true
-}
-</code></pre><p>A user command (straw) only could be contextFree if all of its shots are contextFree. If only one shot of a straw is not contextFree then the context will be checked.</p>
-<p><strong>Disable this check using options in the command line</strong>: Is possible to disable this check using this option in the command line: <strong>--b-disableContextCheck</strong>. Usefull for system requirements checks.</p>
-<h4 id="addon-this-ctxis">addon: this.ctxIs</h4>
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>name</td>
-<td>name of the repoType to test</td>
-</tr>
-</tbody>
-</table>
-<p>Use this.ctxIs to ask pisco where was executed.</p>
-<pre><code>let isComponent = this.ctxIs(&quot;component&quot;);
-</code></pre><p>isComponent must to be true if your recipe was executed in the root of a component.</p>
-<h4 id="addon-this-ctxwhoami">addon: this.ctxWhoami</h4>
-<p>Ask pisco the repoTypes of the directory where you executed your recipe.</p>
-<pre><code>let repos = this.ctxWhoami();
-</code></pre><p>repos is an Array of types that match the place where your recipe was executed.</p>
 
       </article>
     </section>

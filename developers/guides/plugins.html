@@ -4,7 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>context</title>
+    <title>Plugins</title>
     <link rel="stylesheet" type="text/css" href="../../css/main.css">
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc=" crossorigin="anonymous"></script>
   </head>
@@ -99,7 +99,7 @@
                   
                   <li>
                     
-                    <a href="../../developers/guides/plugins.html">Plugins</a>
+                    <a href="../../developers/guides/plugins.html" class="selected">Plugins</a>
                     
                   </li>
                   
@@ -160,7 +160,7 @@
                     
                     <li>
                       
-                      <a href="../../developers/documents/context.html" class="selected">context</a>
+                      <a href="../../developers/documents/context.html">context</a>
                       
                     </li>
                     
@@ -273,93 +273,136 @@
         
       </aside>
       <article>
-        <h1 id="plugins-context">Plugins: context</h1>
-<h3 id="context-for-the-pisco-execution">Context for the pisco execution</h3>
-<p>With this plugin you can automatically check where recipe was executed. This plugin take configuration from params and expose two method and make one pre-hook check.</p>
-<h4 id="how-two-configure-repotype-definitions">How two configure repoType definitions</h4>
-<p>You can configure the repoTypes definition in all the configurations files where pisco recipes are configured <a href="doc/Load_Parameters.md">see information for pisco configuration</a>. </p>
-<p><strong>Is recommend to use the piscosour.json file of your recipe</strong></p>
-<p>The param is called contexts, and must be a Hash with the name of the repoType as key and Array with all the rules the repo must to match.</p>
-<p>example of piscosour.json:</p>
-<pre><code>    &quot;params&quot;: {
-        &quot;contexts&quot;: {
-            &quot;node-module&quot;: [
-                {
-                    &quot;file&quot;: &quot;package.json&quot;,
-                    &quot;conditions&quot;: [
-                        &quot;that.version&quot;
-                    ]
-                },
-                {
-                    &quot;file&quot;: &quot;piscosour.json&quot;,
-                    &quot;noexists&quot;: &quot;true&quot;
-                }
-            ],
-            &quot;recipe&quot;: [
-                {
-                    &quot;sufficient&quot;: true,
-                    &quot;file&quot;: &quot;.piscosour/piscosour.json&quot;,
-                    &quot;conditions&quot;: [
-                        &quot;that.repoType===&#39;recipe&#39;&quot;
-                    ]
-                },
-                {
-                    &quot;file&quot;: &quot;package.json&quot;,
-                    &quot;conditions&quot;: [
-                        &quot;that.keywords.indexOf(&#39;piscosour-recipe&#39;)&gt;=0&quot;
-                    ]
-                },
-                {
-                    &quot;file&quot;: &quot;piscosour.json&quot;
-                }
-            ]
-        }
-    },
-</code></pre><p><strong>Rules:</strong></p>
-<p>Define all rules that a repoType must match. All rules not sufficient must to be satisfied.</p>
-<ul>
-<li><strong>file:</strong> The path of the file relative to the root of the repoType. (for exemple: package.json for a node-module)</li>
-<li><strong>sufficient:</strong> If this rule is matched the rest of the rules are ignored. If is not matched, the rule is ignored and the rest of rules are evaluated (default: false)</li>
-<li><strong>noexist:</strong> Check if the file is <strong>not</strong> present. (default: false)</li>
-<li><strong>conditions:</strong> Is an array with all the conditions that the file must to match. <ol>
-<li>The file must to be a correct json file.</li>
-<li><strong>that</strong> is the instance of the json object.</li>
-<li>write one condition per element in your array. </li>
-<li>The conditions were evaluated using javascript.</li>
+        <h1 id="-qu-es-un-plugin-de-pisco-">¿Qué es un plugin de pisco?</h1>
+<p>Es un prototipo que sirve para compartir funcionalidad de manera transversal entre shots y straws. El prototipo plugin actúa de dos maneras claramente diferenciadas.</p>
+<ol>
+<li>Como hook (o interceptor previo) en cada una de las fases del shot donde esté configurado.</li>
+<li>Como repositorio de addons (métodos añadidos al prototipo shot) que añaden funcionalidad al objeto shot de manera transparente.</li>
 </ol>
+<p>este es el especto de un plugin tipo:</p>
+<pre><code class="lang-js">&#39;use strict&#39;;
+
+module.exports = {
+    description : &quot;Test plugin&quot;,
+
+    // ---- HOOKS ----
+
+    check : function(shot){
+        this.logger.info(&quot;---------PLUGIN TEST--------&quot;);
+        shot.test_pluginAddon(&quot;Ejemplo&quot;);
+    },
+
+    // ---- ADDONS ----
+
+    addons : {
+
+        testPluginAddon: function (message) {
+            this.logger.info(&quot;Test addon executed&quot;, name);
+        }
+    }
+};
+</code></pre>
+<h2 id="hooks">HOOKS</h2>
+<ul>
+<li>En los hooks <strong>this</strong> será la referencia a la instancia shot que se está ejecutando en ese momento, por lo tanto con todas las propiedades y funciones del shot.</li>
+<li>Las functions de los hooks deberán tener el mismo nombre que la fase (stage) que van a preceder.</li>
+<li>Deberán devolver una Promesa o undefined. No está permitido hacer return de otro tipo de valor.</li>
+</ul>
+<h2 id="addons">ADDONS</h2>
+<ul>
+<li>Los addons son métodos que se añaden al prototipo Shot por lo tanto van a poderse ejecutar desde cualquier referencia a este prototipo.</li>
+<li>Dentro de una función addon <strong>this</strong> hace referencia al shot donde se está ejecutando, será una referencia a la instancia ejecutandose en ese momento con todo completamente cargado.</li>
+<li><p><strong>ATENCIÓN: Los plugins añaden funciones al prototype Shot</strong>. Para no sobreescribir funciones sensibles de Shot utilizar uno de estos dos métodos:</p>
+<ol>
+<li>(Recomendado): Prefijar las funciones añadidas con el nombre del plugin. En nuestro ejemplo será <strong>test</strong>.</li>
+<li>Crear un espacio de nombres: Esta solución pierde la referencia al <strong>this</strong> del propio shot y habría que pasar el shot al llamar a la función. En nuestro ejemplo:</li>
+</ol>
+<p><strong>plugin.js:</strong></p>
 </li>
 </ul>
-<h4 id="pre-hook-check-one-shot-is-executed-in-the-root-of-any-repository-type-">Pre-hook: Check one shot is executed in the root of any repository type.</h4>
-<p>By default, the shot behaviour is assume that repoType is mandatory, if you need to execute one shot without this check of context, use <strong>contextFree</strong> parameter. <strong>contextFree</strong> usually is used for shotd like &quot;create&quot; or something like that.  </p>
-<p>only parametrized in params.json:</p>
-<pre><code>{
- [...]
-  &quot;contextFree&quot; : true
+<pre><code class="lang-js">&#39;use strict&#39;;
+
+module.exports = {
+    description : &quot;Test plugin&quot;,
+
+    // ---- HOOKS ----
+
+    check : function(){
+        this.logger.info(&quot;---------PLUGIN TEST--------&quot;);
+        this.test.pluginAddon(this,&quot;Ejemplo&quot;);
+    },
+
+    // ---- ADDONS ----
+
+    addons : {
+        test : {
+            pluginAddon: function (shot,message) {
+                shot.logger.info(&quot;Test addon executed&quot;, message);
+            }
+        }
+    }
+};
+</code></pre>
+<h1 id="-c-mo-crear-un-plugin-">¿Cómo crear un plugin?</h1>
+<p>Los plugins se pueden crear en cualquier receta y podrán ser usados desde cualquier receta que importe esta receta. Crear un plugin es tan simple como:</p>
+<ol>
+<li>Crear una carpeta plugins en la raíz de tu receta.</li>
+<li>Crear una carpeta con el nombre que le queremos dar al plugin.</li>
+<li>Crear un fichero llamado <strong>plugin.js</strong> dentro de esta carpeta con el contenido inidicado más arriba. Es conveniente añadir un fichero info.md con la documentación específica del plugin.</li>
+<li>Listo! ya tienes tu plugin creado!</li>
+</ol>
+<p>Es aconsejable crear plugins en recetas separadas, es decir, crear una receta unicamente con un plugin o varios relacionados dentro con el fin de hacer una mejor gestión de las dependencias que estos plugins necesiten.</p>
+<h1 id="-c-mo-usar-un-plugin-">¿Cómo usar un plugin?</h1>
+<p>Usar un plugin es muy sencillo, sigue estos pasos:</p>
+<ol>
+<li><p>Si el plugin no está en tu receta importa el paquete npm de la receta donde se encuentre el plugin.</p>
+<p> npm install mis-plugins --save</p>
+</li>
+<li><p>Define el nombre del plugin en cualquiera de los &quot;scopes&quot; pisco piscosour.json, straw.json, params.json <a href="Load_Parameters.md">Ver definición de parámetros</a>.</p>
+</li>
+</ol>
+<p>en el caso de piscosour.json y straw.json</p>
+<pre><code class="lang-js">[....]
+  &quot;params&quot; : {
+    &quot;plugins&quot; : [&quot;test&quot;]
+  },
+[....]
+</code></pre>
+<p>en el caso de params.json</p>
+<pre><code class="lang-js">{
+    &quot;plugins&quot; : [&quot;test&quot;]
 }
-</code></pre><p>A user command (straw) only could be contextFree if all of its shots are contextFree. If only one shot of a straw is not contextFree then the context will be checked.</p>
-<p><strong>Disable this check using options in the command line</strong>: Is possible to disable this check using this option in the command line: <strong>--b-disableContextCheck</strong>. Usefull for system requirements checks.</p>
-<h4 id="addon-this-ctxis">addon: this.ctxIs</h4>
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>name</td>
-<td>name of the repoType to test</td>
-</tr>
-</tbody>
-</table>
-<p>Use this.ctxIs to ask pisco where was executed.</p>
-<pre><code>let isComponent = this.ctxIs(&quot;component&quot;);
-</code></pre><p>isComponent must to be true if your recipe was executed in the root of a component.</p>
-<h4 id="addon-this-ctxwhoami">addon: this.ctxWhoami</h4>
-<p>Ask pisco the repoTypes of the directory where you executed your recipe.</p>
-<pre><code>let repos = this.ctxWhoami();
-</code></pre><p>repos is an Array of types that match the place where your recipe was executed.</p>
+</code></pre>
+<ol>
+<li><p>Listo!. El plugin ejecutará todos los hooks que tenga asociados y el shot tendrá disponible todos los addons que se hayan definido.</p>
+<p>En nuestro ejemplo este sería el código del shot que usa el plugin test:</p>
+</li>
+</ol>
+<pre><code class="lang-js"> &#39;use strict&#39;;
+
+ module.exports = {
+     description : &quot;Plugins test shot&quot;,
+
+     config : function(resolve){
+         this.logger.info(&quot;#magenta&quot;,&quot;config&quot;,&quot;Preparing params for main execution&quot;);
+     },
+
+     run : function(resolve){
+         this.logger.info(&quot;#magenta&quot;,&quot;run&quot;,&quot;Run main execution&quot;);
+         shot.test_pluginAddon(&quot;our example!!&quot;);
+     },
+
+     prove : function(resolve){
+         this.logger.info(&quot;#magenta&quot;,&quot;prove&quot;,&quot;Prove that the run execution was ok&quot;);
+     },
+
+     notify : function(resolve){
+         this.logger.info(&quot;#magenta&quot;,&quot;notify&quot;,&quot;Recollect all execution information and notify&quot;);
+     }
+ };
+</code></pre>
+<p>Al ejecutar el shot aparecerá nuesto mensaje:</p>
+<p><img src="images/plugins1.png" alt="First plugin execution"></p>
 
       </article>
     </section>
