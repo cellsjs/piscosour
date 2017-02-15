@@ -1,5 +1,6 @@
 {
   "params" : {
-    "registryUrl" : "https://registry.npmjs.org/"
+    "registryUrl" : "https://registry.npmjs.org/",
+    "strategy": "pullRequest"
   }
 }
