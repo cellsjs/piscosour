@@ -1,6 +1,6 @@
 {
   "name": "piscosour",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0-alpha.0",
   "description": "Get all your devops tools wrapped-up!",
   "main": "index.js",
   "homepage": "https://github.com/cellsjs/piscosour",
