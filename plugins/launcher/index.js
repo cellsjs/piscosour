@@ -93,7 +93,9 @@ module.exports = {
       let command = cmd;
       let output = '';
 
-      args.forEach((item)=> command += ' ' + item);
+      if (args) {
+        args.forEach((item)=> command += ' ' + item);
+      }
 
       child.on('disconnect', () => {
         this.logger.info('Child process disconnected!', arguments);
