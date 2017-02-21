@@ -39,8 +39,7 @@
     "pisco": "bin/pisco.js"
   },
   "scripts": {
-    "deps": "npm install",
-    "postinstall": "node bin/pisco.js -w"
+    "deps": "npm install"
   },
   "dependencies": {
     "async": "^2.1.2",
