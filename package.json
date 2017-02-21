@@ -1,6 +1,6 @@
 {
   "name": "piscosour",
-  "version": "1.0.0-alpha.48",
+  "version": "1.0.1-alpha.0",
   "description": "Get all your devops tools wrapped-up!",
   "main": "index.js",
   "homepage": "https://github.com/cellsjs/piscosour",
@@ -39,8 +39,7 @@
     "pisco": "bin/pisco.js"
   },
   "scripts": {
-    "deps": "npm install",
-    "postinstall": "node bin/pisco.js -w"
+    "deps": "npm install"
   },
   "dependencies": {
     "async": "^2.1.2",
