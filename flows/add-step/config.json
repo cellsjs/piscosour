@@ -1,8 +1,0 @@
-{
-  "type": "normal",
-  "name": "add-step",
-  "description": "Add a step to a piscosour recipe",
-  "steps": {
-    "add-steps": {}
-  }
-}
