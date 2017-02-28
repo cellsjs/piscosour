@@ -1,7 +1,0 @@
-{
-  "name": "create",
-  "description": "Create new recipe from scratch",
-  "steps": {
-    "scaffolding": {}
-  }
-}

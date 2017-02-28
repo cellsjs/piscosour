@@ -1,8 +1,0 @@
-{
-  "type": "normal",
-  "name": "add-flow",
-  "description": "Add a flow to a piscosour recipe",
-  "steps": {
-    "add-flows": {}
-  }
-}
