@@ -47,7 +47,6 @@
       }
     }
   },
-  "defaultContext": "recipe",
   "junitDir": "test-reports",
   "junitPiscoFile": "pisco-junit.xml",
   "stages": [

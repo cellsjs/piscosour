@@ -1,6 +1,0 @@
-{
-  "name": "update",
-  "description": "Update tool",
-  "contexts": ["recipe"],
-  "contextFree": true
-}
