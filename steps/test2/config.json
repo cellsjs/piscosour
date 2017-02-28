@@ -6,12 +6,10 @@
   "isTest": true,
   "requirements": {
     "pisco" : {
-      "pkg" : "piscosour",
-      "version" : "^1.0.0-alpha.1"
+      "installer" : "npm",
+      "pkg" : "piscosour"
     },
-    "cordova" : {
-      "version" : "5.4.1"
-    },
+    "cordova" : {},
     "yo" : {},
     "bower" : {}
   },

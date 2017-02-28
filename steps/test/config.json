@@ -4,9 +4,7 @@
   "contexts": "*",
   "isTest": true,
   "requirements": {
-    "cordova" : {
-      "version" : "5.4.1"
-    },
+    "cordova" : {},
     "yo" : {},
     "bower" : {}
   },
