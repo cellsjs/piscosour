@@ -17,38 +17,7 @@
       "skipper",
       "system-checker",
       "system-saver"
-    ],
-    "versions": {
-      "cordova" : {
-        "installer": "npm"
-      },
-      "bower" : {
-        "installer": "npm",
-        "list": "bower cache list",
-        "cmdInstaller": "bower install",
-        "regexp": "\\#(.*?)\\s"
-      },
-      "npm" : {
-        "list": "npm list -g --depth 0",
-        "regexp": "\\@(.*?)\\s",
-        "cmdInstaller": "npm install -g"
-      },
-      "yo": {
-        "installer": "npm",
-        "option": "--version"
-      },
-      "java": {
-        "option": "-version",
-        "regexp": "\"(.*?)_"
-      },
-      "sass": {
-        "regexp": "s (.*?) "
-      },
-      "git": {
-        "option": "--version",
-        "regexp": "n (.*?)\\n"
-      }
-    }
+    ]
   },
   "junitDir": "test-reports",
   "junitPiscoFile": "pisco-junit.xml",
