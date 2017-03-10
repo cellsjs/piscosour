@@ -51,6 +51,7 @@
     "marked-terminal": "^1.6.1",
     "moment": "^2.10.6",
     "nopt": "^3.0.6",
+    "pisco-requirements": "*",
     "pisco-contexts": "^0.2.0",
     "pisco-site-template-basic": "^0.2.0",
     "rimraf": "^2.5.2",
