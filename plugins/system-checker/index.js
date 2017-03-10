@@ -105,15 +105,9 @@ module.exports = {
         ok(out);
       }
     });
-    const _installable = (cmd, option) => {
-      let p = option.uri ? `git+${option.uri}` : (option.pkg ? option.pkg : cmd);
-      const versionchar = option.uri ? '#' : '@';
-      p = option.version ? `${p}${versionchar}${option.version}` : p;
-      return p;
-    };
     const _install = (cmd, option) => {
       this.logger.info('#cyan', cmd, 'is required -> ', '#green', cmd, 'is installing...');
-      const installable = _installable(cmd, option);
+      const installable = this._installable(cmd, option);
 
       let res = this.sh(`${option.cmdInstaller} ${installable}`, null, true);
       if (res.status !== 0) {
@@ -142,6 +136,15 @@ module.exports = {
         );
       });
       return Promise.all(promises);
+    }
+  },
+
+  addons: {
+    _installable(cmd, option){
+      let p = option.uri ? `git+${option.uri}` : (option.pkg ? option.pkg : cmd);
+      const versionchar = option.uri ? '#' : '@';
+      p = option.version ? `${p}${versionchar}${option.version}` : p;
+      return p;
     }
   }
 };
