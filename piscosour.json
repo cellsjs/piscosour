@@ -19,6 +19,9 @@
       "system-saver"
     ],
     "versions": {
+      "cordova" : {
+        "installer": "npm"
+      },
       "bower" : {
         "installer": "npm",
         "list": "bower cache list",
