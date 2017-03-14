@@ -33,8 +33,8 @@ module.exports = {
       }
       return version;
     };
-    const _cachedExec = (command) => {
-      let result = cache[command];
+    const _cachedExec = (command, noCache) => {
+      let result = noCache ? false : cache[command];
       if (!result) {
         result = new Promise((ok, ko) => {
           this.logger.info('Waiting for', '#green', command, '...');
@@ -47,12 +47,12 @@ module.exports = {
       }
       return result;
     };
-    const _sh = (cmd, options) => {
+    const _sh = (cmd, options, noCache) => {
       if (options.listedIn) {
         const father = this.params.requirements[options.listedIn];
         if (father && father.list) {
           this.logger.trace('Getting list for', cmd);
-          return _cachedExec(father.list);
+          return _cachedExec(father.list, noCache);
         } else {
           return Promise.reject({error: `There is no definition for listing in ${options.listedIn}`});
         }
@@ -63,7 +63,7 @@ module.exports = {
             stderr: 'uncheckable'
           };
         } else {
-          return _cachedExec(options.version ? `${cmd} ${option}` : cmd);
+          return _cachedExec(options.version ? `${cmd} ${option}` : cmd, noCache);
         }
       }
     };
@@ -108,12 +108,8 @@ module.exports = {
     const _install = (cmd, option) => {
       this.logger.info('#cyan', cmd, 'is required -> ', '#green', cmd, 'is installing...');
       const installable = this._installable(cmd, option);
-
-      let res = this.sh(`${option.cmdInstaller} ${installable}`, null, true);
-      if (res.status !== 0) {
-        throw {error: `impossible to install ${installable} using ${option.cmdInstaller}`};
-      }
-      return true;
+      const cmds = option.cmdInstaller.split(' ');
+      return this.execute(cmds[0], cmds.slice(1).concat([ installable ]));
     };
 
     if (this.params.requirements && (!this.params.disableSystemCheck || this.params.disableSystemCheck === 'null')) {
@@ -128,7 +124,9 @@ module.exports = {
           .catch((checked) => {
             if (options.installer && this.params.requirements[options.installer]) {
               options.cmdInstaller = this.params.requirements[options.installer].cmdInstaller;
-              _install(cmd, options);
+              return _install(cmd, options)
+                .then(() => _sh(cmd, options, true))
+                .then((_result) => _check(cmd, options, _result));
             } else if (!this.params.neverStop) {
               throw checked;
             }
