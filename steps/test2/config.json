@@ -4,7 +4,7 @@
   "contexts": "*",
   "isGenerator": true,
   "isTest": true,
-  "requirements": {
+  "requirements_": {
     "pisco" : {
       "installer" : "npm",
       "pkg" : "piscosour"
