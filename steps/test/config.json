@@ -4,6 +4,35 @@
   "contexts": "*",
   "isTest": true,
   "requirements_": {
+    "bower-art-resolver": {
+      "version": "^2.0.0",
+      "installer": "npm",
+      "listedIn": "npm",
+      "uri": "bower-art-resolver"
+    },
+    "android": {
+      "uncheckable": true
+    },
+    "xcode-select": {
+      "uncheckable": true
+    },
+    "security": {
+      "uncheckable": true
+    },
+    "iconset-generator": {
+      "version": "^1.0.2",
+      "installer": "npm",
+      "listedIn": "npm"
+    },
+    "generator-component-cells": {
+      "version": "^3.0.0",
+      "installer": "npm",
+      "listedIn": "npm"
+    },
+    "smoke-testing-requirements": {
+      "version": "^0.1.0",
+      "uncheckable": true
+    },
     "chrome" : {},
     "docker" : {},
     "cordova" : {},
