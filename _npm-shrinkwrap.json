@@ -1,6 +1,6 @@
 {
   "name": "piscosour",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "dependencies": {
     "async": {
       "version": "2.1.5",
@@ -147,7 +147,7 @@
           "dependencies": {
             "extend": {
               "version": "3.0.0",
-              "from": "extend@>=3.0.0 <3.1.0",
+              "from": "extend@>=3.0.0 <4.0.0",
               "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/extend/-/extend-3.0.0.tgz"
             },
             "spawn-sync": {
@@ -171,9 +171,9 @@
                       "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/typedarray/-/typedarray-0.0.6.tgz"
                     },
                     "readable-stream": {
-                      "version": "2.2.3",
+                      "version": "2.2.6",
                       "from": "readable-stream@>=2.2.2 <3.0.0",
-                      "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/readable-stream/-/readable-stream-2.2.3.tgz",
+                      "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/readable-stream/-/readable-stream-2.2.6.tgz",
                       "dependencies": {
                         "buffer-shims": {
                           "version": "1.0.0",
@@ -417,8 +417,8 @@
       "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/pisco-contexts/-/pisco-contexts-0.2.0.tgz"
     },
     "pisco-requirements": {
-      "version": "0.1.0",
-      "from": "pisco-requirements@>=0.1.0 <0.2.0"
+      "version": "0.1.3",
+      "from": "pisco-requirements@*"
     },
     "pisco-site-template-basic": {
       "version": "0.2.2",
@@ -551,7 +551,7 @@
             },
             "extend": {
               "version": "3.0.0",
-              "from": "extend@>=3.0.0 <3.1.0",
+              "from": "extend@>=3.0.0 <4.0.0",
               "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/extend/-/extend-3.0.0.tgz"
             },
             "forever-agent": {
@@ -577,9 +577,9 @@
               "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/har-validator/-/har-validator-4.2.1.tgz",
               "dependencies": {
                 "ajv": {
-                  "version": "4.11.4",
+                  "version": "4.11.5",
                   "from": "ajv@>=4.9.1 <5.0.0",
-                  "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/ajv/-/ajv-4.11.4.tgz",
+                  "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/ajv/-/ajv-4.11.5.tgz",
                   "dependencies": {
                     "co": {
                       "version": "4.6.0",
@@ -645,10 +645,15 @@
                   "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/assert-plus/-/assert-plus-0.2.0.tgz"
                 },
                 "jsprim": {
-                  "version": "1.3.1",
+                  "version": "1.4.0",
                   "from": "jsprim@>=1.2.2 <2.0.0",
-                  "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/jsprim/-/jsprim-1.3.1.tgz",
+                  "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/jsprim/-/jsprim-1.4.0.tgz",
                   "dependencies": {
+                    "assert-plus": {
+                      "version": "1.0.0",
+                      "from": "assert-plus@1.0.0",
+                      "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/assert-plus/-/assert-plus-1.0.0.tgz"
+                    },
                     "extsprintf": {
                       "version": "1.0.2",
                       "from": "extsprintf@1.0.2",
@@ -1127,9 +1132,9 @@
                       "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/read-all-stream/-/read-all-stream-3.1.0.tgz"
                     },
                     "readable-stream": {
-                      "version": "2.2.3",
-                      "from": "readable-stream@>=2.0.5 <3.0.0",
-                      "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/readable-stream/-/readable-stream-2.2.3.tgz",
+                      "version": "2.2.6",
+                      "from": "readable-stream@>=2.2.2 <3.0.0",
+                      "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/readable-stream/-/readable-stream-2.2.6.tgz",
                       "dependencies": {
                         "buffer-shims": {
                           "version": "1.0.0",
@@ -1199,7 +1204,7 @@
                   "dependencies": {
                     "rc": {
                       "version": "1.1.7",
-                      "from": "rc@>=1.1.6 <2.0.0",
+                      "from": "rc@>=1.0.1 <2.0.0",
                       "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/rc/-/rc-1.1.7.tgz",
                       "dependencies": {
                         "deep-extend": {
@@ -1233,7 +1238,7 @@
                   "dependencies": {
                     "rc": {
                       "version": "1.1.7",
-                      "from": "rc@>=1.1.6 <2.0.0",
+                      "from": "rc@>=1.0.1 <2.0.0",
                       "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/rc/-/rc-1.1.7.tgz",
                       "dependencies": {
                         "deep-extend": {
