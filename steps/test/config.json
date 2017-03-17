@@ -4,6 +4,9 @@
   "contexts": "*",
   "isTest": true,
   "requirements_": {
+    "java": {
+      "version": "^1.8.0"
+    },
     "bower-art-resolver": {
       "version": "^2.0.0",
       "installer": "npm",
