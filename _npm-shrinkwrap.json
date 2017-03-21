@@ -1,6 +1,6 @@
 {
   "name": "piscosour",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "dependencies": {
     "async": {
       "version": "2.1.5",
@@ -395,9 +395,9 @@
       }
     },
     "moment": {
-      "version": "2.17.1",
-      "from": "moment@>=2.10.6 <3.0.0",
-      "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/moment/-/moment-2.17.1.tgz"
+      "version": "2.18.0",
+      "from": "moment@2.18.0",
+      "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/moment/-/moment-2.18.0.tgz"
     },
     "nopt": {
       "version": "3.0.6",
@@ -412,9 +412,9 @@
       }
     },
     "pisco-contexts": {
-      "version": "0.2.0",
-      "from": "pisco-contexts@>=0.2.0 <0.3.0",
-      "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/pisco-contexts/-/pisco-contexts-0.2.0.tgz"
+      "version": "1.0.0",
+      "from": "pisco-contexts@1.0.0",
+      "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/pisco-contexts/-/pisco-contexts-1.0.0.tgz"
     },
     "pisco-requirements": {
       "version": "0.1.3",
