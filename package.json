@@ -1,6 +1,6 @@
 {
   "name": "piscosour",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "The adhesive orchestrator",
   "main": "index.js",
   "homepage": "https://github.com/cellsjs/piscosour",
