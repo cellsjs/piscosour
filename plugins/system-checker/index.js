@@ -30,7 +30,8 @@ module.exports = {
             if (options.installer && this.params.requirements[options.installer]) {
               options.cmdInstaller = this.params.requirements[options.installer].cmdInstaller;
               return _install(cmd, options)
-                .then(() => requirements.sh(cmd, options, father, true))
+                .then(() => requirements.sh(cmd, options, father, true)
+                  .catch((e) => this.logger.trace('ignored error! ->', e)))
             } else if (!this.params.neverStop) {
               throw checked;
             }
