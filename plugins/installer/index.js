@@ -1,8 +1,10 @@
 'use strict';
 
+
 const fs = require('fs');
 const path = require('path');
 
+const _ = require('lodash');
 const semver = require('semver');
 
 const requirements = require('../../lib/utils/requirements');
@@ -14,7 +16,7 @@ module.exports = {
 
   'core-install': function() {
     const getRequirement = (pkg, installable) => {
-      const cmd = pkg;  
+      const cmd = pkg;
       const options = {
         installer: 'npm',
         listedIn: 'npm'
@@ -26,22 +28,24 @@ module.exports = {
       } else {
         options.uri = installable;
       }
-      
+
       return { cmd, options, father };
     };
 
 
     const installRequirement = (requirement) => {
       const cmd = requirement.cmd;
-      const options = requirement.options;
       const father = requirement.father;
+      const options = _.merge({},
+        requirement.options,
+        requirement.father);
 
       return Promise.resolve()
         .then(() => requirements.sh(cmd, options, father))
         .then(result => requirements.check(cmd, options, result, father))
         .catch((checked) => {
-          return this.systemInstall(cmd, father)
-            .then(() => requirements.sh(cmd, options, father, true))
+          return this.systemInstall(cmd, options)
+            .then(() => requirements.sh(cmd, options, father, true));
         });
     };
 
