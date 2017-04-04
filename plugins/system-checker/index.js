@@ -4,18 +4,11 @@
 
 const requirements = require('../../lib/utils/requirements');
 
+
 module.exports = {
   description: 'System requirements checker',
 
   'core-check': function() {
-
-    const _install = (cmd, option) => {
-      this.logger.info('#cyan', cmd, 'is required -> ', '#green', cmd, 'is installing...');
-      const installable = this.systemInstallable(cmd, option);
-      const cmds = option.cmdInstaller.split(' ');
-      return this.execute(cmds[0], cmds.slice(1).concat([ installable ]));
-    };
-
     if (this.params.requirements && (!this.params.disableSystemCheck || this.params.disableSystemCheck === 'null')) {
       const tmp = this.params.requirements;
       this.params.requirements = this.piscoConfig.mergeObject(this.params.versions, this.params.requirements);
@@ -29,7 +22,7 @@ module.exports = {
           .catch((checked) => {
             if (options.installer && this.params.requirements[options.installer]) {
               options.cmdInstaller = this.params.requirements[options.installer].cmdInstaller;
-              return _install(cmd, options)
+              return this.systemInstall(cmd, options)
                 .then(() => requirements.sh(cmd, options, father, true))
             } else if (!this.params.neverStop) {
               throw checked;
@@ -42,11 +35,18 @@ module.exports = {
   },
 
   addons: {
-    systemInstallable(cmd, option){
+    systemInstallable(cmd, option) {
       let p = option.uri ? `git+${option.uri}` : (option.pkg ? option.pkg : cmd);
       const versionchar = option.uri ? '#' : '@';
       p = option.version ? `${p}${versionchar}${option.version}` : p;
       return p;
+    },
+
+    systemInstall(cmd, option) {
+      this.logger.info('#cyan', cmd, 'is required -> ', '#green', cmd, 'is installing...');
+      const installable = this.systemInstallable(cmd, option);
+      const cmds = option.cmdInstaller.split(' ');
+      return this.execute(cmds[0], cmds.slice(1).concat([ installable ]));
     }
   }
 };
