@@ -1,6 +1,7 @@
 ---
 title: Get Started
 layout: doc_page.html
+order: 2
 ---
 
 # Installation
