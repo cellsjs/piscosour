@@ -6,7 +6,7 @@ order: 1
 
 # Contexts
 
-The `contexts` define ***where*** and ***when*** can be executed.
+The `contexts` define ***where*** and ***when*** pisco can be executed.
 
 Contexts are implemented with three files in the recipe:
 
@@ -16,7 +16,7 @@ Contexts are implemented with three files in the recipe:
 -rwxr-xr-x    1 pisco  staff   contexts/context-name/info.md
 ```
 
-Where the `config.json` file has the configuration, `info.md` explain and document the context, and `index.js` has the implementation of the context.
+Where the `config.json` file has the configuration, `info.md` explains and documents the context, and `index.js` has the implementation of the context.
 
 Note, it exists a [scaffold generator tool](#scaffold)
 
@@ -35,7 +35,7 @@ The contexts are described by two fields:
 
 ### `name` property
 
-A short name of the context, it must be descriptive and unique.
+A short name for the context, it should be descriptive and unique.
 
 - It is mandatory
 - String type expected
@@ -49,7 +49,7 @@ It is a short description about the context.
 
 ## `index.js` implementation
 
-The `index.js` file implements a `checks` function which defines the context. Please, replace it with the following content:
+The `index.js` file implements a `check()` function which defines the context. Please, replace it with the following content:
 
 ```javascript
 'use strict';
@@ -82,7 +82,7 @@ The description about the context.
 
 ## <a name="scaffold"></a>Scaffold generator
 
-Pisco provides a scaffold generator. Launch it placed inside your recipe with:
+Pisco provides a scaffold generator. You can launch it by executing these commands:
 
 ```sh
 $ cd your-recipe
