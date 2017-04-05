@@ -14,23 +14,21 @@ Is a framework to manage processes workflows or pipelines. Gets all command line
 - Does not replace other tools (like yeoman, gulp or grunt), coexists with them.
 - Pisco is built over [nodejs](https://nodejs.org/) language.
 
-Go to [get started](get_started.md) to build your first recipe with piscosour.
+## Why Piscosour
 
-# Why Piscosour
-
-## Composite Pattern
+### Composite Pattern
 
 Piscosour uses composite pattern. the composite pattern is a partitioning design pattern. The composite pattern describes that a group of objects is to be treated in the same way as a single instance of an object. The intent of a composite is to "compose" objects into tree structures to represent part-whole hierarchies. Implementing the composite pattern lets clients treat individual objects and compositions uniformly.
 
-## Multi development
+### Multi development
 
 It support large projects with a large number of developers working at the same time. It is a modular organization where every module is independent of each other. The same processes are shared between the same domain.
 
-## Reusability
+### Reusability
 
 Code reuse with common principles with code modularity, loose coupling, high cohesion, information hiding and separation of concerns in libraries or plugins.
 
-## Decoupled
+### Decoupled
 
 From any continuous integration environment like travis, jenkins, or bamboo. 
 - Allow to use different continuous integration environment for different processes according to the needs (ex. private code repository we can use jenkins and public repository with can use travis)
@@ -45,3 +43,5 @@ Install with [npm](https://npmjs.org) globally
 ```bash
 $ npm install -g piscosour
 ```
+
+Go to [get started](get_started.md) to build your first recipe with piscosour.
