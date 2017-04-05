@@ -4,7 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>fsutils</title>
+    <title>Plugins</title>
     <link rel="stylesheet" type="text/css" href="../../css/main.css">
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc=" crossorigin="anonymous"></script>
   </head>
@@ -95,7 +95,7 @@
                   
                   <li>
                     
-                    <a href="../../developers/guides/07-plugins.html">Plugins</a>
+                    <a href="../../developers/guides/07-plugins.html" class="selected">Plugins</a>
                     
                   </li>
                   
@@ -192,7 +192,7 @@
                     
                     <li>
                       
-                      <a href="../../developers/documents/fsutils.html" class="selected">fsutils</a>
+                      <a href="../../developers/documents/fsutils.html">fsutils</a>
                       
                     </li>
                     
@@ -297,106 +297,169 @@
         
       </aside>
       <article>
-        <h1 id="plugins-fsutils">Plugins: fsutils</h1>
-<h3 id="fs-plugin-fs-addons-for-piscosour-">fs plugin (fs addons for piscosour)</h3>
-<h4 id="this-fscreatedir">this.fsCreateDir</h4>
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h4 id="this-fsexists">this.fsExists</h4>
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h4 id="this-fsreadconfig">this.fsReadConfig</h4>
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h4 id="this-fsreadfile">this.fsReadFile</h4>
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h4 id="this-fscopydirfiltered">this.fsCopyDirFiltered</h4>
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h4 id="this-fscopyfilefiltered">this.fsCopyFileFiltered</h4>
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h4 id="this-fsappendbundle">this.fsAppendBundle</h4>
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
+        <h1 id="plugins">Plugins</h1>
+<p>Plugins are a mixin to help developers to reuse code and functionality between <a href="./02-steps.html">steps</a>.</p>
+<p>Plugins are implements with three files in the recipe:</p>
+<pre><code>-rwxr-xr-x    1 pisco  staff   plugins/plugin-name/config.json
+-rwxr-xr-x    1 pisco  staff   plugins/plugin-name/index.js
+-rwxr-xr-x    1 pisco  staff   plugins/plugin-name/info.md
+</code></pre><p>There is two ways to use plugins:</p>
+<ol>
+<li>Like a <a href="#hooks">stage hook</a> that is executed previously to the step.</li>
+<li>Like a <a href="#addons">addon</a>, this add functionality to the object <code>this</code>. </li>
+</ol>
+<p>Note, it exists a <a href="#scaffold">scaffold generator tool</a> that help to add a plugin to an existing receipt.</p>
+<h2 id="-config-json-configuration"><code>config.json</code> configuration</h2>
+<p>The <code>config.json</code> file has the definition of the step.</p>
+<p>Example:</p>
+<pre><code class="lang-json">{
+  &quot;name&quot;: &quot;sayHello&quot;,
+  &quot;description&quot;: &quot;Say Hello World&quot;
+}
+</code></pre>
+<p>Where the <code>config.json</code> file can configure the following fields:</p>
+<h3 id="-name-property"><code>name</code> property</h3>
+<p>Short name of the plugin, it must be descriptive and unique.</p>
+<ul>
+<li>It is mandatory</li>
+<li>String type expected</li>
+</ul>
+<h3 id="-description-property"><code>description</code> property</h3>
+<p>It is a short description about the plugin.</p>
+<ul>
+<li>It is mandatory</li>
+<li>String type expected</li>
+</ul>
+<h2 id="-index-js-implementation"><code>index.js</code> implementation</h2>
+<p>The <code>index.js</code> file implements the flow. The <a href="#scaffold">scaffold</a> generates a file like this:</p>
+<p>Example:</p>
+<pre><code class="lang-javascript">module.exports = {
+  check: function() {
+    this.logger.info(&#39;#blue&#39;, &#39;running check hook...&#39;, &#39;Check if all you need to execute this step exists&#39;);
+  },
+
+  config: function() {
+    this.logger.info(&#39;#yellow&#39;, &#39;running config hook...&#39;, &#39;Config the step to run&#39;);
+  },
+
+  run: function(ok, ko) {
+    this.logger.info(&#39;#black&#39;, &#39;running run hook...&#39;, &#39;Run the step&#39;);
+  },
+
+  prove: function() {
+    this.logger.info(&#39;#green&#39;, &#39;running proove hook...&#39;, &#39;Check if the step has run ok&#39;);
+  },
+
+  notify: function() {
+    this.logger.info(&#39;#grey&#39;, &#39;running notify hook...&#39;, &#39;Notify the end of the shot to someone or something&#39;);
+  },
+
+  emit: function() {
+    this.logger.info(&#39;#white&#39;, &#39;running emit hook...&#39;, &#39;Emit the result of the step to other steps. Allow communication between steps&#39;);
+  },
+
+  addons: {
+    testAddon: function(param1) {
+      this.logger.info(&#39;Test addon executed&#39;, param1);
+    }
+  }
+};
+</code></pre>
+<h3 id="-a-name-hooks-a-hooks"><a name="hooks"></a>Hooks</h3>
+<p>The hooks could be executed previously at every <a href="./04-stages.html">stages</a> of a <a href="./02-steps.html">step</a>.</p>
+<ol>
+<li><code>check</code>: check if all you need to execute this step exists.</li>
+<li><code>config</code>: config the step to run.</li>
+<li><code>run</code>: run main execution of the step.</li>
+<li><code>prove</code>: check if the step has run ok.</li>
+<li><code>notify</code>: notify the end of the shot to someone or something.</li>
+<li><p><code>emit</code>: emit the result of the step to other steps. Allow communication between steps.</p>
+</li>
+<li><p>When a hook is running <code>this</code> is a <a href="./02-steps.html">step</a> instance, so it could access (as the step) to all the properties and functions of <code>this</code></p>
+</li>
+<li>Hooks just can return a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">promise</a>. It is not allowed to return other type.</li>
+</ol>
+<p>Example:</p>
+<pre><code class="lang-javascript">module.exports = {
+  check: function() {
+    this.logger.info(&#39;#blue&#39;, &#39;Random Promise&#39;);
+    const promise = new Promise((resolve, reject) =&gt; {
+      setTimeout(() =&gt; {
+        Math.floor(Math.random() * 2) ?
+          resolve(&#39;OK :)&#39;) :
+          reject(&#39;KO :(&#39;)
+      }, 500);
+    });
+    return promise;
+  }
+}
+</code></pre>
+<h3 id="-a-name-addons-a-addons"><a name="addons"></a>Addons</h3>
+<p>The addons are methods added to the object <code>this</code>.</p>
+<p>Example:</p>
+<p><code>plugins/plugin-sample/index.js</code>:</p>
+<pre><code class="lang-javascript">module.exports = {
+  addons: {
+    testAddon: function(param1) {
+      this.logger.info(&#39;Test addon executed&#39;, param1);
+    }
+  }
+};
+</code></pre>
+<p>Then, in a step or another plugin, it can be executed <code>this.testAddon</code>.</p>
+<h2 id="configuring-plugins-for-a-step-02-steps-md-">Configuring Plugins for a <a href="./02-steps.html">Step</a></h2>
+<p>Example:</p>
+<h3 id="creating-a-plugin">Creating a plugin</h3>
+<p>First create a plugin <code>plugin-sample</code> and the files (see <a href="#scaffold">scaffold</a>):</p>
+<ul>
+<li><code>plugins/plugin-sample/index.js</code>:</li>
+</ul>
+<pre><code class="lang-javascript">module.exports = {
+  addons: {
+    testAddon: function(param1) {
+      this.logger.info(&#39;Test addon executed&#39;, param1);
+    }
+  }
+};
+</code></pre>
+<ul>
+<li><code>plugins/plugin-sample/config.json</code>:</li>
+</ul>
+<pre><code class="lang-json">{
+  &quot;name&quot;: &quot;plugin-sample&quot;,
+  &quot;description&quot;: &quot;a example of plugin&quot;
+}
+</code></pre>
+<h3 id="configuring-the-step">Configuring the step</h3>
+<p>Then, if the plugin is an external dependency, check if it is defined in the <code>package.json</code> file.</p>
+<pre><code class="lang-sh">$ npm install plugin-sample --save
+</code></pre>
+<p>In any case, you must configure the <code>plugins</code> field in <code>config.json</code> file:</p>
+<pre><code class="lang-json">{
+  &quot;name&quot;: &quot;stepSample&quot;,
+  &quot;description&quot;: &quot;description of stepSample&quot;,
+  &quot;contexts&quot;: [ &quot;contextSample&quot; ],
+  &quot;plugins&quot;: [ &quot;plugin-sample&quot; ]
+}
+</code></pre>
+<p>Finally you can use <code>this.testAddon</code> in any stage of the <a href="./02-steps.html">step</a>.</p>
+<pre><code class="lang-javascript">module.exports = {
+  run: function(ok, ko) {
+    this.testAddon(&#39;sample&#39;);
+    return;
+  }
+};
+</code></pre>
+<h2 id="guidelines">Guidelines</h2>
+<ol>
+<li>Create a namespace. it is advisable to create commons related plugins within a single recipe.</li>
+<li>Prefix the plugin functions with the common namespace.</li>
+</ol>
+<h2 id="-a-name-scaffold-a-scaffold-generator"><a name="scaffold"></a>Scaffold generator</h2>
+<p>Pisco provides a scaffold generator. Launch it placed inside your recipe with:</p>
+<pre><code class="lang-sh">$ cd your-recipe
+$ pisco recipe:add-plugin
+</code></pre>
 
       </article>
     </section>

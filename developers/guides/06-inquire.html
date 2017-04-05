@@ -4,7 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>fsutils</title>
+    <title>Inquire</title>
     <link rel="stylesheet" type="text/css" href="../../css/main.css">
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc=" crossorigin="anonymous"></script>
   </head>
@@ -89,7 +89,7 @@
                   
                   <li>
                     
-                    <a href="../../developers/guides/06-inquire.html">Inquire</a>
+                    <a href="../../developers/guides/06-inquire.html" class="selected">Inquire</a>
                     
                   </li>
                   
@@ -192,7 +192,7 @@
                     
                     <li>
                       
-                      <a href="../../developers/documents/fsutils.html" class="selected">fsutils</a>
+                      <a href="../../developers/documents/fsutils.html">fsutils</a>
                       
                     </li>
                     
@@ -297,107 +297,125 @@
         
       </aside>
       <article>
-        <h1 id="plugins-fsutils">Plugins: fsutils</h1>
-<h3 id="fs-plugin-fs-addons-for-piscosour-">fs plugin (fs addons for piscosour)</h3>
-<h4 id="this-fscreatedir">this.fsCreateDir</h4>
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h4 id="this-fsexists">this.fsExists</h4>
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h4 id="this-fsreadconfig">this.fsReadConfig</h4>
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h4 id="this-fsreadfile">this.fsReadFile</h4>
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h4 id="this-fscopydirfiltered">this.fsCopyDirFiltered</h4>
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h4 id="this-fscopyfilefiltered">this.fsCopyFileFiltered</h4>
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h4 id="this-fsappendbundle">this.fsAppendBundle</h4>
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
+        <h1 id="inquire-parameters">Inquire parameters</h1>
+<p>To inquire parameters you must add the configuration in <code>prompts</code> field. This an array with customized parameters:</p>
+<pre><code class="lang-json">  &quot;prompts&quot;: [
+    {
+      &quot;type&quot;: &quot;input&quot;,
+      &quot;name&quot;: &quot;param1&quot;,
+      &quot;message&quot;: &quot;What is the value of param1&quot;
+    }, {
+      &quot;type&quot;: &quot;input&quot;,
+      &quot;name&quot;: &quot;param2&quot;,
+      &quot;message&quot;: &quot;What is the value of param2&quot;
+    }, {
+      &quot;type&quot;: &quot;input&quot;,
+      &quot;name&quot;: &quot;param3&quot;,
+      &quot;message&quot;: &quot;What is the value of param3&quot;
+    }
+  ]
+</code></pre>
+<p>See <a href="https://www.npmjs.com/package/inquirer">inquirer library</a> for more information.</p>
+<h2 id="fields-configuration">Fields configuration</h2>
+<p>The fields to configure each parameter are:</p>
+<h3 id="-type-field"><code>type</code> field</h3>
+<p>This is the type of the prompt.</p>
+<ul>
+<li>(String|<a href="#function">Function</a>) type is expected</li>
+<li>Optional. Default is <code>input</code></li>
+<li>Possible values: <code>input</code>, <code>confirm</code>, <code>list</code>, <code>rawlist</code>, <code>expand</code>, <code>checkbox</code>, <code>password</code>, <code>editor</code></li>
+</ul>
+<h3 id="-name-field"><code>name</code> field</h3>
+<p>Name of the this new prompt.</p>
+<ul>
+<li>String type is expected.</li>
+<li>Mandatory</li>
+</ul>
+<h3 id="-message-field"><code>message</code> field</h3>
+<p>The question to print. If defined as a <a href="#function">function</a>, the first parameter will be the current inquirer session answers.</p>
+<ul>
+<li>(String|<a href="#function">Function</a>) type expected</li>
+<li>Mandatory</li>
+</ul>
+<h3 id="-env-field"><code>env</code> field</h3>
+<p>A environment variable name, if it exists it will get its value and not prompt to the user about it.</p>
+<ul>
+<li>String type expected</li>
+<li>Optional</li>
+</ul>
+<h3 id="-required-field"><code>required</code> field</h3>
+<p>If it an optional parameters or not.</p>
+<ul>
+<li>Boolean type expected</li>
+<li>Optional</li>
+</ul>
+<h3 id="-default-field"><code>default</code> field</h3>
+<p>Default value(s) to use if nothing is entered, or a <a href="#function">function</a> that returns the default value(s). If defined as a function, the first parameter will be the current inquirer session answers.</p>
+<ul>
+<li>(String|Number|Array|<a href="#function">Function</a>) type expected</li>
+<li>Optional</li>
+</ul>
+<h3 id="-choices-"><code>choices</code></h3>
+<p>Choices array or a <a href="#function">function</a> returning a choices array. If defined as a <a href="#function">function</a>, the first parameter will be the current inquirer session answers. Array values can be simple strings, or objects containing a name (to display in list), a value (to save in the answers hash) and a short (to display after selection) properties. The choices array can also contain a Separator.</p>
+<ul>
+<li>(Array|<a href="#function">Function</a>) type expected</li>
+<li>Optional</li>
+</ul>
+<h3 id="-validate-field"><code>validate</code> field</h3>
+<p>Receive the user input and should return true if the value is valid, and an error message (String) otherwise. If false is returned, a default error message is provided.</p>
+<ul>
+<li><a href="#function">Function</a> type expected</li>
+</ul>
+<h3 id="-filter-field"><code>filter</code> field</h3>
+<p>Receive the user input and return the filtered value to be used inside the program. The value returned will be added to the Answers hash.</p>
+<ul>
+<li><a href="#function">Function</a> type expected</li>
+</ul>
+<h3 id="-when-field"><code>when</code> field</h3>
+<p>Receive the current user answers hash and should return true or false depending on whether or not this question should be asked. The value can also be a simple boolean.</p>
+<p>(<a href="#function">Function</a>, Boolean) type expected</p>
+<h3 id="-pagesize-field"><code>pageSize</code> field</h3>
+<p>Change the number of lines that will be rendered when using list, rawList, expand or checkbox.</p>
+<ul>
+<li>Number type expected</li>
+</ul>
+<h2 id="-a-name-function-a-function-type"><a name="function"></a>Function type</h2>
+<p>With the prefix <code>#</code> and followed by a function name (<code>#functionName</code>), it is possible to assign functions to some fields (<code>check</code>, <code>validate</code>, <code>choices</code>, ...)</p>
+<p>Example:</p>
+<pre><code class="lang-json">{
+  &quot;prompts&quot;: [
+    {
+      &quot;type&quot;: &quot;input&quot;,
+      &quot;name&quot;: &quot;param1&quot;,
+      &quot;message&quot;: &quot;#randomMessage&quot;
+    }
+  ]
+ }
+</code></pre>
+<p>Then in a step:</p>
+<pre><code class="lang-javascript">module.exports = {
+  randomMessage: function() {
+    const randomChoice = arr =&gt; {
+      const randIndex = Math.floor(Math.random() * arr.length);
+      return arr[randIndex];
+    };
+    return randomChoice([
+      &#39;Lorem Ipsum&#39;,
+      &#39;Neque porro quisquam est qui dolorem ipsum quia dolor sit amet&#39;,
+      &#39;consectetur&#39;,
+      &#39;adipisci velit&#39;]);
+  }
+}
+</code></pre>
+<p>Will return a random message to the User:</p>
+<pre><code>$ recipe-sample-randomMessage ::testRandomMessage
+[15:10:51] Execution contexts: [ contextTest ]
+[15:10:52] 
 
+ Starting | testRandom | [ contextTest::testRandomMessage ] 
+
+? Neque porro quisquam est qui dolorem ipsum quia dolor sit amet
+</code></pre>
       </article>
     </section>
     <script type="text/javascript" src="../../js/highlight.pack.js"></script>

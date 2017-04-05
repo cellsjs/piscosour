@@ -4,7 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Piscosour.json config file</title>
+    <title>Communication between steps</title>
     <link rel="stylesheet" type="text/css" href="../../css/main.css">
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc=" crossorigin="anonymous"></script>
   </head>
@@ -26,11 +26,17 @@
               <h4>General</h4>
               
                 
+                  
+                    <a href="../../developers/what_is_piscosour.html">What is piscosour</a>
+                  
+                
               
                 
                   
-                    <a href="../../developers/get_started.html">Getting started</a>
+                    <a href="../../developers/get_started.html">Get started</a>
                   
+                
+              
                 
               
                 
@@ -48,76 +54,84 @@
                 
               
                 
+              
+                
                   
                   <li>
                     
-                    <a href="../../developers/guides/configuration.html" class="selected">Piscosour.json config file</a>
+                    <a href="../../developers/guides/01-contexts.html">Contexts</a>
                     
                   </li>
                   
                   <li>
                     
-                    <a href="../../developers/guides/analytics.html">Google Analytics Integration</a>
+                    <a href="../../developers/guides/02-steps.html">Steps</a>
                     
                   </li>
                   
                   <li>
                     
-                    <a href="../../developers/guides/api.html">API</a>
+                    <a href="../../developers/guides/03-flows.html">Flows</a>
                     
                   </li>
                   
                   <li>
                     
-                    <a href="../../developers/guides/0.2.0_migration_guide.html">Migrate from 0.1.0 version to 0.2.0 version</a>
+                    <a href="../../developers/guides/04-stages.html">Stages</a>
                     
                   </li>
                   
                   <li>
                     
-                    <a href="../../developers/guides/convert_to_recipe.html">Transform a node-module to recipe</a>
+                    <a href="../../developers/guides/05-parameters.html">Parameters</a>
                     
                   </li>
                   
                   <li>
                     
-                    <a href="../../developers/guides/Load_Parameters.html">Load Parameters</a>
+                    <a href="../../developers/guides/06-inquire.html">Inquire</a>
                     
                   </li>
                   
                   <li>
                     
-                    <a href="../../developers/guides/packaging.html">Best practices</a>
+                    <a href="../../developers/guides/07-plugins.html">Plugins</a>
                     
                   </li>
                   
                   <li>
                     
-                    <a href="../../developers/guides/Parameters_between_shots.html">Communication between steps</a>
+                    <a href="../../developers/guides/08-parameters_between_steps.html" class="selected">Communication between steps</a>
                     
                   </li>
                   
                   <li>
                     
-                    <a href="../../developers/guides/plugins.html">Plugins</a>
+                    <a href="../../developers/guides/09-steps-advanced.html">Advanced features in steps</a>
                     
                   </li>
                   
                   <li>
                     
-                    <a href="../../developers/guides/shots.html">Steps</a>
+                    <a href="../../developers/guides/10-requirements.html">Requirements</a>
                     
                   </li>
                   
                   <li>
                     
-                    <a href="../../developers/guides/straws.html">Flows</a>
+                    <a href="../../developers/guides/11-configuration.html">Receipt Configuration</a>
                     
                   </li>
                   
                   <li>
                     
-                    <a href="../../developers/guides/what_is_piscosour.html">What is piscosour</a>
+                    <a href="../../developers/guides/12-guidelines.html">Best practices</a>
+                    
+                  </li>
+                  
+                  <li>
+                    
+                    <a href="../../developers/guides/13-analytics.html">Google Analytics Integration</a>
                     
                   </li>
                   
@@ -139,10 +153,18 @@
                 
               
                 
+              
+                
                   
                   <li>
                     
-                    <a href="../../developers/tutorials/convert_to_recipe.html">Convert to recipe</a>
+                    <a href="../../developers/tutorials/pisco-website.html">Create WebSite Receipt</a>
+                    
+                  </li>
+                  
+                  <li>
+                    
+                    <a href="../../developers/tutorials/img-empty-submenu.png"></a>
                     
                   </li>
                   
@@ -155,6 +177,10 @@
             <li>
               <h4>Plugins</h4>
               <ul>
+                
+                  
+                
+                  
                 
                   
                     
@@ -242,8 +268,6 @@
                 
                   
                 
-                  
-                
               </ul>
             </li>
             
@@ -273,109 +297,52 @@
         
       </aside>
       <article>
-        <h1 id="el-fichero-de-configuraci-n-piscosour-json">El fichero de configuración piscosour.json</h1>
-<p>Este fichero se encuentra en la raiz de todas las recetas y configura todos los aspectos de la aplicación. La configuración es heredada por todas las recetas importada como paquete dentro de una receta.</p>
-<p><strong>La configuración efectiva es la mezcla de todas las configuraciones de todas las recetas</strong></p>
-<p>(se puede consultar la configuración efectiva de pisco ejecutando pisco -ov)</p>
-<p>El módulo Piscosour tiene un fichero de configuración más completo, que podrá ser sobreescrito por cualquier receta. El orden de prioridad en la carga de la configuración es el establecido en el articulo: <a href="Load_Parameters.md">Introducción de parámetros</a></p>
-<p>Este es el aspecto de piscosour.json del modulo piscosour</p>
-<pre><code class="lang-js">{
-  &quot;cmd&quot; : &quot;pisco&quot;,
-  &quot;params&quot; : {
-    &quot;plugins&quot; : [&quot;inquirer&quot;]
-  },
-  &quot;repoTypes&quot;: [
-    &quot;recipe&quot;
-  ],
-  &quot;defaultType&quot;: &quot;recipe&quot;,
-  &quot;junitDir&quot;: &quot;test-reports&quot;,
-  &quot;junitPiscoFile&quot;: &quot;pisco-junit.xml&quot;,
-  &quot;stages&quot;: [
-    &quot;check&quot;,
-    &quot;config&quot;,
-    &quot;run&quot;,
-    &quot;prove&quot;,
-    &quot;notify&quot;
-  ],
-  &quot;strawTypes&quot;: [
-    &quot;normal&quot;,
-    &quot;parallel&quot;,
-    &quot;utils&quot;,
-    &quot;internal&quot;
-  ]
-}
-</code></pre>
-<p>Las recetas solo deberán informar de la configuración que quieran añadir o sobreescribir. Este es el fichero piscosour.json tipo de una receta:</p>
-<pre><code class="lang-js">{
-    &quot;cmd&quot;: &quot;cells&quot;,
-    &quot;repoTypes&quot;: [
-        &quot;component&quot;
-    ],
-    &quot;defaultType&quot;: &quot;component&quot;
-}
-</code></pre>
-<h1 id="explicaci-n-de-cada-par-metro">Explicación de cada parámetro</h1>
-<ul>
-<li><strong>cmd</strong>: Es el comando utilizado para la ejecución de la receta cuando esta está instalada globalmente.</li>
-<li><strong>params</strong>: Son los parámetros globales pasados a todos los straws y shots de una receta. En nuestro ejemplo está definido un plugin a nivel global, este plugin será añadido en todos los shots de todas las recetas de pisco. <a href="Load_Parameters.md">Introducción de parámetros</a></li>
-<li><strong>repoTypes</strong>: Definición de los tipos de repositorio que soporta nuestra receta.</li>
-<li><strong>defaultType</strong>: Tipo de repositorio por defecto. Será el usado para la ejecución de comandos sin especificar tipo de repositorio.</li>
-</ul>
-<p>Si ejecutas</p>
-<pre><code>pisco create
-</code></pre><p>es como si estuviera ejecutando</p>
-<pre><code>pisco recipe:create
-</code></pre><p>sin embarcon en el ejemplo de abajo</p>
-<pre><code>cells create
-</code></pre><p>sería:</p>
-<pre><code>cells component:create
-</code></pre><ul>
-<li><strong>junitDir</strong>: Directorio donde se grabará el fichero junit.xml</li>
-<li><strong>junitPiscoFile</strong>: nombre del fichero junit.xml que se generará cuando se ejecute pisco con &quot;-u&quot;.</li>
-<li><strong>stages</strong>: Fases que recorrerán todos los shots de la receta. Estas fases serán llamadas en todos los shots si corresponden con functions. Se pueden añadir más fases a las preestablecidas en el fichero raiz de pisco. <strong>Nunca eliminar</strong>
-Actualmente son :  &quot;check&quot;,  &quot;config&quot;,  &quot;run&quot;, &quot;prove&quot;, &quot;notify&quot;</li>
-</ul>
-<p>notese que corresponden con los métodos a implementar dentro de un shot:</p>
-<pre><code class="lang-js">    check : function(){
-        this.logger.info(&quot;#magenta&quot;,&quot;check&quot;,&quot;Check all pre-requisites for the execution&quot;);
-    },
-
-    config : function(){
-        this.logger.info(&quot;#magenta&quot;,&quot;config&quot;,&quot;Preparing params for main execution&quot;);
-    },
-
-    run : function(){
-        this.logger.info(&quot;#magenta&quot;,&quot;run&quot;,&quot;Run main execution&quot;);
-    },
-
-    prove : function(){
-        this.logger.info(&quot;#magenta&quot;,&quot;prove&quot;,&quot;Prove that the run execution was ok&quot;);
-    },
-
-    notify : function(){
-        this.logger.info(&quot;#magenta&quot;,&quot;notify&quot;,&quot;Recollect all execution information and notify&quot;);
+        <h1 id="parameters-transmision-between-steps-02-steps-md-">Parameters transmision between <a href="./02-steps.html">steps</a></h1>
+<p>Sometimes we need to emit generated parameter from a <a href="./02-steps.html">step</a> into another <a href="./02-steps.html">step</a>.</p>
+<h2 id="define-output-parameters">Define output parameters</h2>
+<p>There is a special stage in <a href="./02-steps.html">steps</a> called <strong>&#39;emit&#39;</strong>. The emit behaviour is wide different from other stages behaviours.</p>
+<ol>
+<li>Allways has to return an key:value object with the parameters we want to expose to others steps.</li>
+<li><strong>emit</strong> doesn&#39;t recive resolve and reject method so allways is synchronous</li>
+</ol>
+<p>As other stages <strong>emit</strong> is optional</p>
+<p>Example in any <code>steps/stepName/index.js</code>:</p>
+<pre><code class="lang-javascript">  emit: function() {
+    return {
+      param1: &quot;any text value&quot;,
+      param2: {
+        param3: &quot;thing&quot;,
+        param4: []
+      }
     }
+  }
 </code></pre>
-<p>si en un fichero piscosour.json se añade otra fase está será llamada si el shot la tiene implementado. Por ejemplo:</p>
-<pre><code class="lang-js">[...]
- &quot;stages&quot;: [&quot;final&quot;]
-[...]
-</code></pre>
-<p>será llamada después de la ultima fase notify.</p>
-<pre><code class="lang-js">[...]
-    final : function(){
-        this.logger.info(&quot;#magenta&quot;,&quot;notify&quot;,&quot;Recollect all execution information and notify&quot;);
-    }
-[...]
-</code></pre>
+<h2 id="connect-outputs-with-inputs-in-other-steps-">Connect outputs with inputs in other steps.</h2>
 <ul>
-<li><p><strong>strawTypes</strong>:</p>
-<pre><code>  &quot;normal&quot;,
-  &quot;utils&quot;,
-  &quot;internal&quot;
-</code></pre></li>
+<li>This is can be defined in the <a href="./03-flow.html">flow</a> configuration).</li>
+<li>Input are always set into <code>this.params</code>.</li>
+<li>Inputs only can get values from previous steps in the flow.</li>
 </ul>
-
+<p>Example:</p>
+<p>The following code in <code>flows/flowName/config.json</code> file:</p>
+<pre><code class="lang-javascript">  &quot;steps&quot; : {
+    &quot;test1&quot; : {},
+    &quot;test2&quot; : {
+      &quot;inputs&quot; : {
+        &quot;param5&quot; : {&quot;test1&quot;: &quot;param1&quot;}
+      }
+    }
+  }
+</code></pre>
+<p>Sets <code>this.params.param5</code> parameter of <code>test2</code> step, with the value of <code>this.params.param1</code> parameter emit by <code>test1</code>.</p>
+<p>So, the step <code>steps/step2/index.js</code> could have this code:</p>
+<pre><code class="lang-javascript">  run: function() {
+    console.log(this.params.param5);
+  }
+</code></pre>
+<p>That results in the console:</p>
+<pre><code>any text value
+</code></pre>
       </article>
     </section>
     <script type="text/javascript" src="../../js/highlight.pack.js"></script>

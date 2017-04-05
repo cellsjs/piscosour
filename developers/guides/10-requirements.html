@@ -4,7 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>system-checker</title>
+    <title>Requirements</title>
     <link rel="stylesheet" type="text/css" href="../../css/main.css">
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc=" crossorigin="anonymous"></script>
   </head>
@@ -113,7 +113,7 @@
                   
                   <li>
                     
-                    <a href="../../developers/guides/10-requirements.html">Requirements</a>
+                    <a href="../../developers/guides/10-requirements.html" class="selected">Requirements</a>
                     
                   </li>
                   
@@ -240,7 +240,7 @@
                     
                     <li>
                       
-                      <a href="../../developers/documents/system-checker.html" class="selected">system-checker</a>
+                      <a href="../../developers/documents/system-checker.html">system-checker</a>
                       
                     </li>
                     
@@ -297,109 +297,112 @@
         
       </aside>
       <article>
-        <h1 id="plugins-system-checker">Plugins: system-checker</h1>
-<h3 id="how-to-check-system-requirements-of-a-piscosour-command-">How to check system requirements of a piscosour command.</h3>
-<p>The system requirements are other commands that pisco needs for a pipeline execution. This plugin checks if everything is installed and ready to use by piscosour.</p>
-<h4 id="1-define-version-match-only-in-the-cases-where-could-be-diferent-">1. Define version match (Only in the cases where could be diferent)</h4>
-<p>By default version is taken asking the command with -v and assume that command return version plain without test.</p>
-<pre><code>bower -v 
-&amp;gt; 1.7.9
-</code></pre><p>But in some cases this is not true, in this cases you can define matches inside <strong>piscosour.json</strong>:  </p>
+        <h1 id="how-to-check-system-requirements-of-a-piscosour-command-">How to check system requirements of a piscosour command.</h1>
+<p>The system requirements are other commands that pisco needs for a <a href="./03-flows.html">flow</a> execution. This checks if everything is installed and ready to use by piscosour.</p>
+<h2 id="1-define-version-match-only-in-the-cases-where-could-be-different-">1. Define version match (Only in the cases where could be different)</h2>
+<p>By default, version is taken asking the command with -v and assume that command return version plain without test.</p>
+<p>Example with bower:</p>
+<pre><code class="lang-sh">$ bower -v 
+&gt; 1.7.9
+</code></pre>
+<p>But in some cases this is not true, in this cases you can define matches inside <strong>piscosour.json</strong>:  </p>
 <p>Example of piscosour.json</p>
-<pre><code>{
-  [...]  
-  &amp;quot;params&amp;quot;: {
-    [...]
-    &amp;quot;versions&amp;quot;: {
-      &amp;quot;java&amp;quot;: {
-        &amp;quot;option&amp;quot; : &amp;quot;-version&amp;quot;,
-        &amp;quot;regexp&amp;quot; : &amp;quot;\&amp;quot;(.*?)_&amp;quot;
-      },
-      [...]
-    },
-  [...]
-}
-</code></pre><p>By default this is the versions defined inside core:</p>
-<pre><code>    &amp;quot;versions&amp;quot;: {
-      &amp;quot;bower&amp;quot; : {
-        &amp;quot;npm&amp;quot;: true,
-        &amp;quot;list&amp;quot;: &amp;quot;bower cache list&amp;quot;,
-        &amp;quot;cmdInstaller&amp;quot;: &amp;quot;bower install&amp;quot;        
-      },
-      &amp;quot;npm&amp;quot; : {
-        &amp;quot;list&amp;quot;: &amp;quot;npm list -g --depth 0&amp;quot;,
-        &amp;quot;regexp&amp;quot;: &amp;quot;\\@(.*?)\\s&amp;quot;
-        &amp;quot;cmdInstaller&amp;quot;: &amp;quot;npm install -g&amp;quot;
-      },    
-      &amp;quot;java&amp;quot;: {
-        &amp;quot;option&amp;quot; : &amp;quot;-version&amp;quot;,
-        &amp;quot;regexp&amp;quot; : &amp;quot;\&amp;quot;(.*?)_&amp;quot;
-      },
-      &amp;quot;sass&amp;quot; : {
-        &amp;quot;regexp&amp;quot; : &amp;quot;s (.*?) &amp;quot;
-      },
-      &amp;quot;git&amp;quot;: {
-        &amp;quot;option&amp;quot; : &amp;quot;--version&amp;quot;,
-        &amp;quot;regexp&amp;quot; : &amp;quot;n (.*?)\\n&amp;quot;
+<pre><code class="lang-json">{
+  &quot;params&quot;: {
+    &quot;versions&quot;: {
+      &quot;java&quot;: {
+        &quot;option&quot; : &quot;-version&quot;,
+        &quot;regexp&quot; : &quot;\&quot;(.*?)_&quot;
       }
     }
-</code></pre><ul>
-<li><strong>key</strong> (for example &#39;java&#39;): is the command that you need inside your shot.</li>
+  }
+}
+</code></pre>
+<p>By default these are the versions defined inside core:</p>
+<pre><code class="lang-json">{
+  &quot;params&quot;: {
+    &quot;versions&quot;: {
+      &quot;bower&quot; : {
+        &quot;npm&quot;: true,
+        &quot;list&quot;: &quot;bower cache list&quot;,
+        &quot;cmdInstaller&quot;: &quot;bower install&quot;        
+      },
+      &quot;npm&quot; : {
+        &quot;list&quot;: &quot;npm list -g --depth 0&quot;,
+        &quot;regexp&quot;: &quot;\\@(.*?)\\s&quot;,
+        &quot;cmdInstaller&quot;: &quot;npm install -g&quot;
+      },    
+      &quot;java&quot;: {
+        &quot;option&quot; : &quot;-version&quot;,
+        &quot;regexp&quot; : &quot;\&quot;(.*?)_&quot;
+      },
+      &quot;sass&quot; : {
+        &quot;regexp&quot; : &quot;s (.*?) &quot;
+      },
+      &quot;git&quot;: {
+        &quot;option&quot; : &quot;--version&quot;,
+        &quot;regexp&quot; : &quot;n (.*?)\\n&quot;
+      }
+    }
+  }
+}
+</code></pre>
+<ul>
+<li><strong>key</strong> (for example &#39;java&#39;): is the command that you need inside your step.</li>
 <li><strong>option</strong>: (optional, default is &#39;-v&#39;) if version is set the way to check this version.</li>
 <li><strong>regexp</strong>: (optional) if version is on a string the way to extract only the version. Overwrite version defined on piscosour.json</li>
 <li><strong>list:</strong> (optional) command used to get a stdout to use the regexp function in orther to get the version of the item you want to check.</li>
 <li><strong>cmdInstaller:</strong> (optional) command used to install packages using this key (for example &#39;npm install -g&#39; or &#39;bower install&#39;)</li>
 </ul>
-<h5 id="list-tip">List tip</h5>
+<h3 id="list-tip">List tip</h3>
 <p>Useful when you want to check if some dependency is listed by any command. </p>
 <ol>
 <li>Set list in version (f.i. in npm)</li>
 <li>In any other requirement set listedIn: (f.i. module: set listedIn: npm)</li>
 </ol>
-<p>this pugling is going to check the version returned when the match with regexp is done.</p>
-<h4 id="2-define-system-requirements-in-all-your-shots-">2. Define system requirements in all your shots.</h4>
-<p>The system requirements are defined in <strong>params.json</strong> file inside every shot.</p>
+<h2 id="2-define-system-requirements-in-all-your-steps-">2. Define system requirements in all your steps.</h2>
+<p>The system requirements are defined in <code>config.json</code> file inside every steps.</p>
 <p>-<strong>requirements</strong> All dependencies are defined inside requirements</p>
-<p>Example of params.json:</p>
-<pre><code>{
-  &amp;quot;requirements&amp;quot;: {
-    &amp;quot;polymer&amp;quot; : {
-      &amp;quot;installer&amp;quot;: &amp;quot;bower&amp;quot;,
-      &amp;quot;listedIn&amp;quot;: &amp;quot;bower&amp;quot;,
-      &amp;quot;uri&amp;quot;: &amp;quot;https://github.com/Polymer/polymer.git#v1.6.1&amp;quot;,
-      &amp;quot;regexp&amp;quot;: &amp;quot;=(.*?)&amp;quot;
+<p>Example of config.json:</p>
+<pre><code class="lang-json">{
+  &quot;requirements&quot;: {
+    &quot;polymer&quot; : {
+      &quot;installer&quot;: &quot;bower&quot;,
+      &quot;listedIn&quot;: &quot;bower&quot;,
+      &quot;uri&quot;: &quot;https://github.com/Polymer/polymer.git#v1.6.1&quot;,
+      &quot;regexp&quot;: &quot;=(.*?)&quot;
     },
-    &amp;quot;generator-pisco-recipe&amp;quot; : {
-      &amp;quot;installer&amp;quot;: &amp;quot;npm&amp;quot;,
-      &amp;quot;listedIn&amp;quot;: &amp;quot;npm&amp;quot;,
-      &amp;quot;version&amp;quot; : &amp;quot;0.0.2&amp;quot;
+    &quot;generator-pisco-recipe&quot; : {
+      &quot;installer&quot;: &quot;npm&quot;,
+      &quot;listedIn&quot;: &quot;npm&quot;,
+      &quot;version&quot; : &quot;0.0.2&quot;
     },
-    &amp;quot;pisco&amp;quot; : {
-      &amp;quot;installer&amp;quot;: &amp;quot;npm&amp;quot;,
-      &amp;quot;pkg&amp;quot; : &amp;quot;piscosour&amp;quot;,
-      &amp;quot;version&amp;quot; : &amp;quot;0.5.0&amp;quot;
+    &quot;pisco&quot; : {
+      &quot;installer&quot;: &quot;npm&quot;,
+      &quot;pkg&quot; : &quot;piscosour&quot;,
+      &quot;version&quot; : &quot;0.5.0&quot;
     },
-    &amp;quot;cordova&amp;quot; : {
-      &amp;quot;installer&amp;quot;: &amp;quot;npm&amp;quot;,
-      &amp;quot;version&amp;quot; : &amp;quot;5.4.1&amp;quot;
+    &quot;cordova&quot; : {
+      &quot;installer&quot;: &quot;npm&quot;,
+      &quot;version&quot; : &quot;5.4.1&quot;
     },
-    &amp;quot;yo&amp;quot; : {&amp;quot;npm&amp;quot;: true},
-    &amp;quot;bower&amp;quot; : {
-      &amp;quot;installer&amp;quot;: &amp;quot;npm&amp;quot;,
-      &amp;quot;version&amp;quot; : &amp;quot;1.7.9&amp;quot;
+    &quot;yo&quot; : {&quot;npm&quot;: true},
+    &quot;bower&quot; : {
+      &quot;installer&quot;: &quot;npm&quot;,
+      &quot;version&quot; : &quot;1.7.9&quot;
     },
-    &amp;quot;java&amp;quot;: {
-      &amp;quot;version&amp;quot;: &amp;quot;1.7.0&amp;quot;
+    &quot;java&quot;: {
+      &quot;version&quot;: &quot;1.7.0&quot;
     },
-    &amp;quot;sass&amp;quot; : {
-      &amp;quot;version&amp;quot;: &amp;quot;3.1.0&amp;quot;
+    &quot;sass&quot; : {
+      &quot;version&quot;: &quot;3.1.0&quot;
     }
-  },
-  [...]
+  }
 }
-</code></pre><p>This is the possible parameters that you need in order to define a system requirement.</p>
+</code></pre>
+<p>This is the possible parameters that you need in order to define a system requirement.</p>
 <ul>
-<li><strong>key</strong> (for example &#39;java&#39;): is the command that you need inside your shot.</li>
+<li><strong>key</strong> (for example &#39;java&#39;): is the command that you need inside your step.</li>
 <li><strong>installer</strong> (optional): package command, search inside requirements to check the cmdInstaller.</li>
 <li><strong>version</strong>: (optional) is the minimum version that you need for the command. Overwrite version defined on piscosour.json</li>
 <li><strong>option</strong>: (optional, default is &#39;-v&#39;) if version is set the way to check this version.</li>
@@ -408,22 +411,60 @@
 <li><strong>uri</strong>: (optional) only apply in npm commands. Uri of the git repo.</li>
 <li><strong>pkg</strong>: (optional) only apply in npm commands. Used when executable and pkg are different.</li>
 </ul>
-<h4 id="3-check-if-a-pisco-command-has-all-system-requirements-satisfied">3. Check if a pisco command has all system requirements satisfied</h4>
-<pre><code>cells component:validate --pstage core-check --b-disablePrompts --b-disableContextCheck
-</code></pre><p>Command explanation:</p>
+<h2 id="3-check-if-a-pisco-command-has-all-system-requirements-satisfied">3. Check if a pisco command has all system requirements satisfied</h2>
+<pre><code class="lang-sh">pisco context-sample:stepName --pstage core-check --b-disablePrompts --b-disableContextCheck
+</code></pre>
+<p>Where:</p>
 <ul>
-<li><strong>cells component:validate</strong>: is the pisco command that you want to check.</li>
+<li><strong>pisco context-sample:stepName</strong>: is the pisco command that you want to check.</li>
 <li><strong>--pstage core-check</strong>: this means that only the core-check stage is executed for all the pipeline. System requirements check is a <strong>pre-hook</strong> of the stage <strong>core-check</strong> so you have to execute only this stage.</li>
 <li><strong>--b-disablePrompts</strong>: disable all prompts for the command.</li>
 <li><strong>--b-disableContextCheck</strong>: disable context checks for commands that need one.</li>
 </ul>
-<p>this is the result of the execution for every shot that would have system requirements defined:</p>
-<pre><code>[12:14:32] java ( 1.7.0 ) is required -&amp;gt;  java ( 1.8.0_65 ) impossible to parse ... WARNING!
-[12:14:33] cordova ( 5.4.1 ) is required -&amp;gt;  cordova ( 5.4.1 ) is installed ... OK
-[12:14:34] yo ( any version ) is required -&amp;gt;  yo is installed ... OK
-[12:14:35] bower ( 1.0.0 ) is required -&amp;gt;  bower ( 1.7.7 ) is installed ... OK
-[12:14:35] sass ( 3.1.0 ) is required -&amp;gt;  sass ( 3.4.19 ) is installed ... OK
-</code></pre><p>If any system requirement is not satisfied the command will throw an error and stops...</p>
+<p>this is the result of the execution for every step that would have system requirements defined:</p>
+<pre><code class="lang-sh">[12:14:32] java ( 1.7.0 ) is required -&gt;  java ( 1.8.0_65 ) impossible to parse ... WARNING!
+[12:14:33] cordova ( 5.4.1 ) is required -&gt;  cordova ( 5.4.1 ) is installed ... OK
+[12:14:34] yo ( any version ) is required -&gt;  yo is installed ... OK
+[12:14:35] bower ( 1.0.0 ) is required -&gt;  bower ( 1.7.7 ) is installed ... OK
+[12:14:35] sass ( 3.1.0 ) is required -&gt;  sass ( 3.4.19 ) is installed ... OK
+</code></pre>
+<p>If any system requirement is not satisfied the command will throw an error and stops...</p>
+<h1 id="write-the-requirements-into-a-global-file-requirements-json-">Write the requirements into a global file &#39;requirements.json&#39;</h1>
+<pre><code class="lang-sh">cells component:validate --pstage check --b-saveRequirements --b-disablePrompts --b-disableContextCheck --b-disableSystemCheck
+</code></pre>
+<p>Command explanation:</p>
+<ul>
+<li><strong>cells component:validate</strong>: is the pisco command that you want to check.</li>
+<li><strong>--pstage check</strong>: this means that only the check stage is executed for all the pipeline. System requirements check is a <strong>pre-hook</strong> of the stage <strong>check</strong> so you have to execute only this stage.</li>
+<li><strong>--b-saveRequirements</strong>: tells pisco to save all system requirements in one file.</li>
+<li><strong>--b-disablePrompts</strong>: disable all prompts for the command. </li>
+<li><strong>--b-disableContextCheck</strong>: disable context checks for commands that need one.</li>
+<li><strong>--b-disableSystemCheck</strong>: disable system checks in order to avoid vicious cycle.</li>
+</ul>
+<p>this is the file resulting of the execution: the mix of all system requirements for all steps.</p>
+<pre><code class="lang-json">{
+  &quot;npm&quot;: {
+    &quot;module&quot;: &quot;generator-pisco-recipe&quot;,
+    &quot;version&quot;: &quot;0.0.2&quot;
+  },
+  &quot;java&quot;: {
+    &quot;version&quot;: &quot;1.7.0&quot;,
+    &quot;option&quot;: &quot;-version&quot;,
+    &quot;regexp&quot;: &quot;\&quot;(.*?)_&quot;
+  },
+  &quot;cordova&quot;: {
+    &quot;version&quot;: &quot;5.4.1&quot;
+  },
+  &quot;yo&quot;: {},
+  &quot;bower&quot;: {
+    &quot;version&quot;: &quot;1.0.0&quot;
+  },
+  &quot;sass&quot;: {
+    &quot;version&quot;: &quot;3.1.0&quot;,
+    &quot;regexp&quot;: &quot;s (.*?) &quot;
+  }
+}
+</code></pre>
 
       </article>
     </section>

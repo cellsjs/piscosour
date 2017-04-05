@@ -4,7 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>fsutils</title>
+    <title>Flows</title>
     <link rel="stylesheet" type="text/css" href="../../css/main.css">
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc=" crossorigin="anonymous"></script>
   </head>
@@ -71,7 +71,7 @@
                   
                   <li>
                     
-                    <a href="../../developers/guides/03-flows.html">Flows</a>
+                    <a href="../../developers/guides/03-flows.html" class="selected">Flows</a>
                     
                   </li>
                   
@@ -192,7 +192,7 @@
                     
                     <li>
                       
-                      <a href="../../developers/documents/fsutils.html" class="selected">fsutils</a>
+                      <a href="../../developers/documents/fsutils.html">fsutils</a>
                       
                     </li>
                     
@@ -297,106 +297,193 @@
         
       </aside>
       <article>
-        <h1 id="plugins-fsutils">Plugins: fsutils</h1>
-<h3 id="fs-plugin-fs-addons-for-piscosour-">fs plugin (fs addons for piscosour)</h3>
-<h4 id="this-fscreatedir">this.fsCreateDir</h4>
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h4 id="this-fsexists">this.fsExists</h4>
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h4 id="this-fsreadconfig">this.fsReadConfig</h4>
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h4 id="this-fsreadfile">this.fsReadFile</h4>
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h4 id="this-fscopydirfiltered">this.fsCopyDirFiltered</h4>
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h4 id="this-fscopyfilefiltered">this.fsCopyFileFiltered</h4>
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h4 id="this-fsappendbundle">this.fsAppendBundle</h4>
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
+        <h1 id="flows">Flows</h1>
+<p>Flows are a list of executed steps. A command are a flow for piscosour. The flows don&#39;t work over a <a href="./01-contexts.html">context</a>, <a href="./02-steps.html">step</a> do that, so flows can work over multiple steps, and different contexts. </p>
+<p>The flow execution is sequential, step by step, and step are executed for each context. Note that if a step is no defined for any context it is no executed.</p>
+<p>Flows are implements with three files in the recipe:</p>
+<pre><code>-rwxr-xr-x    1 pisco  staff   flows/flow-name/config.json
+-rwxr-xr-x    1 pisco  staff   flows/flow-name/info.md
+</code></pre><p>Where the <code>config.json</code> file has the configuration, <code>info.md</code> explain and document the flow.</p>
+<p>Note, it exists a <a href="#scaffold">scaffold generator tool</a></p>
+<h2 id="-config-json-configuration"><code>config.json</code> configuration</h2>
+<p>The <code>config.json</code> file has the definition of the flow. A example is:</p>
+<pre><code class="lang-json">{
+  &quot;name&quot;: &quot;Create from scratch&quot;,
+  &quot;description&quot;: &quot;Starting a repository from scratch&quot;,
+  &quot;type&quot;: &quot;normal&quot;,
+  &quot;isGenerator&quot;: true,
+  &quot;params&quot;: {
+    &quot;param1&quot;: &quot;value1&quot;,
+    &quot;param2&quot;: 2,
+    &quot;param3&quot;: true,
+    &quot;param4&quot;: { &quot;object1&quot;: &quot;value&quot; }
+  },
+  &quot;steps&quot;: {
+    &quot;step1&quot;: { &quot;param5&quot;: &quot;value5&quot; },
+    &quot;step2&quot;: {},
+    &quot;step3&quot;: {}
+  }
+}
+</code></pre>
+<p>In the <code>config.json</code> file could be configured the following fields:</p>
+<h3 id="-name-property"><code>name</code> property</h3>
+<p>Short name of the flow, it must be descriptive and unique.</p>
+<ul>
+<li>It is mandatory</li>
+<li>String type expected</li>
+</ul>
+<h3 id="-description-property"><code>description</code> property</h3>
+<p>It is a short description about the flow.</p>
+<ul>
+<li>It is mandatory</li>
+<li>String type expected</li>
+</ul>
+<h3 id="-type-property"><code>type</code> property</h3>
+<p>Type of the flows</p>
+<ul>
+<li>It is optional.</li>
+<li>String type expected.</li>
+<li>Two value options:<ol>
+<li><code>normal</code>: appears in the command list. It is the default value.</li>
+<li><code>internal</code>: doesn&#39;t appear int command list. It is for an internal purpose.</li>
+</ol>
+</li>
+</ul>
+<h3 id="-isgenerator-property"><code>isGenerator</code> property</h3>
+<p>If the steps creates a context, then this flag must be with a &#39;true&#39; value.</p>
+<ul>
+<li>It is optional</li>
+<li>The default value is &#39;false&#39;.</li>
+<li>Boolean type expected</li>
+</ul>
+<h3 id="-params-property"><code>params</code> property</h3>
+<p>Others customized paramaters, see <a href="./05-parameters.html">parameters</a> for more information.</p>
+<ul>
+<li>It is optional</li>
+<li>The default value is an empty array. <code>&quot;params&quot;: []&quot;</code></li>
+<li>Array of objects expected</li>
+</ul>
+<p>Example:</p>
+<pre><code class="lang-json">{
+  &quot;params&quot;: {
+    &quot;param1&quot;: &quot;value1&quot;,
+    &quot;param2&quot;: 2,
+    &quot;param3&quot;: true,
+    &quot;param4&quot;: { &quot;object1&quot;: &quot;value&quot; }
+  }
+}
+</code></pre>
+<h3 id="-a-name-parameters-a-understanding-parameters-in-flows"><a name="parameters"></a>Understanding parameters in flows</h3>
+<p>The &#39;config.json&#39; file of a flow has the following possibilities:</p>
+<p><strong>a. Common parameters for all steps</strong></p>
+<pre><code class="lang-json">{
+  &quot;params&quot;: {
+    &quot;param1&quot;: &quot;value1&quot;,
+    &quot;param2&quot;: &quot;value2&quot;,
+    &quot;param3&quot;: &quot;value3&quot;
+  }
+}
+</code></pre>
+<p><strong>b. Common parameters for all contexts in a specific step</strong></p>
+<pre><code class="lang-json">{
+  &quot;params&quot;: {},
+  &quot;steps&quot; : {
+    &quot;stepName&quot; : {
+      &quot;params&quot; : {
+        &quot;param1&quot;: &quot;value1&quot;,
+        &quot;param2&quot;: &quot;value2&quot;,
+        &quot;param3&quot;: &quot;value3&quot;,
+      }
+    }
+  }
+}
+</code></pre>
+<p><strong>c. Parameters for a specific step and context</strong></p>
+<pre><code class="lang-json">{
+  &quot;params&quot;: {},
+  &quot;steps&quot; : {
+    &quot;stepName&quot; : {
+      &quot;contextName&quot; : {
+        &quot;params&quot; : {
+          &quot;param1&quot;: &quot;value1&quot;,
+          &quot;param2&quot;: &quot;value2&quot;,
+          &quot;param3&quot;: &quot;value3&quot;
+        }
+      }
+    }
+  }
+}
+</code></pre>
+<p>Allways the parameters are available with <code>this.params</code>.</p>
+<p>Example:</p>
+<pre><code class="lang-javascript">module.export = {
+  run: function() {
+    console.log(
+      this.params.param1,
+      this.params.param2,
+      this.params.param3);
+  }
+}
+</code></pre>
+<p>The priority is (from high to low):</p>
+<ol>
+<li>Parameters for a specific step and context</li>
+<li>Common parameters for all contexts in a specific step</li>
+<li>Common parameters for all steps</li>
+</ol>
+<h3 id="-steps-property"><code>steps</code> property</h3>
+<p>List of sequential steps in the flow.</p>
+<ul>
+<li>It is mandatory</li>
+<li>Object with the list of step-key:config. Where <code>config</code> is an object that optionally contains:<ul>
+<li><code>type</code> which can be <code>flow</code> or <code>step</code> (step is default value)</li>
+<li><code>params</code> with the list of parameters of the step. See <a href="./05-parameters.html">parameters</a> for more information. <em>Please note that it isn&#39;t appropriate to use params into the configuration of the flow. Usually this must be configurated in the step <code>config.json</code> file. The recommendation is to use <code>params</code> just to overwrite a step parameter.</em></li>
+<li><code>input</code> to share in a steps a previously emitted parameter in another steps. Please see <a href="./08-parameters-between-steps">parameters between steps</a> for more information.</li>
+</ul>
+</li>
+</ul>
+<p>Example:</p>
+<pre><code class="lang-json">{
+  &quot;steps&quot; : {
+    &quot;step1&quot; : {},
+    &quot;step2&quot; : {
+      &quot;type&quot;: &quot;flow&quot;,
+      &quot;params&quot;: {
+        &quot;param1&quot; : &quot;value1&quot;
+      }
+    },
+    &quot;step2&quot;: {
+      &quot;input&quot;: {
+        &quot;key&quot;: { &quot;step3&quot; : &quot;value&quot; }
+      }
+    }
+  }
+}
+</code></pre>
+<h4 id="repeated-steps">Repeated steps</h4>
+<p>In some cases, it may be necessary to repeat the same step twice or more, with different parameters. Then it is possible to identify the step with a sufix separated with &#39;:&#39; character, like <code>step1:id1</code>.</p>
+<p>Example:</p>
+<pre><code class="lang-json">{
+  &quot;steps&quot;: {
+    &quot;mystep:first&quot;: {
+      &quot;params&quot;: {
+        &quot;myparam&quot;: &quot;value1&quot;
+      }
+    },
+    &quot;mystep:second&quot;: {
+      &quot;params&quot;: {
+        &quot;myparam&quot;: &quot;value2&quot;
+      }
+    }
+  }
+}
+</code></pre>
+<p>In the above example, <code>mystep</code> is executed twice with different <code>myparam</code> configuration. It is advisable that the suffix has a semantic value which describe the differences.</p>
+<h2 id="-a-name-scaffold-a-scaffold-generator"><a name="scaffold"></a>Scaffold generator</h2>
+<p>Pisco provides a scaffold generator. Launch it placed inside your recipe with:</p>
+<pre><code class="lang-sh">$ cd your-recipe
+$ pisco recipe:add-flow
+</code></pre>
 
       </article>
     </section>

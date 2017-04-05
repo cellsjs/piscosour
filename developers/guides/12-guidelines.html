@@ -4,7 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Communication between steps</title>
+    <title>Best practices</title>
     <link rel="stylesheet" type="text/css" href="../../css/main.css">
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc=" crossorigin="anonymous"></script>
   </head>
@@ -26,11 +26,17 @@
               <h4>General</h4>
               
                 
+                  
+                    <a href="../../developers/what_is_piscosour.html">What is piscosour</a>
+                  
+                
               
                 
                   
-                    <a href="../../developers/get_started.html">Getting started</a>
+                    <a href="../../developers/get_started.html">Get started</a>
                   
+                
+              
                 
               
                 
@@ -48,76 +54,84 @@
                 
               
                 
+              
+                
                   
                   <li>
                     
-                    <a href="../../developers/guides/configuration.html">Piscosour.json config file</a>
+                    <a href="../../developers/guides/01-contexts.html">Contexts</a>
                     
                   </li>
                   
                   <li>
                     
-                    <a href="../../developers/guides/analytics.html">Google Analytics Integration</a>
+                    <a href="../../developers/guides/02-steps.html">Steps</a>
                     
                   </li>
                   
                   <li>
                     
-                    <a href="../../developers/guides/api.html">API</a>
+                    <a href="../../developers/guides/03-flows.html">Flows</a>
                     
                   </li>
                   
                   <li>
                     
-                    <a href="../../developers/guides/0.2.0_migration_guide.html">Migrate from 0.1.0 version to 0.2.0 version</a>
+                    <a href="../../developers/guides/04-stages.html">Stages</a>
                     
                   </li>
                   
                   <li>
                     
-                    <a href="../../developers/guides/convert_to_recipe.html">Transform a node-module to recipe</a>
+                    <a href="../../developers/guides/05-parameters.html">Parameters</a>
                     
                   </li>
                   
                   <li>
                     
-                    <a href="../../developers/guides/Load_Parameters.html">Load Parameters</a>
+                    <a href="../../developers/guides/06-inquire.html">Inquire</a>
                     
                   </li>
                   
                   <li>
                     
-                    <a href="../../developers/guides/packaging.html">Best practices</a>
+                    <a href="../../developers/guides/07-plugins.html">Plugins</a>
                     
                   </li>
                   
                   <li>
                     
-                    <a href="../../developers/guides/Parameters_between_shots.html" class="selected">Communication between steps</a>
+                    <a href="../../developers/guides/08-parameters_between_steps.html">Communication between steps</a>
                     
                   </li>
                   
                   <li>
                     
-                    <a href="../../developers/guides/plugins.html">Plugins</a>
+                    <a href="../../developers/guides/09-steps-advanced.html">Advanced features in steps</a>
                     
                   </li>
                   
                   <li>
                     
-                    <a href="../../developers/guides/shots.html">Steps</a>
+                    <a href="../../developers/guides/10-requirements.html">Requirements</a>
                     
                   </li>
                   
                   <li>
                     
-                    <a href="../../developers/guides/straws.html">Flows</a>
+                    <a href="../../developers/guides/11-configuration.html">Receipt Configuration</a>
                     
                   </li>
                   
                   <li>
                     
-                    <a href="../../developers/guides/what_is_piscosour.html">What is piscosour</a>
+                    <a href="../../developers/guides/12-guidelines.html" class="selected">Best practices</a>
+                    
+                  </li>
+                  
+                  <li>
+                    
+                    <a href="../../developers/guides/13-analytics.html">Google Analytics Integration</a>
                     
                   </li>
                   
@@ -139,10 +153,18 @@
                 
               
                 
+              
+                
                   
                   <li>
                     
-                    <a href="../../developers/tutorials/convert_to_recipe.html">Convert to recipe</a>
+                    <a href="../../developers/tutorials/pisco-website.html">Create WebSite Receipt</a>
+                    
+                  </li>
+                  
+                  <li>
+                    
+                    <a href="../../developers/tutorials/img-empty-submenu.png"></a>
                     
                   </li>
                   
@@ -155,6 +177,10 @@
             <li>
               <h4>Plugins</h4>
               <ul>
+                
+                  
+                
+                  
                 
                   
                     
@@ -242,8 +268,6 @@
                 
                   
                 
-                  
-                
               </ul>
             </li>
             
@@ -273,51 +297,41 @@
         
       </aside>
       <article>
-        <h1 id="parameters-transmision-between-shots">Parameters transmision between shots</h1>
-<p>Sometimes we need a generated parameter in one shot into another shot. This is the way to do this.</p>
-<h2 id="define-output-parameters">Define output parameters</h2>
-<p>There is a special stage in shots called <strong>&#39;emit&#39;</strong>. The emit behaviour is wide different from other stages behaviours.</p>
+        <h1 id="piscosour-packaging-guidelines">Piscosour Packaging Guidelines</h1>
+<p>The maximun power of Piscosour is when everything is separated, so is very convenient to pack steps, flows or plugins as separate as possible.</p>
+<h2 id="-1-recipe-module">(1) Recipe module</h2>
+<p>Is a node module with steps / flows / (even plugins) inside. Has a bin/pisco.js script with the executable of the recipe.</p>
+<p>recipe module has this structure</p>
+<pre><code>| package.json
+| piscocour.json
+| bin | pisco.js
+| steps | &lt;stepName&gt; | &lt;repoType&gt; | step.js
+                                  | info.md
+                                  | params.js
+| flows | &lt;flowName&gt; | flow.json
+                       | info.md
+</code></pre><h2 id="-2-plugin-module">(2) Plugin module</h2>
+<p>If you want to share any kind of functionality between steps the best way to do this is using a plugin. Each plugin shout be package inside a independent node module in order to get maximun reuse capabilities.</p>
+<p>plugin module has this structure:</p>
+<pre><code>| package.json
+| piscocour.json
+| plugins | &lt;pluginName&gt; | plugin.js
+                         | info.md
+</code></pre><h2 id="wrappers-nomenclature">Wrappers nomenclature</h2>
+<p>When pisco wrapps any tool is a good practice to name the module this way:</p>
 <ol>
-<li>Allways has to return an key:value object with the parameters we want to expose to others shots.</li>
-<li><strong>emit</strong> doesn&#39;t recive resolve and reject method so allways is synchronous</li>
+<li>pisco-plugin-(toolName) (Plugin module with the tool functionality wrapped)</li>
+<li>pisco-(toolName) (Recipe module with the steps that use this tool)</li>
 </ol>
-<p>As other stages <strong>emit</strong> is optional</p>
-<p>Example in any shot.js:</p>
-<pre><code class="lang-js">    emit : function(){
-        return {
-            whatever : &quot;any text value&quot;,
-            whatevermore : {
-                some: &quot;thing&quot;,
-                someArray: []
-            }
-        }
-    }
-</code></pre>
-<h2 id="connect-outputs-with-inputs-in-other-shots-">Connect outputs with inputs in other shots.</h2>
+<p>For example if you want to wrapp the git functionality, the plugin has to be named this way:</p>
 <ul>
-<li>This is can be done only in <strong>straw.json</strong>.</li>
-<li>Input are always set into <strong>this.params</strong></li>
+<li>pisco-plugin-git</li>
 </ul>
-<p>straw.json example:</p>
-<pre><code class="lang-js">    [...]
+<p>The steps has to be inside a recipe with this name</p>
+<ul>
+<li>pisco-git</li>
+</ul>
 
-  &quot;shots&quot; : {
-    &quot;test1&quot; : {},
-    &quot;test2&quot; : {
-      &quot;inputs&quot; : {
-        &quot;inWhatever&quot; : {&quot;test1&quot;: &quot;whatever&quot;}
-      }
-    }
-
-    [...]
-</code></pre>
-<p>This example set <strong>this.params.inWhatever</strong> parameter of <strong>test2</strong> shot with the value of whatever output parameter emit by <strong>test1</strong> shot</p>
-<p><strong>(*) Important:</strong> Obviously inputs only can get values from previous shots.</p>
-<p>So in our example:</p>
-<pre><code>console.log(this.params.inWhatever)
-</code></pre><p>result:</p>
-<pre><code>any text value
-</code></pre>
       </article>
     </section>
     <script type="text/javascript" src="../../js/highlight.pack.js"></script>

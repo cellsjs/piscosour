@@ -4,7 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Flows</title>
+    <title>Stages</title>
     <link rel="stylesheet" type="text/css" href="../../css/main.css">
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc=" crossorigin="anonymous"></script>
   </head>
@@ -26,11 +26,17 @@
               <h4>General</h4>
               
                 
+                  
+                    <a href="../../developers/what_is_piscosour.html">What is piscosour</a>
+                  
+                
               
                 
                   
-                    <a href="../../developers/get_started.html">Getting started</a>
+                    <a href="../../developers/get_started.html">Get started</a>
                   
+                
+              
                 
               
                 
@@ -48,76 +54,84 @@
                 
               
                 
+              
+                
                   
                   <li>
                     
-                    <a href="../../developers/guides/configuration.html">Piscosour.json config file</a>
+                    <a href="../../developers/guides/01-contexts.html">Contexts</a>
                     
                   </li>
                   
                   <li>
                     
-                    <a href="../../developers/guides/analytics.html">Google Analytics Integration</a>
+                    <a href="../../developers/guides/02-steps.html">Steps</a>
                     
                   </li>
                   
                   <li>
                     
-                    <a href="../../developers/guides/api.html">API</a>
+                    <a href="../../developers/guides/03-flows.html">Flows</a>
                     
                   </li>
                   
                   <li>
                     
-                    <a href="../../developers/guides/0.2.0_migration_guide.html">Migrate from 0.1.0 version to 0.2.0 version</a>
+                    <a href="../../developers/guides/04-stages.html" class="selected">Stages</a>
                     
                   </li>
                   
                   <li>
                     
-                    <a href="../../developers/guides/convert_to_recipe.html">Transform a node-module to recipe</a>
+                    <a href="../../developers/guides/05-parameters.html">Parameters</a>
                     
                   </li>
                   
                   <li>
                     
-                    <a href="../../developers/guides/Load_Parameters.html">Load Parameters</a>
+                    <a href="../../developers/guides/06-inquire.html">Inquire</a>
                     
                   </li>
                   
                   <li>
                     
-                    <a href="../../developers/guides/packaging.html">Best practices</a>
+                    <a href="../../developers/guides/07-plugins.html">Plugins</a>
                     
                   </li>
                   
                   <li>
                     
-                    <a href="../../developers/guides/Parameters_between_shots.html">Communication between steps</a>
+                    <a href="../../developers/guides/08-parameters_between_steps.html">Communication between steps</a>
                     
                   </li>
                   
                   <li>
                     
-                    <a href="../../developers/guides/plugins.html">Plugins</a>
+                    <a href="../../developers/guides/09-steps-advanced.html">Advanced features in steps</a>
                     
                   </li>
                   
                   <li>
                     
-                    <a href="../../developers/guides/shots.html">Steps</a>
+                    <a href="../../developers/guides/10-requirements.html">Requirements</a>
                     
                   </li>
                   
                   <li>
                     
-                    <a href="../../developers/guides/straws.html" class="selected">Flows</a>
+                    <a href="../../developers/guides/11-configuration.html">Receipt Configuration</a>
                     
                   </li>
                   
                   <li>
                     
-                    <a href="../../developers/guides/what_is_piscosour.html">What is piscosour</a>
+                    <a href="../../developers/guides/12-guidelines.html">Best practices</a>
+                    
+                  </li>
+                  
+                  <li>
+                    
+                    <a href="../../developers/guides/13-analytics.html">Google Analytics Integration</a>
                     
                   </li>
                   
@@ -139,10 +153,18 @@
                 
               
                 
+              
+                
                   
                   <li>
                     
-                    <a href="../../developers/tutorials/convert_to_recipe.html">Convert to recipe</a>
+                    <a href="../../developers/tutorials/pisco-website.html">Create WebSite Receipt</a>
+                    
+                  </li>
+                  
+                  <li>
+                    
+                    <a href="../../developers/tutorials/img-empty-submenu.png"></a>
                     
                   </li>
                   
@@ -155,6 +177,10 @@
             <li>
               <h4>Plugins</h4>
               <ul>
+                
+                  
+                
+                  
                 
                   
                     
@@ -242,8 +268,6 @@
                 
                   
                 
-                  
-                
               </ul>
             </li>
             
@@ -273,80 +297,88 @@
         
       </aside>
       <article>
-        <h1 id="trabajar-con-straws">Trabajar con straws</h1>
-<p>Los straws son los flujos de ejecución dentro de pisco, equivalen a un comando. Un Straw no sabe nada del repoType, por lo tanto los straws se pueden usar con distintos repoType simplemente implementando todos los shots que integran dicho straw.
-Los straws son simplemente ficheros json de configuración.</p>
-<pre><code class="lang-js">{
-  &quot;type&quot;: &quot;normal&quot;,
-  &quot;name&quot;: &quot;Create from scratch&quot;,
-  &quot;description&quot;: &quot;Starting a repository from scratch&quot;,
-  &quot;params&quot; : {},
-  &quot;shots&quot; : {
-    &quot;environment&quot; : {
-      &quot;type&quot;: &quot;straw&quot;
-    },
-    &quot;scaffolding&quot; : {}
+        <h1 id="stages">Stages</h1>
+<p>In a <a href="./02-steps.html">step</a>, the <code>index.js</code> file implements the flow. The <a href="./02-steps.md#scaffold">scaffold</a> generates a file like this:</p>
+<pre><code class="lang-javascript">&#39;use strict&#39;;
+
+module.exports = {
+  check: function() {
+    this.logger.info(&#39;#blue&#39;, &#39;Check if all you need to execute this step exists&#39;);
+  },
+
+  config: function() {
+    this.logger.info(&#39;#yellow&#39;, &#39;Config the step to run&#39;);
+  },
+
+  run: function(ok, ko) {
+    this.sh(&#39;echo Run main execution of the step&#39;, ko, true);
+  },
+
+  prove: function() {
+    this.logger.info(&#39;#green&#39;, &#39;Check if the step has run ok&#39;);
+  },
+
+  notify: function() {
+    this.logger.info(&#39;#grey&#39;, &#39;Notify the end of the shot to someone or something&#39;);
+  },
+
+  emit: function() {
+    this.logger.info(&#39;#white&#39;, &#39;Emit the result of the step to other steps. Allow communication between steps&#39;);
+    return { message: &#39;emit a message&#39; };
   }
-}
+};
 </code></pre>
-<p><strong>type</strong>:</p>
-<p>El type puede ser:</p>
+<p>And the stages of a <a href="./02-steps.html">step</a> are used to:</p>
 <ol>
-<li>&quot;normal&quot;: Aparecerá en el listado de comandos normales. (ejecutando la ayuda de la receta)</li>
-<li>&quot;internal&quot;: No aparece en el listado de comandos. Se usan para propositos internos dentro de otras straws. (en nuestro ejemplo environment es una straw internal)</li>
+<li><code>check</code>: check if all you need to execute this <a href="./02-steps.html">step</a> exists.</li>
+<li><code>config</code>: config the <a href="./02-steps.html">step</a> to run.</li>
+<li><code>run</code>: run main execution of the <a href="./02-steps.html">step</a>.</li>
+<li><code>prove</code>: check if the <a href="./02-steps.html">step</a> has run ok.</li>
+<li><code>notify</code>: notify the end of the shot to someone or something.</li>
+<li><code>emit</code>: emit the result of the <a href="./02-steps.html">step</a> to other steps. Allow communication between steps.</li>
 </ol>
-<p><strong>params</strong>:</p>
-<p>Serán los parámetros pasados a todos los shots de esa straw.</p>
-<p><strong>name</strong>, <strong>description</strong>:</p>
-<p>Describen el straw serán las descripciones que aparecerán en el log cuando ejecutemos el straw.</p>
-<p><strong>shots</strong>:</p>
-<p>Es un objeto con los shots que se van a ejecutar secuencialmente cuando ejecutemos el straw. Está en formato clave:valor la clave será el nombre del shot y el valor es un objeto que podrá contener los parámetros concretos que recive el shot en esa ejecución.</p>
-<pre><code>[...]
-  &quot;shots&quot; : {
-    &quot;environment&quot; : {
-      &quot;type&quot;: &quot;straw&quot;,
-      &quot;params&quot; {
-        &quot;clave&quot; : &quot;valor&quot;
-      }
-    },
-    &quot;scaffolding&quot; : {}
-[...]
-</code></pre><p><strong>NOTA:</strong> No es conveniente usar los params dentro de una straw. Solo usar este supuesto en el caso de que queramos ejecutar un shot con un valor de un parámetro concreto. <a href="Load_Parameters.md">más información sobre parámetros</a></p>
-<p>El type puede ser &quot;straw&quot; o &quot;shot&quot; si no se pone nada es de tipo &quot;shot&quot;.</p>
-<h2 id="shots-repetidos">Shots repetidos</h2>
-<p>En algunos casos puede ser necesario hacer uso del mismo shot en varias ocasiones (pero con distintas parametrizaciones). Para estos casos es necesario diferenciar el shot con un sufijo, separado por &#39;:&#39;, de la siguiente forma <em>&quot;myshot:suffix&quot;</em>.</p>
-<p>Ejemplo:</p>
-<pre><code>[...]
-  &quot;shots&quot;: {
-    &quot;myshot:first&quot;: {
-      &quot;params&quot; {
-        &quot;key&quot;: &quot;value1&quot;
-      }
-    },
-    &quot;myshot:second&quot;: {
-      &quot;params&quot;{
-        &quot;key&quot;: &quot;value2&quot;
-      }
+<h2 id="promises">Promises</h2>
+<p>Note that all the stages are <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">promises</a> functions, they has two optional paramenter &#39;resolve&#39;, &#39;reject&#39;;</p>
+<p>A example with <code>resolve</code> and <code>reject</code>:</p>
+<pre><code class="lang-javascript">module.exports = {
+  run: function(resolve, reject) {
+    if (this.params.jsonIsWellFormed) {
+      resolve();
+    } else {
+      reject();
     }
+    return;
   }
-[...]
-</code></pre><p>En el ejemplo hemos repetido el shot &#39;myshot&#39; dos veces, y hemos diferenciado los dos shots con los siguientes sufijos &quot;:first&quot;, y &quot;:second&quot;.</p>
-<p>Se recomienda que el nombre del sufijo sea descriptivo y que indique en que lo diferencia.</p>
-<h2 id="comunicaci-n-entre-shots">Comunicación entre shots</h2>
-<p>Los shots pueden emitir y recibir información información de otros shots. En el straw se puede configurar qué parámetros se reciben de otros shots.</p>
-<p>Ejemplo:</p>
-<pre><code>[...]
-  &quot;shots&quot;: {
-    &quot;myshot1&quot;: { },
-    &quot;myshot2&quot;: {
-      &quot;input&quot;{
-        &quot;key&quot;: { &quot;myshot1&quot; : &quot;value&quot; }
-      }
-    }
-  }
-[...]
-</code></pre><p>En este caso, myshot2 recibe el parametro key a partir de myshot1.</p>
-<p>Más información en <a href="Parameters_between_shots.md">Parameters transmition between shots</a></p>
+};
+</code></pre>
+<h2 id="-check-stage"><code>check</code> stage</h2>
+<p>Check if all you need to execute this <a href="./02-steps.html">step</a> exists. Here you can see some examples:</p>
+<ul>
+<li>System requirement. But check first <a href="./10-requirements.html">requirements</a> configuration options.</li>
+<li>Maybe check if some inputs are all well formed. For example a json well formed.</li>
+<li>Or check if the environment has a global variable setted.</li>
+<li>...</li>
+</ul>
+<h2 id="-config-stage"><code>config</code> stage</h2>
+<p>Config the <a href="./02-steps.html">step</a> to run. Do you need to config something, this is the stage to do it.</p>
+<h2 id="-run-stage"><code>run</code> stage</h2>
+<p>Run main execution of the <a href="./02-steps.html">step</a>. This stage hope that all that it need to implement a process is &#39;ok&#39;, because it has been provide by the above stage.</p>
+<h2 id="-proove-stage"><code>proove</code> stage</h2>
+<p>Check if the <a href="./02-steps.html">step</a> has run ok.</p>
+<ul>
+<li>If artifacts has been well built.</li>
+<li>or if there is a inexpected file created.</li>
+</ul>
+<h2 id="-notify-stage"><code>notify</code> stage</h2>
+<p>Notify the end of the shot to someone or something.</p>
+<ul>
+<li>Email to an address.</li>
+<li>Notify to a slack channel.</li>
+<li>...</li>
+</ul>
+<h2 id="-emit-stage"><code>emit</code> stage</h2>
+<p>Emit the result of the <a href="./02-steps.html">step</a> to other steps. Allow communication between steps.</p>
+<p>See <a href="./08-parametes_between_steps.html">parameters between steps</a> for more information.</p>
 
       </article>
     </section>

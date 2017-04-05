@@ -4,7 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>fsutils</title>
+    <title>Receipt Configuration</title>
     <link rel="stylesheet" type="text/css" href="../../css/main.css">
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc=" crossorigin="anonymous"></script>
   </head>
@@ -119,7 +119,7 @@
                   
                   <li>
                     
-                    <a href="../../developers/guides/11-configuration.html">Receipt Configuration</a>
+                    <a href="../../developers/guides/11-configuration.html" class="selected">Receipt Configuration</a>
                     
                   </li>
                   
@@ -192,7 +192,7 @@
                     
                     <li>
                       
-                      <a href="../../developers/documents/fsutils.html" class="selected">fsutils</a>
+                      <a href="../../developers/documents/fsutils.html">fsutils</a>
                       
                     </li>
                     
@@ -297,106 +297,130 @@
         
       </aside>
       <article>
-        <h1 id="plugins-fsutils">Plugins: fsutils</h1>
-<h3 id="fs-plugin-fs-addons-for-piscosour-">fs plugin (fs addons for piscosour)</h3>
-<h4 id="this-fscreatedir">this.fsCreateDir</h4>
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h4 id="this-fsexists">this.fsExists</h4>
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h4 id="this-fsreadconfig">this.fsReadConfig</h4>
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h4 id="this-fsreadfile">this.fsReadFile</h4>
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h4 id="this-fscopydirfiltered">this.fsCopyDirFiltered</h4>
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h4 id="this-fscopyfilefiltered">this.fsCopyFileFiltered</h4>
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h4 id="this-fsappendbundle">this.fsAppendBundle</h4>
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
+        <h1 id="-piscosour-json-configuration"><code>piscosour.json</code> configuration</h1>
+<p><code>piscosour.json</code> is the file which defines the general configuration of the receipt. It is placed at the root directory of the receipt.</p>
+<p>The configuration receipt could be overwritten with others available methods to fill parameters values. See <a href="./05-parameters.html">parameters</a> configuration.</p>
+<p>This is the general configuration file (<code>piscosour.json</code>) of piscosour:</p>
+<pre><code class="lang-json">{
+  &quot;cmd&quot; : &quot;pisco&quot;,
+  &quot;params&quot; : {
+    &quot;plugins&quot; : [&quot;inquirer&quot;]
+  },
+  &quot;junitDir&quot;: &quot;test-reports&quot;,
+  &quot;junitPiscoFile&quot;: &quot;pisco-junit.xml&quot;,
+  &quot;stages&quot;: [
+    &quot;check&quot;,
+    &quot;config&quot;,
+    &quot;run&quot;,
+    &quot;prove&quot;,
+    &quot;notify&quot;
+  ],
+  &quot;flowTypes&quot;: [
+    &quot;normal&quot;,
+    &quot;utils&quot;,
+    &quot;internal&quot;
+  ]
+}
+</code></pre>
+<p>Then the different methods to configure (receipts, flows, steps, ...) will just add or remove configuration over the existing configuration.</p>
+<p>Example of a receipt:</p>
+<pre><code class="lang-json">{
+  &quot;cmd&quot;: &quot;cells&quot;
+}
+</code></pre>
+<h2 id="main-fields">Main fields</h2>
+<h3 id="-cmd-field"><code>cmd</code> field</h3>
+<p>Command name, this command will be executed in a console when the receipt is globally installed.</p>
+<h3 id="-params-field"><code>params</code> field</h3>
+<p>Global parameters, applies to all <a href="./03-flows.html">flows</a> and <a href="./02-steps.html">steps</a>. See <a href="./05-parameters.html">parameter</a> for more information.</p>
+<h3 id="-junitdir-and-junitpiscofile-fields"><code>junitDir</code> and <code>junitPiscoFile</code> fields</h3>
+<p><code>junitDir</code> is the Folder where will save the <code>junit.xml</code> file.
+<code>junitPiscoFile</code> is a customized name of the <code>junit.xml</code> file.</p>
+<p>These configurations are available when pisco write a junit report.</p>
+<pre><code class="lang-sh">$ pisco --junitReport
+$ pisco -u
+</code></pre>
+<h3 id="-stages-field"><code>stages</code> field</h3>
+<p>Default stages. See <a href="./04-stages.html">stages</a> for more information.</p>
+<p>If it is added a new stage, and will be just executed if the step has its implementation.</p>
+<pre><code class="lang-json">{
+ &quot;stages&quot;: [ &quot;final&quot; ]
+}
+</code></pre>
+<p>After <code>notify</code> stage, customized <code>final</code> stage will be executed.</p>
+<pre><code class="lang-javascript">  final : function() {
+    this.logger.info(&quot;#magenta&quot;,&quot;notify&quot;,&quot;Recollect all execution information and notify&quot;);
+  }
+</code></pre>
+<h3 id="-flowtypes-field"><code>flowTypes</code> field</h3>
+<p>See <a href="./03-flows.html">flows</a> for more information.</p>
+<h2 id="-a-name-parameters-a-piscosour-parameter-syntax"><a name="parameters"></a>Piscosour parameter syntax</h2>
+<p>Configuration has different options according to the scopes:</p>
+<h3 id="global-configuration">Global configuration</h3>
+<p>For all flows, steps and contexts</p>
+<pre><code class="lang-json">{
+  &quot;params&quot;: {
+    &quot;param1&quot;: &quot;value1&quot;
+  }
+}
+</code></pre>
+<h3 id="flow-configuration">Flow configuration</h3>
+<p>Just for a flow and all its steps and contexts.</p>
+<pre><code class="lang-json">{
+  &quot;flows&quot; : {
+    &quot;flowName&quot; : {
+      &quot;params&quot; : {
+        &quot;param1&quot;: &quot;value1&quot;
+      }
+    }
+  }
+}
+</code></pre>
+<h3 id="step-configuration">Step configuration</h3>
+<p>Just for a step and all its contexts.</p>
+<pre><code class="lang-json">{
+  &quot;steps&quot; : {
+    &quot;stepName&quot; : {
+      &quot;params&quot; : {
+        &quot;param1&quot;: &quot;value1&quot;
+      }
+    }
+  }
+}
+</code></pre>
+<h3 id="step-context-configuration">Step &amp; Context configuration</h3>
+<p>Just for a step and a context.</p>
+<pre><code class="lang-json">{
+  &quot;steps&quot; : {
+    &quot;stepName&quot; : {
+      &quot;contextName&quot; : {
+        &quot;params&quot; : {
+          &quot;param1&quot;: &quot;value1&quot;
+        }
+      }
+    }
+  }
+}
+</code></pre>
+<p>In a <a href="./02-steps">step</a> all parameters are accessible with <code>this.params.param1</code>.</p>
+<h3 id="priority-">Priority:</h3>
+<ul>
+<li><strong>1</strong> <code>.piscosour/piscosour.json</code> file in the current working directory where recipe is executed.<ul>
+<li><strong>1.1</strong> Step &amp; Context configuration</li>
+<li><strong>1.2</strong> Step configuration</li>
+<li><strong>1.3</strong> Flow configuration</li>
+<li><strong>1.4</strong> Global configuration</li>
+</ul>
+</li>
+<li><strong>2</strong> <code>piscosour.json</code> file of the receipt.<ul>
+<li><strong>1.1</strong> Step &amp; Context configuration</li>
+<li><strong>1.2</strong> Step configuration</li>
+<li><strong>1.3</strong> Flow configuration</li>
+<li><strong>1.4</strong> Global configuration</li>
+</ul>
+</li>
+</ul>
+<p>This is the priority order (from high to low), if a parameter is provided twice or more, with different values, then it will stay the value that is above in the list.</p>
 
       </article>
     </section>

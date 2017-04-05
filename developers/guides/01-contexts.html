@@ -4,7 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Convert to recipe</title>
+    <title>Contexts</title>
     <link rel="stylesheet" type="text/css" href="../../css/main.css">
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc=" crossorigin="anonymous"></script>
   </head>
@@ -26,11 +26,17 @@
               <h4>General</h4>
               
                 
+                  
+                    <a href="../../developers/what_is_piscosour.html">What is piscosour</a>
+                  
+                
               
                 
                   
-                    <a href="../../developers/get_started.html">Getting started</a>
+                    <a href="../../developers/get_started.html">Get started</a>
                   
+                
+              
                 
               
                 
@@ -48,76 +54,84 @@
                 
               
                 
+              
+                
                   
                   <li>
                     
-                    <a href="../../developers/guides/configuration.html">Piscosour.json config file</a>
+                    <a href="../../developers/guides/01-contexts.html" class="selected">Contexts</a>
                     
                   </li>
                   
                   <li>
                     
-                    <a href="../../developers/guides/analytics.html">Google Analytics Integration</a>
+                    <a href="../../developers/guides/02-steps.html">Steps</a>
                     
                   </li>
                   
                   <li>
                     
-                    <a href="../../developers/guides/api.html">API</a>
+                    <a href="../../developers/guides/03-flows.html">Flows</a>
                     
                   </li>
                   
                   <li>
                     
-                    <a href="../../developers/guides/0.2.0_migration_guide.html">Migrate from 0.1.0 version to 0.2.0 version</a>
+                    <a href="../../developers/guides/04-stages.html">Stages</a>
                     
                   </li>
                   
                   <li>
                     
-                    <a href="../../developers/guides/convert_to_recipe.html">Transform a node-module to recipe</a>
+                    <a href="../../developers/guides/05-parameters.html">Parameters</a>
                     
                   </li>
                   
                   <li>
                     
-                    <a href="../../developers/guides/Load_Parameters.html">Load Parameters</a>
+                    <a href="../../developers/guides/06-inquire.html">Inquire</a>
                     
                   </li>
                   
                   <li>
                     
-                    <a href="../../developers/guides/packaging.html">Best practices</a>
+                    <a href="../../developers/guides/07-plugins.html">Plugins</a>
                     
                   </li>
                   
                   <li>
                     
-                    <a href="../../developers/guides/Parameters_between_shots.html">Communication between steps</a>
+                    <a href="../../developers/guides/08-parameters_between_steps.html">Communication between steps</a>
                     
                   </li>
                   
                   <li>
                     
-                    <a href="../../developers/guides/plugins.html">Plugins</a>
+                    <a href="../../developers/guides/09-steps-advanced.html">Advanced features in steps</a>
                     
                   </li>
                   
                   <li>
                     
-                    <a href="../../developers/guides/shots.html">Steps</a>
+                    <a href="../../developers/guides/10-requirements.html">Requirements</a>
                     
                   </li>
                   
                   <li>
                     
-                    <a href="../../developers/guides/straws.html">Flows</a>
+                    <a href="../../developers/guides/11-configuration.html">Receipt Configuration</a>
                     
                   </li>
                   
                   <li>
                     
-                    <a href="../../developers/guides/what_is_piscosour.html">What is piscosour</a>
+                    <a href="../../developers/guides/12-guidelines.html">Best practices</a>
+                    
+                  </li>
+                  
+                  <li>
+                    
+                    <a href="../../developers/guides/13-analytics.html">Google Analytics Integration</a>
                     
                   </li>
                   
@@ -139,10 +153,18 @@
                 
               
                 
+              
+                
                   
                   <li>
                     
-                    <a href="../../developers/tutorials/convert_to_recipe.html" class="selected">Convert to recipe</a>
+                    <a href="../../developers/tutorials/pisco-website.html">Create WebSite Receipt</a>
+                    
+                  </li>
+                  
+                  <li>
+                    
+                    <a href="../../developers/tutorials/img-empty-submenu.png"></a>
                     
                   </li>
                   
@@ -155,6 +177,10 @@
             <li>
               <h4>Plugins</h4>
               <ul>
+                
+                  
+                
+                  
                 
                   
                     
@@ -242,8 +268,6 @@
                 
                   
                 
-                  
-                
               </ul>
             </li>
             
@@ -273,37 +297,63 @@
         
       </aside>
       <article>
-        <h1 id="-por-qu-convertir-un-m-dudo-node-a-pisco-">¿Por qué convertir un módudo node a pisco?</h1>
-<p>Sencillo. Para poder crear un shot separado e independiente importarlo en cualquier otra receta y usarlo en un straw.</p>
-<h1 id="c-mo-convertir-cualquier-m-dulo-node-en-una-receta-pisco-">Cómo convertir cualquier módulo node en una receta pisco.</h1>
-<p>Es muy sencillo. Simplemente ve a la raiz de tu módulo nodejs y ejecuta pisco convert.</p>
-<pre><code>cd mymodule
-pisco convert
-</code></pre><p>te preguntará el nombre del comando usado para ejecutar la receta. p.ej. test-convert</p>
-<p><img src="images/convert1.png" alt="Questions to convert a recipe"></p>
-<p>Listo! Ya tienes tu nueva receta pisco. pruebala!</p>
-<pre><code>node bin/pisco.js
-</code></pre><p>Aparecerá la ayuda básica de pisco.</p>
-<pre><code>Name: mymodule 0.0.1 (piscosour 0.1.0) - Example of module nodejs
- Usage: test-convert [Command] [Options...]
-
- Commands:
-
-
- Options:
-
-     --junitReport  [ -u] :  write junit report at the end
-     --help  [ -h] :  shows detailed info of a command: test-convert -h &lt;command&gt;
-     --all  [ -a] :  list all commands availables (repoType:straw[:shot])
-     --list ( all,recipes,straws,shots,repoTypes ) [ -la -lr -lst -lsh -lt] :  list piscosour elements
-     --output ( verbose,debug,silly ) [ -ov -od -os] :  set output level : &#39;test-convert -ov&#39; -&gt; set to verbose
-     --initShot  [ -i] :  from shot : test-convert -i &lt;shotname&gt;
-     --endShot  [ -e] :  to shot : test-convert -e &lt;shotname&gt;
-</code></pre><p>próximos pasos:</p>
+        <h1 id="contexts">Contexts</h1>
+<p>The <code>contexts</code> define <strong><em>where</em></strong> and <strong><em>when</em></strong> pisco can be executed.</p>
+<p>Contexts are implemented with three files in the recipe:</p>
+<pre><code>-rwxr-xr-x    1 pisco  staff   contexts/context-name/config.json
+-rwxr-xr-x    1 pisco  staff   contexts/context-name/index.js
+-rwxr-xr-x    1 pisco  staff   contexts/context-name/info.md
+</code></pre><p>Where the <code>config.json</code> file has the configuration, <code>info.md</code> explains and documents the context, and <code>index.js</code> has the implementation of the context.</p>
+<p>Note, it exists a <a href="#scaffold">scaffold generator tool</a></p>
+<h2 id="-config-json-configuration"><code>config.json</code> configuration</h2>
+<p>The <code>config.json</code> file has the definition of the context:</p>
+<pre><code class="lang-json">{
+  &quot;name&quot;: &quot;context-name&quot;,
+  &quot;description&quot;: &quot;A description of context-name&quot;
+}
+</code></pre>
+<p>The contexts are described by two fields:</p>
+<h3 id="-name-property"><code>name</code> property</h3>
+<p>A short name for the context, it should be descriptive and unique.</p>
 <ul>
-<li><a href="shots.md">Trabajar con shots</a> - Crear un shot y usar el API para sacarle el 100% del partido a piscosour.</li>
-<li><a href="straws.md">Trabajar con straws</a> - Crear un straw y configurarlo a partir de shots propios o de otras recetas.</li>
+<li>It is mandatory</li>
+<li>String type expected</li>
 </ul>
+<h3 id="-description-property"><code>description</code> property</h3>
+<p>It is a short description about the context.</p>
+<ul>
+<li>It is mandatory</li>
+<li>String type expected</li>
+</ul>
+<h2 id="-index-js-implementation"><code>index.js</code> implementation</h2>
+<p>The <code>index.js</code> file implements a <code>check()</code> function which defines the context. Please, replace it with the following content:</p>
+<pre><code class="lang-javascript">&#39;use strict&#39;;
+const path = require(&#39;path&#39;);
+const process = require(&#39;process&#39;);
+
+const _isWorldFolder = function() {
+  let dir = process.cwd().split(path.sep);
+
+  return dir[dir.length - 1] === &#39;world&#39;;
+};
+
+module.exports = {
+  check() {
+    return _isWorldFolder();
+  }
+};
+</code></pre>
+<h2 id="documentation">Documentation</h2>
+<p>The <code>info.md</code> file just explain the context with a markdown format:</p>
+<pre><code class="lang-markdown"># Context context-name
+
+The description about the context.
+</code></pre>
+<h2 id="-a-name-scaffold-a-scaffold-generator"><a name="scaffold"></a>Scaffold generator</h2>
+<p>Pisco provides a scaffold generator. You can launch it by executing these commands:</p>
+<pre><code class="lang-sh">$ cd your-recipe
+$ pisco recipe:add-context
+</code></pre>
 
       </article>
     </section>

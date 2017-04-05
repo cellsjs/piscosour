@@ -4,7 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>fsutils</title>
+    <title>Advanced features in steps</title>
     <link rel="stylesheet" type="text/css" href="../../css/main.css">
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc=" crossorigin="anonymous"></script>
   </head>
@@ -107,7 +107,7 @@
                   
                   <li>
                     
-                    <a href="../../developers/guides/09-steps-advanced.html">Advanced features in steps</a>
+                    <a href="../../developers/guides/09-steps-advanced.html" class="selected">Advanced features in steps</a>
                     
                   </li>
                   
@@ -192,7 +192,7 @@
                     
                     <li>
                       
-                      <a href="../../developers/documents/fsutils.html" class="selected">fsutils</a>
+                      <a href="../../developers/documents/fsutils.html">fsutils</a>
                       
                     </li>
                     
@@ -297,106 +297,93 @@
         
       </aside>
       <article>
-        <h1 id="plugins-fsutils">Plugins: fsutils</h1>
-<h3 id="fs-plugin-fs-addons-for-piscosour-">fs plugin (fs addons for piscosour)</h3>
-<h4 id="this-fscreatedir">this.fsCreateDir</h4>
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h4 id="this-fsexists">this.fsExists</h4>
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h4 id="this-fsreadconfig">this.fsReadConfig</h4>
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h4 id="this-fsreadfile">this.fsReadFile</h4>
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h4 id="this-fscopydirfiltered">this.fsCopyDirFiltered</h4>
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h4 id="this-fscopyfilefiltered">this.fsCopyFileFiltered</h4>
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h4 id="this-fsappendbundle">this.fsAppendBundle</h4>
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
+        <h1 id="advanced-features-in-steps">Advanced features in steps</h1>
+<p>Each <a href="./04-stages.html">stage</a> of a <a href="./02-steps.html">step</a> (except <code>emit</code> stage) are <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">promises</a> functions, so its received two paramters <code>resolve</code> and <code>reject</code>.</p>
+<p>Two main point:</p>
+<ol>
+<li><a href="#tips-tricks">General Tips &amp; Tricks</a></li>
+<li><a href="#error-handling">Steps error handling</a></li>
+<li><a href="#conditional">Conditional steps</a></li>
+</ol>
+<h2 id="-a-name-tips-tricks-a-general-tips-tricks"><a name="tips-tricks"></a>General Tips &amp; Tricks</h2>
+<p>Some <a href="./02-steps.html">step</a>&#39;s implementation <strong>tips &amp; tricks</strong> are:</p>
+<p>(Please check this <a href="https://pouchdb.com/2015/05/18/we-have-a-problem-with-promises.html">advanced article</a> about promises for more information)</p>
+<h3 id="-a-name-resolve-automatic-a-1-resolve-is-executed-automatically"><a name="resolve-automatic"></a>1. <code>resolve</code> is executed automatically</h3>
+<p>At the end of each stage, the function <code>resolve</code> is automatically executed.</p>
+<p>The following code:</p>
+<pre><code class="lang-javascript">  run: function(resolve, reject){
+     resolve();
+  }
+</code></pre>
+<p>Is like:</p>
+<pre><code class="lang-javascript">  run: function(resolve, reject){
+     resolve();
+  }
+</code></pre>
+<h3 id="2-usually-return-a-value">2. Usually return a value</h3>
+<p>If you don&#39;t want to execute the <code>resolve</code> function, it is required to return a different value of <code>undefined</code>.</p>
+<p>Example:</p>
+<pre><code class="lang-javascript">  run: function(resolve, reject){
+     return true;
+  }
+</code></pre>
+<h3 id="3-background-execution">3. Background execution</h3>
+<p>It is possible to have a <a href="./04-stages.html">stage</a> execution in background if nothing is returned.</p>
+<p>This is useful with flow that has more than one step, and one of this steps needs to be executed in background (for example, a background process to convert &#39;sass&#39; to &#39;css&#39;).</p>
+<p>Maybe, it could have more sense to implement the background function in a <a href="07-plugins.html">plugin</a>.</p>
+<h3 id="4-delegate-promises-to-plugins-07-plugins-md-">4. Delegate promises to <a href="07-plugins.html">plugins</a></h3>
+<p>A good practice is to delegate <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">promises</a> to <a href="07-plugins.html">plugins</a>.</p>
+<p>Example:</p>
+<pre><code class="lang-javascript">  run : function(resolve, reject) {
+    return this.execute(&quot;pwd&quot;).then(resolve,reject);
+  }
+</code></pre>
+<p>Where:</p>
+<ul>
+<li><code>this.execute</code> is a &#39;core&#39; plugin that returns a promise. If we return this promise, then the <code>resolve()</code> will be not <a href="#resolve-automatic&quot;">called automatically</a>.</li>
+<li>The <a href="./04-stages.html">stage</a> will finish when the <a href="07-plugins.html">plugin</a> <code>this.execute</code> is over, because <code>resolve()</code> and <code>reject()</code> are parameters of <code>then()</code>.</li>
+</ul>
+<h2 id="-a-name-error-handling-a-steps-02-steps-md-error-handling"><a name="error-handling"></a><a href="02-steps.html">Steps</a> error handling</h2>
+<p>Usually when there is a error in a <a href="./02-steps.html">step</a>, and it is an unhandling error, then the execution of all the flow will finish.</p>
+<h3 id="-reject-with-keep-field"><code>reject()</code> with <code>keep</code> field</h3>
+<p>If we don&#39;t want to stop all the <a href="./03-flows.html">flow</a> execution, for a error in a <a href="./02-steps.html">step</a>, then called <code>reject()</code> with <code>{keep: true}</code>.</p>
+<pre><code class="lang-javascript">reject({keep: true});
+</code></pre>
+<ul>
+<li>By default <code>keep</code> is <code>false</code>.</li>
+</ul>
+<h3 id="-reject-with-error-field"><code>reject()</code> with <code>error</code> field</h3>
+<p>You can send a descriptive text error calling <code>reject()</code> with <code>{error: txt}</code></p>
+<pre><code class="lang-javascript">reject( { error: &#39;descriptive text error&#39; } );
+</code></pre>
+<h3 id="-reject-with-data-field"><code>reject()</code> with <code>data</code> field</h3>
+<p><code>data</code> in the <code>reject()</code> function allows to send more detail about the error, this is very interesting when we use piscosour for continuous integration (jenkins, bamboo, travis, ...) with the junit option.</p>
+<pre><code class="lang-javascript">reject( { data: &#39;details of the error&#39; } );
+</code></pre>
+<h3 id="-reject-example"><code>reject()</code> example</h3>
+<p>All field (<code>keep</code>, <code>error</code>, <code>data</code>) can work together:</p>
+<pre><code class="lang-javascript">module.export = {
+  run: function(resolve, reject) {
+    reject({
+        keep: true,
+        error: &#39;error text&#39;,
+        data: &#39;detail\&#39;s error&#39;
+    })
+  }
+}
+</code></pre>
+<h2 id="-a-name-conditional-a-conditional-steps-02-steps-md-"><a name="conditional"></a>Conditional <a href="./02-steps.html">steps</a></h2>
+<p>Steps could be executed conditionally evaluating a customized expression in the <code>check()</code> <a href="./04-stages.html">stage</a>.</p>
+<h3 id="-resolve-with-skip-field"><code>resolve()</code> with <code>skip</code> field</h3>
+<p>So below there is an example about how could be executed conditionally a step. This condition may be implemnented in the <code>check()</code> <a href="./04-stages.html">stage</a>. And if the step must be skipped and not executed, please provide to <code>resolve()</code> a field with <code>{skip: true}</code></p>
+<p>Example:</p>
+<pre><code class="lang-javascript">  check : function(resolve, reject) {
+    if (this.params.needThisstep) {
+      resolve({skip: true});
+    }
+  }
+</code></pre>
+<p>So, the remaining <a href="./04-stages.html">stages</a> of this steps are not going to be executed.</p>
 
       </article>
     </section>

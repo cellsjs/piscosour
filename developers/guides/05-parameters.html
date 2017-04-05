@@ -4,7 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>fsutils</title>
+    <title>Parameters</title>
     <link rel="stylesheet" type="text/css" href="../../css/main.css">
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc=" crossorigin="anonymous"></script>
   </head>
@@ -83,7 +83,7 @@
                   
                   <li>
                     
-                    <a href="../../developers/guides/05-parameters.html">Parameters</a>
+                    <a href="../../developers/guides/05-parameters.html" class="selected">Parameters</a>
                     
                   </li>
                   
@@ -192,7 +192,7 @@
                     
                     <li>
                       
-                      <a href="../../developers/documents/fsutils.html" class="selected">fsutils</a>
+                      <a href="../../developers/documents/fsutils.html">fsutils</a>
                       
                     </li>
                     
@@ -297,106 +297,115 @@
         
       </aside>
       <article>
-        <h1 id="plugins-fsutils">Plugins: fsutils</h1>
-<h3 id="fs-plugin-fs-addons-for-piscosour-">fs plugin (fs addons for piscosour)</h3>
-<h4 id="this-fscreatedir">this.fsCreateDir</h4>
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h4 id="this-fsexists">this.fsExists</h4>
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h4 id="this-fsreadconfig">this.fsReadConfig</h4>
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h4 id="this-fsreadfile">this.fsReadFile</h4>
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h4 id="this-fscopydirfiltered">this.fsCopyDirFiltered</h4>
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h4 id="this-fscopyfilefiltered">this.fsCopyFileFiltered</h4>
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h4 id="this-fsappendbundle">this.fsAppendBundle</h4>
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
+        <h1 id="parameters">Parameters</h1>
+<p>In the <a href="./02-steps.html">step</a> implementation, parameters are available with <code>this.params</code>.</p>
+<p>Example:</p>
+<pre><code class="lang-javascript">module.export = {
+  run: function() {
+    console.log(
+      this.params.param1,
+      this.params.param2,
+      this.params.param3);
+  }
+}
+</code></pre>
+<p>Below are the available methods to fill parameters values:</p>
+<ol>
+<li><a href="#cli">Command line paramaters option</a></li>
+<li><a href="#file">External file configuration</a></li>
+<li><a href="#piscosour-json">Working Directory <code>.piscosour/piscosour.json</code> file configuration</a></li>
+<li><a href="#piscosour-json">Receipt <code>.piscosour/piscosour.json</code> file configuration</a></li>
+<li><a href="#flow">Flow <code>config.json</code> file configuration</a></li>
+<li><a href="#step">Step <code>config.json</code> file configuration</a></li>
+<li><a href="#interactive">User inquire - interactive way</a></li>
+</ol>
+<p>This is the priority order (from high to low), if a parameter is provided twice or more, with different values, then it will stay the value that is above in the list.</p>
+<p>The <strong>effective configuration</strong> has the merge from all methods and applying this above priority. The <strong>effective configuration</strong> could be inquired with <code>-ov</code> parameters over the recipe or <code>pisco</code> command:</p>
+<pre><code class="lang-sh">$ recipe-name -ov
+$ pisco -ov
+</code></pre>
+<h2 id="-a-name-cli-a-1-command-line-parameters-option"><a name="cli"></a>1. Command line parameters option</h2>
+<p>Each recipe can be executed with a list of parameters with the following syntax:</p>
+<pre><code class="lang-sh">$ pisco-recipe --param1 value1 --param2 value2 --param3 value3 ...
+</code></pre>
+<p>For example in a step implementation, this will return &quot;value1, value2, value3&quot;:</p>
+<pre><code class="lang-javascript">module.export = {
+  run: function() {
+    console.log(
+      this.params.param1,
+      this.params.param2,
+      this.params.param3);
+    // shows &quot;value1, value2, value3&quot;
+  }
+}
+</code></pre>
+<h2 id="-a-name-file-a-2-external-file-configuration"><a name="file"></a>2. External file configuration</h2>
+<p>The second method to provide parameters is with an external json file.</p>
+<pre><code class="lang-sh">$ pisco --paramsFile params.json
+</code></pre>
+<p>Where <code>params.json</code>, can be any name you choose for your own parameter file. </p>
+<p>This is very useful because you can provide complex parameters like objects and arrays.</p>
+<p>An example of a parameter file is:</p>
+<pre><code class="lang-json">{
+  &quot;param1&quot;: &quot;value1&quot;,
+  &quot;param2&quot;: {
+    &quot;p1&quot;: &quot;v1&quot;,
+    &quot;p2&quot;: &quot;v2&quot;
+  },
+  &quot;param3&quot;: [1, 2, 3]
+ }
+</code></pre>
+<p>Where:</p>
+<ul>
+<li><code>param1</code> is a simple <code>String</code></li>
+<li><code>param2</code> is an <code>Object</code></li>
+<li><code>param3</code> is an <code>Array</code></li>
+</ul>
+<h2 id="-a-name-piscosour-json-a-3-working-directory-piscosour-piscosour-json-file-configuration"><a name="piscosour-json"></a>3. Working Directory <code>.piscosour/piscosour.json</code> file configuration</h2>
+<p>Another method to provide parameters is to create in the working directory where it is going to execute the recipe a folder <code>.piscosour</code> with a file called <code>piscosour.json</code>:</p>
+<pre><code>[CurrentWorkingDirectory]/.piscosour/piscosour.json
+</code></pre><p>Check <a href="./11-configuration.md#parameters"><code>piscosour.json</code> parameters syntax</a> for more information and examples.</p>
+<h2 id="-a-name-piscosour-json-a-4-receipt-piscosour-piscosour-json-file-configuration"><a name="piscosour-json"></a>4. Receipt <code>.piscosour/piscosour.json</code> file configuration</h2>
+<p>You can also provide parameters creating in your receipt a folder <code>.piscosour</code> with a file called <code>piscosour.json</code>:</p>
+<pre><code>[recipeRoot]/.piscosour/piscosour.json
+</code></pre><p>Check <a href="./11-configuration.md#paramaters"><code>piscosour.json</code> parameters syntax</a> for more information and examples.</p>
+<h2 id="-a-name-flow-a-5-flow-03-flows-md-config-json-file-configuration"><a name="flow"></a>5. <a href="./03-flows.html">Flow</a> <code>config.json</code> file configuration</h2>
+<p>This file is placed in:</p>
+<pre><code>[recipeRoot]/flows/[flowName]/config.json
+</code></pre><p>See <a href="./03-flows.md#parameters">flows parameters definition</a> for more information.</p>
+<h2 id="-a-name-step-a-6-step-02-steps-md-config-json-configuration"><a name="step"></a>6. <a href="./02-steps.html">Step</a> <code>config.json</code> configuration</h2>
+<p>This file is placed in:</p>
+<pre><code>[recipeRoot]/steps/[stepName]/config.json
+</code></pre><p>See <a href="./02-steps.md#parameters">flows parameters definition</a> for more information.</p>
+<h2 id="-a-name-interactive-a-7-user-inquire-interactive-way"><a name="interactive"></a>7. User inquire - interactive way</h2>
+<p><a href="./06-inquire.html">Inquire</a> to the user, about the values with the <code>prompts</code> configuration.</p>
+<p>Example:</p>
+<p>In a step <code>steps/stepName/config.json</code></p>
+<pre><code class="lang-json">{
+  &quot;name&quot;: &quot;stepName&quot;,
+  &quot;description&quot;: &quot;step Name&quot;,
+  &quot;contexts&quot;: [
+    &quot;contextName&quot;
+  ],
+  &quot;prompts&quot;: [
+    {
+      &quot;type&quot;: &quot;input&quot;,
+      &quot;name&quot;: &quot;param1&quot;,
+      &quot;required&quot; : true,
+      &quot;message&quot;: &quot;Value of param1&quot;,
+      &quot;default&quot; : &quot;value1&quot;
+    }
+  ]
+}
+</code></pre>
+<p>Will ask to the user for <code>param1</code>:</p>
+<pre><code>[12:16:55] Execution contexts: [ recipe ]
+[12:16:55] 
+
+ Starting | prueba | [ recipe::prueba ] 
+
+? Value of param1 (value1)
+</code></pre><p>Please see <a href="./06-inquire.html">Inquire</a> for more information.</p>
 
       </article>
     </section>

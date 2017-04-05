@@ -4,7 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>fsutils</title>
+    <title>Create WebSite Receipt</title>
     <link rel="stylesheet" type="text/css" href="../../css/main.css">
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc=" crossorigin="anonymous"></script>
   </head>
@@ -158,7 +158,7 @@
                   
                   <li>
                     
-                    <a href="../../developers/tutorials/pisco-website.html">Create WebSite Receipt</a>
+                    <a href="../../developers/tutorials/pisco-website.html" class="selected">Create WebSite Receipt</a>
                     
                   </li>
                   
@@ -192,7 +192,7 @@
                     
                     <li>
                       
-                      <a href="../../developers/documents/fsutils.html" class="selected">fsutils</a>
+                      <a href="../../developers/documents/fsutils.html">fsutils</a>
                       
                     </li>
                     
@@ -297,106 +297,151 @@
         
       </aside>
       <article>
-        <h1 id="plugins-fsutils">Plugins: fsutils</h1>
-<h3 id="fs-plugin-fs-addons-for-piscosour-">fs plugin (fs addons for piscosour)</h3>
-<h4 id="this-fscreatedir">this.fsCreateDir</h4>
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h4 id="this-fsexists">this.fsExists</h4>
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h4 id="this-fsreadconfig">this.fsReadConfig</h4>
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h4 id="this-fsreadfile">this.fsReadFile</h4>
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h4 id="this-fscopydirfiltered">this.fsCopyDirFiltered</h4>
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h4 id="this-fscopyfilefiltered">this.fsCopyFileFiltered</h4>
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h4 id="this-fsappendbundle">this.fsAppendBundle</h4>
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
+        <h1 id="pisco-documentation-build-create-a-documentation-webpage-">pisco-documentation-build: Create a documentation webpage.</h1>
+<p>With this recipe you can create a documentation webpage for your recipe based in your .md files.</p>
+<p>This website is intended to show a different documentation for the users of your recipe and for the developers.</p>
+<p>For every target (users and developers), the documentation is organized in:</p>
+<ul>
+<li><code>guides</code> To explain everything related to your recipe.</li>
+<li><code>tutorials</code> Quick and guided examples.</li>
+<li><code>documentation</code> for the API documentation.</li>
+</ul>
+<p>To install it run:</p>
+<pre><code class="lang-shell">npm install -g pisco-documentation-build
+</code></pre>
+<hr>
+<h2 id="how-to-use-it-">How to use it.</h2>
+<h3 id="1-organize-your-docs-">1. Organize your docs.</h3>
+<p>In order to create your website correctly, you must organize your docs folder according to this tree:</p>
+<pre><code>docs
+│    index.md
+│
+└─── users
+│    │   get_started.md
+|    |   general01.md
+|    |   ...
+│    └─── guides
+│    │    | guide01.md
+│    │    | ...
+│    │    
+│    └─── tutorials
+│         | tutorial01.md
+│         | ...
+│       
+└─── developers
+│    │   get_started.md
+|    |   general02.md
+|    |   ...
+│    └─── guides
+│    │    | guide02.md
+│    │    | ...
+│    │    
+│    └─── tutorials
+│         | tutorial02.md
+│         | ...
+│
+└─── images
+│    │   image01.jpg
+│    │   ...
+│
+</code></pre><p><strong>Required files and folders:</strong></p>
+<ul>
+<li>It&#39;s required to have an <code>index.md</code> in the root of your documentation folder. (See the next step to see how to create one).</li>
+<li>It&#39;s required to have the folders <code>users</code> and <code>developers</code>.</li>
+<li>It&#39;s required to have a <code>get_started.md</code> file at <code>users</code> and <code>developers</code> folders.</li>
+<li>It&#39;s required to have a <code>logo.svg</code> file in your <code>images</code> folder.</li>
+</ul>
+<p><strong>Other considerations:</strong></p>
+<ul>
+<li>It&#39;s not mandatory but recommended to have <code>guides</code> and <code>tutorials</code>. Even if you don&#39;t have any the submenu will appear.</li>
+</ul>
+<p><img src="img-empty-submenu.png" alt="Empty submenu"></p>
+<ul>
+<li>If you use images in your md files, you should place them in a <code>images</code> folder at the <code>docs</code> folder root.</li>
+</ul>
+<h3 id="2-create-an-index.html">2. Create an index.md</h3>
+<p>It&#39;s necessary to create an <code>index.md</code> in the root of your documentation folder in order to have an entry point of your website.
+The content of this file should be only this metadata.</p>
+<pre><code>---
+toolName: [Your tool name]
+claim: [A short and fresh sentence]
+npmName: [Tool name in npm]
+layout: index.html
+---
+</code></pre><ul>
+<li><code>layout</code> will be always <code>index.html</code> for the index.md file.</li>
+</ul>
+<h3 id="3-add-metadata-to-all-your-md-files-">3. Add metadata to all your md files.</h3>
+<p>It&#39;s necessary to provide a little bit of information about your documentation files to create the webpage correctly, so all your md files shoud have this metadata at the top.</p>
+<pre><code>---
+title: [Page title]
+layout: doc_page.html
+---
+</code></pre><ul>
+<li><code>title</code> will be always the name of the link in the main menu.</li>
+<li><code>layout</code> will be always <code>doc_page.html</code> for your documentation files.</li>
+</ul>
+<h3 id="4-set-a-template-to-create-the-site-">4. Set a template to create the site.</h3>
+<p>In order to generate the site, you can use the default pisco template for sites (<a href="https://globaldevtools.bbva.com/bitbucket/projects/CTOOL/repos/pisco-site-template-basic/browse">pisco-site-template-basic</a>) or create your own template.</p>
+<p>To set the template you should add it as dependency <strong>in your project</strong>.
+For example, if you use the default pisco template, just add in your project&#39;s <code>package.json</code>:</p>
+<pre><code class="lang-json">{
+&quot;pisco-site-template-basic&quot;: &quot;*&quot;
+}
+</code></pre>
+<h3 id="5-add-a-logo-">5. Add a logo.</h3>
+<p>It&#39;s mandatory to have a <code>logo.svg</code> file in your <code>docs/image</code> folder. This is the file used to print the logo at your index page an in the menu.</p>
+<h3 id="6-add-guides-and-tutorials-">6. Add guides and tutorials.</h3>
+<p>Now you can add as much guides and tutorials as you want to your documentation.
+Add a md file for each guide or tutorial trying to use the best practices that you can find at the end of this doc.</p>
+<h3 id="7-generate-auto-documentation-pages-">7. Generate auto-documentation pages.</h3>
+<p>As we commented in the first lines we will have <strong>guides</strong>, <strong>tutorials</strong>, and <code>documentation</code> for every target.
+This documentation is automatically filled when you run <code>recipe:docs</code> flow.
+This flow will automatically create:</p>
+<ul>
+<li>A <code>documentation</code> folder at <code>users</code> with one md file for each command available at your recipe.</li>
+<li>A <code>documentation</code> folder at <code>developers</code> with the documentation of each plugin of your recipe.</li>
+</ul>
+<p>So, in order to have this</p>
+<h3 id="8-create-your-site-">8. Create your site!</h3>
+<p>Ok, now everything is ready to create your site <em>automagically</em>!. Just run:</p>
+<pre><code class="lang-bash">pisco documentation:build
+</code></pre>
+<p>Or if your documentation folder is not <code>docs</code></p>
+<pre><code class="lang-bash">pisco documentation:build --docsSource [folder-name]
+</code></pre>
+<p>This will create your site files in a folder named <code>dist</code>. If you want to use a different name, just run:</p>
+<pre><code class="lang-bash">pisco documentation:build --destination [destination-folder]
+</code></pre>
+<ul>
+<li>If your repo is a github repo, you will be asked to upload the website as Github Pages. This, internally, will create/update a branch named <code>gh-pages</code> with the content of the dist folder.</li>
+</ul>
+<h2 id="best-practices-writing-your-md-files-">Best practices writing your md files.</h2>
+<h3 id="use-only-one-h1-">Use only one h1.</h3>
+<p>Your md documents should have one and only one h1 (# whatever) which is the title of your document.</p>
+<h3 id="code-blocks">Code blocks</h3>
+<p>The markdown parser will guess which language are you using in your code blocks, but to ensure a good highlight just add to your code block what language are you adding the language name to it as follows:</p>
+<ul>
+<li>bash:</li>
+</ul>
+<pre><code>```bash
+[your code]
+```
+</code></pre><ul>
+<li>javascript:</li>
+</ul>
+<pre><code>```javascript
+[your code]
+```
+</code></pre><ul>
+<li>json</li>
+</ul>
+<pre><code>```json
+[your code]
+```
+</code></pre><ul>
+<li>You will find a complete list at this link: <a href="https://highlightjs.org/static/demo/">Highlight supported languages</a></li>
+</ul>
 
       </article>
     </section>
