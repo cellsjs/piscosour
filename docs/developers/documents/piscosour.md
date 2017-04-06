@@ -17,11 +17,11 @@ Expose the piscosour config object [Trabajar con shots](doc/api.md#Config)
   
 #### this.piscoFile
 
-return the literal: &#39;piscosour.json&#39;
+return the literal: 'piscosour.json'
 
 #### this.pkgFile
 
-return the literal: &#39;package.json&#39;
+return the literal: 'package.json'
 
 
 

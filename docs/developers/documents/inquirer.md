@@ -15,23 +15,23 @@ set type
 
 params.json
 ```
-  &quot;prompts&quot;: [
+  "prompts": [
     {
-      &quot;type&quot;: &quot;#setType()&quot;,
-      &quot;name&quot;: &quot;doDefault&quot;,
-      &quot;required&quot;: true,
-      &quot;message&quot;: &quot;Do you want to set default repository type?&quot;
+      "type": "#setType()",
+      "name": "doDefault",
+      "required": true,
+      "message": "Do you want to set default repository type?"
     }
   ],
 ```
 
-- &#39;#&#39; indicate that is necesary to use a function in the shot in order to resolve the type value.
-- &#39;()&#39; set that pisco needs to execute this function on order to get the value. 
+- '#' indicate that is necesary to use a function in the shot in order to resolve the type value.
+- '()' set that pisco needs to execute this function on order to get the value. 
 
 shot.js
 ```
   setType: function() {
-    return &#39;confirm&#39;;
+    return 'confirm';
   },
 ```
 

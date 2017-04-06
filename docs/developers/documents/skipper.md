@@ -9,6 +9,6 @@ layout: api_doc.html
 
 ### Skipper plugin
 
-Skips the shot execution when receiving the param &quot;\_skip&quot;: true
+Skips the shot execution when receiving the param "\_skip": true
 
 

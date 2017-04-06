@@ -7,7 +7,7 @@ layout: api_doc.html
 # Plugins: system-saver
 
 
-### Write the requirements into a global file &#39;requirements.json&#39;
+### Write the requirements into a global file 'requirements.json'
 
     cells component:validate --pstage check --b-saveRequirements --b-disablePrompts --b-disableContextCheck --b-disableSystemCheck
     
@@ -24,25 +24,25 @@ this is the file resulting of the execution: the mix of all system requirements 
 
 ```
 {
-  &quot;npm&quot;: {
-    &quot;module&quot;: &quot;generator-pisco-recipe&quot;,
-    &quot;version&quot;: &quot;0.0.2&quot;
+  "npm": {
+    "module": "generator-pisco-recipe",
+    "version": "0.0.2"
   },
-  &quot;java&quot;: {
-    &quot;version&quot;: &quot;1.7.0&quot;,
-    &quot;option&quot;: &quot;-version&quot;,
-    &quot;regexp&quot;: &quot;\&quot;(.*?)_&quot;
+  "java": {
+    "version": "1.7.0",
+    "option": "-version",
+    "regexp": "\"(.*?)_"
   },
-  &quot;cordova&quot;: {
-    &quot;version&quot;: &quot;5.4.1&quot;
+  "cordova": {
+    "version": "5.4.1"
   },
-  &quot;yo&quot;: {},
-  &quot;bower&quot;: {
-    &quot;version&quot;: &quot;1.0.0&quot;
+  "yo": {},
+  "bower": {
+    "version": "1.0.0"
   },
-  &quot;sass&quot;: {
-    &quot;version&quot;: &quot;3.1.0&quot;,
-    &quot;regexp&quot;: &quot;s (.*?) &quot;
+  "sass": {
+    "version": "3.1.0",
+    "regexp": "s (.*?) "
   }
 }
 ```
