@@ -45,7 +45,8 @@ module.exports = {
         .then(result => requirements.check(cmd, options, result, father))
         .catch((checked) => {
           return this.systemInstall(cmd, options)
-            .then(() => requirements.sh(cmd, options, father, true));
+            .then(() => requirements.sh(cmd, options, father, true)
+              .catch((e) => this.logger.trace('ignored error! ->', e)));
         });
     };
 
