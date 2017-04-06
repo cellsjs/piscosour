@@ -298,7 +298,8 @@
       </aside>
       <article>
         <h1 id="what-is-piscosour">What is Piscosour</h1>
-<p>Is a framework to manage processes workflows or pipelines. Gets all command line (CLI) development tools wrapped-up, creating command line pipelines.</p>
+<p><strong><em>DevOps with Superpowers</em></strong></p>
+<p>It is a framework to manage processes workflows or pipelines. Gets all command line (CLI) development tools wrapped-up, creating command line pipelines.</p>
 <ul>
 <li>Keeps all sets of recipes ordered under a domain with predefined <a href="./guides/01-contexts.html">contexts</a> and <a href="./guides/03-flows.html">flows</a>.</li>
 <li>Pipeline’s <a href="./guides/02-steps.html">steps</a> are implementation of a [flow]</li>
@@ -308,19 +309,27 @@
 </ul>
 <h2 id="why-piscosour">Why Piscosour</h2>
 <h3 id="composite-pattern">Composite Pattern</h3>
-<p>Piscosour uses composite pattern. the composite pattern is a partitioning design pattern. The composite pattern describes that a group of objects is to be treated in the same way as a single instance of an object. The intent of a composite is to &quot;compose&quot; objects into tree structures to represent part-whole hierarchies. Implementing the composite pattern lets clients treat individual objects and compositions uniformly.</p>
+<p>Piscosour uses composite pattern. The composite pattern is a partitioning design pattern and describes that a group of objects is to be treated in the same way as a single instance of an object. The intent of a composite is to &quot;compose&quot; objects into tree structures to represent part-whole hierarchies.</p>
 <h3 id="multi-development">Multi development</h3>
-<p>It support large projects with a large number of developers working at the same time. It is a modular organization where every module is independent of each other. The same processes are shared between the same domain.</p>
+<p>It supports large projects with a large number of developers working at the same time. It is a modular organization where every module is independent of each other. The same processes are shared between the same domain.</p>
 <h3 id="reusability">Reusability</h3>
 <p>Code reuse with common principles with code modularity, loose coupling, high cohesion, information hiding and separation of concerns in libraries or plugins.</p>
 <h3 id="decoupled">Decoupled</h3>
-<p>From any continuous integration environment like travis, jenkins, or bamboo. </p>
+<p>From any continuous integration environment like <a href="https://travis-ci.org">travis</a>, <a href="https://jenkins.io">jenkins</a>, or bamboo.</p>
 <ul>
 <li>Allow to use different continuous integration environment for different processes according to the needs (ex. private code repository we can use jenkins and public repository with can use travis)</li>
 <li>This allow developers to don’t develop in CI environment. Developers can execute the pipeline in his local environment and solve a fix or develop a new features.</li>
-<li>Allow developers to add a full suite of tests.</li>
 </ul>
-<h1 id="installation">Installation</h1>
+<h3 id="easy-development">Easy Development</h3>
+<ul>
+<li>Develop in your local environment with a suites of stack of libraries and plugins.</li>
+<li>Declarative configuration with <code>json</code> files.</li>
+</ul>
+<h3 id="testing">Testing</h3>
+<ul>
+<li>Allow developers to add a full suite of tests for every process <a href="./guides/03-flows.html">flow</a> or step</li>
+</ul>
+<h1 id="installation-get-started">Installation &amp; Get Started</h1>
 <p>Install with <a href="https://npmjs.org">npm</a> globally</p>
 <pre><code class="lang-bash">$ npm install -g piscosour
 </code></pre>
