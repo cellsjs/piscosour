@@ -24,7 +24,7 @@ Piscosour uses composite pattern. The composite pattern is a partitioning design
 
 ### Multi development
 
-It support large projects with a large number of developers working at the same time. It is a modular organization where every module is independent of each other. The same processes are shared between the same domain.
+It supports large projects with a large number of developers working at the same time. It is a modular organization where every module is independent of each other. The same processes are shared between the same domain.
 
 ### Reusability
 
