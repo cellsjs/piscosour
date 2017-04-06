@@ -6,7 +6,9 @@ order: 1
 
 # What is Piscosour
 
-Is a framework to manage processes workflows or pipelines. Gets all command line (CLI) development tools wrapped-up, creating command line pipelines.
+***DevOps with Superpowers***
+
+It is a framework to manage processes workflows or pipelines. Gets all command line (CLI) development tools wrapped-up, creating command line pipelines.
 
 - Keeps all sets of recipes ordered under a domain with predefined [contexts](../developers/guides/01-contexts.md) and [flows](../developers/guides/03-flows.md).
 - Pipeline’s [steps](../developers/guides/02-steps.md) are implementation of a [flow]
@@ -18,7 +20,7 @@ Is a framework to manage processes workflows or pipelines. Gets all command line
 
 ### Composite Pattern
 
-Piscosour uses composite pattern. the composite pattern is a partitioning design pattern. The composite pattern describes that a group of objects is to be treated in the same way as a single instance of an object. The intent of a composite is to "compose" objects into tree structures to represent part-whole hierarchies. Implementing the composite pattern lets clients treat individual objects and compositions uniformly.
+Piscosour uses composite pattern. The composite pattern is a partitioning design pattern and describes that a group of objects is to be treated in the same way as a single instance of an object. The intent of a composite is to "compose" objects into tree structures to represent part-whole hierarchies.
 
 ### Multi development
 
@@ -30,13 +32,20 @@ Code reuse with common principles with code modularity, loose coupling, high coh
 
 ### Decoupled
 
-From any continuous integration environment like travis, jenkins, or bamboo. 
+From any continuous integration environment like [travis](https://travis-ci.org), [jenkins](https://jenkins.io), or bamboo.
 - Allow to use different continuous integration environment for different processes according to the needs (ex. private code repository we can use jenkins and public repository with can use travis)
-- This allow developers to don’t develop in CI environment. Developers can execute the pipeline in his local environment and solve a fix or develop a new features.
-- Allow developers to add a full suite of tests.
+- This allow developers to don‚Äôt develop in CI environment. Developers can execute the pipeline in his local environment and solve a fix or develop a new features.
 
+### Easy Development
 
-# Installation
+- Develop in your local environment with a suites of stack of libraries and plugins.
+- Declarative configuration with `json` files.
+
+### Testing
+
+- Allow developers to add a full suite of tests for every process [flow](./guides/03-flows.md) or step
+
+# Installation & Get Started
 
 Install with [npm](https://npmjs.org) globally
 
