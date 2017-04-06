@@ -1,33 +1,35 @@
-### Inquirer plugin
+# Inquirer plugin
 
 This plugin use inquirer library [Inquirer documentation](https://www.npmjs.com/package/inquirer)
 
-set type 
+Some file I/O addons are provided:
 
-params.json
-```
-  "prompts": [
-    {
-      "type": "#setType()",
-      "name": "doDefault",
-      "required": true,
-      "message": "Do you want to set default repository type?"
-    }
-  ],
-```
+1. [inquire() addon](#inquire)
+1. [promptArgs() addon](#promptArgs)
 
-- '#' indicate that is necesary to use a function in the shot in order to resolve the type value.
-- '()' set that pisco needs to execute this function on order to get the value. 
+## <a name="inquire"></a>inquire
 
-shot.js
-```
-  setType: function() {
-    return 'confirm';
-  },
+`this.inquire()` launch inquire based in piscosour configuration. See [inquire](../guides/06-inquire.md) for more information. It has no paramater.
+
+Example:
+
+```javascript
+  this.inquire();
 ```
 
-#### this.inquire
+## <a name="promptArgs"></a>promptArgs
+
+`this.promptArgs(array)` gets list of parameters
 
 | Param | Description |
 | --- | --- |
-| | |
+| array | optional paramaters |
+
+Example:
+
+```javascript
+run: function(resolve, reject) {
+  return this.execute('command', this.promptArgs([]))
+      .then(resolve, reject);
+}
+```
