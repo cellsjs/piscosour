@@ -16,7 +16,10 @@
     "email": "cells.tooling.group@bbva.com",
     "name": "QPA"
   },
-  "license": "ISC",
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=4.0.0"
+  },
   "keywords": [
     "piscosour-recipe",
     "tooling",
