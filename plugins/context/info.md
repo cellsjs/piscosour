@@ -1,104 +1,60 @@
-### Context for the pisco execution
+# `context` plugin
 
-With this plugin you can automatically check where recipe was executed. This plugin take configuration from params and expose two method and make one pre-hook check.
+[Context](../guides/01-contexts.md) is one of the main concept in piscosour, the [contexts](../guides/01-contexts.md) define ***where*** and ***when*** pisco can be executed.
+
+This plugin provides:
+1. [check() hook](#check)
+1. [ctxIs() addon](#ctxIs)
+1. [ctxWhoami() addon](#ctxWhoami)
  
-#### How two configure repoType definitions
+## <a name="check"></a>Hook: check()
 
-You can configure the repoTypes definition in all the configurations files where pisco recipes are configured [see information for pisco configuration](doc/Load_Parameters.md). 
+Check one shot is executed in the root of any repository type. 
 
-**Is recommend to use the piscosour.json file of your recipe**
+If the working directory where pisco is executed detects one or more contexts, then will show the following message:
 
-The param is called contexts, and must be a Hash with the name of the repoType as key and Array with all the rules the repo must to match.
-
-example of piscosour.json:
+```sh
+Context checked: Execution contexts: [ documentation, recipe, develop ]
 ```
-    "params": {
-        "contexts": {
-            "node-module": [
-                {
-                    "file": "package.json",
-                    "conditions": [
-                        "that.version"
-                    ]
-                },
-                {
-                    "file": "piscosour.json",
-                    "noexists": "true"
-                }
-            ],
-            "recipe": [
-                {
-                    "sufficient": true,
-                    "file": ".piscosour/piscosour.json",
-                    "conditions": [
-                        "that.repoType==='recipe'"
-                    ]
-                },
-                {
-                    "file": "package.json",
-                    "conditions": [
-                        "that.keywords.indexOf('piscosour-recipe')>=0"
-                    ]
-                },
-                {
-                    "file": "piscosour.json"
-                }
-            ]
-        }
-    },
+If not, then:
+
+```sh
+This is not the root of a [ documentation, recipe, develop ]
 ```
 
-**Rules:**
+There is two special corner case:
 
-Define all rules that a repoType must match. All rules not sufficient must to be satisfied.
+- With `disableContextCheck` parameter, it is possible to skip the check() hook. This is useful in the command line option `--b-disableContextCheck`.
+- The `isGenerator` parameter allows to create a context, so the check() will be skipped.
 
-- **file:** The path of the file relative to the root of the repoType. (for exemple: package.json for a node-module)
-- **sufficient:** If this rule is matched the rest of the rules are ignored. If is not matched, the rule is ignored and the rest of rules are evaluated (default: false)
-- **noexist:** Check if the file is **not** present. (default: false)
-- **conditions:** Is an array with all the conditions that the file must to match. 
-  1. The file must to be a correct json file.
-  2. **that** is the instance of the json object.
-  3. write one condition per element in your array. 
-  4. The conditions were evaluated using javascript.
+## <a name="ctxIs"></a>Addon: ctxIs()
 
-#### Pre-hook: Check one shot is executed in the root of any repository type.
-
-By default, the shot behaviour is assume that repoType is mandatory, if you need to execute one shot without this check of context, use **contextFree** parameter. **contextFree** usually is used for shotd like "create" or something like that.  
-
-only parametrized in params.json:
-
-```
-{
- [...]
-  "contextFree" : true
-}
-```
-
-A user command (straw) only could be contextFree if all of its shots are contextFree. If only one shot of a straw is not contextFree then the context will be checked.
-
-**Disable this check using options in the command line**: Is possible to disable this check using this option in the command line: **--b-disableContextCheck**. Usefull for system requirements checks.
-
-#### addon: this.ctxIs
+Use `this.ctxIs` to test if pisco is executed over a specific context and returns a boolean.
 
 | Param | Description |
 | --- | --- |
-| name | name of the repoType to test|
+| name | name of the context to test|
 
+Example:
 
-Use this.ctxIs to ask pisco where was executed.
-
-```
-let isComponent = this.ctxIs("component");
-```
-
-isComponent must to be true if your recipe was executed in the root of a component.
-
-#### addon: this.ctxWhoami
-
-Ask pisco the repoTypes of the directory where you executed your recipe.
-
-```
-let repos = this.ctxWhoami();
+```javascript
+run: function() {
+  let isComponent = this.ctxIs("component");
+}
 ```
 
-repos is an Array of types that match the place where your recipe was executed.
+Then, `isComponent` is `true` if your recipe was executed in the root of a `component`.
+
+## <a name="ctxWhoami"></a>Addon: ctxWhoami()
+
+Returns the list of contexts where recipe is executed. It has no parameters.
+
+Example:
+
+```javascript
+run: function() {
+  let repos = this.ctxWhoami();
+}
+```
+
+THen `repos` is an Array of context strings that match the place where the recipe is executed.
