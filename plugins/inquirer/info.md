@@ -1,8 +1,8 @@
 # Inquirer plugin
 
-This plugin use inquirer library [Inquirer documentation](https://www.npmjs.com/package/inquirer)
+This plugin uses [inquirer library](https://www.npmjs.com/package/inquirer)
 
-Some file I/O addons are provided:
+Some addons are provided:
 
 1. [inquire() addon](#inquire)
 1. [promptArgs() addon](#promptArgs)
@@ -19,17 +19,42 @@ Example:
 
 ## <a name="promptArgs"></a>promptArgs
 
-`this.promptArgs(array)` gets list of parameters
+`this.promptArgs(array)` returns an `Array` with the list of configured [inquirer prompts](../guides/06-inquire.md) according to the command line format such as:
 
-| Param | Description |
-| --- | --- |
-| array | optional paramaters |
+```javascript
+['--param1', 'value1', '--param2', 'value2', '...']
+```
+
+| Param | Type | Description |
+| --- | --- | --- |
+| initialArray | Array | An initial array of parameters/values where parameters/values of the configuration are going to be added |
 
 Example:
 
+```json
+{
+  "prompts": [
+    {
+      "type": "input",
+      "name": "param1",
+      "message": "#randomMessage"
+    }
+  ]
+ }
+```
+
 ```javascript
 run: function(resolve, reject) {
-  return this.execute('command', this.promptArgs([]))
+  return this.execute('echo', this.promptArgs(['--sample', 'valueSample']))
       .then(resolve, reject);
 }
+```
+
+Where `this.promptArgs(['--sample', 'valueSample'])` will return an array:
+
+```javascript
+[
+  '--sample', 'valueSample',
+  '--param1', 'valueInquirer'
+]
 ```
