@@ -74,39 +74,3 @@ run: function() {
 }
 ```
 
-## <a name="fsCopyDirFiltered"></a>fsCopyDirFiltered
-
-`this.fsCopyDirFiltered(origin, destination)` returns a [promise]((https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)) that will copy all files from a `origin` to a `destination` folder.
-
-| Param | Description |
-| --- | --- |
-| origin | path with the origin |
-| destination | path with the destination |
-
-Example:
-
-```javascript
-run: function(resolve, reject) {
-  return this.fsCopyDirFiltered('originPath', 'destinationPath')
-      .then(resolve, reject)
-}
-```
-
-## <a name="fsCopyFileFiltered"></a>fsCopyFileFiltered
-
-`this.fsCopyFileFiltered(filename)` returns a [promise]((https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)) that will copy all files from a `originFile` to a `destinationFile`.
-
-| Param | Description |
-| --- | --- |
-| originFile | path with the origin filename |
-| destinationFile | path with the destination filename |
-
-Example:
-
-```javascript
-run: function(resolve, reject) {
-  return this.fsCopyFileFiltered('originFile', 'destinationFile')
-      .then(resolve, reject)
-}
-```
-
