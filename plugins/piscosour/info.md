@@ -7,7 +7,7 @@ Plugin to get information about piscosour configuration.
 1. [pkgFile addon](#pkgFile)
 1. [Waterfall() addon](#Waterfall)
 
-## <a name="piscoConfig"></a>piscoConfig() addon
+## <a name="piscoConfig"></a>1. piscoConfig() addon
 
 `this.piscoConfig()` expose the piscosour configuration.
 
@@ -20,7 +20,7 @@ run: function(resolve, reject) {
 }
 ```
 
-## <a name="piscoFile"></a>piscoFile addon
+## <a name="piscoFile"></a>2. piscoFile addon
 
 `this.piscoFile` return the piscosour file name ('piscosour.json').
 
@@ -33,7 +33,7 @@ run: function(resolve, reject) {
 }
 ```
 
-## <a name="pkgFile"></a>pkgFile addon
+## <a name="pkgFile"></a>3. pkgFile addon
 
 `this.pkgFile` return the package file name ('package.json').
 
@@ -46,7 +46,7 @@ run: function(resolve, reject) {
 }
 ```
 
-## <a name="Waterfall"></a>Waterfall() addon
+## <a name="Waterfall"></a>4. Waterfall() addon
 
 `this.Waterfall(config)` return a Object to prepare the execution of a list of [promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise).
 
