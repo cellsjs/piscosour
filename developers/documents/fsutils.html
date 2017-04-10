@@ -298,8 +298,19 @@
       </aside>
       <article>
         <h1 id="plugins-fsutils">Plugins: fsutils</h1>
-<h3 id="fs-plugin-fs-addons-for-piscosour-">fs plugin (fs addons for piscosour)</h3>
-<h4 id="this-fscreatedir">this.fsCreateDir</h4>
+<h1 id="fsutils-plugin">fsUtils plugin</h1>
+<p>Some file I/O addons are provided:</p>
+<ol>
+<li><a href="#fsCreateDir">fsCreateDir() addon</a></li>
+<li><a href="#fsExists">fsExists() addon</a></li>
+<li><a href="#fsReadConfig">fsReadConfig() addon</a></li>
+<li><a href="#fsReadFile">fsReadFile() addon</a></li>
+<li><a href="#fsCopyDirFiltered">fsCopyDirFiltered() addon</a></li>
+<li><a href="#fsCopyFileFiltered">fsCopyFileFiltered() addon</a></li>
+<li><a href="#fsAppendBundle">fsAppendBundle() addon</a></li>
+</ol>
+<h2 id="-a-name-fscreatedir-a-fscreatedir"><a name="fsCreateDir"></a>fsCreateDir</h2>
+<p><code>this.fsCreateDir(dirName)</code> attempts to create synchronously a directory named <code>dirName</code>.</p>
 <table>
 <thead>
 <tr>
@@ -309,11 +320,18 @@
 </thead>
 <tbody>
 <tr>
-<td></td>
+<td>dir</td>
+<td>name of the directory to crate</td>
 </tr>
 </tbody>
 </table>
-<h4 id="this-fsexists">this.fsExists</h4>
+<p>Example:</p>
+<pre><code class="lang-javascript">run: function() {
+  this.fsCreate(&#39;test&#39;);
+}
+</code></pre>
+<h2 id="-a-name-fsexists-a-fsexists"><a name="fsExists"></a>fsExists</h2>
+<p><code>this.fsExists(filename)</code> check synchronously if a element named <code>filename</code> exists and returns a boolean.</p>
 <table>
 <thead>
 <tr>
@@ -323,11 +341,18 @@
 </thead>
 <tbody>
 <tr>
-<td></td>
+<td>filename</td>
+<td>name of the element to test is exists</td>
 </tr>
 </tbody>
 </table>
-<h4 id="this-fsreadconfig">this.fsReadConfig</h4>
+<p>Example:</p>
+<pre><code class="lang-javascript">run: function() {
+  let exist = this.fsExists(&#39;sample&#39;);
+}
+</code></pre>
+<h2 id="-a-name-fsreadconfig-a-fsreadconfig"><a name="fsReadConfig"></a>fsReadConfig</h2>
+<p><code>this.fsReadConfig(filename)</code> attemps to read synchronously a JSON file named <code>filename</code> exists, and returns an object with the <code>json</code>.</p>
 <table>
 <thead>
 <tr>
@@ -337,11 +362,18 @@
 </thead>
 <tbody>
 <tr>
-<td></td>
+<td>filename</td>
+<td>name of the json file</td>
 </tr>
 </tbody>
 </table>
-<h4 id="this-fsreadfile">this.fsReadFile</h4>
+<p>Example:</p>
+<pre><code class="lang-javascript">run: function() {
+  let json = this.fsReadConfig(&#39;sample.json&#39;)
+}
+</code></pre>
+<h2 id="-a-name-fsreadfile-a-fsreadfile"><a name="fsReadFile"></a>fsReadFile</h2>
+<p><code>this.fsReadFile(filename)</code> attemps to read synchronously a text file named <code>filename</code> exists, and returns a string with the contain.</p>
 <table>
 <thead>
 <tr>
@@ -351,52 +383,16 @@
 </thead>
 <tbody>
 <tr>
-<td></td>
+<td>filename</td>
+<td>name of the file</td>
 </tr>
 </tbody>
 </table>
-<h4 id="this-fscopydirfiltered">this.fsCopyDirFiltered</h4>
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h4 id="this-fscopyfilefiltered">this.fsCopyFileFiltered</h4>
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h4 id="this-fsappendbundle">this.fsAppendBundle</h4>
-<table>
-<thead>
-<tr>
-<th>Param</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>Example:</p>
+<pre><code class="lang-javascript">run: function() {
+  let contain = this.fsReadConfig(&#39;sample.json&#39;)
+}
+</code></pre>
 
       </article>
     </section>

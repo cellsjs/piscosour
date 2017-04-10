@@ -298,102 +298,440 @@
       </aside>
       <article>
         <h1 id="plugins-launcher">Plugins: launcher</h1>
-<h3 id="execute-any-command-with-pisco-">Execute any command with pisco.</h3>
-<p>Core plugin used to execute any command inside pisco.</p>
-<h4 id="this-sh">this.sh</h4>
+<h1 id="launcher-plugin">launcher plugin</h1>
+<p>This plugins provides the ability to spawn child processes with different implemented ways:</p>
+<ol>
+<li><a href="#sh">sh() addon</a></li>
+<li><a href="#sudo">sudo() addon</a></li>
+<li><a href="#execute">execute() addon</a></li>
+<li><a href="#executeMassive">executeMassive() addon</a></li>
+<li><a href="#executeParallel">executeParallel() addon</a></li>
+<li><a href="#executeSync">executeSync() addon</a></li>
+<li><a href="#executeStreamed">executeStreamed() addon</a></li>
+</ol>
+<h2 id="-a-name-sh-a-1-sh-addon"><a name="sh"></a>1. sh() addon</h2>
+<p><code>this.sh(command, reject, loud)</code> is a syncronous method to execute a <code>command</code> in your environment. If fails <code>reject</code> function is called.</p>
 <table>
 <thead>
 <tr>
 <th>Param</th>
+<th>Type</th>
+<th>Optional</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>command</td>
-<td>command that you want to execute</td>
+<td>String</td>
+<td>No</td>
+<td>The command that you want to execute</td>
 </tr>
 <tr>
 <td>reject</td>
-<td>reject function, called if command fails (stop overall execcution)</td>
+<td>function</td>
+<td>Yes</td>
+<td>reject function, called if command fails (stop overall execution)</td>
 </tr>
 <tr>
 <td>loud</td>
-<td>Boolean if true echo of command is done</td>
+<td>boolean</td>
+<td>Yes</td>
+<td>If true echo of command is done</td>
 </tr>
 </tbody>
 </table>
-<p>Syncronous method use to execute any command in your environment.</p>
-<h4 id="this-sudo">this.sudo</h4>
+<p>Example:</p>
+<pre><code class="lang-javascript">run: function(resolve, reject) {
+  return this.sh(&#39;echo sample&#39;, reject, true);
+}
+</code></pre>
+<h2 id="-a-name-sudo-a-2-sudo-addon"><a name="sudo"></a>2. sudo() addon</h2>
+<p><code>this.sudo(command)</code> is a syncronous method to execute a <code>command</code> in your environment as a administrator (or root).</p>
 <table>
 <thead>
 <tr>
 <th>Param</th>
+<th>Type</th>
+<th>Optional</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td></td>
+<td>command</td>
+<td>String</td>
+<td>No</td>
+<td>The command and parameters</td>
 </tr>
 </tbody>
 </table>
-<h4 id="this-executesync">this.executeSync</h4>
+<p>Example:</p>
+<pre><code class="lang-javascript">run: function(resolve, reject) {
+  return this.sudo(&#39;echo my sample&#39;);
+}
+</code></pre>
+<h2 id="-a-name-execute-a-3-execute-addon"><a name="execute"></a>3. execute() addon</h2>
+<p><code>this.execute(command, arguments, options)</code> returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">promise</a> that will execute a <code>command</code> with <code>arguments</code> in your environment.</p>
 <table>
 <thead>
 <tr>
 <th>Param</th>
+<th>Type</th>
+<th>Optional</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td></td>
+<td>command</td>
+<td>String</td>
+<td>No</td>
+<td>The command name</td>
+</tr>
+<tr>
+<td>arguments</td>
+<td>Array</td>
+<td>Yes</td>
+<td>The list of arguments</td>
+</tr>
+<tr>
+<td>options</td>
+<td>Object</td>
+<td>Options in the execution of the process, see <a href="#options">options</a></td>
 </tr>
 </tbody>
 </table>
-<h4 id="this-executestreamed">this.executeStreamed</h4>
+<p><code>options</code> allows these <a href="#options">configurations</a>, and in addition allows these properties:
+| Property | Type | Description |
+| --- | --- | --- |
+| mute | boolean | If true no log appears in stdin |</p>
+<p>Example:</p>
+<pre><code class="lang-javascript">run: function(resolve, reject) {
+  return this.execute(&#39;echo&#39;, [&#39;my&#39;, &#39;sample&#39;], { &#39;mute&#39;: true })
+      .then(resolve, reject);
+}
+</code></pre>
+<h2 id="-a-name-executemassive-a-4-executemassive-addon"><a name="executeMassive"></a>4. executeMassive() addon</h2>
+<p><code>this.executeMassive(descriptors, jobs)</code> returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">promise</a> to <a href="#execute">execute</a> in parallel a list of processed defined with <code>descriptors</code>. The limit of parallel process is defined by <code>jobs</code></p>
 <table>
 <thead>
 <tr>
 <th>Param</th>
+<th>Type</th>
+<th>Optional</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td></td>
+<td>descriptors</td>
+<td>Array of Objects</td>
+<td>No</td>
+<td>Array of {cmd, arguments, options}</td>
+</tr>
+<tr>
+<td>jobs</td>
+<td>number</td>
+<td>No</td>
+<td>number of parallel jobs</td>
 </tr>
 </tbody>
 </table>
-<h4 id="this-execute">this.execute</h4>
+<p>Where <code>descriptors</code> is an array of objects needed to <a href="#execute">execute a command</a> with the following properties:</p>
 <table>
 <thead>
 <tr>
-<th>Param</th>
+<th>Property</th>
+<th>Type</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td></td>
+<td>cmd</td>
+<td>String</td>
+<td>Command name to execute</td>
+</tr>
+<tr>
+<td>args</td>
+<td>Array</td>
+<td>The list of command arguments</td>
+</tr>
+<tr>
+<td>options</td>
+<td>Object</td>
+<td>Options in the execution of the process, see <a href="#options">options</a></td>
 </tr>
 </tbody>
 </table>
-<h4 id="this-executeparallel">this.executeParallel</h4>
+<p>Example:</p>
+<pre><code class="lang-javascript">run: function(resolve, reject) {
+  return this.executeMassive(
+    [
+      { &#39;cmd&#39;: &#39;echo&#39;, &#39;args&#39;: [ &#39;exec1&#39; ], &#39;options&#39;: {} },
+      { &#39;cmd&#39;: &#39;sleep&#39;, &#39;args&#39;: [ &#39;5&#39; ], &#39;options&#39;: {} },
+      { &#39;cmd&#39;: &#39;echo&#39;, &#39;args&#39;: [ &#39;exec2&#39; ], &#39;options&#39;: {} },
+      { &#39;cmd&#39;: &#39;sleep&#39;, &#39;args&#39;: [ &#39;5&#39; ], &#39;options&#39;: {} },
+      { &#39;cmd&#39;: &#39;echo&#39;, &#39;args&#39;: [ &#39;exec3&#39; ], &#39;options&#39;: {} },
+      { &#39;cmd&#39;: &#39;sleep&#39;, &#39;args&#39;: [ &#39;5&#39; ], &#39;options&#39;: {} },
+      { &#39;cmd&#39;: &#39;echo&#39;, &#39;args&#39;: [ &#39;exec4&#39; ], &#39;options&#39;: {} },
+      { &#39;cmd&#39;: &#39;sleep&#39;, &#39;args&#39;: [ &#39;5&#39; ], &#39;options&#39;: {} },
+      { &#39;cmd&#39;: &#39;echo&#39;, &#39;args&#39;: [ &#39;exec5&#39; ], &#39;options&#39;: {} },
+      { &#39;cmd&#39;: &#39;sleep&#39;, &#39;args&#39;: [ &#39;5&#39; ], &#39;options&#39;: {} },
+      { &#39;cmd&#39;: &#39;echo&#39;, &#39;args&#39;: [ &#39;exec6&#39; ], &#39;options&#39;: {} },
+      { &#39;cmd&#39;: &#39;sleep&#39;, &#39;args&#39;: [ &#39;5&#39; ], &#39;options&#39;: {} }
+    ], 2).then(resolve, reject);
+}
+</code></pre>
+<p>Display the following log in the console:</p>
+<pre><code class="lang-sh">[20:31:18] run stage running...
+exec1
+[20:31:18] echo exec1 executed: OK
+[20:31:23] sleep 5 executed: OK
+[20:31:23] sleep 5 executed: OK
+exec2
+[20:31:23] echo exec2 executed: OK
+exec3
+[20:31:23] echo exec3 executed: OK
+[20:31:28] sleep 5 executed: OK
+exec4
+[20:31:28] echo exec4 executed: OK
+[20:31:28] sleep 5 executed: OK
+exec5
+[20:31:28] echo exec5 executed: OK
+[20:31:33] sleep 5 executed: OK
+[20:31:33] sleep 5 executed: OK
+exec6
+[20:31:33] echo exec6 executed: OK
+</code></pre>
+<h2 id="-a-name-executeparallel-a-5-executeparallel-addon"><a name="executeParallel"></a>5. executeParallel() addon</h2>
+<p><code>this.executeParallel(descriptors)</code> returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">promise</a> to <a href="#execute">execute</a> in parallel all the list of processed defined with <code>descriptors</code>.</p>
 <table>
 <thead>
 <tr>
 <th>Param</th>
+<th>Type</th>
+<th>Optional</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td></td>
+<td>descriptors</td>
+<td>Array of Objects</td>
+<td>No</td>
+<td>Array of {cmd, args, options}</td>
 </tr>
 </tbody>
 </table>
+<p>Where <code>descriptors</code> is an array of objects needed to <a href="#execute">execute a command</a> with the following properties:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cmd</td>
+<td>String</td>
+<td>Command name to execute</td>
+</tr>
+<tr>
+<td>args</td>
+<td>Array</td>
+<td>The list of command arguments</td>
+</tr>
+<tr>
+<td>options</td>
+<td>Object</td>
+<td>Options in the execution of the process, see <a href="#options">options</a></td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<pre><code class="lang-javascript">run: function(resolve, reject) {
+  return this.executeParallel(
+    [
+      { &#39;cmd&#39;: &#39;echo&#39;, &#39;args&#39;: [ &#39;exec1&#39; ], &#39;options&#39;: {} },
+      { &#39;cmd&#39;: &#39;sleep&#39;, &#39;args&#39;: [ &#39;5&#39; ], &#39;options&#39;: {} },
+      { &#39;cmd&#39;: &#39;echo&#39;, &#39;args&#39;: [ &#39;exec2&#39; ], &#39;options&#39;: {} },
+      { &#39;cmd&#39;: &#39;sleep&#39;, &#39;args&#39;: [ &#39;5&#39; ], &#39;options&#39;: {} },
+      { &#39;cmd&#39;: &#39;echo&#39;, &#39;args&#39;: [ &#39;exec3&#39; ], &#39;options&#39;: {} },
+      { &#39;cmd&#39;: &#39;sleep&#39;, &#39;args&#39;: [ &#39;5&#39; ], &#39;options&#39;: {} },
+      { &#39;cmd&#39;: &#39;echo&#39;, &#39;args&#39;: [ &#39;exec4&#39; ], &#39;options&#39;: {} },
+      { &#39;cmd&#39;: &#39;sleep&#39;, &#39;args&#39;: [ &#39;5&#39; ], &#39;options&#39;: {} },
+      { &#39;cmd&#39;: &#39;echo&#39;, &#39;args&#39;: [ &#39;exec5&#39; ], &#39;options&#39;: {} },
+      { &#39;cmd&#39;: &#39;sleep&#39;, &#39;args&#39;: [ &#39;5&#39; ], &#39;options&#39;: {} },
+      { &#39;cmd&#39;: &#39;echo&#39;, &#39;args&#39;: [ &#39;exec6&#39; ], &#39;options&#39;: {} },
+      { &#39;cmd&#39;: &#39;sleep&#39;, &#39;args&#39;: [ &#39;5&#39; ], &#39;options&#39;: {} }
+    ]).then(resolve, reject);
+}
+</code></pre>
+<p>Display the following log in the console:</p>
+<pre><code class="lang-sh">[20:38:50] run stage running...
+exec1
+exec2
+exec3
+exec4
+exec5
+exec6
+[20:38:50] echo exec5 executed: OK
+[20:38:50] echo exec4 executed: OK
+[20:38:50] echo exec3 executed: OK
+[20:38:50] echo exec2 executed: OK
+[20:38:50] echo exec1 executed: OK
+[20:38:50] echo exec6 executed: OK
+[20:38:55] sleep 5 executed: OK
+[20:38:55] sleep 5 executed: OK
+[20:38:55] sleep 5 executed: OK
+[20:38:55] sleep 5 executed: OK
+[20:38:55] sleep 5 executed: OK
+[20:38:55] sleep 5 executed: OK
+</code></pre>
+<h3 id="-a-name-executesync-a-6-executesync-addon"><a name="executeSync"></a>6. executeSync() addon</h3>
+<p><code>this.executeSync(command, arguments, reject, loud)</code> executes synchronously a <code>command</code> with a list of <code>arguments</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Optional</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>command</td>
+<td>String</td>
+<td>No</td>
+<td>The command name to execute</td>
+</tr>
+<tr>
+<td>arguments</td>
+<td>Array</td>
+<td>No</td>
+<td>The arguments of the command</td>
+</tr>
+<tr>
+<td>reject</td>
+<td>function</td>
+<td>Yes</td>
+<td>If fails the execution, then this function callback will be executed</td>
+</tr>
+<tr>
+<td>loud</td>
+<td>boolean</td>
+<td>Yes</td>
+<td>By default is false. If true, then <code>options.stdio</code> configuration will be <code>{ stdio: [&#39;ignore&#39;, process.stdout, process.stderr] }</code>. See <a href="https://nodejs.org/api/child_process.html#child_process_options_stdio">options.stdio</a>.</td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<pre><code class="lang-javascript">run: function(resolve, reject) {
+  this.executeSync(&#39;echo&#39;, [ &#39;1&#39;, &#39;2&#39;, &#39;3&#39; ], reject);
+  resolve();
+}
+</code></pre>
+<h2 id="-a-name-executestreamed-a-7-executestreamed-addon"><a name="executeStreamed"></a>7. executeStreamed() addon</h2>
+<p><code>this.executeStreamed(command, arguments, options)</code> executes a <code>command</code> with some <code>arguments</code> and returns a stream.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cmd</td>
+<td>String</td>
+<td>Command name to execute</td>
+</tr>
+<tr>
+<td>arguments</td>
+<td>Array</td>
+<td>The list of command arguments</td>
+</tr>
+<tr>
+<td>options</td>
+<td>Object</td>
+<td>Options in the execution of the process, see <a href="#options">options</a></td>
+</tr>
+</tbody>
+</table>
+<p><a name="options"></a><code>options</code> is an object and allows the following <a href="https://nodejs.org/api/child_process.html#child_process_child_process_spawn_command_args_options">properties of nodejs spawn</a>:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cwd</td>
+<td>string</td>
+<td>Current working directory of the child process</td>
+</tr>
+<tr>
+<td>env</td>
+<td>Object</td>
+<td>Environment key-value pairs</td>
+</tr>
+<tr>
+<td>argv0</td>
+<td>string</td>
+<td>Explicitly set the value of argv[0] sent to the child process. This will be set to command if not specified.</td>
+</tr>
+<tr>
+<td>stdio</td>
+<td>Array \</td>
+<td>String</td>
+<td>Child&#39;s stdio configuration. (See <a href="https://nodejs.org/api/child_process.html#child_process_options_stdio">options.stdio</a>)</td>
+</tr>
+<tr>
+<td>detached</td>
+<td>boolean</td>
+<td>Prepare child to run independently of its parent process. Specific behavior depends on the platform, see <a href="https://nodejs.org/api/child_process.html#child_process_options_detached">options.detached</a>)</td>
+</tr>
+<tr>
+<td>uid</td>
+<td>number</td>
+<td>Sets the user identity of the process. (See <a href="http://man7.org/linux/man-pages/man2/setuid.2.html">setuid(2)</a>)</td>
+</tr>
+<tr>
+<td>gid</td>
+<td>number</td>
+<td>Sets the group identity of the process. (See <a href="http://man7.org/linux/man-pages/man2/setuid.2.html">setgid(2)</a>) </td>
+</tr>
+<tr>
+<td>shell</td>
+<td>boolean \</td>
+<td>string</td>
+<td>If true, runs command inside of a shell. Uses &#39;/bin/sh&#39; on UNIX, and &#39;cmd.exe&#39; on Windows. A different shell can be specified as a string. The shell should understand the -c switch on UNIX, or /d /s /c on Windows. Defaults to false (no shell).</td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<pre><code class="lang-javascript">run: function(resolve, reject) {
+  let stream = launcher.executeStreamed(&#39;echo&#39;, [ &#39;1&#39; ], {});
+  stream.on(&#39;close&#39;, (code) =&gt; {
+    logger.trace(command, &#39;close with code &#39;, code);
+    if (code !== 0) {
+      reject();
+    } else {
+      resolve();
+    }
+  }
+  return true;
+}
+</code></pre>
 
       </article>
     </section>

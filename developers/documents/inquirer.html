@@ -298,40 +298,60 @@
       </aside>
       <article>
         <h1 id="plugins-inquirer">Plugins: inquirer</h1>
-<h3 id="inquirer-plugin">Inquirer plugin</h3>
-<p>This plugin use inquirer library <a href="https://www.npmjs.com/package/inquirer">Inquirer documentation</a></p>
-<p>set type </p>
-<p>params.json</p>
-<pre><code>  &amp;quot;prompts&amp;quot;: [
-    {
-      &amp;quot;type&amp;quot;: &amp;quot;#setType()&amp;quot;,
-      &amp;quot;name&amp;quot;: &amp;quot;doDefault&amp;quot;,
-      &amp;quot;required&amp;quot;: true,
-      &amp;quot;message&amp;quot;: &amp;quot;Do you want to set default repository type?&amp;quot;
-    }
-  ],
-</code></pre><ul>
-<li>&#39;#&#39; indicate that is necesary to use a function in the shot in order to resolve the type value.</li>
-<li>&#39;()&#39; set that pisco needs to execute this function on order to get the value. </li>
-</ul>
-<p>shot.js</p>
-<pre><code>  setType: function() {
-    return &amp;#39;confirm&amp;#39;;
-  },
-</code></pre><h4 id="this-inquire">this.inquire</h4>
+<h1 id="inquirer-plugin">Inquirer plugin</h1>
+<p>This plugin uses <a href="https://www.npmjs.com/package/inquirer">inquirer library</a></p>
+<p>Some addons are provided:</p>
+<ol>
+<li><a href="#inquire">inquire() addon</a></li>
+<li><a href="#promptArgs">promptArgs() addon</a></li>
+</ol>
+<h2 id="-a-name-inquire-a-inquire"><a name="inquire"></a>inquire</h2>
+<p><code>this.inquire()</code> launch inquire based in piscosour configuration. See <a href="../guides/06-inquire.html">inquire</a> for more information. It has no paramater.</p>
+<p>Example:</p>
+<pre><code class="lang-javascript">  this.inquire();
+</code></pre>
+<h2 id="-a-name-promptargs-a-promptargs"><a name="promptArgs"></a>promptArgs</h2>
+<p><code>this.promptArgs(array)</code> returns an <code>Array</code> with the list of configured <a href="../guides/06-inquire.html">inquirer prompts</a> according to the command line format such as:</p>
+<pre><code class="lang-javascript">[&#39;--param1&#39;, &#39;value1&#39;, &#39;--param2&#39;, &#39;value2&#39;, &#39;...&#39;]
+</code></pre>
 <table>
 <thead>
 <tr>
 <th>Param</th>
+<th>Type</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td></td>
+<td>initialArray</td>
+<td>Array</td>
+<td>An initial array of parameters/values where parameters/values of the configuration are going to be added</td>
 </tr>
 </tbody>
 </table>
+<p>Example:</p>
+<pre><code class="lang-json">{
+  &quot;prompts&quot;: [
+    {
+      &quot;type&quot;: &quot;input&quot;,
+      &quot;name&quot;: &quot;param1&quot;,
+      &quot;message&quot;: &quot;#randomMessage&quot;
+    }
+  ]
+ }
+</code></pre>
+<pre><code class="lang-javascript">run: function(resolve, reject) {
+  return this.execute(&#39;echo&#39;, this.promptArgs([&#39;--sample&#39;, &#39;valueSample&#39;]))
+      .then(resolve, reject);
+}
+</code></pre>
+<p>Where <code>this.promptArgs([&#39;--sample&#39;, &#39;valueSample&#39;])</code> will return an array:</p>
+<pre><code class="lang-javascript">[
+  &#39;--sample&#39;, &#39;valueSample&#39;,
+  &#39;--param1&#39;, &#39;valueInquirer&#39;
+]
+</code></pre>
 
       </article>
     </section>

@@ -298,12 +298,28 @@
       </aside>
       <article>
         <h1 id="plugins-os">Plugins: os</h1>
-<p>Plugins used to check Operating System where pisco is running</p>
-<p>###Addons:</p>
-<h4 id="this-iswin-">this.isWin();</h4>
-<p>return true if the Operation System where pisco is executed is Windows.</p>
-<h4 id="this-ismac-">this.isMac();</h4>
-<p>return true if the Operation System where pisco is executed is MacOS.</p>
+<h1 id="os-plugin">os plugin</h1>
+<p>Plugin to check Operating System where pisco is running</p>
+<ol>
+<li><a href="#isMac">isMac() addon</a></li>
+<li><a href="#isWin">isWin() addon</a></li>
+</ol>
+<h2 id="-a-name-ismac-a-ismac-addon"><a name="isMac"></a>isMac() addon</h2>
+<p><code>this.isMac()</code> is a syncronous method that returns a <code>true</code> when the operating system is a Mac OS.</p>
+<p>Example:</p>
+<pre><code class="lang-javascript">run: function(resolve, reject) {
+  this.logger(&#39;mac?&#39;, this.isMac());
+  return true;
+}
+</code></pre>
+<h2 id="-a-name-iswin-a-iswin-addon"><a name="isWin"></a>isWin() addon</h2>
+<p><code>this.isWin()</code> is a syncronous method that returns a <code>true</code> when the operating system is a Windows OS.</p>
+<p>Example:</p>
+<pre><code class="lang-javascript">run: function(resolve, reject) {
+  this.logger(&#39;windows?&#39;, this.isWindow());
+  return true;
+}
+</code></pre>
 
       </article>
     </section>

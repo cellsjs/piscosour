@@ -303,44 +303,44 @@
 <h4 id="1-define-version-match-only-in-the-cases-where-could-be-diferent-">1. Define version match (Only in the cases where could be diferent)</h4>
 <p>By default version is taken asking the command with -v and assume that command return version plain without test.</p>
 <pre><code>bower -v 
-&amp;gt; 1.7.9
+&gt; 1.7.9
 </code></pre><p>But in some cases this is not true, in this cases you can define matches inside <strong>piscosour.json</strong>:  </p>
 <p>Example of piscosour.json</p>
 <pre><code>{
   [...]  
-  &amp;quot;params&amp;quot;: {
+  &quot;params&quot;: {
     [...]
-    &amp;quot;versions&amp;quot;: {
-      &amp;quot;java&amp;quot;: {
-        &amp;quot;option&amp;quot; : &amp;quot;-version&amp;quot;,
-        &amp;quot;regexp&amp;quot; : &amp;quot;\&amp;quot;(.*?)_&amp;quot;
+    &quot;versions&quot;: {
+      &quot;java&quot;: {
+        &quot;option&quot; : &quot;-version&quot;,
+        &quot;regexp&quot; : &quot;\&quot;(.*?)_&quot;
       },
       [...]
     },
   [...]
 }
 </code></pre><p>By default this is the versions defined inside core:</p>
-<pre><code>    &amp;quot;versions&amp;quot;: {
-      &amp;quot;bower&amp;quot; : {
-        &amp;quot;npm&amp;quot;: true,
-        &amp;quot;list&amp;quot;: &amp;quot;bower cache list&amp;quot;,
-        &amp;quot;cmdInstaller&amp;quot;: &amp;quot;bower install&amp;quot;        
+<pre><code>    &quot;versions&quot;: {
+      &quot;bower&quot; : {
+        &quot;npm&quot;: true,
+        &quot;list&quot;: &quot;bower cache list&quot;,
+        &quot;cmdInstaller&quot;: &quot;bower install&quot;        
       },
-      &amp;quot;npm&amp;quot; : {
-        &amp;quot;list&amp;quot;: &amp;quot;npm list -g --depth 0&amp;quot;,
-        &amp;quot;regexp&amp;quot;: &amp;quot;\\@(.*?)\\s&amp;quot;
-        &amp;quot;cmdInstaller&amp;quot;: &amp;quot;npm install -g&amp;quot;
+      &quot;npm&quot; : {
+        &quot;list&quot;: &quot;npm list -g --depth 0&quot;,
+        &quot;regexp&quot;: &quot;\\@(.*?)\\s&quot;
+        &quot;cmdInstaller&quot;: &quot;npm install -g&quot;
       },    
-      &amp;quot;java&amp;quot;: {
-        &amp;quot;option&amp;quot; : &amp;quot;-version&amp;quot;,
-        &amp;quot;regexp&amp;quot; : &amp;quot;\&amp;quot;(.*?)_&amp;quot;
+      &quot;java&quot;: {
+        &quot;option&quot; : &quot;-version&quot;,
+        &quot;regexp&quot; : &quot;\&quot;(.*?)_&quot;
       },
-      &amp;quot;sass&amp;quot; : {
-        &amp;quot;regexp&amp;quot; : &amp;quot;s (.*?) &amp;quot;
+      &quot;sass&quot; : {
+        &quot;regexp&quot; : &quot;s (.*?) &quot;
       },
-      &amp;quot;git&amp;quot;: {
-        &amp;quot;option&amp;quot; : &amp;quot;--version&amp;quot;,
-        &amp;quot;regexp&amp;quot; : &amp;quot;n (.*?)\\n&amp;quot;
+      &quot;git&quot;: {
+        &quot;option&quot; : &quot;--version&quot;,
+        &quot;regexp&quot; : &quot;n (.*?)\\n&quot;
       }
     }
 </code></pre><ul>
@@ -362,37 +362,37 @@
 <p>-<strong>requirements</strong> All dependencies are defined inside requirements</p>
 <p>Example of params.json:</p>
 <pre><code>{
-  &amp;quot;requirements&amp;quot;: {
-    &amp;quot;polymer&amp;quot; : {
-      &amp;quot;installer&amp;quot;: &amp;quot;bower&amp;quot;,
-      &amp;quot;listedIn&amp;quot;: &amp;quot;bower&amp;quot;,
-      &amp;quot;uri&amp;quot;: &amp;quot;https://github.com/Polymer/polymer.git#v1.6.1&amp;quot;,
-      &amp;quot;regexp&amp;quot;: &amp;quot;=(.*?)&amp;quot;
+  &quot;requirements&quot;: {
+    &quot;polymer&quot; : {
+      &quot;installer&quot;: &quot;bower&quot;,
+      &quot;listedIn&quot;: &quot;bower&quot;,
+      &quot;uri&quot;: &quot;https://github.com/Polymer/polymer.git#v1.6.1&quot;,
+      &quot;regexp&quot;: &quot;=(.*?)&quot;
     },
-    &amp;quot;generator-pisco-recipe&amp;quot; : {
-      &amp;quot;installer&amp;quot;: &amp;quot;npm&amp;quot;,
-      &amp;quot;listedIn&amp;quot;: &amp;quot;npm&amp;quot;,
-      &amp;quot;version&amp;quot; : &amp;quot;0.0.2&amp;quot;
+    &quot;generator-pisco-recipe&quot; : {
+      &quot;installer&quot;: &quot;npm&quot;,
+      &quot;listedIn&quot;: &quot;npm&quot;,
+      &quot;version&quot; : &quot;0.0.2&quot;
     },
-    &amp;quot;pisco&amp;quot; : {
-      &amp;quot;installer&amp;quot;: &amp;quot;npm&amp;quot;,
-      &amp;quot;pkg&amp;quot; : &amp;quot;piscosour&amp;quot;,
-      &amp;quot;version&amp;quot; : &amp;quot;0.5.0&amp;quot;
+    &quot;pisco&quot; : {
+      &quot;installer&quot;: &quot;npm&quot;,
+      &quot;pkg&quot; : &quot;piscosour&quot;,
+      &quot;version&quot; : &quot;0.5.0&quot;
     },
-    &amp;quot;cordova&amp;quot; : {
-      &amp;quot;installer&amp;quot;: &amp;quot;npm&amp;quot;,
-      &amp;quot;version&amp;quot; : &amp;quot;5.4.1&amp;quot;
+    &quot;cordova&quot; : {
+      &quot;installer&quot;: &quot;npm&quot;,
+      &quot;version&quot; : &quot;5.4.1&quot;
     },
-    &amp;quot;yo&amp;quot; : {&amp;quot;npm&amp;quot;: true},
-    &amp;quot;bower&amp;quot; : {
-      &amp;quot;installer&amp;quot;: &amp;quot;npm&amp;quot;,
-      &amp;quot;version&amp;quot; : &amp;quot;1.7.9&amp;quot;
+    &quot;yo&quot; : {&quot;npm&quot;: true},
+    &quot;bower&quot; : {
+      &quot;installer&quot;: &quot;npm&quot;,
+      &quot;version&quot; : &quot;1.7.9&quot;
     },
-    &amp;quot;java&amp;quot;: {
-      &amp;quot;version&amp;quot;: &amp;quot;1.7.0&amp;quot;
+    &quot;java&quot;: {
+      &quot;version&quot;: &quot;1.7.0&quot;
     },
-    &amp;quot;sass&amp;quot; : {
-      &amp;quot;version&amp;quot;: &amp;quot;3.1.0&amp;quot;
+    &quot;sass&quot; : {
+      &quot;version&quot;: &quot;3.1.0&quot;
     }
   },
   [...]
@@ -418,11 +418,11 @@
 <li><strong>--b-disableContextCheck</strong>: disable context checks for commands that need one.</li>
 </ul>
 <p>this is the result of the execution for every shot that would have system requirements defined:</p>
-<pre><code>[12:14:32] java ( 1.7.0 ) is required -&amp;gt;  java ( 1.8.0_65 ) impossible to parse ... WARNING!
-[12:14:33] cordova ( 5.4.1 ) is required -&amp;gt;  cordova ( 5.4.1 ) is installed ... OK
-[12:14:34] yo ( any version ) is required -&amp;gt;  yo is installed ... OK
-[12:14:35] bower ( 1.0.0 ) is required -&amp;gt;  bower ( 1.7.7 ) is installed ... OK
-[12:14:35] sass ( 3.1.0 ) is required -&amp;gt;  sass ( 3.4.19 ) is installed ... OK
+<pre><code>[12:14:32] java ( 1.7.0 ) is required -&gt;  java ( 1.8.0_65 ) impossible to parse ... WARNING!
+[12:14:33] cordova ( 5.4.1 ) is required -&gt;  cordova ( 5.4.1 ) is installed ... OK
+[12:14:34] yo ( any version ) is required -&gt;  yo is installed ... OK
+[12:14:35] bower ( 1.0.0 ) is required -&gt;  bower ( 1.7.7 ) is installed ... OK
+[12:14:35] sass ( 3.1.0 ) is required -&gt;  sass ( 3.4.19 ) is installed ... OK
 </code></pre><p>If any system requirement is not satisfied the command will throw an error and stops...</p>
 
       </article>

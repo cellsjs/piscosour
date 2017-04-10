@@ -302,7 +302,7 @@
 <p>This way you can capture all the output of any stream and do whatever you want with it. The way to do this has two stages:</p>
 <h4 id="1-start-intercepting-the-stream">1. Start intercepting the stream</h4>
 <p>At any place in yor code is posible to intercept any stream the only thing you have to do is use streamWriteHook method:</p>
-<pre><code>   let capture = &amp;#39;&amp;#39;;
+<pre><code>   let capture = &#39;&#39;;
    this.streamWriteHook(process.stdout, function(chunk, encoding, cb) {
      capture += stripcolorcodes(chunk.toString(encoding));
    });

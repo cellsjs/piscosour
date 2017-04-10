@@ -298,14 +298,23 @@
       </aside>
       <article>
         <h1 id="plugins-installer">Plugins: installer</h1>
-<h3 id="install-recipes-needed">Install recipes needed</h3>
-<p>This plugins install all recipes needed for the execution. </p>
-<h4 id="hooks-">Hooks:</h4>
-<ul>
-<li><strong>&#39;core-install&#39;</strong>: Perform npm installation of the compatible version of the recipe</li>
-<li><strong>config</strong>: Execute &#39;pisco -w&#39; in order to write the scullion configuration.</li>
-<li><strong>run</strong>: Execute the installed step. </li>
-</ul>
+<h1 id="installer-plugin">installer plugin</h1>
+<p>This plugins install all recipes needed for the execution with the <code>core-install</code> hook:</p>
+<h2 id="core-install-hook-">core-install hook:</h2>
+<p>Performs installations of the compatible <a href="../guides/10-requirements.html">requirements</a> version for all recipes needed.</p>
+<p>Example of config.json:</p>
+<pre><code class="lang-json">{
+  &quot;requirements&quot;: {
+    &quot;polymer&quot; : {
+      &quot;installer&quot;: &quot;bower&quot;,
+      &quot;listedIn&quot;: &quot;bower&quot;,
+      &quot;uri&quot;: &quot;https://github.com/Polymer/polymer.git#v1.6.1&quot;,
+      &quot;regexp&quot;: &quot;=(.*?)&quot;
+    }
+  }
+}
+</code></pre>
+<p>See <a href="../guides/10-requirements.html">requirements documentation</a> for more information.</p>
 
       </article>
     </section>

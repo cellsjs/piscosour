@@ -298,8 +298,13 @@
       </aside>
       <article>
         <h1 id="plugins-skipper">Plugins: skipper</h1>
-<h3 id="skipper-plugin">Skipper plugin</h3>
-<p>Skips the shot execution when receiving the param &quot;_skip&quot;: true</p>
+<h1 id="skipper-plugin">skipper plugin</h1>
+<p>This plugin implements <code>core-check</code> hook</p>
+<h2 id="-a-name-core-check-a-core-check-hook"><a name="core-check"></a>core-check hook</h2>
+<p>The hook <code>core-check</code> is skipped when the step receive a parameter <code>_skip: true</code>.</p>
+<p>Once skipped the stdout will show the following message:</p>
+<pre><code class="lang-sh">[17:00:02] core-check skip step execution
+</code></pre>
 
       </article>
     </section>
