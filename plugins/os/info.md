@@ -13,7 +13,7 @@ Example:
 
 ```javascript
 run: function(resolve, reject) {
-  this.logger('mac?', this.isMac());
+  this.logger.info('mac?', this.isMac());
   return true;
 }
 ```
@@ -26,7 +26,7 @@ Example:
 
 ```javascript
 run: function(resolve, reject) {
-  this.logger('windows?', this.isWindow());
+  this.logger.info('windows?', this.isWindow());
   return true;
 }
 ```
