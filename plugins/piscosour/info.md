@@ -15,7 +15,7 @@ Example:
 
 ```javascript
 run: function(resolve, reject) {
-  this.logger('config?', this.piscoConfig());
+  this.logger.info('config?', this.piscoConfig());
   return true;
 }
 ```
@@ -28,7 +28,7 @@ Example:
 
 ```javascript
 run: function(resolve, reject) {
-  this.logger('piscoFile?', this.piscoFile);
+  this.logger.info('piscoFile?', this.piscoFile);
   return true;
 }
 ```
@@ -41,7 +41,7 @@ Example:
 
 ```javascript
 run: function(resolve, reject) {
-  this.logger('pkgFile?', this.pkgFile);
+  this.logger.info('pkgFile?', this.pkgFile);
   return true;
 }
 ```
