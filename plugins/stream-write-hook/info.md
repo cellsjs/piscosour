@@ -30,14 +30,22 @@ Two addons are defined:
 1. [streamWriteHook() addon](#streamWriteHook)
 1. [streamWriteUnhook() addon](#streamWriteUnhook)
 
-## <a name="streamWriteHook"></a>streamWriteHook() addon
+## <a name="streamWriteHook"></a>1. streamWriteHook() addon
 
-Starts the hook
+Starts the hook to intercept any stream.
 
 | Param | Type | Description |
 | --- | --- | --- |
 | stream | Object | Stream to be hooked |
-| cb | function | Function to call each time chunk is append to stream |
+| cb | function | Function to call each time chunk is append to stream. |
+
+Where the `cb` function could received the following parameters:
+
+| Param | Type | Description |
+| --- | --- | --- |
+| chunck | string \| Object | Can be a string or a buffer. If chunk is a string, the parameter `encoding` specifies how to encode it into a byte stream |
+| encoding | string | By default the encoding is 'utf8' |
+| callback | function | callback will be called when this chunk of data is flushed. |
 
 Example:
 
@@ -48,9 +56,9 @@ Example:
    });
 ```
 
-(*) stripcolorcodes() is used to deleting all coloured characters from stream. 
+Where `stripcolorcodes()` is used to deleting all coloured characters from stream. And `capture` will contain all from content of process.stdout without coloured character. 
 
-## <a name="streamWriteUnhook"></a>streamWriteUnhook() addon
+## <a name="streamWriteUnhook"></a>2. streamWriteUnhook() addon
 
 Stops the hook
 
