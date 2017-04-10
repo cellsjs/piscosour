@@ -1,8 +1,12 @@
-### How to check system requirements of a piscosour command.
+# system-checker plugin
 
-The system requirements are other commands that pisco needs for a pipeline execution. This plugin checks if everything is installed and ready to use by piscosour.
+The system [requirements](../guides/10-requirements.md) are other commands that pisco needs for a pipeline execution. This plugin checks if everything is installed and ready to use by piscosour.
 
-#### 1. Define version match (Only in the cases where could be diferent)
+## core-check hook
+
+Realize how to check system requirements of a piscosour command.
+
+### 1. Define version match (Only in the cases where could be diferent)
 
 By default version is taken asking the command with -v and assume that command return version plain without test.
 
@@ -62,7 +66,7 @@ By default this is the versions defined inside core:
 - **list:** (optional) command used to get a stdout to use the regexp function in orther to get the version of the item you want to check.
 - **cmdInstaller:** (optional) command used to install packages using this key (for example 'npm install -g' or 'bower install')
 
-##### List tip
+#### List tip
 
 Useful when you want to check if some dependency is listed by any command. 
  
@@ -71,7 +75,7 @@ Useful when you want to check if some dependency is listed by any command.
 
 this pugling is going to check the version returned when the match with regexp is done.
 
-#### 2. Define system requirements in all your shots.
+### 2. Define system requirements in all your shots.
 
 The system requirements are defined in **params.json** file inside every shot.
 
@@ -128,7 +132,7 @@ This is the possible parameters that you need in order to define a system requir
 - **uri**: (optional) only apply in npm commands. Uri of the git repo.
 - **pkg**: (optional) only apply in npm commands. Used when executable and pkg are different.
  
-#### 3. Check if a pisco command has all system requirements satisfied
+### 3. Check if a pisco command has all system requirements satisfied
 
     cells component:validate --pstage core-check --b-disablePrompts --b-disableContextCheck
     
