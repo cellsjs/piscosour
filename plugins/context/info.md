@@ -1,4 +1,4 @@
-# `context` plugin
+# context plugin
 
 [Context](../guides/01-contexts.md) is one of the main concept in piscosour, the [contexts](../guides/01-contexts.md) define ***where*** and ***when*** pisco can be executed.
 
