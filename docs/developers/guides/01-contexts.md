@@ -69,6 +69,76 @@ module.exports = {
 };
 ```
 
+## Testing
+If we want to test this functionality, we simply create the following file:
+
+```javascript
+"use strict";
+
+/* global define, it, describe, before */
+const assert = require('assert');
+const contextWorld = require("../contexts/world/index.js");
+
+describe("Verify the current folder with the step", () => {
+    const currentDirectory = process.cwd();
+    it("Should return KO because folder is not world, is test", () => {
+        //Arrange
+        //Act
+        const isWorld = contextWorld.check();
+        //Assert
+        assert.ok(!isWorld, "Folder is not world");
+    });
+    it("Should return OK because folder is world", () => {
+        //Arrange
+        process.chdir("test/world");
+        //Act
+        const isWorld = contextWorld.check();
+        //Assert
+        assert.ok(isWorld, "Folder is not world");
+    });
+    afterEach("Get back to the correct directory", () => {
+        process.chdir(currentDirectory);
+    });
+});
+```
+In this case we are testing the code  we recently made. But what of we want to test the functionality? We have made a functional test for that:
+
+## Functional testing
+For the functional test we are going to think like pisco will do. How can pisco know wath context is involved in his operations? Pisco has an option (pisco -c) that tells you what are the contexts in the stacke. So let's do it ourselves:
+
+```javascript
+"use strict";
+
+/* global define, it, describe, before */
+const expect = require('chai').expect;
+const exec = require('child_process').exec;
+
+describe('Pisco context world validation', function () {
+    it('Should return the context world', (done) => {
+        exec('pisco -c', {
+            cwd: 'test/world'
+        }, (error, stdout, stderr) => {
+            expect(error).to.equal(null);
+            expect(stderr).to.equal('');
+            expect(stdout).contain('world');
+            done();
+        });
+    });
+    it('Should return the context world', (done) => {
+        exec('pisco -c', {
+            cwd: 'test/notworld'
+        }, (error, stdout, stderr) => {
+            expect(error).to.equal(null);
+            expect(stderr).to.equal('');
+            expect(stdout).not.contain('world');
+            done();
+        });
+    });
+});
+
+```
+In this scenario we are testing the two possible cases for this context validation: you are in the world context or you are not.
+
 ## Documentation
 
 The `info.md` file just explain the context with a markdown format:
