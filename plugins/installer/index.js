@@ -1,16 +1,14 @@
 'use strict';
 
-
 const fs = require('fs');
 const path = require('path');
-
 const _ = require('lodash');
 const semver = require('semver');
 
 const requirements = require('../../lib/utils/requirements');
+const constants = require('../../lib/utils/constants');
 
 const relaunchFile = '.relaunch';
-
 
 module.exports = {
 
@@ -72,9 +70,8 @@ module.exports = {
       }
     });
 
-
     const flowInstaller = this._flow && !this.piscoConfig.isInstalledFlow(this._context, this._flow);
-    const stepInstaller = this.requires && !this.installed && flowInstaller;
+    const stepInstaller = this.requires && this.requires !== constants.notBuild && !this.installed && flowInstaller;
     this.params._skip = this.params._skip || flowInstaller;
 
     if (stepInstaller) {
