@@ -10,31 +10,33 @@ Realize how to check system requirements of a piscosour command.
 
 By default version is taken asking the command with -v and assume that command return version plain without test.
 
-    bower -v 
-    > 1.7.9
+```sh
+$ bower -v 
+1.7.9
+```
 
 But in some cases this is not true, in this cases you can define matches inside **piscosour.json**:  
 
 Example of piscosour.json
-```
+
+```json
 {
-  [...]  
   "params": {
-    [...]
     "versions": {
       "java": {
         "option" : "-version",
         "regexp" : "\"(.*?)_"
-      },
-      [...]
-    },
-  [...]
+      }
+    }
+  }
 }
 ```
 
 By default this is the versions defined inside core:
 
-```
+```json
+{
+  "params": {
     "versions": {
       "bower" : {
         "npm": true,
@@ -43,7 +45,7 @@ By default this is the versions defined inside core:
       },
       "npm" : {
         "list": "npm list -g --depth 0",
-        "regexp": "\\@(.*?)\\s"
+        "regexp": "\\@(.*?)\\s",
         "cmdInstaller": "npm install -g"
       },    
       "java": {
@@ -58,13 +60,15 @@ By default this is the versions defined inside core:
         "regexp" : "n (.*?)\\n"
       }
     }
+  }
+}
 ```
 
-- **key** (for example 'java'): is the command that you need inside your shot.
-- **option**: (optional, default is '-v') if version is set the way to check this version.
-- **regexp**: (optional) if version is on a string the way to extract only the version. Overwrite version defined on piscosour.json
-- **list:** (optional) command used to get a stdout to use the regexp function in orther to get the version of the item you want to check.
-- **cmdInstaller:** (optional) command used to install packages using this key (for example 'npm install -g' or 'bower install')
+- `key` (for example 'java'): is the command that you need inside your step.
+- `option`: (optional, default is '-v') if version is set the way to check this version.
+- `regexp`: (optional) if version is on a string the way to extract only the version. Overwrite version defined on piscosour.json
+- `list:` (optional) command used to get a stdout to use the regexp function in orther to get the version of the item you want to check.
+- `cmdInstaller:` (optional) command used to install packages using this key (for example 'npm install -g' or 'bower install')
 
 #### List tip
 
@@ -75,14 +79,15 @@ Useful when you want to check if some dependency is listed by any command.
 
 this pugling is going to check the version returned when the match with regexp is done.
 
-### 2. Define system requirements in all your shots.
+### 2. Define system requirements in all your steps.
 
-The system requirements are defined in **params.json** file inside every shot.
+The system requirements are defined in `config.json` file inside every step.
 
--**requirements** All dependencies are defined inside requirements
+**requirements** All dependencies are defined inside requirements
 
-Example of params.json:
-```
+Example of config.json:
+
+```json
 {
   "requirements": {
     "polymer" : {
@@ -116,34 +121,33 @@ Example of params.json:
     "sass" : {
       "version": "3.1.0"
     }
-  },
-  [...]
+  }
 }
 ```
 
 This is the possible parameters that you need in order to define a system requirement.
 
-- **key** (for example 'java'): is the command that you need inside your shot.
-- **installer** (optional): package command, search inside requirements to check the cmdInstaller.
-- **version**: (optional) is the minimum version that you need for the command. Overwrite version defined on piscosour.json
-- **option**: (optional, default is '-v') if version is set the way to check this version.
-- **regexp**: (optional) if version is on a string the way to extract only the version. Overwrite version defined on piscosour.json
-- **listedIn**: (optional) use the 'list' value of this parameter in order to check if this dependency is available.
-- **uri**: (optional) only apply in npm commands. Uri of the git repo.
-- **pkg**: (optional) only apply in npm commands. Used when executable and pkg are different.
+- `key` (for example 'java'): is the command that you need inside your step.
+- `installer` (optional): package command, search inside requirements to check the cmdInstaller.
+- `version`: (optional) is the minimum version that you need for the command. Overwrite version defined on piscosour.json
+- `option`: (optional, default is '-v') if version is set the way to check this version.
+- `regexp`: (optional) if version is on a string the way to extract only the version. Overwrite version defined on piscosour.json
+- `listedIn`: (optional) use the 'list' value of this parameter in order to check if this dependency is available.
+- `uri`: (optional) only apply in npm commands. Uri of the git repo.
+- `pkg`: (optional) only apply in npm commands. Used when executable and pkg are different.
  
 ### 3. Check if a pisco command has all system requirements satisfied
 
-    cells component:validate --pstage core-check --b-disablePrompts --b-disableContextCheck
+    pisco context-sample:step-name --pstage core-check --b-disablePrompts --b-disableContextCheck
     
 Command explanation:
 
-- **cells component:validate**: is the pisco command that you want to check.
-- **--pstage core-check**: this means that only the core-check stage is executed for all the pipeline. System requirements check is a **pre-hook** of the stage **core-check** so you have to execute only this stage.
-- **--b-disablePrompts**: disable all prompts for the command.
-- **--b-disableContextCheck**: disable context checks for commands that need one.
+- `pisco context-sample:step-name`: is the pisco command that you want to check.
+- `--pstage core-check`: this means that only the core-check stage is executed for all the pipeline. System requirements check is a **pre-hook** of the stage **core-check** so you have to execute only this stage.
+- `--b-disablePrompts`: disable all prompts for the command.
+- `--b-disableContextCheck`: disable context checks for commands that need one.
 
-this is the result of the execution for every shot that would have system requirements defined:
+this is the result of the execution for every step that would have system requirements defined:
 
 ```
 [12:14:32] java ( 1.7.0 ) is required ->  java ( 1.8.0_65 ) impossible to parse ... WARNING!
