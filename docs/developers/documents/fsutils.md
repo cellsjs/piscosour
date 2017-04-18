@@ -15,11 +15,8 @@ Some file I/O addons are provided:
 1. [fsExists() addon](#fsExists)
 1. [fsReadConfig() addon](#fsReadConfig)
 1. [fsReadFile() addon](#fsReadFile)
-1. [fsCopyDirFiltered() addon](#fsCopyDirFiltered)
-1. [fsCopyFileFiltered() addon](#fsCopyFileFiltered)
-1. [fsAppendBundle() addon](#fsAppendBundle)
 
-## <a name="fsCreateDir"></a>fsCreateDir
+## <a name="fsCreateDir"></a>1. fsCreateDir() addon
 
 `this.fsCreateDir(dirName)` attempts to create synchronously a directory named `dirName`.
 
@@ -35,7 +32,7 @@ run: function() {
 }
 ```
 
-## <a name="fsExists"></a>fsExists
+## <a name="fsExists"></a>2. fsExists() addon
 
 `this.fsExists(filename)` check synchronously if a element named `filename` exists and returns a boolean.
 
@@ -51,7 +48,7 @@ run: function() {
 }
 ```
 
-## <a name="fsReadConfig"></a>fsReadConfig
+## <a name="fsReadConfig"></a>3. fsReadConfig() addon
 
 `this.fsReadConfig(filename)` attemps to read synchronously a JSON file named `filename` exists, and returns an object with the `json`.
 
@@ -67,28 +64,21 @@ run: function() {
 }
 ```
 
-## <a name="fsReadFile"></a>fsReadFile
+## <a name="fsReadFile"></a>4. fsReadFile() addon
+
+`this.fsReadFile(filename)` attemps to read synchronously a text file named `filename` exists, and returns a string with the contain.
 
 | Param | Description |
 | --- | --- |
-| name | name of the context to test|
+| filename | name of the file |
 
-## <a name="fsCopyDirFiltered"></a>fsCopyDirFiltered
+Example:
 
-| Param | Description |
-| --- | --- |
-| name | name of the context to test|
+```javascript
+run: function() {
+  let contain = this.fsReadConfig('sample.json')
+}
+```
 
-## <a name="fsCopyFileFiltered"></a>fsCopyFileFiltered
-
-| Param | Description |
-| --- | --- |
-| name | name of the context to test|
-
-## <a name="fsAppendBundle"></a>fsAppendBundle
-
-| Param | Description |
-| --- | --- |
-| name | name of the context to test|
 
 

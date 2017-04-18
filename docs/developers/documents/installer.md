@@ -7,13 +7,30 @@ layout: api_doc.html
 # Plugins: installer
 
 
-### Install recipes needed
+# installer plugin
 
-This plugins install all recipes needed for the execution. 
+This plugins install all recipes needed for the execution with the `core-install` hook:
 
-#### Hooks:
+## core-install hook:
 
-- **'core-install'**: Perform npm installation of the compatible version of the recipe
-- **config**: Execute 'pisco -w' in order to write the scullion configuration.
-- **run**: Execute the installed step. 
+Performs installations of the compatible [requirements](../guides/10-requirements.md) version for all recipes needed.
+
+Example of config.json:
+
+```json
+{
+  "requirements": {
+    "polymer" : {
+      "installer": "bower",
+      "listedIn": "bower",
+      "uri": "https://github.com/Polymer/polymer.git#v1.6.1",
+      "regexp": "=(.*?)"
+    }
+  }
+}
+```
+
+See [requirements documentation](../guides/10-requirements.md) for more information.
+
+
 

@@ -16,7 +16,7 @@ Example with bower:
 
 ```sh
 $ bower -v 
-> 1.7.9
+1.7.9
 ```
 
 But in some cases this is not true, in this cases you can define matches inside **piscosour.json**:  
@@ -141,12 +141,12 @@ This is the possible parameters that you need in order to define a system requir
 ## 3. Check if a pisco command has all system requirements satisfied
 
 ```sh
-pisco context-sample:stepName --pstage core-check --b-disablePrompts --b-disableContextCheck
+pisco context-sample:step-name --pstage core-check --b-disablePrompts --b-disableContextCheck
 ```
     
 Where:
 
-- **pisco context-sample:stepName**: is the pisco command that you want to check.
+- **pisco context-sample:step-name**: is the pisco command that you want to check.
 - **--pstage core-check**: this means that only the core-check stage is executed for all the pipeline. System requirements check is a **pre-hook** of the stage **core-check** so you have to execute only this stage.
 - **--b-disablePrompts**: disable all prompts for the command.
 - **--b-disableContextCheck**: disable context checks for commands that need one.
