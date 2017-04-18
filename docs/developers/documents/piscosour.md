@@ -7,21 +7,97 @@ layout: api_doc.html
 # Plugins: piscosour
 
 
-### Expose piscosour config
+# piscosour plugin
 
-Expose core configuration to shots.
+Plugin to get information about piscosour configuration.
 
-#### this.piscoConfig
+1. [piscoConfig() addon](#piscoConfig)
+1. [piscoFile addon](#piscoFile)
+1. [pkgFile addon](#pkgFile)
+1. [Waterfall() addon](#Waterfall)
 
-Expose the piscosour config object [Trabajar con shots](doc/api.md#Config)
-  
-#### this.piscoFile
+## <a name="piscoConfig"></a>1. piscoConfig() addon
 
-return the literal: &#39;piscosour.json&#39;
+`this.piscoConfig()` expose the piscosour configuration.
 
-#### this.pkgFile
+Example:
 
-return the literal: &#39;package.json&#39;
+```javascript
+run: function(resolve, reject) {
+  this.logger.info('config?', this.piscoConfig());
+  return true;
+}
+```
 
+## <a name="piscoFile"></a>2. piscoFile addon
+
+`this.piscoFile` return the piscosour file name ('piscosour.json').
+
+Example:
+
+```javascript
+run: function(resolve, reject) {
+  this.logger.info('piscoFile?', this.piscoFile);
+  return true;
+}
+```
+
+## <a name="pkgFile"></a>3. pkgFile addon
+
+`this.pkgFile` return the package file name ('package.json').
+
+Example:
+
+```javascript
+run: function(resolve, reject) {
+  this.logger.info('pkgFile?', this.pkgFile);
+  return true;
+}
+```
+
+## <a name="Waterfall"></a>4. Waterfall() addon
+
+`this.Waterfall(config)` return a Object to prepare the execution of a list of [promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise).
+
+| Param | Type | Optional | Description |
+| --- | --- | --- | --- |
+| config | Object | No | An object with the configuration |
+
+Where `config` object allows these properties:
+
+| Property | Type | Description |
+| --- | --- | --- |
+| logger | Object | reference to `this.logger` |
+| promise-config | Array | list of promise configuration |
+
+Where `promise-config` has the following properties:
+
+| Property | Type | Description |
+| --- | --- | --- |
+| fn | function | function that returns a [promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) |
+| args | Array | The argurments of the function 'fn' |
+| obj | Object | Reference to the object this |
+
+Once the object `this.Waterfall(config)` is created, its function `start()` returns a [promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) to start the execution of the promises one after the other.
+
+Example:
+
+```javascript
+run: function(resolve, reject) {
+  let waterfall = new this.Waterfall({
+    promises: [{
+      fn: this.execute,
+      args: ['echo', 'exec1'],
+      obj: this
+    },{
+      fn: this.execute,
+      args: ['sleep', '5'],
+      obj: this
+    }],
+    logger: this.logger
+  });
+  return waterfall.start().then(resolve, reject);
+}
+```
 
 

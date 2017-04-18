@@ -7,37 +7,65 @@ layout: api_doc.html
 # Plugins: inquirer
 
 
-### Inquirer plugin
+# Inquirer plugin
 
-This plugin use inquirer library [Inquirer documentation](https://www.npmjs.com/package/inquirer)
+This plugin uses [inquirer library](https://www.npmjs.com/package/inquirer)
 
-set type 
+Some addons are provided:
 
-params.json
+1. [inquire() addon](#inquire)
+1. [promptArgs() addon](#promptArgs)
+
+## <a name="inquire"></a>1. inquire() addon
+
+`this.inquire()` launch inquire based in piscosour configuration. See [inquire](../guides/06-inquire.md) for more information. It has no paramater.
+
+Example:
+
+```javascript
+  this.inquire();
 ```
-  &quot;prompts&quot;: [
+
+## <a name="promptArgs"></a>2. promptArgs() addon
+
+`this.promptArgs(array)` returns an `Array` with the list of configured [inquirer prompts](../guides/06-inquire.md) according to the command line format such as:
+
+```javascript
+['--param1', 'value1', '--param2', 'value2', '...']
+```
+
+| Param | Type | Description |
+| --- | --- | --- |
+| initialArray | Array | An initial array of parameters/values where parameters/values of the configuration are going to be added |
+
+Example:
+
+```json
+{
+  "prompts": [
     {
-      &quot;type&quot;: &quot;#setType()&quot;,
-      &quot;name&quot;: &quot;doDefault&quot;,
-      &quot;required&quot;: true,
-      &quot;message&quot;: &quot;Do you want to set default repository type?&quot;
+      "type": "input",
+      "name": "param1",
+      "message": "#randomMessage"
     }
-  ],
+  ]
+ }
 ```
 
-- &#39;#&#39; indicate that is necesary to use a function in the shot in order to resolve the type value.
-- &#39;()&#39; set that pisco needs to execute this function on order to get the value. 
-
-shot.js
-```
-  setType: function() {
-    return &#39;confirm&#39;;
-  },
+```javascript
+run: function(resolve, reject) {
+  return this.execute('echo', this.promptArgs(['--sample', 'valueSample']))
+      .then(resolve, reject);
+}
 ```
 
-#### this.inquire
+Where `this.promptArgs(['--sample', 'valueSample'])` will return an array:
 
-| Param | Description |
-| --- | --- |
-| | |
+```javascript
+[
+  '--sample', 'valueSample',
+  '--param1', 'valueInquirer'
+]
+```
+
 

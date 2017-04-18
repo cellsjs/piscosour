@@ -1,12 +1,32 @@
+# os plugin
 
-Plugins used to check Operating System where pisco is running
+Plugin to check Operating System where pisco is running
 
-###Addons:
+1. [isMac() addon](#isMac)
+1. [isWin() addon](#isWin)
 
-#### this.isWin();
+## <a name="isMac"></a>1. isMac() addon
 
-return true if the Operation System where pisco is executed is Windows.
+`this.isMac()` is a syncronous method that returns a `true` when the operating system is a Mac OS.
 
-#### this.isMac();
+Example:
 
-return true if the Operation System where pisco is executed is MacOS.
+```javascript
+run: function(resolve, reject) {
+  this.logger.info('mac?', this.isMac());
+  return true;
+}
+```
+
+## <a name="isWin"></a>2. isWin() addon
+
+`this.isWin()` is a syncronous method that returns a `true` when the operating system is a Windows OS.
+
+Example:
+
+```javascript
+run: function(resolve, reject) {
+  this.logger.info('windows?', this.isWindow());
+  return true;
+}
+```

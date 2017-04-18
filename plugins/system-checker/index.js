@@ -6,8 +6,6 @@ const requirements = require('../../lib/utils/requirements');
 
 
 module.exports = {
-  description: 'System requirements checker',
-
   'core-check': function() {
     if (this.params.requirements && (!this.params.disableSystemCheck || this.params.disableSystemCheck === 'null')) {
       const tmp = this.params.requirements;
