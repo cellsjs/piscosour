@@ -26,14 +26,12 @@ module.exports = {
           && typeof prompt[attr] !== 'boolean'
           && prompt[attr].indexOf('#') === 0) {
           let functionName = prompt[attr].replace('#', '');
-          let exec = false;
           if (functionName.indexOf('(') >= 0) {
             functionName = functionName.replace('()', '');
-            exec = true;
           }
           const func = this[functionName];
           if (func) {
-            prompt[attr] = exec ? func() : func;
+            prompt[attr] = func;
           } else {
             prompt[attr] = undefined;
             this.logger.info('#yellow', 'WARNING', 'value', functionName, 'doesn\'t exist in this step!!!');
