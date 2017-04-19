@@ -13,7 +13,7 @@
       <aside>
 
         <div class="logoContainer">
-          <a href="/">
+          <a href="../../index.html">
             <img src="../../images/logo.svg" class="logo" />
             Piscosour
           </a>
@@ -43,6 +43,37 @@
               
                 
               
+            </li>
+
+            <li>
+              <h4>Tutorials</h4>
+              <ul>
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+                  
+                  <li>
+                    
+                    <a href="../../developers/tutorials/pisco-website.html">Create WebSite Receipt</a>
+                    
+                  </li>
+                  
+                  <li>
+                    
+                    <a href="../../developers/tutorials/img-empty-submenu.png"></a>
+                    
+                  </li>
+                  
+                
+              
+              </ul>
             </li>
 
             <li>
@@ -137,37 +168,6 @@
                   
                 
               
-                
-              
-              </ul>
-            </li>
-
-            <li>
-              <h4>Tutorials</h4>
-              <ul>
-              
-                
-              
-                
-              
-                
-              
-                
-              
-                
-                  
-                  <li>
-                    
-                    <a href="../../developers/tutorials/pisco-website.html">Create WebSite Receipt</a>
-                    
-                  </li>
-                  
-                  <li>
-                    
-                    <a href="../../developers/tutorials/img-empty-submenu.png"></a>
-                    
-                  </li>
-                  
                 
               
               </ul>
@@ -306,31 +306,31 @@
 <li><a href="#pkgFile">pkgFile addon</a></li>
 <li><a href="#Waterfall">Waterfall() addon</a></li>
 </ol>
-<h2 id="-a-name-piscoconfig-a-piscoconfig-addon"><a name="piscoConfig"></a>piscoConfig() addon</h2>
+<h2 id="-a-name-piscoconfig-a-1-piscoconfig-addon"><a name="piscoConfig"></a>1. piscoConfig() addon</h2>
 <p><code>this.piscoConfig()</code> expose the piscosour configuration.</p>
 <p>Example:</p>
 <pre><code class="lang-javascript">run: function(resolve, reject) {
-  this.logger(&#39;config?&#39;, this.piscoConfig());
+  this.logger.info(&#39;config?&#39;, this.piscoConfig());
   return true;
 }
 </code></pre>
-<h2 id="-a-name-piscofile-a-piscofile-addon"><a name="piscoFile"></a>piscoFile addon</h2>
+<h2 id="-a-name-piscofile-a-2-piscofile-addon"><a name="piscoFile"></a>2. piscoFile addon</h2>
 <p><code>this.piscoFile</code> return the piscosour file name (&#39;piscosour.json&#39;).</p>
 <p>Example:</p>
 <pre><code class="lang-javascript">run: function(resolve, reject) {
-  this.logger(&#39;piscoFile?&#39;, this.piscoFile);
+  this.logger.info(&#39;piscoFile?&#39;, this.piscoFile);
   return true;
 }
 </code></pre>
-<h2 id="-a-name-pkgfile-a-pkgfile-addon"><a name="pkgFile"></a>pkgFile addon</h2>
+<h2 id="-a-name-pkgfile-a-3-pkgfile-addon"><a name="pkgFile"></a>3. pkgFile addon</h2>
 <p><code>this.pkgFile</code> return the package file name (&#39;package.json&#39;).</p>
 <p>Example:</p>
 <pre><code class="lang-javascript">run: function(resolve, reject) {
-  this.logger(&#39;pkgFile?&#39;, this.pkgFile);
+  this.logger.info(&#39;pkgFile?&#39;, this.pkgFile);
   return true;
 }
 </code></pre>
-<h2 id="-a-name-waterfall-a-waterfall-addon"><a name="Waterfall"></a>Waterfall() addon</h2>
+<h2 id="-a-name-waterfall-a-4-waterfall-addon"><a name="Waterfall"></a>4. Waterfall() addon</h2>
 <p><code>this.Waterfall(config)</code> return a Object to prepare the execution of a list of <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">promises</a>.</p>
 <table>
 <thead>

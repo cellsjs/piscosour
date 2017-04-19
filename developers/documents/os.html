@@ -13,7 +13,7 @@
       <aside>
 
         <div class="logoContainer">
-          <a href="/">
+          <a href="../../index.html">
             <img src="../../images/logo.svg" class="logo" />
             Piscosour
           </a>
@@ -43,6 +43,37 @@
               
                 
               
+            </li>
+
+            <li>
+              <h4>Tutorials</h4>
+              <ul>
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+                  
+                  <li>
+                    
+                    <a href="../../developers/tutorials/pisco-website.html">Create WebSite Receipt</a>
+                    
+                  </li>
+                  
+                  <li>
+                    
+                    <a href="../../developers/tutorials/img-empty-submenu.png"></a>
+                    
+                  </li>
+                  
+                
+              
+              </ul>
             </li>
 
             <li>
@@ -137,37 +168,6 @@
                   
                 
               
-                
-              
-              </ul>
-            </li>
-
-            <li>
-              <h4>Tutorials</h4>
-              <ul>
-              
-                
-              
-                
-              
-                
-              
-                
-              
-                
-                  
-                  <li>
-                    
-                    <a href="../../developers/tutorials/pisco-website.html">Create WebSite Receipt</a>
-                    
-                  </li>
-                  
-                  <li>
-                    
-                    <a href="../../developers/tutorials/img-empty-submenu.png"></a>
-                    
-                  </li>
-                  
                 
               
               </ul>
@@ -304,19 +304,19 @@
 <li><a href="#isMac">isMac() addon</a></li>
 <li><a href="#isWin">isWin() addon</a></li>
 </ol>
-<h2 id="-a-name-ismac-a-ismac-addon"><a name="isMac"></a>isMac() addon</h2>
+<h2 id="-a-name-ismac-a-1-ismac-addon"><a name="isMac"></a>1. isMac() addon</h2>
 <p><code>this.isMac()</code> is a syncronous method that returns a <code>true</code> when the operating system is a Mac OS.</p>
 <p>Example:</p>
 <pre><code class="lang-javascript">run: function(resolve, reject) {
-  this.logger(&#39;mac?&#39;, this.isMac());
+  this.logger.info(&#39;mac?&#39;, this.isMac());
   return true;
 }
 </code></pre>
-<h2 id="-a-name-iswin-a-iswin-addon"><a name="isWin"></a>isWin() addon</h2>
+<h2 id="-a-name-iswin-a-2-iswin-addon"><a name="isWin"></a>2. isWin() addon</h2>
 <p><code>this.isWin()</code> is a syncronous method that returns a <code>true</code> when the operating system is a Windows OS.</p>
 <p>Example:</p>
 <pre><code class="lang-javascript">run: function(resolve, reject) {
-  this.logger(&#39;windows?&#39;, this.isWindow());
+  this.logger.info(&#39;windows?&#39;, this.isWindow());
   return true;
 }
 </code></pre>

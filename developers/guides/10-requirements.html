@@ -13,7 +13,7 @@
       <aside>
 
         <div class="logoContainer">
-          <a href="/">
+          <a href="../../index.html">
             <img src="../../images/logo.svg" class="logo" />
             Piscosour
           </a>
@@ -43,6 +43,37 @@
               
                 
               
+            </li>
+
+            <li>
+              <h4>Tutorials</h4>
+              <ul>
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+                  
+                  <li>
+                    
+                    <a href="../../developers/tutorials/pisco-website.html">Create WebSite Receipt</a>
+                    
+                  </li>
+                  
+                  <li>
+                    
+                    <a href="../../developers/tutorials/img-empty-submenu.png"></a>
+                    
+                  </li>
+                  
+                
+              
+              </ul>
             </li>
 
             <li>
@@ -137,37 +168,6 @@
                   
                 
               
-                
-              
-              </ul>
-            </li>
-
-            <li>
-              <h4>Tutorials</h4>
-              <ul>
-              
-                
-              
-                
-              
-                
-              
-                
-              
-                
-                  
-                  <li>
-                    
-                    <a href="../../developers/tutorials/pisco-website.html">Create WebSite Receipt</a>
-                    
-                  </li>
-                  
-                  <li>
-                    
-                    <a href="../../developers/tutorials/img-empty-submenu.png"></a>
-                    
-                  </li>
-                  
                 
               
               </ul>
@@ -303,7 +303,7 @@
 <p>By default, version is taken asking the command with -v and assume that command return version plain without test.</p>
 <p>Example with bower:</p>
 <pre><code class="lang-sh">$ bower -v 
-&gt; 1.7.9
+1.7.9
 </code></pre>
 <p>But in some cases this is not true, in this cases you can define matches inside <strong>piscosour.json</strong>:  </p>
 <p>Example of piscosour.json</p>
@@ -412,11 +412,11 @@
 <li><strong>pkg</strong>: (optional) only apply in npm commands. Used when executable and pkg are different.</li>
 </ul>
 <h2 id="3-check-if-a-pisco-command-has-all-system-requirements-satisfied">3. Check if a pisco command has all system requirements satisfied</h2>
-<pre><code class="lang-sh">pisco context-sample:stepName --pstage core-check --b-disablePrompts --b-disableContextCheck
+<pre><code class="lang-sh">pisco context-sample:step-name --pstage core-check --b-disablePrompts --b-disableContextCheck
 </code></pre>
 <p>Where:</p>
 <ul>
-<li><strong>pisco context-sample:stepName</strong>: is the pisco command that you want to check.</li>
+<li><strong>pisco context-sample:step-name</strong>: is the pisco command that you want to check.</li>
 <li><strong>--pstage core-check</strong>: this means that only the core-check stage is executed for all the pipeline. System requirements check is a <strong>pre-hook</strong> of the stage <strong>core-check</strong> so you have to execute only this stage.</li>
 <li><strong>--b-disablePrompts</strong>: disable all prompts for the command.</li>
 <li><strong>--b-disableContextCheck</strong>: disable context checks for commands that need one.</li>

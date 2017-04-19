@@ -13,7 +13,7 @@
       <aside>
 
         <div class="logoContainer">
-          <a href="/">
+          <a href="../../index.html">
             <img src="../../images/logo.svg" class="logo" />
             Piscosour
           </a>
@@ -43,6 +43,37 @@
               
                 
               
+            </li>
+
+            <li>
+              <h4>Tutorials</h4>
+              <ul>
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+                  
+                  <li>
+                    
+                    <a href="../../developers/tutorials/pisco-website.html">Create WebSite Receipt</a>
+                    
+                  </li>
+                  
+                  <li>
+                    
+                    <a href="../../developers/tutorials/img-empty-submenu.png"></a>
+                    
+                  </li>
+                  
+                
+              
+              </ul>
             </li>
 
             <li>
@@ -137,37 +168,6 @@
                   
                 
               
-                
-              
-              </ul>
-            </li>
-
-            <li>
-              <h4>Tutorials</h4>
-              <ul>
-              
-                
-              
-                
-              
-                
-              
-                
-              
-                
-                  
-                  <li>
-                    
-                    <a href="../../developers/tutorials/pisco-website.html">Create WebSite Receipt</a>
-                    
-                  </li>
-                  
-                  <li>
-                    
-                    <a href="../../developers/tutorials/img-empty-submenu.png"></a>
-                    
-                  </li>
-                  
                 
               
               </ul>
@@ -298,42 +298,66 @@
       </aside>
       <article>
         <h1 id="plugins-userconfig">Plugins: userConfig</h1>
-<h3 id="functions-to-work-with-the-user-configuration-file-home-piscosour-piscosour-json-">Functions to work with the user configuration file ($HOME/.piscosour/piscosour.json)</h3>
-<h3 id="addons-">Addons:</h3>
-<h4 id="this-userconfigread">this.userConfigRead</h4>
-<p>Returns an object containing the user configuration, or an empty object if the file is not found.</p>
+<h1 id="userconfig-plugin">userConfig plugin</h1>
+<p>These are the addons to work with the global user configuration file <code>$HOME/.piscosour/piscosour.json</code>.</p>
+<ol>
+<li><a href="#userConfigRead">userConfigRead() addon</a></li>
+<li><a href="#userConfigWrite">userConfigWrite() addon</a></li>
+<li><a href="#userConfigGet">userConfigGet() addon</a></li>
+<li><a href="#userConfigSet">userConfigSet() addon</a></li>
+</ol>
+<h2 id="-a-name-userconfigread-a-1-userconfigread-addon"><a name="userConfigRead"></a>1. userConfigRead() addon</h2>
+<p><code>this.userConfigRead()</code> returns an object containing the global user configuration file (<code>$HOME/.piscosour/piscosour.json</code>), or an empty object if the file is not found.</p>
+<p>It has no parameters.</p>
+<p>Example:</p>
+<pre><code class="lang-javascript">run: function(resolve, reject) {
+  this.logger.info(&#39;json user config&#39;, this.userConfigRead());
+  return true;
+}
+</code></pre>
+<p>It will display the content of <code>$HOME/.piscosour/piscosour.json</code>.</p>
+<h2 id="-a-name-userconfigwrite-a-2-userconfigwrite-addon"><a name="userConfigWrite"></a>2. userConfigWrite() addon</h2>
+<p><code>this.userConfigWrite(userConfig)</code> serializes the <code>userConfig</code> as a JSON object, writes it to the global user configuration file (<code>$HOME/.piscosour/piscosour.json</code>), and returns the content of the file.</p>
+<p>If the file <code>$HOME/.piscosour/piscosour.json</code> does not exists, then it is created.</p>
 <table>
 <thead>
 <tr>
 <th>Param</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h4 id="this-userconfigwrite">this.userConfigWrite</h4>
-<p>Serializes the input object as JSON and writes it to the user config file. If the file does not exists, creates it.
-Returns the input object.</p>
-<table>
-<thead>
-<tr>
-<th>Param</th>
+<th>Type</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>userConfig</td>
-<td>Object containing the user configuration to write</td>
+<td>Object</td>
+<td>A JSON object containing the user configuration to write</td>
 </tr>
 </tbody>
 </table>
-<h4 id="this-userconfigget">this.userConfigGet</h4>
-<p>Returns the value associated with the key in the user config, or null if not found.</p>
+<p>Example:</p>
+<pre><code class="lang-javascript">run: function(resolve, reject) {
+  let config = this.userConfigWrite({
+    &#39;param1&#39;: &#39;value1&#39;,
+    &#39;param2&#39;: &#39;value2&#39;,
+    &#39;param3&#39;: &#39;value3&#39;,
+    &#39;param4&#39;: &#39;value4&#39;
+  });
+  this.logger.info(&#39;json user config&#39;, config);
+  return true;
+}
+</code></pre>
+<p>Then the content of <code>$HOME/.piscosour/piscosour.json</code> is:</p>
+<pre><code class="lang-json">{
+  &quot;param1&quot;: &quot;value1&quot;,
+  &quot;param2&quot;: &quot;value2&quot;,
+  &quot;param3&quot;: &quot;value3&quot;,
+  &quot;param4&quot;: &quot;value4&quot;
+}
+</code></pre>
+<p>Beware, this will replace the current content of <code>$HOME/.piscosour/piscosour.json</code> file.</p>
+<h2 id="-a-name-userconfigget-a-3-userconfigget-addon"><a name="userConfigGet"></a>3. userConfigGet() addon</h2>
+<p><code>this.userConfigGet(key)</code> returns the value associated with the <code>key</code> in the global user configuration file (<code>$HOME/.piscosour/piscosour.json</code>), or null if not found.</p>
 <table>
 <thead>
 <tr>
@@ -348,8 +372,24 @@ Returns the input object.</p>
 </tr>
 </tbody>
 </table>
-<h4 id="this-userconfigset">this.userConfigSet</h4>
-<p>Maps the value to the key in the user config, and writes it to the file.
+<p>Example:</p>
+<pre><code class="lang-javascript">run: function(resolve, reject) {
+  this.logger.info(&#39;param1 user config&#39;, this.userConfigGet(&#39;param1&#39;);
+  return true;
+}
+</code></pre>
+<p>If <code>$HOME/.piscosour/piscosour.json</code> has the following content:</p>
+<pre><code class="lang-sh">$ cat ~/.piscosour/piscosour.json
+{
+  &quot;param1&quot;: &quot;value1&quot;,
+  &quot;param2&quot;: &quot;value2&quot;,
+  &quot;param3&quot;: &quot;value3&quot;,
+  &quot;param4&quot;: &quot;value4&quot;,
+}
+</code></pre>
+<p>Then <code>this.userConfigGet(&#39;param1&#39;)</code> will return <code>value1</code>.</p>
+<h2 id="-a-name-userconfigset-a-4-userconfigset-addon"><a name="userConfigSet"></a>4. userConfigSet() addon</h2>
+<p><code>this.userConfigSet(key, value)</code> maps the <code>value</code> to the <code>key</code> in the global user configuration and writes it to the file (<code>$HOME/.piscosour/piscosour.json</code>).
 Returns the user config object.</p>
 <table>
 <thead>
@@ -369,6 +409,16 @@ Returns the user config object.</p>
 </tr>
 </tbody>
 </table>
+<p>Example:</p>
+<pre><code class="lang-javascript">run: function(resolve, reject) {
+  this.userConfigSet(&#39;param1&#39;: &#39;foo&#39;);
+  return true;
+}
+</code></pre>
+<p>Then <code>$HOME/.piscosour/piscosour.json</code> has the following content:</p>
+<pre><code class="lang-sh">$ cat ~/.piscosour/piscosour.json | grep &quot;param1&quot;
+  &quot;param1&quot;: &quot;foo&quot;,
+</code></pre>
 
       </article>
     </section>

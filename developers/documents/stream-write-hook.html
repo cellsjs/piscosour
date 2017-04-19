@@ -13,7 +13,7 @@
       <aside>
 
         <div class="logoContainer">
-          <a href="/">
+          <a href="../../index.html">
             <img src="../../images/logo.svg" class="logo" />
             Piscosour
           </a>
@@ -43,6 +43,37 @@
               
                 
               
+            </li>
+
+            <li>
+              <h4>Tutorials</h4>
+              <ul>
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+                  
+                  <li>
+                    
+                    <a href="../../developers/tutorials/pisco-website.html">Create WebSite Receipt</a>
+                    
+                  </li>
+                  
+                  <li>
+                    
+                    <a href="../../developers/tutorials/img-empty-submenu.png"></a>
+                    
+                  </li>
+                  
+                
+              
+              </ul>
             </li>
 
             <li>
@@ -137,37 +168,6 @@
                   
                 
               
-                
-              
-              </ul>
-            </li>
-
-            <li>
-              <h4>Tutorials</h4>
-              <ul>
-              
-                
-              
-                
-              
-                
-              
-                
-              
-                
-                  
-                  <li>
-                    
-                    <a href="../../developers/tutorials/pisco-website.html">Create WebSite Receipt</a>
-                    
-                  </li>
-                  
-                  <li>
-                    
-                    <a href="../../developers/tutorials/img-empty-submenu.png"></a>
-                    
-                  </li>
-                  
                 
               
               </ul>
@@ -298,56 +298,105 @@
       </aside>
       <article>
         <h1 id="plugins-stream-write-hook">Plugins: stream-write-hook</h1>
-<h3 id="intercepts-any-stream-flow-in-order-to-be-able-to-manage-the-information-inside-">Intercepts any stream flow in order to be able to manage the information inside.</h3>
+<h1 id="stream-write-hook-plugin">stream-write-hook plugin</h1>
+<p>Plugin to intercepts any stream flow in order to be able to manage the information inside.</p>
 <p>This way you can capture all the output of any stream and do whatever you want with it. The way to do this has two stages:</p>
-<h4 id="1-start-intercepting-the-stream">1. Start intercepting the stream</h4>
-<p>At any place in yor code is posible to intercept any stream the only thing you have to do is use streamWriteHook method:</p>
-<pre><code>   let capture = &#39;&#39;;
+<p><strong>1. Start intercepting the stream</strong></p>
+<p>At any place in yor code is posible to intercept any stream the only thing you have to do is use <code>streamWriteHook</code> method:</p>
+<pre><code class="lang-javascript">   let capture = &#39;&#39;;
    this.streamWriteHook(process.stdout, function(chunk, encoding, cb) {
-     capture += stripcolorcodes(chunk.toString(encoding));
+     capture += chunk.toString(encoding);
    });
-</code></pre><p>(*) stripcolorcodes() is used to deleting all coloured characters from stream. </p>
+</code></pre>
 <p>Capture will contain all from content of process.stdout</p>
-<h4 id="2-stop-intercepting-the-stream-">2. Stop intercepting the stream.</h4>
+<p><strong>2. Stop intercepting the stream.</strong></p>
 <p>Is necesary to do release all system resources, so do this:</p>
-<pre><code>   this.streamWriteUnhook(process.stdout);
-</code></pre><h3 id="addons-">Addons:</h3>
-<h4 id="this-streamwritehook">this.streamWriteHook</h4>
-<p>starts the hook</p>
+<pre><code class="lang-javascript">   this.streamWriteUnhook(process.stdout);
+</code></pre>
+<p>Two addons are defined:</p>
+<ol>
+<li><a href="#streamWriteHook">streamWriteHook() addon</a></li>
+<li><a href="#streamWriteUnhook">streamWriteUnhook() addon</a></li>
+</ol>
+<h2 id="-a-name-streamwritehook-a-1-streamwritehook-addon"><a name="streamWriteHook"></a>1. streamWriteHook() addon</h2>
+<p>Starts the hook to intercept any stream.</p>
 <table>
 <thead>
 <tr>
 <th>Param</th>
+<th>Type</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>stream</td>
+<td>Object</td>
 <td>Stream to be hooked</td>
 </tr>
 <tr>
 <td>cb</td>
-<td>Function to call each time chunk is append to stream</td>
+<td>function</td>
+<td>Function to call each time chunk is append to stream.</td>
 </tr>
 </tbody>
 </table>
-<h4 id="this-streamwriteunhook">this.streamWriteUnhook</h4>
-<p>stops the hook</p>
+<p>Where the <code>cb</code> function could received the following parameters:</p>
 <table>
 <thead>
 <tr>
 <th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>chunck</td>
+<td>string \</td>
+<td>Object</td>
+<td>Can be a string or a buffer. If chunk is a string, the parameter <code>encoding</code> specifies how to encode it into a byte stream</td>
+</tr>
+<tr>
+<td>encoding</td>
+<td>string</td>
+<td>By default the encoding is &#39;utf8&#39;</td>
+</tr>
+<tr>
+<td>callback</td>
+<td>function</td>
+<td>callback will be called when this chunk of data is flushed.</td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<pre><code class="lang-javascript">   let capture = &#39;&#39;;
+   this.streamWriteHook(process.stdout, function(chunk, encoding, cb) {
+     capture += stripcolorcodes(chunk.toString(encoding));
+   });
+</code></pre>
+<p>Where <code>stripcolorcodes()</code> is used to deleting all coloured characters from stream. And <code>capture</code> will contain all from content of process.stdout without coloured character. </p>
+<h2 id="-a-name-streamwriteunhook-a-2-streamwriteunhook-addon"><a name="streamWriteUnhook"></a>2. streamWriteUnhook() addon</h2>
+<p>Stops the hook</p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>stream</td>
+<td>Object</td>
 <td>Stream to be Unhooked</td>
 </tr>
 </tbody>
 </table>
+<p>Example:</p>
+<pre><code class="lang-javascript">   this.streamWriteUnhook(process.stdout);
+</code></pre>
 
       </article>
     </section>

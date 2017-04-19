@@ -13,7 +13,7 @@
       <aside>
 
         <div class="logoContainer">
-          <a href="/">
+          <a href="../../index.html">
             <img src="../../images/logo.svg" class="logo" />
             Piscosour
           </a>
@@ -43,6 +43,37 @@
               
                 
               
+            </li>
+
+            <li>
+              <h4>Tutorials</h4>
+              <ul>
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+                  
+                  <li>
+                    
+                    <a href="../../developers/tutorials/pisco-website.html">Create WebSite Receipt</a>
+                    
+                  </li>
+                  
+                  <li>
+                    
+                    <a href="../../developers/tutorials/img-empty-submenu.png"></a>
+                    
+                  </li>
+                  
+                
+              
+              </ul>
             </li>
 
             <li>
@@ -137,37 +168,6 @@
                   
                 
               
-                
-              
-              </ul>
-            </li>
-
-            <li>
-              <h4>Tutorials</h4>
-              <ul>
-              
-                
-              
-                
-              
-                
-              
-                
-              
-                
-                  
-                  <li>
-                    
-                    <a href="../../developers/tutorials/pisco-website.html">Create WebSite Receipt</a>
-                    
-                  </li>
-                  
-                  <li>
-                    
-                    <a href="../../developers/tutorials/img-empty-submenu.png"></a>
-                    
-                  </li>
-                  
                 
               
               </ul>
@@ -298,7 +298,7 @@
       </aside>
       <article>
         <h1 id="plugins-context">Plugins: context</h1>
-<h1 id="-context-plugin"><code>context</code> plugin</h1>
+<h1 id="context-plugin">context plugin</h1>
 <p><a href="../guides/01-contexts.html">Context</a> is one of the main concept in piscosour, the <a href="../guides/01-contexts.html">contexts</a> define <strong><em>where</em></strong> and <strong><em>when</em></strong> pisco can be executed.</p>
 <p>This plugin provides:</p>
 <ol>
@@ -306,7 +306,7 @@
 <li><a href="#ctxIs">ctxIs() addon</a></li>
 <li><a href="#ctxWhoami">ctxWhoami() addon</a></li>
 </ol>
-<h2 id="-a-name-check-a-hook-check-"><a name="check"></a>Hook: check()</h2>
+<h2 id="-a-name-check-a-1-hook-check-"><a name="check"></a>1. Hook: check()</h2>
 <p>Check one shot is executed in the root of any repository type. </p>
 <p>If the working directory where pisco is executed detects one or more contexts, then will show the following message:</p>
 <pre><code class="lang-sh">Context checked: Execution contexts: [ documentation, recipe, develop ]
@@ -319,7 +319,7 @@
 <li>With <code>disableContextCheck</code> parameter, it is possible to skip the check() hook. This is useful in the command line option <code>--b-disableContextCheck</code>.</li>
 <li>The <code>isGenerator</code> parameter allows to create a context, so the check() will be skipped.</li>
 </ul>
-<h2 id="-a-name-ctxis-a-addon-ctxis-"><a name="ctxIs"></a>Addon: ctxIs()</h2>
+<h2 id="-a-name-ctxis-a-2-addon-ctxis-"><a name="ctxIs"></a>2. Addon: ctxIs()</h2>
 <p>Use <code>this.ctxIs</code> to test if pisco is executed over a specific context and returns a boolean.</p>
 <table>
 <thead>
@@ -341,7 +341,7 @@
 }
 </code></pre>
 <p>Then, <code>isComponent</code> is <code>true</code> if your recipe was executed in the root of a <code>component</code>.</p>
-<h2 id="-a-name-ctxwhoami-a-addon-ctxwhoami-"><a name="ctxWhoami"></a>Addon: ctxWhoami()</h2>
+<h2 id="-a-name-ctxwhoami-a-3-addon-ctxwhoami-"><a name="ctxWhoami"></a>3. Addon: ctxWhoami()</h2>
 <p>Returns the list of contexts where recipe is executed. It has no parameters.</p>
 <p>Example:</p>
 <pre><code class="lang-javascript">run: function() {

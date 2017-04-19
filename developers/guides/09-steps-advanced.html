@@ -13,7 +13,7 @@
       <aside>
 
         <div class="logoContainer">
-          <a href="/">
+          <a href="../../index.html">
             <img src="../../images/logo.svg" class="logo" />
             Piscosour
           </a>
@@ -43,6 +43,37 @@
               
                 
               
+            </li>
+
+            <li>
+              <h4>Tutorials</h4>
+              <ul>
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+                  
+                  <li>
+                    
+                    <a href="../../developers/tutorials/pisco-website.html">Create WebSite Receipt</a>
+                    
+                  </li>
+                  
+                  <li>
+                    
+                    <a href="../../developers/tutorials/img-empty-submenu.png"></a>
+                    
+                  </li>
+                  
+                
+              
+              </ul>
             </li>
 
             <li>
@@ -137,37 +168,6 @@
                   
                 
               
-                
-              
-              </ul>
-            </li>
-
-            <li>
-              <h4>Tutorials</h4>
-              <ul>
-              
-                
-              
-                
-              
-                
-              
-                
-              
-                
-                  
-                  <li>
-                    
-                    <a href="../../developers/tutorials/pisco-website.html">Create WebSite Receipt</a>
-                    
-                  </li>
-                  
-                  <li>
-                    
-                    <a href="../../developers/tutorials/img-empty-submenu.png"></a>
-                    
-                  </li>
-                  
                 
               
               </ul>
@@ -331,7 +331,7 @@
 <p>It is possible to have a <a href="./04-stages.html">stage</a> execution in background if nothing is returned.</p>
 <p>This is useful with flow that has more than one step, and one of this steps needs to be executed in background (for example, a background process to convert &#39;sass&#39; to &#39;css&#39;).</p>
 <p>Maybe, it could have more sense to implement the background function in a <a href="07-plugins.html">plugin</a>.</p>
-<h3 id="4-delegate-promises-to-plugins-07-plugins-md-">4. Delegate promises to <a href="07-plugins.html">plugins</a></h3>
+<h3 id="4-delegate-promises-to-plugins-07-plugins-html-">4. Delegate promises to <a href="07-plugins.html">plugins</a></h3>
 <p>A good practice is to delegate <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">promises</a> to <a href="07-plugins.html">plugins</a>.</p>
 <p>Example:</p>
 <pre><code class="lang-javascript">  run : function(resolve, reject) {
@@ -343,7 +343,7 @@
 <li><code>this.execute</code> is a &#39;core&#39; plugin that returns a promise. If we return this promise, then the <code>resolve()</code> will be not <a href="#resolve-automatic&quot;">called automatically</a>.</li>
 <li>The <a href="./04-stages.html">stage</a> will finish when the <a href="07-plugins.html">plugin</a> <code>this.execute</code> is over, because <code>resolve()</code> and <code>reject()</code> are parameters of <code>then()</code>.</li>
 </ul>
-<h2 id="-a-name-error-handling-a-steps-02-steps-md-error-handling"><a name="error-handling"></a><a href="02-steps.html">Steps</a> error handling</h2>
+<h2 id="-a-name-error-handling-a-steps-02-steps-html-error-handling"><a name="error-handling"></a><a href="02-steps.html">Steps</a> error handling</h2>
 <p>Usually when there is a error in a <a href="./02-steps.html">step</a>, and it is an unhandling error, then the execution of all the flow will finish.</p>
 <h3 id="-reject-with-keep-field"><code>reject()</code> with <code>keep</code> field</h3>
 <p>If we don&#39;t want to stop all the <a href="./03-flows.html">flow</a> execution, for a error in a <a href="./02-steps.html">step</a>, then called <code>reject()</code> with <code>{keep: true}</code>.</p>
@@ -372,7 +372,7 @@
   }
 }
 </code></pre>
-<h2 id="-a-name-conditional-a-conditional-steps-02-steps-md-"><a name="conditional"></a>Conditional <a href="./02-steps.html">steps</a></h2>
+<h2 id="-a-name-conditional-a-conditional-steps-02-steps-html-"><a name="conditional"></a>Conditional <a href="./02-steps.html">steps</a></h2>
 <p>Steps could be executed conditionally evaluating a customized expression in the <code>check()</code> <a href="./04-stages.html">stage</a>.</p>
 <h3 id="-resolve-with-skip-field"><code>resolve()</code> with <code>skip</code> field</h3>
 <p>So below there is an example about how could be executed conditionally a step. This condition may be implemnented in the <code>check()</code> <a href="./04-stages.html">stage</a>. And if the step must be skipped and not executed, please provide to <code>resolve()</code> a field with <code>{skip: true}</code></p>
