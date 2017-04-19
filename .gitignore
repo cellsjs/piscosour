@@ -37,3 +37,5 @@ scullion.json
 .project
 .scannerwork/
 reports/
+# pisco website dist
+dist

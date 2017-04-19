@@ -38,7 +38,7 @@ module.exports = {
             prompt[attr] = exec ? func() : func;
           } else {
             prompt[attr] = undefined;
-            this.logger.info('#yellow', 'WARNING', 'value', functionName, 'doesn\'t exists!! in this step');
+            this.logger.info('#yellow', 'WARNING', 'value', functionName, 'doesn\'t exist in this step!!!');
           }
         }
       });
