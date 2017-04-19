@@ -39,20 +39,23 @@
     "pisco": "bin/pisco.js"
   },
   "scripts": {
-    "deps": "npm install"
+    "deps": "npm install",
+    "test": "env PISCO=\"`pwd`/bin/pisco.js\" mocha -u tdd --recursive ./node_modules/pisco-functional-tests/test"
   },
   "dependencies": {
-    "async": "^2.1.2",
+    "async": "^2.2.0",
+    "chai": "^3.5.0",
     "chalk": "^1.1.1",
     "global-modules": "^0.2.2",
     "inquirer": "^1.1.1",
     "lodash": "^4.13.1",
     "marked": "^0.3.5",
     "marked-terminal": "^1.6.1",
+    "mocha": "^3.2.0",
     "moment": "^2.10.6",
     "nopt": "^3.0.6",
-    "pisco-requirements": "*",
     "pisco-contexts": "^1.0.0",
+    "pisco-requirements": "*",
     "pisco-site-template-basic": "^0.2.0",
     "rimraf": "^2.5.2",
     "semver": "^5.1.0",
@@ -66,7 +69,8 @@
     "node": ">=4.0.0"
   },
   "devDependencies": {
-    "cz-conventional-changelog": "^1.1.5"
+    "cz-conventional-changelog": "^1.1.5",
+    "pisco-functional-tests": "git+ssh://github.com/cellsjs/pisco-functional-tests.git#feature\/QPA-33-functional-tests"
   },
   "config": {
     "commitizen": {
