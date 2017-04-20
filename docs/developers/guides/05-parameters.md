@@ -39,7 +39,7 @@ The **effective configuration** has the merge from all methods and applying this
 $ recipe-name -ov
 $ pisco -ov
 ```
- 
+The functional tests ffor this feature of pisco can be found in the [pisco-functional-tests/test/parameters-functional-test.js][1] file.
 
 ## <a name="file"></a>1. External file configuration
 
@@ -151,12 +151,12 @@ Another method to provide parameters is to create in the working directory where
 
 Check [`piscosour.json` parameters syntax](./11-configuration.md#parameters) for more information and examples.
 
-## <a name="piscosour-json"></a>4. Receipt `.piscosour/piscosour.json` file configuration
+## <a name="piscosour-json"></a>4. Receipt `piscosour.json` file configuration
 
-You can also provide parameters creating in your receipt a folder `.piscosour` with a file called `piscosour.json`:
+You can also provide parameters editing in your receipt the file called `piscosour.json`:
 
 ```
-[recipeRoot]/.piscosour/piscosour.json
+[recipeRoot]/piscosour.json
 ```
 
 Check [`piscosour.json` parameters syntax](./11-configuration.md#paramaters) for more information and examples.
@@ -220,3 +220,5 @@ Will ask to the user for `param1`:
 ```
 
 Please see [Inquire](./06-inquire.md) for more information.
+
+[1]: https://github.com/cellsjs/pisco-functional-tests/blob/feature/QPA-33-functional-tests/test/parameters-functional-test.js
