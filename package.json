@@ -1,6 +1,6 @@
 {
   "name": "piscosour",
-  "version": "1.1.0-alpha.8",
+  "version": "1.1.0",
   "description": "The adhesive orchestrator",
   "main": "index.js",
   "homepage": "https://github.com/cellsjs/piscosour",
@@ -70,7 +70,7 @@
   },
   "devDependencies": {
     "cz-conventional-changelog": "^1.1.5",
-    "pisco-functional-tests": "git+ssh://github.com/cellsjs/pisco-functional-tests.git#feature\/QPA-33-functional-tests"
+    "pisco-functional-tests": "^1.0.0"
   },
   "config": {
     "commitizen": {
