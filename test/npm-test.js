@@ -9,37 +9,33 @@ var exec = require('child_process').exec;
 var fs = require('fs');
 var resolve = require('path').resolve;
 
-var configPisco = require('../package.json');
 var fConfigPiscoFT = '../node_modules/pisco-functional-tests/package.json';
 var fConfigPiscoFTFromRootPath = './node_modules/pisco-functional-tests/package.json';
+
+var configPisco = require('../package.json');
 var configPiscoFunctionalTests = require(fConfigPiscoFT);
 
-let previousVersion = configPiscoFunctionalTests.dependencies.piscosour;
-console.log(`Version pisco: ${configPisco.version}`);
-console.log(`Version pisco-functional-tests: ${previousVersion}`);
+Object.keys(configPisco.dependencies).forEach( (name) => {
+  //console.log(`Nombre de la dependencia ${name}`);
+});
 
-configPiscoFunctionalTests.dependencies.piscosour = configPisco.version;
+let previousVersion = configPiscoFunctionalTests.dependencies.piscosour;
+
+configPiscoFunctionalTests.devDependencies.piscosour = configPisco.version;
 
 fs.writeFile(resolve(fConfigPiscoFTFromRootPath),
-  JSON.stringify(configPiscoFunctionalTests),
-  execTestsAndRewirteFile);
+  JSON.stringify(configPiscoFunctionalTests, null, 2),
+  execTestsAndRewriteFile);
 
-function execTestsAndRewirteFile(err) {
+function execTestsAndRewriteFile(err) {
   if (err) return console.log(err);
-  console.log(JSON.stringify(configPiscoFunctionalTests));
-  console.log('writing to ' + fConfigPiscoFTFromRootPath);
-  exec('env PISCO=\"`pwd`/bin/pisco.js\" mocha -u tdd --recursive ' +
-    './node_modules/pisco-functional-tests/test;',
-    resolveExecution);
+  resolveExecution();
 }
 
-function resolveExecution(error, stdout, stderr){
-  console.log(stderr);
-  console.log(error);
-  console.log(stdout);
+function resolveExecution(){
   configPiscoFunctionalTests.dependencies.piscosour = previousVersion;
   modifyFile(resolve(fConfigPiscoFTFromRootPath),
-    JSON.stringify(configPiscoFunctionalTests),
+    JSON.stringify(configPiscoFunctionalTests, null, 2),
     callback);
 }
 
