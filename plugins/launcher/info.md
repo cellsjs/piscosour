@@ -219,11 +219,11 @@ run: function(resolve, reject) {
 
 `this.executeStreamed(command, arguments, options)` executes a `command` with some `arguments` and returns a stream.
 
-| Property | Type | Description |
-| --- | --- | --- |
-| cmd | String | Command name to execute |
-| arguments | Array | The list of command arguments |
-| options | Object | Options in the execution of the process, see [options](#options)|
+| Property | Type | Optional | Description |
+| --- | --- | --- |--- |
+| cmd | String | No | Command name to execute |
+| arguments | Array | Yes | The list of command arguments |
+| options | Object | Yes | Options in the execution of the process, see [options](#options)|
 
 <a name="options"></a>`options` is an object and allows the following [properties of nodejs spawn](https://nodejs.org/api/child_process.html#child_process_child_process_spawn_command_args_options):
 
@@ -232,11 +232,11 @@ run: function(resolve, reject) {
 | cwd | string | Current working directory of the child process |
 | env | Object | Environment key-value pairs |
 | argv0 | string | Explicitly set the value of argv[0] sent to the child process. This will be set to command if not specified. |
-| stdio | Array \| String | Child's stdio configuration. (See [options.stdio](https://nodejs.org/api/child_process.html#child_process_options_stdio))
+| stdio | Array or String | Child's stdio configuration. (See [options.stdio](https://nodejs.org/api/child_process.html#child_process_options_stdio))
 | detached | boolean | Prepare child to run independently of its parent process. Specific behavior depends on the platform, see [options.detached](https://nodejs.org/api/child_process.html#child_process_options_detached)) |
 | uid | number | Sets the user identity of the process. (See [setuid(2)](http://man7.org/linux/man-pages/man2/setuid.2.html)) |
 | gid | number | Sets the group identity of the process. (See [setgid(2)](http://man7.org/linux/man-pages/man2/setuid.2.html)) 
-| shell | boolean \| string | If true, runs command inside of a shell. Uses '/bin/sh' on UNIX, and 'cmd.exe' on Windows. A different shell can be specified as a string. The shell should understand the -c switch on UNIX, or /d /s /c on Windows. Defaults to false (no shell). |
+| shell | boolean or String | If true, runs command inside of a shell. Uses '/bin/sh' on UNIX, and 'cmd.exe' on Windows. A different shell can be specified as a string. The shell should understand the -c switch on UNIX, or /d /s /c on Windows. Defaults to false (no shell). |
 
 Example:
 

@@ -11,9 +11,9 @@ Some file I/O addons are provided:
 
 `this.fsCreateDir(dirName)` attempts to create synchronously a directory named `dirName`.
 
-| Param | Description |
-| --- | --- |
-| dir | name of the directory to crate |
+| Param | Type | Optional | Description |
+| --- | --- | --- | --- |
+| dir | String | No | name of the directory to crate |
 
 Example:
 
@@ -27,9 +27,9 @@ run: function() {
 
 `this.fsExists(filename)` check synchronously if a element named `filename` exists and returns a boolean.
 
-| Param | Description |
-| --- | --- |
-| filename | name of the element to test is exists |
+| Param | Type | Optional | Description |
+| --- | --- | --- | --- |
+| filename | String | No | name of the element to test is exists |
 
 Example:
 
@@ -43,9 +43,9 @@ run: function() {
 
 `this.fsReadConfig(filename)` attemps to read synchronously a JSON file named `filename` exists, and returns an object with the `json`.
 
-| Param | Description |
-| --- | --- |
-| filename | name of the json file |
+| Param | Type | Optional | Description |
+| --- | --- | --- | --- |
+| filename | String | No | name of the json file |
 
 Example:
 
@@ -59,9 +59,9 @@ run: function() {
 
 `this.fsReadFile(filename)` attemps to read synchronously a text file named `filename` exists, and returns a string with the contain.
 
-| Param | Description |
-| --- | --- |
-| filename | name of the file |
+| Param | Type | Optional | Description |
+| --- | --- | --- | --- |
+| filename | String | No | name of the file |
 
 Example:
 

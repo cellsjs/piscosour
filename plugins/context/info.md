@@ -32,9 +32,9 @@ There is two special corner case:
 
 Use `this.ctxIs` to test if pisco is executed over a specific context and returns a boolean.
 
-| Param | Description |
-| --- | --- |
-| name | name of the context to test|
+| Param | Type | Optional | Description |
+| --- | --- | --- | --- |
+| name | String | No | name of the context to test|
 
 Example:
 
@@ -48,7 +48,9 @@ Then, `isComponent` is `true` if your recipe was executed in the root of a `comp
 
 ## <a name="ctxWhoami"></a>3. Addon: ctxWhoami()
 
-Returns the list of contexts where recipe is executed. It has no parameters.
+Returns the list of contexts where recipe is executed.
+
+It has no parameters.
 
 Example:
 

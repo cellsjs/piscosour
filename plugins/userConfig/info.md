@@ -30,9 +30,9 @@ It will display the content of `$HOME/.piscosour/piscosour.json`.
 
 If the file `$HOME/.piscosour/piscosour.json` does not exists, then it is created.
 
-| Param | Type | Description |
-| --- | --- |--- |
-| userConfig | Object | A JSON object containing the user configuration to write |
+| Param | Type | Optional | Description |
+| --- | --- | --- | --- |
+| userConfig | Object | No | A JSON object containing the user configuration to write |
 
 Example:
 
@@ -66,9 +66,9 @@ Beware, this will replace the current content of `$HOME/.piscosour/piscosour.jso
 
 `this.userConfigGet(key)` returns the value associated with the `key` in the global user configuration file (`$HOME/.piscosour/piscosour.json`), or null if not found.
 
-| Param | Description |
-| --- | --- |
-| key | Key whose mapped value is wanted |
+| Param | Type | Optional | Description |
+| --- | --- | --- | --- |
+| key | String | No | Key whose mapped value is wanted |
 
 Example:
 
@@ -98,10 +98,10 @@ Then `this.userConfigGet('param1')` will return `value1`.
 `this.userConfigSet(key, value)` maps the `value` to the `key` in the global user configuration and writes it to the file (`$HOME/.piscosour/piscosour.json`).
 Returns the user config object.
 
-| Param | Description |
-| --- | --- |
-| key | Key to associate to the value |
-| value | Value associated to the key |
+| Param | Type | Optional | Description |
+| --- | --- | --- | --- |
+| key | String | No | Key to associate to the value |
+| value | Object | No | Value associated to the key |
 
 Example:
 
