@@ -52,9 +52,10 @@ run: function(resolve, reject) {
 | --- | --- | --- | --- |
 | command | String | No | The command name |
 | arguments | Array | Yes | The list of arguments |
-| options | Object | Options in the execution of the process, see [options](#options) |
+| options | Object | Yes | Options in the execution of the process, see [options](#options) |
 
 `options` allows these [configurations](#options), and in addition allows these properties:
+
 | Property | Type | Description |
 | --- | --- | --- |
 | mute | boolean | If true no log appears in stdin |
