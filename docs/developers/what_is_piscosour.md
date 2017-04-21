@@ -43,7 +43,7 @@ From any continuous integration environment like [travis](https://travis-ci.org)
 
 ### Testing
 
-- Allow developers to add a full suite of tests for every process [flow](./guides/03-flows.md) or step
+- Allow developers to add a full suite of tests for every process
 
 # Installation & Get Started
 
