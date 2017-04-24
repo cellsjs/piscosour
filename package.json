@@ -67,6 +67,7 @@
     "xml": "^1.0.1"
   },
   "devDependencies": {
+    "chai": "^3.5.0",
     "cz-conventional-changelog": "^1.1.5",
     "mocha": "^3.2.0"
   },
