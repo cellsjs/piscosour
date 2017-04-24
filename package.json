@@ -43,7 +43,7 @@
   },
   "scripts": {
     "deps": "npm install",
-    "test": "node ./test/npm-test.js && env PISCO=\"`pwd`/bin/pisco.js --uuid 288b3227-ba32-440c-8651-28b44d2ecd5d\" mocha -u tdd --recursive  ./node_modules/pisco-functional-tests/test"
+    "test": "mocha -u tdd --recursive && node ./test/npm-test.js && env PISCO=\"`pwd`/bin/pisco.js --uuid 288b3227-ba32-440c-8651-28b44d2ecd5d\" mocha -u tdd --recursive  ./node_modules/pisco-functional-tests/test"
   },
   "dependencies": {
     "async": "^2.2.0",
