@@ -39,7 +39,7 @@ run: function(resolve, reject) {
 
 ## <a name="sudo"></a>2. sudo() addon
 
-`this.sudo(command)` is a syncronous method to execute a `command` in your environment as a administrator (or root).
+`this.sudo(command)` execute a `command` in your environment as a administrator (or root) and returns a [stream](https://nodejs.org/api/stream.html).
 
 | Param | Type | Optional | Description |
 | --- | --- | --- | --- |
@@ -49,7 +49,17 @@ Example:
 
 ```javascript
 run: function(resolve, reject) {
-  return this.sudo('echo my sample');
+  let stream = this.sudo('echo my sample');
+  stream.on('close', (code) => {
+    this.logger.info('close with code ', code);
+    if (code !== 0) {
+      reject();
+    } else {
+      resolve();
+    }
+  });
+
+  return true;
 }
 ```
 
@@ -226,7 +236,7 @@ run: function(resolve, reject) {
 
 ## <a name="executeStreamed"></a>7. executeStreamed() addon
 
-`this.executeStreamed(command, arguments, options)` executes a `command` with some `arguments` and returns a stream.
+`this.executeStreamed(command, arguments, options)` executes a `command` with some `arguments` and returns a [stream](https://nodejs.org/api/stream.html).
 
 | Property | Type | Optional | Description |
 | --- | --- | --- |--- |
@@ -253,7 +263,7 @@ Example:
 run: function(resolve, reject) {
   let stream = launcher.executeStreamed('echo', [ '1' ], {});
   stream.on('close', (code) => {
-    logger.trace(command, 'close with code ', code);
+    this.logger.info('close with code ', code);
     if (code !== 0) {
       reject();
     } else {
