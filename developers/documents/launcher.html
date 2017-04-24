@@ -156,13 +156,19 @@
                   
                   <li>
                     
-                    <a href="../../developers/guides/12-guidelines.html">Best practices</a>
+                    <a href="../../developers/guides/12-guidelines.html">Guidelines</a>
                     
                   </li>
                   
                   <li>
                     
                     <a href="../../developers/guides/13-analytics.html">Google Analytics Integration</a>
+                    
+                  </li>
+                  
+                  <li>
+                    
+                    <a href="../../developers/guides/14-logger.html">Logger</a>
                     
                   </li>
                   
@@ -398,14 +404,28 @@
 <tr>
 <td>options</td>
 <td>Object</td>
+<td>Yes</td>
 <td>Options in the execution of the process, see <a href="#options">options</a></td>
 </tr>
 </tbody>
 </table>
-<p><code>options</code> allows these <a href="#options">configurations</a>, and in addition allows these properties:
-| Property | Type | Description |
-| --- | --- | --- |
-| mute | boolean | If true no log appears in stdin |</p>
+<p><code>options</code> allows these <a href="#options">configurations</a>, and in addition allows these properties:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mute</td>
+<td>boolean</td>
+<td>If true no log appears in stdin</td>
+</tr>
+</tbody>
+</table>
 <p>Example:</p>
 <pre><code class="lang-javascript">run: function(resolve, reject) {
   return this.execute(&#39;echo&#39;, [&#39;my&#39;, &#39;sample&#39;], { &#39;mute&#39;: true })
@@ -643,6 +663,7 @@ exec6
 <tr>
 <th>Property</th>
 <th>Type</th>
+<th>Optional</th>
 <th>Description</th>
 </tr>
 </thead>
@@ -650,16 +671,19 @@ exec6
 <tr>
 <td>cmd</td>
 <td>String</td>
+<td>No</td>
 <td>Command name to execute</td>
 </tr>
 <tr>
 <td>arguments</td>
 <td>Array</td>
+<td>Yes</td>
 <td>The list of command arguments</td>
 </tr>
 <tr>
 <td>options</td>
 <td>Object</td>
+<td>Yes</td>
 <td>Options in the execution of the process, see <a href="#options">options</a></td>
 </tr>
 </tbody>
@@ -691,8 +715,7 @@ exec6
 </tr>
 <tr>
 <td>stdio</td>
-<td>Array \</td>
-<td>String</td>
+<td>Array or String</td>
 <td>Child&#39;s stdio configuration. (See <a href="https://nodejs.org/api/child_process.html#child_process_options_stdio">options.stdio</a>)</td>
 </tr>
 <tr>
@@ -712,8 +735,7 @@ exec6
 </tr>
 <tr>
 <td>shell</td>
-<td>boolean \</td>
-<td>string</td>
+<td>boolean or String</td>
 <td>If true, runs command inside of a shell. Uses &#39;/bin/sh&#39; on UNIX, and &#39;cmd.exe&#39; on Windows. A different shell can be specified as a string. The shell should understand the -c switch on UNIX, or /d /s /c on Windows. Defaults to false (no shell).</td>
 </tr>
 </tbody>

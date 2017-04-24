@@ -4,7 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Best practices</title>
+    <title>Guidelines</title>
     <link rel="stylesheet" type="text/css" href="../../css/main.css">
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc=" crossorigin="anonymous"></script>
   </head>
@@ -156,13 +156,19 @@
                   
                   <li>
                     
-                    <a href="../../developers/guides/12-guidelines.html" class="selected">Best practices</a>
+                    <a href="../../developers/guides/12-guidelines.html" class="selected">Guidelines</a>
                     
                   </li>
                   
                   <li>
                     
                     <a href="../../developers/guides/13-analytics.html">Google Analytics Integration</a>
+                    
+                  </li>
+                  
+                  <li>
+                    
+                    <a href="../../developers/guides/14-logger.html">Logger</a>
                     
                   </li>
                   
@@ -298,38 +304,76 @@
       </aside>
       <article>
         <h1 id="piscosour-packaging-guidelines">Piscosour Packaging Guidelines</h1>
-<p>The maximun power of Piscosour is when everything is separated, so is very convenient to pack steps, flows or plugins as separate as possible.</p>
-<h2 id="-1-recipe-module">(1) Recipe module</h2>
-<p>Is a node module with steps / flows / (even plugins) inside. Has a bin/pisco.js script with the executable of the recipe.</p>
-<p>recipe module has this structure</p>
+<p>One advantage of Piscosour is when everything is separated, so is very convenient to pack steps, flows or plugins as separate as possible.</p>
+<p>This is guideline with the recommendations of how to separate the modules:</p>
+<ol>
+<li><a href="#domain">Domain</a></li>
+<li><a href="#contexts">Contexts</a></li>
+<li><a href="#flows">Flows</a></li>
+<li><a href="#step">Step</a></li>
+<li><a href="#plugin">Plugin</a></li>
+</ol>
+<h2 id="-a-name-domain-a-1-domain"><a name="domain"></a>1. Domain</h2>
+<p>The domain is a simple recipe module with this structure:</p>
 <pre><code>| package.json
 | piscocour.json
 | bin | pisco.js
-| steps | &lt;stepName&gt; | &lt;repoType&gt; | step.js
-                                  | info.md
-                                  | params.js
-| flows | &lt;flowName&gt; | flow.json
-                       | info.md
-</code></pre><h2 id="-2-plugin-module">(2) Plugin module</h2>
-<p>If you want to share any kind of functionality between steps the best way to do this is using a plugin. Each plugin shout be package inside a independent node module in order to get maximun reuse capabilities.</p>
-<p>plugin module has this structure:</p>
+</code></pre><p>Where:</p>
+<ul>
+<li>The repository is called simply as the domain <code>domainName</code>.</li>
+<li>The <code>package.json</code> has dependencies with <a href="#contexts">contexts</a> and <a href="#flows">flows</a>.</li>
+<li>The file <code>bin/pisco.js</code> script with the executable of the recipe.</li>
+</ul>
+<h2 id="-a-name-contexts-a-2-contexts"><a name="contexts"></a>2. Contexts</h2>
+<p>A repository with the <a href="./01-contexts.html">contexts</a> of a domain.</p>
 <pre><code>| package.json
 | piscocour.json
-| plugins | &lt;pluginName&gt; | plugin.js
-                         | info.md
-</code></pre><h2 id="wrappers-nomenclature">Wrappers nomenclature</h2>
-<p>When pisco wrapps any tool is a good practice to name the module this way:</p>
-<ol>
-<li>pisco-plugin-(toolName) (Plugin module with the tool functionality wrapped)</li>
-<li>pisco-(toolName) (Recipe module with the steps that use this tool)</li>
-</ol>
-<p>For example if you want to wrapp the git functionality, the plugin has to be named this way:</p>
+| contexts | &lt;contextName&gt; | config.json
+                           | index.js
+                           | info.md
+</code></pre><p>Where:</p>
 <ul>
-<li>pisco-plugin-git</li>
+<li>The repository is called simply as the domain <code>pisco-contexts-[domainName]</code>.</li>
+<li>The file <code>bin/pisco.js</code> script with the executable of the recipe.</li>
 </ul>
-<p>The steps has to be inside a recipe with this name</p>
+<h2 id="-a-name-flows-a-3-flows"><a name="flows"></a>3. Flows</h2>
+<p>A repository with the <a href="./03-flows.html">flows</a> of a domain.</p>
+<pre><code>| package.json
+| piscocour.json
+| bin | pisco.js
+| flows | &lt;flowName&gt; | config.json
+                     | info.md
+</code></pre><p>Where:</p>
 <ul>
-<li>pisco-git</li>
+<li>The repository is called simply as the domain <code>pisco-flows-[domainName]</code>.</li>
+<li>The <code>package.json</code> has dependencies with <a href="#step">steps</a></li>
+<li>The file <code>bin/pisco.js</code> script with the executable of the recipe.</li>
+</ul>
+<h2 id="-a-name-step-a-4-step"><a name="step"></a>4. Step</h2>
+<p>A repository for each <a href="./02-steps.html">step</a>.</p>
+<pre><code>| package.json
+| piscocour.json
+| bin | pisco.js
+| steps | &lt;stepName&gt; | config.json
+                     | index.js
+                     | info.md
+</code></pre><p>Where:</p>
+<ul>
+<li>This repository usually is called <code>pisco-[stepName]</code>, where <code>[stepName]</code> has a descriptive name. For example if you want to wrapp the git functionality, the step has to be named in this way: <code>pisco-git</code></li>
+<li>The <code>package.json</code> has dependencies with <a href="#plugin">plugins</a></li>
+<li>The file <code>bin/pisco.js</code> script with the executable of the recipe.</li>
+</ul>
+<h2 id="-a-name-plugin-a-5-plugin"><a name="plugin"></a>5. Plugin</h2>
+<p>A repository for each <a href="./07-plugins.html">plugin</a>.</p>
+<p>Plugin module has this structure:</p>
+<pre><code>| package.json
+| piscocour.json
+| plugins | &lt;pluginName&gt; | config.json
+                         | index.js
+                         | info.md
+</code></pre><p>Where:</p>
+<ul>
+<li>This repository usually is called <code>pisco-plugin-[pluginName]</code>, where <code>[pluginName]</code> has a descriptive name. For example if you want to wrapp the git functionality, the plugin has to be named in this way: <code>pisco-plugin-git</code></li>
 </ul>
 
       </article>

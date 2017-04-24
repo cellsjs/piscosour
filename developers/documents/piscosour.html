@@ -156,13 +156,19 @@
                   
                   <li>
                     
-                    <a href="../../developers/guides/12-guidelines.html">Best practices</a>
+                    <a href="../../developers/guides/12-guidelines.html">Guidelines</a>
                     
                   </li>
                   
                   <li>
                     
                     <a href="../../developers/guides/13-analytics.html">Google Analytics Integration</a>
+                    
+                  </li>
+                  
+                  <li>
+                    
+                    <a href="../../developers/guides/14-logger.html">Logger</a>
                     
                   </li>
                   
@@ -307,7 +313,8 @@
 <li><a href="#Waterfall">Waterfall() addon</a></li>
 </ol>
 <h2 id="-a-name-piscoconfig-a-1-piscoconfig-addon"><a name="piscoConfig"></a>1. piscoConfig() addon</h2>
-<p><code>this.piscoConfig()</code> expose the piscosour configuration.</p>
+<p><code>this.piscoConfig()</code> a function that exposes the piscosour configuration.</p>
+<p>It has no parameters.</p>
 <p>Example:</p>
 <pre><code class="lang-javascript">run: function(resolve, reject) {
   this.logger.info(&#39;config?&#39;, this.piscoConfig());
@@ -315,7 +322,7 @@
 }
 </code></pre>
 <h2 id="-a-name-piscofile-a-2-piscofile-addon"><a name="piscoFile"></a>2. piscoFile addon</h2>
-<p><code>this.piscoFile</code> return the piscosour file name (&#39;piscosour.json&#39;).</p>
+<p><code>this.piscoFile</code> a value with the piscosour file name (&#39;piscosour.json&#39;).</p>
 <p>Example:</p>
 <pre><code class="lang-javascript">run: function(resolve, reject) {
   this.logger.info(&#39;piscoFile?&#39;, this.piscoFile);
@@ -323,7 +330,7 @@
 }
 </code></pre>
 <h2 id="-a-name-pkgfile-a-3-pkgfile-addon"><a name="pkgFile"></a>3. pkgFile addon</h2>
-<p><code>this.pkgFile</code> return the package file name (&#39;package.json&#39;).</p>
+<p><code>this.pkgFile</code> a value the package file name (&#39;package.json&#39;).</p>
 <p>Example:</p>
 <pre><code class="lang-javascript">run: function(resolve, reject) {
   this.logger.info(&#39;pkgFile?&#39;, this.pkgFile);
@@ -331,7 +338,7 @@
 }
 </code></pre>
 <h2 id="-a-name-waterfall-a-4-waterfall-addon"><a name="Waterfall"></a>4. Waterfall() addon</h2>
-<p><code>this.Waterfall(config)</code> return a Object to prepare the execution of a list of <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">promises</a>.</p>
+<p><code>this.Waterfall(config)</code> a function that returns an Object to prepare the execution of a list of <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">promises</a>.</p>
 <table>
 <thead>
 <tr>

@@ -4,7 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>os</title>
+    <title>Logger</title>
     <link rel="stylesheet" type="text/css" href="../../css/main.css">
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc=" crossorigin="anonymous"></script>
   </head>
@@ -168,7 +168,7 @@
                   
                   <li>
                     
-                    <a href="../../developers/guides/14-logger.html">Logger</a>
+                    <a href="../../developers/guides/14-logger.html" class="selected">Logger</a>
                     
                   </li>
                   
@@ -222,7 +222,7 @@
                     
                     <li>
                       
-                      <a href="../../developers/documents/os.html" class="selected">os</a>
+                      <a href="../../developers/documents/os.html">os</a>
                       
                     </li>
                     
@@ -303,28 +303,208 @@
         
       </aside>
       <article>
-        <h1 id="plugins-os">Plugins: os</h1>
-<h1 id="os-plugin">os plugin</h1>
-<p>Plugin to check Operating System where pisco is running</p>
-<ol>
-<li><a href="#isMac">isMac() addon</a></li>
-<li><a href="#isWin">isWin() addon</a></li>
-</ol>
-<h2 id="-a-name-ismac-a-1-ismac-addon"><a name="isMac"></a>1. isMac() addon</h2>
-<p><code>this.isMac()</code> is a syncronous method that returns a <code>true</code> when the operating system is a Mac OS.</p>
-<p>Example:</p>
-<pre><code class="lang-javascript">run: function(resolve, reject) {
-  this.logger.info(&#39;mac?&#39;, this.isMac());
-  return true;
+        <h1 id="logger">Logger</h1>
+<p>Piscosour has a feature to generate a sequential data to stdin or stderr inside a <a href="02-steps.html">step</a>.</p>
+<p>Example of use:</p>
+<pre><code class="lang-javascript">run: function() {
+  this.logger.info(&#39;#green&#39;, &#39;text&#39;);
 }
 </code></pre>
-<h2 id="-a-name-iswin-a-2-iswin-addon"><a name="isWin"></a>2. isWin() addon</h2>
-<p><code>this.isWin()</code> is a syncronous method that returns a <code>true</code> when the operating system is a Windows OS.</p>
+<p>There are 6 levels:</p>
+<ol>
+<li><a href="#error">error</a></li>
+<li><a href="#warning">warning</a></li>
+<li><a href="#info">info</a></li>
+<li><a href="#verbose">verbose</a></li>
+<li><a href="#debug">debug</a></li>
+<li><a href="#silly">silly</a></li>
+</ol>
+<h2 id="-a-name-error-a-error"><a name="error"></a>Error</h2>
+<p><code>this.logger.error(msg, ...)</code> outputs a msg to stderr.</p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Optional</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>msg</td>
+<td>Object</td>
+<td>No</td>
+<td>Outputs the object to stderr, except it is a Color. Colors are specified like <code>&#39;#color&#39;</code>, when color has been specified, then next parameter will be coloured with the last color. Please see <a href="https://github.com/chalk/chalk">chalk</a> library to see which colors are supported.</td>
+</tr>
+</tbody>
+</table>
 <p>Example:</p>
-<pre><code class="lang-javascript">run: function(resolve, reject) {
-  this.logger.info(&#39;windows?&#39;, this.isWindow());
-  return true;
+<pre><code class="lang-javascript">run: function() {
+  this.logger.error(&#39;#green&#39;, &#39;text&#39;, &#39;#blue&#39;, &#39;text2&#39;, { key1: &#39;value2&#39; });
 }
+</code></pre>
+<p>Shows colored message:</p>
+<pre><code class="lang-sh">[12:08:54] run stage running...
+[12:08:54] text text2 { key1: &#39;value2&#39; }
+</code></pre>
+<p>Where <code>test</code> is green and <code>test2</code> is blue.</p>
+<h2 id="-a-name-warning-a-warning"><a name="warning"></a>Warning</h2>
+<p><code>this.logger.warn(msg, ...)</code> warn a msg to stdout. By default warn message are showed in console.</p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Optional</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>msg</td>
+<td>Object</td>
+<td>No</td>
+<td>Outputs the object to stderr, except it is a Color. Colors are specified like <code>&#39;#color&#39;</code>, when color has been specified, then next parameter will be coloured with the last color. Please see <a href="https://github.com/chalk/chalk">chalk</a> library to see which colors are supported.</td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<pre><code class="lang-javascript">run: function() {
+  this.logger.warn(&#39;#green&#39;, &#39;text&#39;, &#39;#blue&#39;, &#39;text2&#39;, { key1: &#39;value2&#39; });
+}
+</code></pre>
+<p>Shows colored message:</p>
+<pre><code class="lang-sh">[12:08:54] run stage running...
+[12:08:54] text text2 { key1: &#39;value2&#39; }
+</code></pre>
+<p>Where <code>test</code> is green and <code>test2</code> is blue.</p>
+<h2 id="-a-name-info-a-info"><a name="info"></a>Info</h2>
+<p><code>this.logger.info(msg, ...)</code> info a msg to stdout. By default warn message are showed in console.</p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Optional</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>msg</td>
+<td>Object</td>
+<td>No</td>
+<td>Outputs the object to stderr, except it is a Color. Colors are specified like <code>&#39;#color&#39;</code>, when color has been specified, then next parameter will be coloured with the last color. Please see <a href="https://github.com/chalk/chalk">chalk</a> library to see which colors are supported.</td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<pre><code class="lang-javascript">run: function() {
+  this.logger.info(&#39;#green&#39;, &#39;text&#39;, &#39;#blue&#39;, &#39;text2&#39;, { key1: &#39;value2&#39; });
+}
+</code></pre>
+<p>Shows colored message:</p>
+<pre><code class="lang-sh">[12:08:54] run stage running...
+[12:08:54] text text2 { key1: &#39;value2&#39; }
+</code></pre>
+<p>Where <code>test</code> is green and <code>test2</code> is blue.</p>
+<h2 id="-a-name-verbose-a-verbose"><a name="verbose"></a>Verbose</h2>
+<p><code>this.logger.trace(msg, ...)</code> trace a msg to stdout. By default verbose message are not showed in console (see <a href="#cli">Command Line Interface</a> for more information).</p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Optional</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>msg</td>
+<td>Object</td>
+<td>No</td>
+<td>Outputs the object to stderr, except it is a Color. Colors are specified like <code>&#39;#color&#39;</code>, when color has been specified, then next parameter will be coloured with the last color. Please see <a href="https://github.com/chalk/chalk">chalk</a> library to see which colors are supported.</td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<pre><code class="lang-javascript">run: function() {
+  this.logger.trace(&#39;#green&#39;, &#39;text&#39;, &#39;#blue&#39;, &#39;text2&#39;, { key1: &#39;value2&#39; });
+}
+</code></pre>
+<p>When it is executed with <code>-ov</code> option (see <a href="#cli">Command Line Interface</a>) shows colored message:</p>
+<pre><code class="lang-sh">[12:08:54] run stage running...
+[12:08:54] text text2 { key1: &#39;value2&#39; }
+</code></pre>
+<p>Where <code>test</code> is green and <code>test2</code> is blue.</p>
+<h2 id="-a-name-debug-a-debug"><a name="debug"></a>Debug</h2>
+<p><code>this.logger.debug(msg, ...)</code> info a msg to stdout. By default debug message are not showed in console (see <a href="#cli">Command Line Interface</a> for more information).</p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Optional</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>msg</td>
+<td>Object</td>
+<td>No</td>
+<td>Outputs the object to stderr, except it is a Color. Colors are specified like <code>&#39;#color&#39;</code>, when color has been specified, then next parameter will be coloured with the last color. Please see <a href="https://github.com/chalk/chalk">chalk</a> library to see which colors are supported.</td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<pre><code class="lang-javascript">run: function() {
+  this.logger.debug(&#39;#green&#39;, &#39;text&#39;, &#39;#blue&#39;, &#39;text2&#39;, { key1: &#39;value2&#39; });
+}
+</code></pre>
+<p>When it is executed with <code>-od</code> option (see <a href="#cli">Command Line Interface</a>), shows colored message:</p>
+<pre><code class="lang-sh">[12:08:54] run stage running...
+[12:08:54] text text2 { key1: &#39;value2&#39; }
+</code></pre>
+<h2 id="-a-name-silly-a-silly"><a name="silly"></a>Silly</h2>
+<p><code>this.logger.silly(msg, ...)</code> shows a silly msg to stdout. By default silly message are not showed in console (see <a href="#cli">Command Line Interface</a> for more information).</p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Optional</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>msg</td>
+<td>Object</td>
+<td>No</td>
+<td>Outputs the object to stderr, except it is a Color. Colors are specified like <code>&#39;#color&#39;</code>, when color has been specified, then next parameter will be coloured with the last color. Please see <a href="https://github.com/chalk/chalk">chalk</a> library to see which colors are supported.</td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<pre><code class="lang-javascript">run: function() {
+  this.logger.silly(&#39;#green&#39;, &#39;text&#39;, &#39;#blue&#39;, &#39;text2&#39;, { key1: &#39;value2&#39; });
+}
+</code></pre>
+<p>When it is executed with <code>-ov</code> option (see <a href="#cli">Command Line Interface</a>), shows colored message:</p>
+<pre><code class="lang-sh">[12:08:54] run stage running...
+[12:08:54] text text2 { key1: &#39;value2&#39; }
+</code></pre>
+<h1 id="-a-name-cli-a-command-line-interface"><a name="cli"></a>Command Line Interface</h1>
+<p>To show all errors to an specific level, please use one of the following options:</p>
+<pre><code>$ pisco --output ( verbose | debug | silly ) [ -ov | -od | -os]
+</code></pre><p>Examples:</p>
+<pre><code class="lang-sh">$ pisco --output verbose
+</code></pre>
+<p>Or</p>
+<pre><code class="lang-sh">$ pisco -ov
 </code></pre>
 
       </article>

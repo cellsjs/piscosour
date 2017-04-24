@@ -156,13 +156,19 @@
                   
                   <li>
                     
-                    <a href="../../developers/guides/12-guidelines.html">Best practices</a>
+                    <a href="../../developers/guides/12-guidelines.html">Guidelines</a>
                     
                   </li>
                   
                   <li>
                     
                     <a href="../../developers/guides/13-analytics.html">Google Analytics Integration</a>
+                    
+                  </li>
+                  
+                  <li>
+                    
+                    <a href="../../developers/guides/14-logger.html">Logger</a>
                     
                   </li>
                   
@@ -325,12 +331,16 @@
 <thead>
 <tr>
 <th>Param</th>
+<th>Type</th>
+<th>Optional</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>name</td>
+<td>String</td>
+<td>No</td>
 <td>name of the context to test</td>
 </tr>
 </tbody>
@@ -342,7 +352,8 @@
 </code></pre>
 <p>Then, <code>isComponent</code> is <code>true</code> if your recipe was executed in the root of a <code>component</code>.</p>
 <h2 id="-a-name-ctxwhoami-a-3-addon-ctxwhoami-"><a name="ctxWhoami"></a>3. Addon: ctxWhoami()</h2>
-<p>Returns the list of contexts where recipe is executed. It has no parameters.</p>
+<p>Returns the list of contexts where recipe is executed.</p>
+<p>It has no parameters.</p>
 <p>Example:</p>
 <pre><code class="lang-javascript">run: function() {
   let repos = this.ctxWhoami();
