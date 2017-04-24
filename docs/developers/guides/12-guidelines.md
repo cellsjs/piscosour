@@ -6,49 +6,100 @@ order: 12
 
 # Piscosour Packaging Guidelines
 
-The maximun power of Piscosour is when everything is separated, so is very convenient to pack steps, flows or plugins as separate as possible.
+One advantage of Piscosour is when everything is separated, so is very convenient to pack steps, flows or plugins as separate as possible.
 
-## (1) Recipe module
+This is guideline with the recommendations of how to separate the modules:
 
-Is a node module with steps / flows / (even plugins) inside. Has a bin/pisco.js script with the executable of the recipe.
+1. [Domain](#domain)
+1. [Contexts](#contexts)
+1. [Flows](#flows)
+1. [Step](#step)
+1. [Plugin](#plugin)
 
-recipe module has this structure
+## <a name="domain"></a>(1) Domain
+
+The domain is a simple recipe module with this structure:
 
 ```
 | package.json
 | piscocour.json
 | bin | pisco.js
-| steps | <stepName> | <repoType> | step.js
-                                  | info.md
-                                  | params.js
-| flows | <flowName> | flow.json
-                       | info.md                                  
 ```
 
-## (2) Plugin module
+Where:
 
-If you want to share any kind of functionality between steps the best way to do this is using a plugin. Each plugin shout be package inside a independent node module in order to get maximun reuse capabilities.
+- The repository is called simply as the domain `domainName`.
+- The `package.json` has dependencies with [contexts](#contexts) and [flows](#flows).
+- The file `bin/pisco.js` script with the executable of the recipe.
 
-plugin module has this structure:
+## <a name="contexts"></a>(2) Contexts
+
+A repository with the [contexts](./01-contexts.md) of a domain.
 
 ```
 | package.json
 | piscocour.json
-| plugins | <pluginName> | plugin.js
+| contexts | <contextName> | config.json
+                           | index.js
+                           | info.md
+```
+
+Where:
+
+- The repository is called simply as the domain `pisco-contexts-[domainName]`.
+- The file `bin/pisco.js` script with the executable of the recipe.
+
+## <a name="flows"></a>(3) Flows
+
+A repository with the [flows](./03-flows.md) of a domain.
+
+```
+| package.json
+| piscocour.json
+| bin | pisco.js
+| flows | <flowName> | config.json
+                     | info.md
+```
+
+Where:
+
+- The repository is called simply as the domain `pisco-flows-[domainName]`.
+- The `package.json` has dependencies with [steps](#step)
+- The file `bin/pisco.js` script with the executable of the recipe.
+
+## <a name="step"></a>(4) Step
+
+A repository for each [step](./02-steps.md).
+
+```
+| package.json
+| piscocour.json
+| bin | pisco.js
+| steps | <stepName> | config.json
+                     | index.js
+                     | info.md
+```
+
+Where:
+
+- This repository usually is called `pisco-[stepName]`, where `[stepName]` has a descriptive name. For example if you want to wrapp the git functionality, the step has to be named in this way: `pisco-git`
+- The `package.json` has dependencies with [plugins](#plugin)
+- The file `bin/pisco.js` script with the executable of the recipe.
+
+## <a name="plugin"></a>(5) Plugin
+
+A repository for each [plugin](./07-plugins.md).
+
+Plugin module has this structure:
+
+```
+| package.json
+| piscocour.json
+| plugins | <pluginName> | config.json
+                         | index.js
                          | info.md
 ```
 
-## Wrappers nomenclature
+Where:
 
-When pisco wrapps any tool is a good practice to name the module this way:
-
-1. pisco-plugin-(toolName) (Plugin module with the tool functionality wrapped)
-2. pisco-(toolName) (Recipe module with the steps that use this tool)
-
-For example if you want to wrapp the git functionality, the plugin has to be named this way:
-
-- pisco-plugin-git
-
-The steps has to be inside a recipe with this name
-
-- pisco-git
+- This repository usually is called `pisco-plugin-[pluginName]`, where `[pluginName]` has a descriptive name. For example if you want to wrapp the git functionality, the plugin has to be named in this way: `pisco-plugin-git`
