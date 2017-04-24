@@ -42,7 +42,8 @@
     "pisco": "bin/pisco.js"
   },
   "scripts": {
-    "deps": "npm install"
+    "deps": "npm install",
+    "test": "mocha -u tdd --recursive"
   },
   "dependencies": {
     "async": "^2.1.2",
@@ -66,7 +67,8 @@
     "xml": "^1.0.1"
   },
   "devDependencies": {
-    "cz-conventional-changelog": "^1.1.5"
+    "cz-conventional-changelog": "^1.1.5",
+    "mocha": "^3.2.0"
   },
   "config": {
     "commitizen": {
