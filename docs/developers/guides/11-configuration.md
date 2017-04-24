@@ -4,7 +4,7 @@ layout: doc_page.html
 order: 11
 ---
 
-# `piscosour.json` configuration
+# Receipt Configuration
 
 `piscosour.json` is the file which defines the general configuration of the receipt. It is placed at the root directory of the receipt.
 
