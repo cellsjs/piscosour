@@ -260,7 +260,7 @@ run: function(resolve, reject) {
     } else {
       resolve();
     }
-  }
+  });
   return true;
 }
 ```
