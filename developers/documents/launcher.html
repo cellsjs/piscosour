@@ -353,7 +353,7 @@
 }
 </code></pre>
 <h2 id="-a-name-sudo-a-2-sudo-addon"><a name="sudo"></a>2. sudo() addon</h2>
-<p><code>this.sudo(command)</code> is a syncronous method to execute a <code>command</code> in your environment as a administrator (or root).</p>
+<p><code>this.sudo(command)</code> execute a <code>command</code> in your environment as a administrator (or root) and returns a <a href="https://nodejs.org/api/stream.html">stream</a>.</p>
 <table>
 <thead>
 <tr>
@@ -374,7 +374,17 @@
 </table>
 <p>Example:</p>
 <pre><code class="lang-javascript">run: function(resolve, reject) {
-  return this.sudo(&#39;echo my sample&#39;);
+  let stream = this.sudo(&#39;echo my sample&#39;);
+  stream.on(&#39;close&#39;, (code) =&gt; {
+    this.logger.info(&#39;close with code &#39;, code);
+    if (code !== 0) {
+      reject();
+    } else {
+      resolve();
+    }
+  });
+
+  return true;
 }
 </code></pre>
 <h2 id="-a-name-execute-a-3-execute-addon"><a name="execute"></a>3. execute() addon</h2>
@@ -657,7 +667,7 @@ exec6
 }
 </code></pre>
 <h2 id="-a-name-executestreamed-a-7-executestreamed-addon"><a name="executeStreamed"></a>7. executeStreamed() addon</h2>
-<p><code>this.executeStreamed(command, arguments, options)</code> executes a <code>command</code> with some <code>arguments</code> and returns a stream.</p>
+<p><code>this.executeStreamed(command, arguments, options)</code> executes a <code>command</code> with some <code>arguments</code> and returns a <a href="https://nodejs.org/api/stream.html">stream</a>.</p>
 <table>
 <thead>
 <tr>
@@ -744,7 +754,7 @@ exec6
 <pre><code class="lang-javascript">run: function(resolve, reject) {
   let stream = launcher.executeStreamed(&#39;echo&#39;, [ &#39;1&#39; ], {});
   stream.on(&#39;close&#39;, (code) =&gt; {
-    logger.trace(command, &#39;close with code &#39;, code);
+    this.logger.info(&#39;close with code &#39;, code);
     if (code !== 0) {
       reject();
     } else {
