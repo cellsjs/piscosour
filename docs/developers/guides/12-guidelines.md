@@ -1,5 +1,5 @@
 ---
-title: Best practices
+title: Guidelines
 layout: doc_page.html
 order: 12
 ---
