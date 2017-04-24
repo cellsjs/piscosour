@@ -16,7 +16,7 @@ This is guideline with the recommendations of how to separate the modules:
 1. [Step](#step)
 1. [Plugin](#plugin)
 
-## <a name="domain"></a>(1) Domain
+## <a name="domain"></a>1. Domain
 
 The domain is a simple recipe module with this structure:
 
@@ -32,7 +32,7 @@ Where:
 - The `package.json` has dependencies with [contexts](#contexts) and [flows](#flows).
 - The file `bin/pisco.js` script with the executable of the recipe.
 
-## <a name="contexts"></a>(2) Contexts
+## <a name="contexts"></a>2. Contexts
 
 A repository with the [contexts](./01-contexts.md) of a domain.
 
@@ -49,7 +49,7 @@ Where:
 - The repository is called simply as the domain `pisco-contexts-[domainName]`.
 - The file `bin/pisco.js` script with the executable of the recipe.
 
-## <a name="flows"></a>(3) Flows
+## <a name="flows"></a>3. Flows
 
 A repository with the [flows](./03-flows.md) of a domain.
 
@@ -67,7 +67,7 @@ Where:
 - The `package.json` has dependencies with [steps](#step)
 - The file `bin/pisco.js` script with the executable of the recipe.
 
-## <a name="step"></a>(4) Step
+## <a name="step"></a>4. Step
 
 A repository for each [step](./02-steps.md).
 
@@ -86,7 +86,7 @@ Where:
 - The `package.json` has dependencies with [plugins](#plugin)
 - The file `bin/pisco.js` script with the executable of the recipe.
 
-## <a name="plugin"></a>(5) Plugin
+## <a name="plugin"></a>5. Plugin
 
 A repository for each [plugin](./07-plugins.md).
 
