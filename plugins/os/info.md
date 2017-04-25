@@ -26,7 +26,7 @@ Example:
 
 ```javascript
 run: function(resolve, reject) {
-  this.logger.info('windows?', this.isWindow());
+  this.logger.info('windows?', this.isWin());
   return true;
 }
 ```
