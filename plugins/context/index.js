@@ -1,6 +1,7 @@
 'use strict';
 
-let context = require('../../lib/context');
+const context = require('../../lib/context');
+const search = require('../../lib/utils/search');
 
 module.exports = {
   check: function() {
@@ -14,11 +15,19 @@ module.exports = {
   },
 
   addons: {
-    ctxIs: function(name) {
+    ctxIs(name) {
       return context.cis(name);
     },
-    ctxWhoami: function() {
+    ctxWhoami() {
       return context.whoami();
+    },
+    searchNpm(keyword){
+      const filter = (module, options) => {
+        if (module.keywords && module.keywords.indexOf(options.keyword) >= 0) {
+          return module;
+        }
+      };
+      return search.searchNpm(filter, {keyword: keyword});
     }
   }
 };

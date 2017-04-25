@@ -69,8 +69,10 @@
     "xml": "^1.0.1"
   },
   "devDependencies": {
+    "pisco-functional-tests": "^1.0.0",
+    "chai": "^3.5.0",
     "cz-conventional-changelog": "^1.1.5",
-    "pisco-functional-tests": "^1.0.0"
+    "mocha": "^3.2.0"
   },
   "config": {
     "commitizen": {
