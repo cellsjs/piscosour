@@ -60,7 +60,7 @@
     "pisco-contexts": "^1.0.0",
     "pisco-requirements": "*",
     "pisco-site-template-basic": "^0.2.0",
-    "rimraf": "^2.5.2",k
+    "rimraf": "^2.5.2",
     "semver": "^5.1.0",
     "stripcolorcodes": "^0.1.0",
     "universal-analytics": "^0.3.11",
