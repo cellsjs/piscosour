@@ -1,6 +1,6 @@
 {
   "name": "piscosour",
-  "version": "1.1.0-beta.5",
+  "version": "1.1.0-beta.6",
   "description": "The adhesive orchestrator",
   "main": "index.js",
   "homepage": "https://github.com/cellsjs/piscosour",
@@ -42,22 +42,25 @@
     "pisco": "bin/pisco.js"
   },
   "scripts": {
-    "deps": "npm install"
+    "deps": "npm install",
+    "test": "mocha -u tdd --recursive && node ./test/npm-test.js && env PISCO=\"`pwd`/bin/pisco.js --uuid 288b3227-ba32-440c-8651-28b44d2ecd5d\" mocha -u tdd --recursive  ./node_modules/pisco-functional-tests/test"
   },
   "dependencies": {
-    "async": "^2.1.2",
+    "async": "^2.2.0",
+    "chai": "^3.5.0",
     "chalk": "^1.1.1",
     "global-modules": "^0.2.2",
     "inquirer": "^1.1.1",
     "lodash": "^4.13.1",
     "marked": "^0.3.5",
     "marked-terminal": "^1.6.1",
+    "mocha": "^3.2.0",
     "moment": "^2.10.6",
     "nopt": "^3.0.6",
-    "pisco-requirements": "*",
     "pisco-contexts": "^1.0.0",
+    "pisco-requirements": "*",
     "pisco-site-template-basic": "^0.2.0",
-    "rimraf": "^2.5.2",
+    "rimraf": "^2.5.2",k
     "semver": "^5.1.0",
     "stripcolorcodes": "^0.1.0",
     "universal-analytics": "^0.3.11",
@@ -66,7 +69,8 @@
     "xml": "^1.0.1"
   },
   "devDependencies": {
-    "cz-conventional-changelog": "^1.1.5"
+    "cz-conventional-changelog": "^1.1.5",
+    "pisco-functional-tests": "^1.0.0"
   },
   "config": {
     "commitizen": {

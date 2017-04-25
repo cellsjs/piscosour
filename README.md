@@ -1,5 +1,6 @@
 [![Node version](http://img.shields.io/node/v/piscosour.svg)](
 https://github.com/cellsjs/piscosour/blob/master/package.json)
+[![Build Status](http://img.shields.io/travis/cellsjs/piscosour.svg)](https://travis-ci.org/cellsjs/piscosour)
 [![NPM version](http://img.shields.io/npm/v/piscosour.svg)](https://github.com/cellsjs/piscosour/blob/master/package.json)
 [![licence](http://img.shields.io/npm/l/piscosour.svg)](https://github.com/cellsjs/piscosour/blob/master/package.json)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)

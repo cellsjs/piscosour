@@ -33,5 +33,9 @@ test-reports
 # pisco cache file
 scullion.json
 
+# Other files
+.project
+.scannerwork/
+reports/
 # pisco website dist
 dist
