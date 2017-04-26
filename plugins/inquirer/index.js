@@ -20,7 +20,7 @@ module.exports = {
         };
       };
 
-      const stepResolution = ((prompt, attr) => {
+      const stepResolution = (prompt, attr) => {
         if (prompt[attr] !== undefined
           && Object.prototype.toString.call(prompt[attr]) !== '[object Function]'
           && typeof prompt[attr] !== 'boolean'
@@ -31,13 +31,13 @@ module.exports = {
           }
           const func = this[functionName];
           if (func) {
-            prompt[attr] = func;
+            prompt[attr] = attr === 'type' ? func() : func;
           } else {
             prompt[attr] = undefined;
             this.logger.info('#yellow', 'WARNING', 'value', functionName, 'doesn\'t exist in this step!!!');
           }
         }
-      });
+      };
 
       const reqs = [];
 
