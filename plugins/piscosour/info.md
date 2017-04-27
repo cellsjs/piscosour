@@ -7,17 +7,15 @@ Plugin to get information about piscosour configuration.
 1. [pkgFile addon](#pkgFile)
 1. [Waterfall() addon](#Waterfall)
 
-## <a name="piscoConfig"></a>1. piscoConfig() addon
+## <a name="piscoConfig"></a>1. piscoConfig addon
 
-`this.piscoConfig()` a function that exposes the piscosour configuration.
-
-It has no parameters.
+`this.piscoConfig` is the field that exposes the piscosour configuration.
 
 Example:
 
 ```javascript
 run: function(resolve, reject) {
-  this.logger.info('config?', this.piscoConfig());
+  this.logger.info('params?', this.piscoConfig.get().params);
   return true;
 }
 ```
