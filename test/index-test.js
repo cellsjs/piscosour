@@ -1,3 +1,5 @@
+'use strict';
+
 const pisco = require('../index.js');
 const assert = require('assert');
 const fs = require('fs');

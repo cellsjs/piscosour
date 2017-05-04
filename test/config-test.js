@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 const config = require('../lib/config.js');
 const assert = require('assert');
