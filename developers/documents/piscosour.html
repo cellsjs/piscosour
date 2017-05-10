@@ -312,12 +312,11 @@
 <li><a href="#pkgFile">pkgFile addon</a></li>
 <li><a href="#Waterfall">Waterfall() addon</a></li>
 </ol>
-<h2 id="-a-name-piscoconfig-a-1-piscoconfig-addon"><a name="piscoConfig"></a>1. piscoConfig() addon</h2>
-<p><code>this.piscoConfig()</code> a function that exposes the piscosour configuration.</p>
-<p>It has no parameters.</p>
+<h2 id="-a-name-piscoconfig-a-1-piscoconfig-addon"><a name="piscoConfig"></a>1. piscoConfig addon</h2>
+<p><code>this.piscoConfig</code> is the field that exposes the piscosour configuration.</p>
 <p>Example:</p>
 <pre><code class="lang-javascript">run: function(resolve, reject) {
-  this.logger.info(&#39;config?&#39;, this.piscoConfig());
+  this.logger.info(&#39;params?&#39;, this.piscoConfig.get().params);
   return true;
 }
 </code></pre>

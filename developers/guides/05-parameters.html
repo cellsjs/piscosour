@@ -317,8 +317,8 @@
 </code></pre>
 <p>Below are the available methods to fill parameters values:</p>
 <ol>
-<li><a href="#cli">Command line paramaters option</a></li>
 <li><a href="#file">External file configuration</a></li>
+<li><a href="#cli">Command line paramaters option</a></li>
 <li><a href="#piscosour-json">Working Directory <code>.piscosour/piscosour.json</code> file configuration</a></li>
 <li><a href="#piscosour-json">Receipt <code>.piscosour/piscosour.json</code> file configuration</a></li>
 <li><a href="#flow">Flow <code>config.json</code> file configuration</a></li>
@@ -330,22 +330,8 @@
 <pre><code class="lang-sh">$ recipe-name -ov
 $ pisco -ov
 </code></pre>
-<h2 id="-a-name-cli-a-1-command-line-parameters-option"><a name="cli"></a>1. Command line parameters option</h2>
-<p>Each recipe can be executed with a list of parameters with the following syntax:</p>
-<pre><code class="lang-sh">$ pisco-recipe --param1 value1 --param2 value2 --param3 value3 ...
-</code></pre>
-<p>For example in a step implementation, this will return &quot;value1, value2, value3&quot;:</p>
-<pre><code class="lang-javascript">module.export = {
-  run: function() {
-    console.log(
-      this.params.param1,
-      this.params.param2,
-      this.params.param3);
-    // shows &quot;value1, value2, value3&quot;
-  }
-}
-</code></pre>
-<h2 id="-a-name-file-a-2-external-file-configuration"><a name="file"></a>2. External file configuration</h2>
+<p>The functional tests ffor this feature of pisco can be found in the <a href="https://github.com/cellsjs/pisco-functional-tests/blob/feature/QPA-33-functional-tests/test/parameters-functional-test.js">pisco-functional-tests/test/parameters-functional-test.js</a> file.</p>
+<h2 id="-a-name-file-a-1-external-file-configuration"><a name="file"></a>1. External file configuration</h2>
 <p>The second method to provide parameters is with an external json file.</p>
 <pre><code class="lang-sh">$ pisco --paramsFile params.json
 </code></pre>
@@ -367,13 +353,66 @@ $ pisco -ov
 <li><code>param2</code> is an <code>Object</code></li>
 <li><code>param3</code> is an <code>Array</code></li>
 </ul>
+<p>It is important to say that all the  Objects defined in this file will overwrite other objects definitions. For example, if we have this configuration in our external File:</p>
+<pre><code class="lang-json">{
+  &quot;firstPriority&quot;: &quot;externalFile&quot;,
+  &quot;secondPriority&quot;: &quot;commandLine&quot;,
+  &quot;priorityOrder&quot;: {
+    &quot;thirdPriority&quot;: &quot;workingDir.piscosour/piscosour.json&quot;
+  }
+}
+</code></pre>
+<p>And in our step config we adjust some parameters as follows:</p>
+<pre><code class="lang-json">{
+  &quot;firstPriority&quot;: &quot;piscosour.json - Recipe&quot;,
+  &quot;secondPriority&quot;: &quot;piscosour.json - Recipe&quot;,
+  &quot;priorityOrder&quot;: {
+    &quot;thirdPriority&quot;: &quot;piscosour.json - Recipe&quot;,
+    &quot;fourthPriority&quot;: &quot;piscosour.json - Recipe&quot;
+  }
+}
+</code></pre>
+<p>We expect that our params result in the merged object:</p>
+<pre><code class="lang-json">{
+  &quot;firstPriority&quot;: &quot;externalFile&quot;,
+  &quot;secondPriority&quot;: &quot;commandLine&quot;,
+  &quot;priorityOrder&quot;: {
+    &quot;thirdPriority&quot;: &quot;workingDir.piscosour/piscosour.json&quot;,
+     &quot;fourthPriority&quot;: &quot;piscosour.json - Recipe&quot;
+  }
+}
+</code></pre>
+<p>But instead, paramsFile will overwrite the entire object, remaining</p>
+<pre><code class="lang-json">{
+  &quot;firstPriority&quot;: &quot;externalFile&quot;,
+  &quot;secondPriority&quot;: &quot;commandLine&quot;,
+  &quot;priorityOrder&quot;: {
+    &quot;thirdPriority&quot;: &quot;workingDir.piscosour/piscosour.json&quot;
+  }
+}
+</code></pre>
+<h2 id="-a-name-cli-a-2-command-line-parameters-option"><a name="cli"></a>2. Command line parameters option</h2>
+<p>Each recipe can be executed with a list of parameters with the following syntax:</p>
+<pre><code class="lang-sh">$ pisco-recipe --param1 value1 --param2 value2 --param3 value3 ...
+</code></pre>
+<p>For example in a step implementation, this will return &quot;value1, value2, value3&quot;:</p>
+<pre><code class="lang-javascript">module.export = {
+  run: function() {
+    console.log(
+      this.params.param1,
+      this.params.param2,
+      this.params.param3);
+    // shows &quot;value1, value2, value3&quot;
+  }
+}
+</code></pre>
 <h2 id="-a-name-piscosour-json-a-3-working-directory-piscosour-piscosour-json-file-configuration"><a name="piscosour-json"></a>3. Working Directory <code>.piscosour/piscosour.json</code> file configuration</h2>
 <p>Another method to provide parameters is to create in the working directory where it is going to execute the recipe a folder <code>.piscosour</code> with a file called <code>piscosour.json</code>:</p>
 <pre><code>[CurrentWorkingDirectory]/.piscosour/piscosour.json
 </code></pre><p>Check <a href="./11-configuration.md#parameters"><code>piscosour.json</code> parameters syntax</a> for more information and examples.</p>
-<h2 id="-a-name-piscosour-json-a-4-receipt-piscosour-piscosour-json-file-configuration"><a name="piscosour-json"></a>4. Receipt <code>.piscosour/piscosour.json</code> file configuration</h2>
-<p>You can also provide parameters creating in your receipt a folder <code>.piscosour</code> with a file called <code>piscosour.json</code>:</p>
-<pre><code>[recipeRoot]/.piscosour/piscosour.json
+<h2 id="-a-name-piscosour-json-a-4-receipt-piscosour-json-file-configuration"><a name="piscosour-json"></a>4. Receipt <code>piscosour.json</code> file configuration</h2>
+<p>You can also provide parameters editing in your receipt the file called <code>piscosour.json</code>:</p>
+<pre><code>[recipeRoot]/piscosour.json
 </code></pre><p>Check <a href="./11-configuration.md#paramaters"><code>piscosour.json</code> parameters syntax</a> for more information and examples.</p>
 <h2 id="-a-name-flow-a-5-flow-03-flows-html-config-json-file-configuration"><a name="flow"></a>5. <a href="./03-flows.html">Flow</a> <code>config.json</code> file configuration</h2>
 <p>This file is placed in:</p>
