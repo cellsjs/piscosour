@@ -29,7 +29,8 @@ The `config.json` file has the definition of the flow. A example is:
 {
   "name": "Create from scratch",
   "description": "Starting a repository from scratch",
-  "type": "normal",
+  "type" : "normal",
+  "excludes" : [ "any" ],
   "isGenerator": true,
   "params": {
     "param1": "value1",
@@ -38,9 +39,19 @@ The `config.json` file has the definition of the flow. A example is:
     "param4": { "object1": "value" }
   },
   "steps": {
-    "step1": { "param5": "value5" },
-    "step2": {},
-    "step3": {}
+    "step1": {
+        "excludes" : [ "any" ],
+        "params": {
+            "param1": "value1",
+            "param2": 2
+        }
+    },
+    "step2": {
+        "type" : "flow",
+    },
+    "step3": {
+        "implementation-check" : false    
+    }
   }
 }
 ```
@@ -70,6 +81,31 @@ Type of the flows
 - Two value options:
  1. `normal`: appears in the command list. It is the default value.
  1. `internal`: doesn't appear int command list. It is for an internal purpose.
+ 
+### `excludes` property
+
+Is an array of contexts witch execution is excluded for all steps of this flow. For example:
+  
+```json
+{
+  "name": "validate",
+  "description": "Validate CI flow",
+  "excludes": ["develop", "master", "feature", "hotfix", "release", "merger", "consolidation"],
+    "steps": {
+      "install": {
+        "type": "flow"
+      },
+  ....
+}
+```
+
+The execution of this flow will prompt this on output:
+
+```console
+[18:13:32] Run of flow "install" is excluded for context "feature"
+
+```
+
 
 ### `isGenerator` property
 
@@ -179,26 +215,46 @@ List of sequential steps in the flow.
 
 - It is mandatory
 - Object with the list of step-key:config. Where `config` is an object that optionally contains:
-  * `type` which can be `flow` or `step` (step is default value)
+  * `type` which can be `flow` or `step` (step is default value). Flow calls another flow with the name of the step. Nesting could be whatever.
   * `params` with the list of parameters of the step. See [parameters](./05-parameters.md) for more information. *Please note that it isn't appropriate to use params into the configuration of the flow. Usually this must be configurated in the step `config.json` file. The recommendation is to use `params` just to overwrite a step parameter.*
   * `input` to share in a steps a previously emitted parameter in another steps. Please see [parameters between steps](./08-parameters-between-steps) for more information.
+  * `excludes` array of contexts witch execution is excluded for this step
+  
+The execution of this flow will prompt this on output:
+
+```console
+[18:13:32] Run of flow "install" is excluded for context "feature"
+
+```
+
+  
+  * `implementation-check` If this step is not implemented execution will fail unless this parameter was set to false (default is true).
+  
+The execution of this flow will prompt this on output:
+
+```console
+[18:13:32] Run of step "provide-env" is allowed to be not implemented for context "app"
+
+```
+  
 
 Example:
 
 ```json
 {
-  "steps" : {
-    "step1" : {},
-    "step2" : {
-      "type": "flow",
-      "params": {
-        "param1" : "value1"
-      }
+  "steps": {
+    "step1": {
+        "excludes" : [ "any" ],
+        "params": {
+            "param1": "value1",
+            "param2": 2
+        }
     },
     "step2": {
-      "input": {
-        "key": { "step3" : "value" }
-      }
+        "type" : "flow",
+    },
+    "step3": {
+        "implementation-check" : false    
     }
   }
 }
