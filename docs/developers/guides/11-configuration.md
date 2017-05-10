@@ -91,6 +91,11 @@ After `notify` stage, customized `final` stage will be executed.
 
 See [flows](./03-flows.md) for more information.
 
+### `implementations` field 
+
+Piscosour recipes has lazy install strategy for installation, this means that 
+See [implementations](./15-implementations.md) for more information.
+
 ## <a name="parameters"></a>Piscosour parameter syntax
 
 Configuration has different options according to the scopes:
