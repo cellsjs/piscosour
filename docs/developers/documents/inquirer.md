@@ -11,20 +11,76 @@ layout: api_doc.html
 
 This plugin uses [inquirer library](https://www.npmjs.com/package/inquirer)
 
-Some addons are provided:
+## check hook
+
+This hook is the responsible to run all functionality explained on [inquire](../guides/06-inquire.md). Use prompts parameter from config.json to be configured.
+
+NOTE: Is possible to disable this hook with using --disablePrompts when you run pisco command line.
+
+Addons provided:
 
 1. [inquire() addon](#inquire)
 1. [promptArgs() addon](#promptArgs)
 
-## <a name="inquire"></a>1. inquire() addon
+## <a name="inquire"></a>1. inquire(name) addon
 
-`this.inquire()` launch inquire based in piscosour configuration. See [inquire](../guides/06-inquire.md) for more information. It has no paramater.
+`this.inquire(name)` returns a [promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) and push all parameters asked to this.params object.
+
+| Param | Type | Optional | Description |
+| --- | --- | --- | --- |
+| name | String | No | Name of the parameter inside this.params to use as prompts |
+
+
+`this.inquire(name)` launch inquire based in piscosour configuration. See [inquire](../guides/06-inquire.md) for more information.
 
 Example:
 
+In index.js of the step.
+
 ```javascript
-  this.inquire();
+    this.inquire('promptsCordova')
+        .then(() => {
+          if (this.params.doRestore) {
+            // Do stuff
+          }
+        });
 ```
+
+in config.json of the step 
+
+```javascript
+  "promptsCordova": [
+    {
+      "type": "confirm",
+      "name": "doRestore",
+      "default": true,
+      "required": true,
+      "message": "Plugins and/or platforms already exists, do you want to regenerate it?"
+    }
+  ]
+```
+
+Note that is possible to define promptsCordova inside index.js this way:
+
+```javascript
+    this.params.promptsCordova = [
+                                     {
+                                       "type": "confirm",
+                                       "name": "doRestore",
+                                       "default": true,
+                                       "required": true,
+                                       "message": "Plugins and/or platforms already exists, do you want to regenerate it?"
+                                     }
+                                   ]; 
+    this.inquire('promptsCordova')
+        .then(() => {
+          if (this.params.doRestore) {
+            // Do stuff
+          }
+        });
+```
+
+
 
 ## <a name="promptArgs"></a>2. promptArgs() addon
 
