@@ -26,6 +26,8 @@ To inquire parameters you must add the configuration in `prompts` field. This an
   ]
 ```
 
+**NOTE: Is possible to disable all inquires using --disablePrompts on command line or including disablePrompts=true on any piscosour configuration way.**
+
 See [inquirer library](https://www.npmjs.com/package/inquirer) for more information.
 
 ## Fields configuration
