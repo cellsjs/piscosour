@@ -68,8 +68,9 @@ If the steps creates a context, then fill a 'true' value. Otherwise 'false'.
 
 Array of contexts which step can be executed.
 
-- It is mandatory
-- Array of string expected
+- It is mandatory.
+- Array of string expected.
+- Could be "*" that means that apply for all contexts.
 
 Example: `"contexts": [ "context1", "context2" ]`
 
