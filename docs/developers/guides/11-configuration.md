@@ -21,11 +21,14 @@ This is the general configuration file (`piscosour.json`) of piscosour:
   "junitDir": "test-reports",
   "junitPiscoFile": "pisco-junit.xml",
   "stages": [
+    "core-install",
+    "core-check",
     "check",
     "config",
     "run",
     "prove",
-    "notify"
+    "notify",
+    "emit"
   ],
   "flowTypes": [
     "normal",
