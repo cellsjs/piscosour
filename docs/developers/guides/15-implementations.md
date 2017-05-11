@@ -48,11 +48,11 @@ This is the structure of the object:
 
 ### step name
 
-Is the name of the step. In config.json of the [step](./02-step.md) see [step](./02-step.md) documentation for more info.
+Is the name of the step. In config.json of the step [see step documentation for more info](./02-steps.md)
   
 ### context:
 
-Name of the context implemented. In config.json of the [step](./02-step.md) see [step](./02-step.md) documentation for more info.
+Name of the context implemented. In config.json of the step [see step documentation for more info](./02-steps.md)
 
 ### dependency:
 
