@@ -39,13 +39,13 @@ module.exports = {
 };
 ```
 
-And the stages of a [step](./02-steps.md) are used to:
+And the stages of a [step](./02-steps.md) by default are:
 
 1. `check`: check if all you need to execute this [step](./02-steps.md) exists.
 1. `config`: config the [step](./02-steps.md) to run.
 1. `run`: run main execution of the [step](./02-steps.md).
 1. `prove`: check if the [step](./02-steps.md) has run ok.
-1. `notify`: notify the end of the shot to someone or something.
+1. `notify`: notify the end of the step to someone or something.
 1. `emit`: emit the result of the [step](./02-steps.md) to other steps. Allow communication between steps.
 
 ## Promises
@@ -84,7 +84,7 @@ Config the [step](./02-steps.md) to run. Do you need to config something, this i
 
 Run main execution of the [step](./02-steps.md). This stage hope that all that it need to implement a process is 'ok', because it has been provide by the above stage.
 
-## `proove` stage
+## `prove` stage
 
 Check if the [step](./02-steps.md) has run ok.
 
@@ -104,3 +104,5 @@ Notify the end of the shot to someone or something.
 Emit the result of the [step](./02-steps.md) to other steps. Allow communication between steps.
 
 See [parameters between steps](./08-parametes_between_steps.md) for more information.
+
+`Important:` Stages are configured on piscosour.json file of every recipe, is possible to overwrite it with stages parameter on piscosour.json see [recipe configuration](./11-configuration.md) for more information. 
