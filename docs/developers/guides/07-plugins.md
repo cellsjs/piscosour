@@ -21,7 +21,7 @@ There is two ways to use plugins:
 1. Like a [stage hook](#hooks) that is executed previously to the step.
 1. Like a [addon](#addons), this add functionality to the object `this`. 
 
-Note, it exists a [scaffold generator tool](#scaffold) that help to add a plugin to an existing receipt.
+Note, it exists a [scaffold generator tool](#scaffold) that help to add a plugin to an existing recipe.
 
 ## `config.json` configuration
 

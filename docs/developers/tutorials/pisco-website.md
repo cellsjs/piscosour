@@ -1,5 +1,5 @@
 ---
-title: Create WebSite Receipt
+title: Create WebSite Recipe
 layout: doc_page.html
 order: 1
 ---

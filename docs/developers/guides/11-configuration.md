@@ -1,14 +1,14 @@
 ---
-title: Receipt Configuration
+title: Recipe Configuration
 layout: doc_page.html
 order: 11
 ---
 
-# Receipt Configuration
+# Recipe Configuration
 
-`piscosour.json` is the file which defines the general configuration of the receipt. It is placed at the root directory of the receipt.
+`piscosour.json` is the file which defines the general configuration of the recipe. It is placed at the root directory of the recipe.
 
-The configuration receipt could be overwritten with others available methods to fill parameters values. See [parameters](./05-parameters.md) configuration.
+The configuration recipe could be overwritten with others available methods to fill parameters values. See [parameters](./05-parameters.md) configuration.
 
 This is the general configuration file (`piscosour.json`) of piscosour:
 
@@ -35,9 +35,9 @@ This is the general configuration file (`piscosour.json`) of piscosour:
 }
 ```
 
-Then the different methods to configure (receipts, flows, steps, ...) will just add or remove configuration over the existing configuration.
+Then the different methods to configure (recipes, flows, steps, ...) will just add or remove configuration over the existing configuration.
 
-Example of a receipt:
+Example of a recipe:
 
 ```json
 {
@@ -49,7 +49,7 @@ Example of a receipt:
 
 ### `cmd` field
 
-Command name, this command will be executed in a console when the receipt is globally installed.
+Command name, this command will be executed in a console when the recipe is globally installed.
 
 ### `params` field
 
@@ -171,7 +171,7 @@ In a [step](./02-steps) all parameters are accessible with `this.params.param1`.
     - **1.2** Step configuration
     - **1.3** Flow configuration
     - **1.4** Global configuration
-- **2** `piscosour.json` file of the receipt.
+- **2** `piscosour.json` file of the recipe.
     - **1.1** Step & Context configuration
     - **1.2** Step configuration
     - **1.3** Flow configuration

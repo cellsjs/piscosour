@@ -127,7 +127,7 @@ drwxr-xr-x    3 pisco  staff   test
 -rw-r--r--    1 pisco  staff   test/index.js
 ```
 
-This receipt is npm package, empty, to make it run needs a `context`, a `step` and a `flow`.
+This recipe is npm package, empty, to make it run needs a `context`, a `step` and a `flow`.
 
 ## <a name="add-context"></a>2. Add a context `world`
 
@@ -216,7 +216,7 @@ Check if current working directory is world
 
 ## <a name="add-step"></a>3. Add the step `sayHello`
 
-To create the step, please go to the root of the receipt and execute the command `pisco add-step`:
+To create the step, please go to the root of the recipe and execute the command `pisco add-step`:
 
 ```
 $ pisco    
