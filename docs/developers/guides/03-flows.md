@@ -99,7 +99,7 @@ Is an array of contexts witch execution is excluded for all steps of this flow. 
 }
 ```
 
-The execution of this flow will prompt this on output:
+The execution of this flow will prompt this message on output:
 
 ```console
 [18:13:32] Run of flow "install" is excluded for context "feature"
@@ -220,17 +220,17 @@ List of sequential steps in the flow.
   * `input` to share in a steps a previously emitted parameter in another steps. Please see [parameters between steps](./08-parameters-between-steps) for more information.
   * `excludes` array of contexts witch execution is excluded for this step
   
-The execution of this flow will prompt this on output:
+The execution of this flow will prompt this message on output:
 
 ```console
-[18:13:32] Run of flow "install" is excluded for context "feature"
+[18:13:32] Run of step "build" is excluded for context "feature"
 
 ```
 
   
   * `implementation-check` If this step is not implemented execution will fail unless this parameter was set to false (default is true).
   
-The execution of this flow will prompt this on output:
+The execution of this flow will prompt this message on output:
 
 ```console
 [18:13:32] Run of step "provide-env" is allowed to be not implemented for context "app"
