@@ -101,7 +101,7 @@ Is an array of contexts witch execution is excluded for all steps of this flow. 
 
 The execution of this flow will prompt this message on output:
 
-```console
+```shell
 [18:13:32] Run of flow "install" is excluded for context "feature"
 
 ```
@@ -222,7 +222,7 @@ List of sequential steps in the flow.
   
 The execution of this flow will prompt this message on output:
 
-```console
+```shell
 [18:13:32] Run of step "build" is excluded for context "feature"
 
 ```
@@ -232,7 +232,7 @@ The execution of this flow will prompt this message on output:
   
 The execution of this flow will prompt this message on output:
 
-```console
+```shell
 [18:13:32] Run of step "provide-env" is allowed to be not implemented for context "app"
 
 ```
