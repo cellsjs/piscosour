@@ -23,33 +23,43 @@ module.export = {
 
 Below are the available methods to fill parameters values:
 
-1. [External file configuration](#file)
 1. [Command line paramaters option](#cli)
+    1. [External file of parameters](#file)
+    1. [Inline parameters](#inline)
 1. [Working Directory `.piscosour/piscosour.json` file configuration](#piscosour-json)
-1. [Recipe `.piscosour/piscosour.json` file configuration](#piscosour-json)
+1. [Any Recipe `${RECIPE_HOME}/piscosour.json` file configuration](#piscosour-json)
 1. [Flow `config.json` file configuration](#flow)
 1. [Step `config.json` file configuration](#step)
 1. [User inquire - interactive way](#interactive)
 
 This is the priority order (from high to low), if a parameter is provided twice or more, with different values, then it will stay the value that is above in the list.
 
-The **effective configuration** has the merge from all methods and applying this above priority. The **effective configuration** could be inquired with `-ov` parameters over the recipe or `pisco` command:
+The **effective configuration** has the merge from all methods and applying this above priority. The **effective configuration** will be prompted if verbose mode is set using `-ov` parameter over the recipe command or `pisco` command:
 
 ```sh
 $ recipe-name -ov
 $ pisco -ov
 ```
-The functional tests ffor this feature of pisco can be found in the [pisco-functional-tests/test/parameters-functional-test.js][1] file.
+The functional tests for this feature of pisco can be found in the [pisco-functional-tests/test/parameters-functional-test.js][1] file.
 
-## <a name="file"></a>1. External file configuration
+## <a name="cli"></a>2. Command line parameters option
 
-The second method to provide parameters is with an external json file.
+Each recipe can be run with a list of inline parameters with the following syntax:
 
 ```sh
-$ pisco --paramsFile params.json
+$ pisco-recipe --param1 value1 --param2 value2 --param3 value3 --paramsFile anyfilename.json
 ```
 
-Where `params.json`, can be any name you choose for your own parameter file. 
+
+### <a name="file"></a>1. External file configuration
+
+`Important:` If you use paramsFile parameter to specify parameters on a external file other command line parameters that match is going to be overwritten.
+
+```sh
+$ pisco --paramsFile anyfilename.json
+```
+
+Where `anyfilename.json`, can be any name you choose for your own parameter file. 
 
 This is very useful because you can provide complex parameters like objects and arrays.
 
@@ -70,7 +80,7 @@ Where:
 - `param2` is an `Object`
 - `param3` is an `Array`
 
-It is important to say that all the  Objects defined in this file will overwrite other objects definitions. For example, if we have this configuration in our external File:
+It is important to say that all the Objects defined in this file will overwrite other objects definitions. For example, if we have this configuration in our external File:
 
 ```json
 {
@@ -119,9 +129,9 @@ But instead, paramsFile will overwrite the entire object, remaining
 }
 ```
 
-## <a name="cli"></a>2. Command line parameters option
+## <a name="inline"></a>2. Inline parameters option
 
-Each recipe can be executed with a list of parameters with the following syntax:
+Each recipe can be run with a list of inline parameters with the following syntax:
 
 ```sh
 $ pisco-recipe --param1 value1 --param2 value2 --param3 value3 ...
@@ -140,6 +150,15 @@ module.export = {
   }
 }
 ```
+
+`Important: All parameters needs to have a value`
+
+For `boolean` parameters is mandatory to use `--booleanParam true`. 
+In order to simplify this is possible to use this shortcut:
+ 
+- `--b-booleanParam -> is equivalent to --booleanParam true`
+
+If default parameter is true and you need to specify a false value is mandatory to use `--booleanParam false`
 
 ## <a name="piscosour-json"></a>3. Working Directory `.piscosour/piscosour.json` file configuration
 
