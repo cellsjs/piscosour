@@ -103,6 +103,6 @@ Notify the end of the shot to someone or something.
 
 Emit the result of the [step](./02-steps.md) to other steps. Allow communication between steps.
 
-See [parameters between steps](./08-parametes_between_steps.md) for more information.
+See [parameters between steps](./08-parameters_between_steps.md) for more information.
 
-`Important:` Stages are configured on piscosour.json file of every recipe, is possible to overwrite it with stages parameter on piscosour.json see [recipe configuration](./11-configuration.md) for more information. 
+`Note:` Stages are configured on piscosour.json file of every recipe, it is possible to overwrite stages parameters on piscosour.json, see [recipe configuration](./11-configuration.md) for more information. 
