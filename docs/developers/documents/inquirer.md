@@ -11,16 +11,17 @@ layout: api_doc.html
 
 This plugin uses [inquirer library](https://www.npmjs.com/package/inquirer)
 
-## check hook
+Functionality:
+
+1. [check hook](#check)
+1. [inquire(name) addon](#inquire)
+1. [promptArgs() addon](#promptArgs)
+
+## <a name="check"></a>check hook
 
 This hook is the responsible to run all functionality explained on [inquire](../guides/06-inquire.md). Use prompts parameter from config.json to be configured.
 
 NOTE: Is possible to disable this hook with using --disablePrompts when you run pisco command line.
-
-Addons provided:
-
-1. [inquire() addon](#inquire)
-1. [promptArgs() addon](#promptArgs)
 
 ## <a name="inquire"></a>1. inquire(name) addon
 

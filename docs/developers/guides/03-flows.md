@@ -207,9 +207,9 @@ The priority is (from high to low):
 
 1. Parameters for a specific step and context
 1. Common parameters for all contexts in a specific step
-1. Common parameters for all steps
+1. Common parameters for all steps.
 
-### `steps` property
+### `step` property
 
 List of sequential steps in the flow.
 
@@ -218,19 +218,17 @@ List of sequential steps in the flow.
   * `type` which can be `flow` or `step` (step is default value). Flow calls another flow with the name of the step. Nesting could be whatever.
   * `params` with the list of parameters of the step. See [parameters](./05-parameters.md) for more information. *Please note that it isn't appropriate to use params into the configuration of the flow. Usually this must be configurated in the step `config.json` file. The recommendation is to use `params` just to overwrite a step parameter.*
   * `input` to share in a steps a previously emitted parameter in another steps. Please see [parameters between steps](./08-parameters-between-steps) for more information.
-  * `excludes` array of contexts witch execution is excluded for this step
+  * `excludes` array of contexts which execution is excluded for this step: [Log output](#excludes) 
+  * `implementation-check` If this step is not implemented execution will fail unless this parameter was set to false (default is true).[Log output](#imple)
   
-The execution of this flow will prompt this message on output:
+<a name="excludes"></a>The execution of a flow with excludes on it will prompt this message on output:
 
 ```shell
 [18:13:32] Run of step "build" is excluded for context "feature"
 
 ```
-
   
-  * `implementation-check` If this step is not implemented execution will fail unless this parameter was set to false (default is true).
-  
-The execution of this flow will prompt this message on output:
+<a name="imple"></a>The execution of a flow with implementation-check on it will prompt this message on output:
 
 ```shell
 [18:13:32] Run of step "provide-env" is allowed to be not implemented for context "app"
