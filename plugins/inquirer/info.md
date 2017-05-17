@@ -1,6 +1,3 @@
-# Plugins: inquirer
-
-
 # Inquirer plugin
 
 This plugin uses [inquirer library](https://www.npmjs.com/package/inquirer)

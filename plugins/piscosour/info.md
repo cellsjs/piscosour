@@ -1,6 +1,3 @@
-# Plugins: piscosour
-
-
 # piscosour plugin
 
 Plugin to get information about piscosour configuration.

@@ -1,6 +1,3 @@
-# Plugins: os
-
-
 # os plugin
 
 Plugin to check Operating System where pisco is running

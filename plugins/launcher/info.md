@@ -1,6 +1,3 @@
-# Plugins: launcher
-
-
 # launcher plugin
 
 This plugins provides the ability to spawn child processes with different implemented ways:
