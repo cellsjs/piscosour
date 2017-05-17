@@ -47,6 +47,7 @@ The `config.json` file has the definition of the flow. A example is:
         }
     },
     "step2": {
+        "watchContext" : true,
         "type" : "flow",
     },
     "step3": {
@@ -220,23 +221,46 @@ List of sequential steps in the flow.
   * `input` to share in a steps a previously emitted parameter in another steps. Please see [parameters between steps](./08-parameters-between-steps) for more information.
   * `excludes` array of contexts which execution is excluded for this step: [Log output](#excludes) 
   * `implementation-check` If this step is not implemented execution will fail unless this parameter was set to false (default is true).[Log output](#imple)
+  * `watchContext` (default is false): If true the presence of contexts is re-evaluated at this step. Searching for new contexts that appears. [See example](#watchContext)
   
-<a name="excludes"></a>The execution of a flow with excludes on it will prompt this message on output:
+<a name="excludes"></a>The execution of a flow with `exclude` on it will prompt this message on output:
 
 ```shell
 [18:13:32] Run of step "build" is excluded for context "feature"
 
 ```
   
-<a name="imple"></a>The execution of a flow with implementation-check on it will prompt this message on output:
+<a name="imple"></a>The execution of a flow with `implementation-check` on it will prompt this message on output:
 
 ```shell
 [18:13:32] Run of step "provide-env" is allowed to be not implemented for context "app"
 
 ```
-  
 
-Example:
+<a name="watchContext"></a>`watchContext example:`
+ 
+```json
+
+{
+  "name": "consolidate",
+  "description": "[Git flow]: Check for semver relate updates",
+  "steps": {
+    "start" : {
+      "type" : "flow"
+    },
+    "finish" : {
+      "watchContext" : true,
+      "type" : "flow"
+    }
+  }
+}
+
+```
+
+In this example start flow change old context named `master` to new context named `consolidation`, finish flow needs to reload contexts in order to realize that this new context is present and execute finish using the new context.
+
+
+All options example:
 
 ```json
 {
@@ -249,6 +273,7 @@ Example:
         }
     },
     "step2": {
+        "watchContext" : true,
         "type" : "flow",
     },
     "step3": {
