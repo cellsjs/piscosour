@@ -207,9 +207,9 @@ The priority is (from high to low):
 
 1. Parameters for a specific step and context
 1. Common parameters for all contexts in a specific step
-1. Common parameters for all steps
+1. Common parameters for all steps.
 
-### steps property
+### `step` property
 
 List of sequential steps in the flow.
 
