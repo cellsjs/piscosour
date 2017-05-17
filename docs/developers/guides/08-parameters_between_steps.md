@@ -10,7 +10,7 @@ Sometimes we need to emit generated parameter from a [step](./02-steps.md) into 
 
 ## Define output parameters
 
-There is a special stage in [steps](./02-steps.md) called **'emit'**. The emit behaviour is wide different from other stages behaviours.
+There is a special stage in [steps](./02-steps.md) called **'emit'**. The emit behavior is wide different from other stages behaviors.
 
    1. Allways has to return an key:value object with the parameters we want to expose to others steps.
    2. **emit** doesn't recive resolve and reject method so allways is synchronous
