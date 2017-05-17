@@ -1,9 +1,3 @@
----
-title: os
-name: os
-type: plugins
-layout: api_doc.html
----
 # Plugins: os
 
 

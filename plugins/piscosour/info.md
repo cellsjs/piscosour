@@ -1,9 +1,3 @@
----
-title: piscosour
-name: piscosour
-type: plugins
-layout: api_doc.html
----
 # Plugins: piscosour
 
 

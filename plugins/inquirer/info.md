@@ -1,9 +1,3 @@
----
-title: inquirer
-name: inquirer
-type: plugins
-layout: api_doc.html
----
 # Plugins: inquirer
 
 

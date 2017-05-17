@@ -1,9 +1,3 @@
----
-title: launcher
-name: launcher
-type: plugins
-layout: api_doc.html
----
 # Plugins: launcher
 
 
