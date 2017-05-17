@@ -1,3 +1,12 @@
+---
+title: launcher
+name: launcher
+type: plugins
+layout: api_doc.html
+---
+# Plugins: launcher
+
+
 # launcher plugin
 
 This plugins provides the ability to spawn child processes with different implemented ways:
@@ -260,7 +269,8 @@ run: function(resolve, reject) {
     } else {
       resolve();
     }
-  });
+  }
   return true;
 }
 ```
+

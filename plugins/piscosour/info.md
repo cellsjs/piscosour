@@ -1,3 +1,12 @@
+---
+title: piscosour
+name: piscosour
+type: plugins
+layout: api_doc.html
+---
+# Plugins: piscosour
+
+
 # piscosour plugin
 
 Plugin to get information about piscosour configuration.
@@ -7,15 +16,17 @@ Plugin to get information about piscosour configuration.
 1. [pkgFile addon](#pkgFile)
 1. [Waterfall() addon](#Waterfall)
 
-## <a name="piscoConfig"></a>1. piscoConfig addon
+## <a name="piscoConfig"></a>1. piscoConfig() addon
 
-`this.piscoConfig` is the field that exposes the piscosour configuration.
+`this.piscoConfig()` a function that exposes the piscosour configuration.
+
+It has no parameters.
 
 Example:
 
 ```javascript
 run: function(resolve, reject) {
-  this.logger.info('params?', this.piscoConfig.get().params);
+  this.logger.info('config?', this.piscoConfig());
   return true;
 }
 ```
@@ -90,3 +101,5 @@ run: function(resolve, reject) {
   return waterfall.start().then(resolve, reject);
 }
 ```
+
+

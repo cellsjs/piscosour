@@ -1,3 +1,12 @@
+---
+title: os
+name: os
+type: plugins
+layout: api_doc.html
+---
+# Plugins: os
+
+
 # os plugin
 
 Plugin to check Operating System where pisco is running
@@ -26,7 +35,9 @@ Example:
 
 ```javascript
 run: function(resolve, reject) {
-  this.logger.info('windows?', this.isWin());
+  this.logger.info('windows?', this.isWindow());
   return true;
 }
 ```
+
+
