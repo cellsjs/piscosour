@@ -221,14 +221,14 @@ List of sequential steps in the flow.
   * `excludes` array of contexts which execution is excluded for this step: [Log output](#excludes) 
   * `implementation-check` If this step is not implemented execution will fail unless this parameter was set to false (default is true).[Log output](#imple)
   
-<a name="excludes"></a>The execution of this flow will prompt this message on output:
+<a name="excludes"></a>The execution of a flow with excludes on it will prompt this message on output:
 
 ```shell
 [18:13:32] Run of step "build" is excluded for context "feature"
 
 ```
   
-<a name="imple"></a>The execution of this flow will prompt this message on output:
+<a name="imple"></a>The execution of a flow with implementation-check on it will prompt this message on output:
 
 ```shell
 [18:13:32] Run of step "provide-env" is allowed to be not implemented for context "app"
