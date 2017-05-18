@@ -160,7 +160,7 @@ In order to simplify this is possible to use this shortcut:
 
 If default parameter is true and you need to specify a false value is mandatory to use `--booleanParam false`
 
-## <a name="piscosour-json"></a>3. Working Directory `.piscosour/piscosour.json` file configuration
+## <a name="piscosour-json"></a>2. Working Directory `.piscosour/piscosour.json` file configuration
 
 Another method to provide parameters is to create in the working directory where it is going to execute the recipe a folder `.piscosour` with a file called `piscosour.json`:
 
@@ -170,7 +170,7 @@ Another method to provide parameters is to create in the working directory where
 
 Check [`piscosour.json` parameters syntax](./11-configuration.md#parameters) for more information and examples.
 
-## <a name="piscosour-json"></a>4. Recipe `piscosour.json` file configuration
+## <a name="piscosour-json"></a>3. Recipe `piscosour.json` file configuration
 
 You can also provide parameters editing in your recipe the file called `piscosour.json`:
 
@@ -180,7 +180,7 @@ You can also provide parameters editing in your recipe the file called `piscosou
 
 Check [`piscosour.json` parameters syntax](./11-configuration.md#paramaters) for more information and examples.
 
-## <a name="flow"></a>5. [Flow](./03-flows.md) `config.json` file configuration
+## <a name="flow"></a>4. [Flow](./03-flows.md) `config.json` file configuration
 
 This file is placed in:
 
@@ -190,7 +190,7 @@ This file is placed in:
 
 See [flows parameters definition](./03-flows.md#parameters) for more information.
 
-## <a name="step"></a>6. [Step](./02-steps.md) `config.json` configuration
+## <a name="step"></a>5. [Step](./02-steps.md) `config.json` configuration
 
 This file is placed in:
 
@@ -200,7 +200,7 @@ This file is placed in:
 
 See [flows parameters definition](./02-steps.md#parameters) for more information.
 
-## <a name="interactive"></a>7. User inquire - interactive way
+## <a name="interactive"></a>6. User inquire - interactive way
 
 [Inquire](./06-inquire.md) to the user, about the values with the `prompts` configuration.
 
