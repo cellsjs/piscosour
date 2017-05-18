@@ -9,7 +9,7 @@ Plugin to get information about piscosour configuration.
 
 ## <a name="piscoConfig"></a>1. piscoConfig() addon
 
-`this.piscoConfig()` a function that exposes the piscosour configuration.
+`this.piscoConfig()` a function that exposes piscosour configuration library.
 
 It has no parameters.
 
@@ -21,6 +21,33 @@ run: function(resolve, reject) {
   return true;
 }
 ```
+
+This functions are exposed
+
+1. [this.piscoConfig().get() function](#get)
+1. [this.piscoConfig().mergeObject(orig, added) function](#get)
+1. [this.piscoConfig().getDir(name) function](#get)
+1. [this.piscoConfig().allContexts() function](#get)
+
+### <a name="get"></a>this.piscoConfig().get()
+
+Return the entire configuration cooked for the execution.
+
+### <a name="mergeObject"></a>this.piscoConfig().mergeObject(orig, added)
+
+Function that merge recursively two object, always added overwrite orig.
+Returns the merged object.
+
+`string, array` -> Overwrite all.
+`object` -> Overwrite only same keys recursively.
+
+### <a name="getDir"></a>this.piscoConfig().getDir(name)
+
+Return the path of a recipe. 
+
+### <a name="allContexts"></a>this.piscoConfig().allContexts()
+
+Return an array with all contexts present in configuration.
 
 ## <a name="piscoFile"></a>2. piscoFile addon
 
