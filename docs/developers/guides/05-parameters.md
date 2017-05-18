@@ -23,14 +23,14 @@ module.export = {
 
 Below are the available methods to fill parameters values:
 
-1. [Command line paramaters option](#cli)
-    1. [External file of parameters](#file)
-    1. [Inline parameters](#inline)
-1. [Working Directory `.piscosour/piscosour.json` file configuration](#piscosour-json)
-1. [Any Recipe `${RECIPE_HOME}/piscosour.json` file configuration](#piscosour-json)
-1. [Flow `config.json` file configuration](#flow)
-1. [Step `config.json` file configuration](#step)
-1. [User inquire - interactive way](#interactive)
+- 1. [Command line paramaters option](#cli)
+    - 1. [External file of parameters](#file)
+    - 1. [Inline parameters](#inline)
+- 1. [Working Directory `.piscosour/piscosour.json` file configuration](#piscosour-json)
+- 1. [Any Recipe `${RECIPE_HOME}/piscosour.json` file configuration](#piscosour-json)
+- 1. [Flow `config.json` file configuration](#flow)
+- 1. [Step `config.json` file configuration](#step)
+- 1. [User inquire - interactive way](#interactive)
 
 This is the priority order (from high to low), if a parameter is provided twice or more, with different values, then it will stay the value that is above in the list.
 
@@ -42,7 +42,7 @@ $ pisco -ov
 ```
 The functional tests for this feature of pisco can be found in the [pisco-functional-tests/test/parameters-functional-test.js][1] file.
 
-## <a name="cli"></a>2. Command line parameters option
+## <a name="cli"></a>1. Command line parameters option
 
 Each recipe can be run with a list of inline parameters with the following syntax:
 
@@ -51,7 +51,7 @@ $ pisco-recipe --param1 value1 --param2 value2 --param3 value3 --paramsFile anyf
 ```
 
 
-### <a name="file"></a>1. External file configuration
+### <a name="file"></a>a.- External file configuration
 
 `Important:` If you use paramsFile parameter to specify parameters on a external file other command line parameters that match is going to be overwritten.
 
@@ -129,7 +129,7 @@ But instead, paramsFile will overwrite the entire object, remaining
 }
 ```
 
-## <a name="inline"></a>2. Inline parameters option
+### <a name="inline"></a>b.- Inline parameters option
 
 Each recipe can be run with a list of inline parameters with the following syntax:
 
