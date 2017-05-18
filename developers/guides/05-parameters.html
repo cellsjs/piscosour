@@ -13,7 +13,7 @@
       <aside>
 
         <div class="logoContainer">
-          <a href="../../index.html">
+          <a href="/">
             <img src="../../images/logo.svg" class="logo" />
             Piscosour
           </a>
@@ -43,37 +43,6 @@
               
                 
               
-            </li>
-
-            <li>
-              <h4>Tutorials</h4>
-              <ul>
-              
-                
-              
-                
-              
-                
-              
-                
-              
-                
-                  
-                  <li>
-                    
-                    <a href="../../developers/tutorials/pisco-website.html">Create WebSite Receipt</a>
-                    
-                  </li>
-                  
-                  <li>
-                    
-                    <a href="../../developers/tutorials/img-empty-submenu.png"></a>
-                    
-                  </li>
-                  
-                
-              
-              </ul>
             </li>
 
             <li>
@@ -150,7 +119,7 @@
                   
                   <li>
                     
-                    <a href="../../developers/guides/11-configuration.html">Receipt Configuration</a>
+                    <a href="../../developers/guides/11-configuration.html">Recipe Configuration</a>
                     
                   </li>
                   
@@ -172,8 +141,45 @@
                     
                   </li>
                   
+                  <li>
+                    
+                    <a href="../../developers/guides/15-implementations.html">Implementations</a>
+                    
+                  </li>
+                  
                 
               
+                
+              
+              </ul>
+            </li>
+
+            <li>
+              <h4>Tutorials</h4>
+              <ul>
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+                  
+                  <li>
+                    
+                    <a href="../../developers/tutorials/pisco-website.html">Create WebSite Recipe</a>
+                    
+                  </li>
+                  
+                  <li>
+                    
+                    <a href="../../developers/tutorials/img-empty-submenu.png"></a>
+                    
+                  </li>
+                  
                 
               
               </ul>
@@ -317,25 +323,32 @@
 </code></pre>
 <p>Below are the available methods to fill parameters values:</p>
 <ol>
-<li><a href="#file">External file configuration</a></li>
-<li><a href="#cli">Command line paramaters option</a></li>
+<li><a href="#cli">Command line paramaters option</a><ol>
+<li><a href="#file">External file of parameters</a></li>
+<li><a href="#inline">Inline parameters</a></li>
+</ol>
+</li>
 <li><a href="#piscosour-json">Working Directory <code>.piscosour/piscosour.json</code> file configuration</a></li>
-<li><a href="#piscosour-json">Receipt <code>.piscosour/piscosour.json</code> file configuration</a></li>
+<li><a href="#piscosour-json">Any Recipe <code>${RECIPE_HOME}/piscosour.json</code> file configuration</a></li>
 <li><a href="#flow">Flow <code>config.json</code> file configuration</a></li>
 <li><a href="#step">Step <code>config.json</code> file configuration</a></li>
 <li><a href="#interactive">User inquire - interactive way</a></li>
 </ol>
 <p>This is the priority order (from high to low), if a parameter is provided twice or more, with different values, then it will stay the value that is above in the list.</p>
-<p>The <strong>effective configuration</strong> has the merge from all methods and applying this above priority. The <strong>effective configuration</strong> could be inquired with <code>-ov</code> parameters over the recipe or <code>pisco</code> command:</p>
+<p>The <strong>effective configuration</strong> has the merge from all methods and applying this above priority. The <strong>effective configuration</strong> will be prompted if verbose mode is set using <code>-ov</code> parameter over the recipe command or <code>pisco</code> command:</p>
 <pre><code class="lang-sh">$ recipe-name -ov
 $ pisco -ov
 </code></pre>
-<p>The functional tests ffor this feature of pisco can be found in the <a href="https://github.com/cellsjs/pisco-functional-tests/blob/feature/QPA-33-functional-tests/test/parameters-functional-test.js">pisco-functional-tests/test/parameters-functional-test.js</a> file.</p>
-<h2 id="-a-name-file-a-1-external-file-configuration"><a name="file"></a>1. External file configuration</h2>
-<p>The second method to provide parameters is with an external json file.</p>
-<pre><code class="lang-sh">$ pisco --paramsFile params.json
+<p>The functional tests for this feature of pisco can be found in the <a href="https://github.com/cellsjs/pisco-functional-tests/blob/feature/QPA-33-functional-tests/test/parameters-functional-test.js">pisco-functional-tests/test/parameters-functional-test.js</a> file.</p>
+<h2 id="-a-name-cli-a-2-command-line-parameters-option"><a name="cli"></a>2. Command line parameters option</h2>
+<p>Each recipe can be run with a list of inline parameters with the following syntax:</p>
+<pre><code class="lang-sh">$ pisco-recipe --param1 value1 --param2 value2 --param3 value3 --paramsFile anyfilename.json
 </code></pre>
-<p>Where <code>params.json</code>, can be any name you choose for your own parameter file. </p>
+<h3 id="-a-name-file-a-1-external-file-configuration"><a name="file"></a>1. External file configuration</h3>
+<p><code>Important:</code> If you use paramsFile parameter to specify parameters on a external file other command line parameters that match is going to be overwritten.</p>
+<pre><code class="lang-sh">$ pisco --paramsFile anyfilename.json
+</code></pre>
+<p>Where <code>anyfilename.json</code>, can be any name you choose for your own parameter file. </p>
 <p>This is very useful because you can provide complex parameters like objects and arrays.</p>
 <p>An example of a parameter file is:</p>
 <pre><code class="lang-json">{
@@ -353,7 +366,7 @@ $ pisco -ov
 <li><code>param2</code> is an <code>Object</code></li>
 <li><code>param3</code> is an <code>Array</code></li>
 </ul>
-<p>It is important to say that all the  Objects defined in this file will overwrite other objects definitions. For example, if we have this configuration in our external File:</p>
+<p>It is important to say that all the Objects defined in this file will overwrite other objects definitions. For example, if we have this configuration in our external File:</p>
 <pre><code class="lang-json">{
   &quot;firstPriority&quot;: &quot;externalFile&quot;,
   &quot;secondPriority&quot;: &quot;commandLine&quot;,
@@ -391,8 +404,8 @@ $ pisco -ov
   }
 }
 </code></pre>
-<h2 id="-a-name-cli-a-2-command-line-parameters-option"><a name="cli"></a>2. Command line parameters option</h2>
-<p>Each recipe can be executed with a list of parameters with the following syntax:</p>
+<h2 id="-a-name-inline-a-2-inline-parameters-option"><a name="inline"></a>2. Inline parameters option</h2>
+<p>Each recipe can be run with a list of inline parameters with the following syntax:</p>
 <pre><code class="lang-sh">$ pisco-recipe --param1 value1 --param2 value2 --param3 value3 ...
 </code></pre>
 <p>For example in a step implementation, this will return &quot;value1, value2, value3&quot;:</p>
@@ -406,12 +419,19 @@ $ pisco -ov
   }
 }
 </code></pre>
+<p><code>Important: All parameters needs to have a value</code></p>
+<p>For <code>boolean</code> parameters is mandatory to use <code>--booleanParam true</code>. 
+In order to simplify this is possible to use this shortcut:</p>
+<ul>
+<li><code>--b-booleanParam -&gt; is equivalent to --booleanParam true</code></li>
+</ul>
+<p>If default parameter is true and you need to specify a false value is mandatory to use <code>--booleanParam false</code></p>
 <h2 id="-a-name-piscosour-json-a-3-working-directory-piscosour-piscosour-json-file-configuration"><a name="piscosour-json"></a>3. Working Directory <code>.piscosour/piscosour.json</code> file configuration</h2>
 <p>Another method to provide parameters is to create in the working directory where it is going to execute the recipe a folder <code>.piscosour</code> with a file called <code>piscosour.json</code>:</p>
 <pre><code>[CurrentWorkingDirectory]/.piscosour/piscosour.json
 </code></pre><p>Check <a href="./11-configuration.md#parameters"><code>piscosour.json</code> parameters syntax</a> for more information and examples.</p>
-<h2 id="-a-name-piscosour-json-a-4-receipt-piscosour-json-file-configuration"><a name="piscosour-json"></a>4. Receipt <code>piscosour.json</code> file configuration</h2>
-<p>You can also provide parameters editing in your receipt the file called <code>piscosour.json</code>:</p>
+<h2 id="-a-name-piscosour-json-a-4-recipe-piscosour-json-file-configuration"><a name="piscosour-json"></a>4. Recipe <code>piscosour.json</code> file configuration</h2>
+<p>You can also provide parameters editing in your recipe the file called <code>piscosour.json</code>:</p>
 <pre><code>[recipeRoot]/piscosour.json
 </code></pre><p>Check <a href="./11-configuration.md#paramaters"><code>piscosour.json</code> parameters syntax</a> for more information and examples.</p>
 <h2 id="-a-name-flow-a-5-flow-03-flows-html-config-json-file-configuration"><a name="flow"></a>5. <a href="./03-flows.html">Flow</a> <code>config.json</code> file configuration</h2>

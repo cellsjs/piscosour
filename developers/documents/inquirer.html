@@ -13,7 +13,7 @@
       <aside>
 
         <div class="logoContainer">
-          <a href="../../index.html">
+          <a href="/">
             <img src="../../images/logo.svg" class="logo" />
             Piscosour
           </a>
@@ -43,37 +43,6 @@
               
                 
               
-            </li>
-
-            <li>
-              <h4>Tutorials</h4>
-              <ul>
-              
-                
-              
-                
-              
-                
-              
-                
-              
-                
-                  
-                  <li>
-                    
-                    <a href="../../developers/tutorials/pisco-website.html">Create WebSite Receipt</a>
-                    
-                  </li>
-                  
-                  <li>
-                    
-                    <a href="../../developers/tutorials/img-empty-submenu.png"></a>
-                    
-                  </li>
-                  
-                
-              
-              </ul>
             </li>
 
             <li>
@@ -150,7 +119,7 @@
                   
                   <li>
                     
-                    <a href="../../developers/guides/11-configuration.html">Receipt Configuration</a>
+                    <a href="../../developers/guides/11-configuration.html">Recipe Configuration</a>
                     
                   </li>
                   
@@ -172,8 +141,45 @@
                     
                   </li>
                   
+                  <li>
+                    
+                    <a href="../../developers/guides/15-implementations.html">Implementations</a>
+                    
+                  </li>
+                  
                 
               
+                
+              
+              </ul>
+            </li>
+
+            <li>
+              <h4>Tutorials</h4>
+              <ul>
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+                  
+                  <li>
+                    
+                    <a href="../../developers/tutorials/pisco-website.html">Create WebSite Recipe</a>
+                    
+                  </li>
+                  
+                  <li>
+                    
+                    <a href="../../developers/tutorials/img-empty-submenu.png"></a>
+                    
+                  </li>
+                  
                 
               
               </ul>
@@ -306,15 +312,72 @@
         <h1 id="plugins-inquirer">Plugins: inquirer</h1>
 <h1 id="inquirer-plugin">Inquirer plugin</h1>
 <p>This plugin uses <a href="https://www.npmjs.com/package/inquirer">inquirer library</a></p>
-<p>Some addons are provided:</p>
+<p>Functionality:</p>
 <ol>
-<li><a href="#inquire">inquire() addon</a></li>
+<li><a href="#check">check hook</a></li>
+<li><a href="#inquire">inquire(name) addon</a></li>
 <li><a href="#promptArgs">promptArgs() addon</a></li>
 </ol>
-<h2 id="-a-name-inquire-a-1-inquire-addon"><a name="inquire"></a>1. inquire() addon</h2>
-<p><code>this.inquire()</code> launch inquire based in piscosour configuration. See <a href="../guides/06-inquire.html">inquire</a> for more information. It has no paramater.</p>
+<h2 id="-a-name-check-a-check-hook"><a name="check"></a>check hook</h2>
+<p>This hook is the responsible to run all functionality explained on <a href="../guides/06-inquire.html">inquire</a>. Use prompts parameter from config.json to be configured.</p>
+<p>NOTE: Is possible to disable this hook with using --disablePrompts when you run pisco command line.</p>
+<h2 id="-a-name-inquire-a-1-inquire-name-addon"><a name="inquire"></a>1. inquire(name) addon</h2>
+<p><code>this.inquire(name)</code> returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">promise</a> and push all parameters asked to this.params object.</p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Optional</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td>String</td>
+<td>No</td>
+<td>Name of the parameter inside this.params to use as prompts</td>
+</tr>
+</tbody>
+</table>
+<p><code>this.inquire(name)</code> launch inquire based in piscosour configuration. See <a href="../guides/06-inquire.html">inquire</a> for more information.</p>
 <p>Example:</p>
-<pre><code class="lang-javascript">  this.inquire();
+<p>In index.js of the step.</p>
+<pre><code class="lang-javascript">    this.inquire(&#39;promptsCordova&#39;)
+        .then(() =&gt; {
+          if (this.params.doRestore) {
+            // Do stuff
+          }
+        });
+</code></pre>
+<p>in config.json of the step </p>
+<pre><code class="lang-javascript">  &quot;promptsCordova&quot;: [
+    {
+      &quot;type&quot;: &quot;confirm&quot;,
+      &quot;name&quot;: &quot;doRestore&quot;,
+      &quot;default&quot;: true,
+      &quot;required&quot;: true,
+      &quot;message&quot;: &quot;Plugins and/or platforms already exists, do you want to regenerate it?&quot;
+    }
+  ]
+</code></pre>
+<p>Note that is possible to define promptsCordova inside index.js this way:</p>
+<pre><code class="lang-javascript">    this.params.promptsCordova = [
+                                     {
+                                       &quot;type&quot;: &quot;confirm&quot;,
+                                       &quot;name&quot;: &quot;doRestore&quot;,
+                                       &quot;default&quot;: true,
+                                       &quot;required&quot;: true,
+                                       &quot;message&quot;: &quot;Plugins and/or platforms already exists, do you want to regenerate it?&quot;
+                                     }
+                                   ]; 
+    this.inquire(&#39;promptsCordova&#39;)
+        .then(() =&gt; {
+          if (this.params.doRestore) {
+            // Do stuff
+          }
+        });
 </code></pre>
 <h2 id="-a-name-promptargs-a-2-promptargs-addon"><a name="promptArgs"></a>2. promptArgs() addon</h2>
 <p><code>this.promptArgs(array)</code> returns an <code>Array</code> with the list of configured <a href="../guides/06-inquire.html">inquirer prompts</a> according to the command line format such as:</p>

@@ -13,7 +13,7 @@
       <aside>
 
         <div class="logoContainer">
-          <a href="../../index.html">
+          <a href="/">
             <img src="../../images/logo.svg" class="logo" />
             Piscosour
           </a>
@@ -43,37 +43,6 @@
               
                 
               
-            </li>
-
-            <li>
-              <h4>Tutorials</h4>
-              <ul>
-              
-                
-              
-                
-              
-                
-              
-                
-              
-                
-                  
-                  <li>
-                    
-                    <a href="../../developers/tutorials/pisco-website.html">Create WebSite Receipt</a>
-                    
-                  </li>
-                  
-                  <li>
-                    
-                    <a href="../../developers/tutorials/img-empty-submenu.png"></a>
-                    
-                  </li>
-                  
-                
-              
-              </ul>
             </li>
 
             <li>
@@ -150,7 +119,7 @@
                   
                   <li>
                     
-                    <a href="../../developers/guides/11-configuration.html">Receipt Configuration</a>
+                    <a href="../../developers/guides/11-configuration.html">Recipe Configuration</a>
                     
                   </li>
                   
@@ -172,8 +141,45 @@
                     
                   </li>
                   
+                  <li>
+                    
+                    <a href="../../developers/guides/15-implementations.html">Implementations</a>
+                    
+                  </li>
+                  
                 
               
+                
+              
+              </ul>
+            </li>
+
+            <li>
+              <h4>Tutorials</h4>
+              <ul>
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+                  
+                  <li>
+                    
+                    <a href="../../developers/tutorials/pisco-website.html">Create WebSite Recipe</a>
+                    
+                  </li>
+                  
+                  <li>
+                    
+                    <a href="../../developers/tutorials/img-empty-submenu.png"></a>
+                    
+                  </li>
+                  
                 
               
               </ul>
@@ -334,13 +340,13 @@ module.exports = {
   }
 };
 </code></pre>
-<p>And the stages of a <a href="./02-steps.html">step</a> are used to:</p>
+<p>And the stages of a <a href="./02-steps.html">step</a> by default are:</p>
 <ol>
 <li><code>check</code>: check if all you need to execute this <a href="./02-steps.html">step</a> exists.</li>
 <li><code>config</code>: config the <a href="./02-steps.html">step</a> to run.</li>
 <li><code>run</code>: run main execution of the <a href="./02-steps.html">step</a>.</li>
 <li><code>prove</code>: check if the <a href="./02-steps.html">step</a> has run ok.</li>
-<li><code>notify</code>: notify the end of the shot to someone or something.</li>
+<li><code>notify</code>: notify the end of the step to someone or something.</li>
 <li><code>emit</code>: emit the result of the <a href="./02-steps.html">step</a> to other steps. Allow communication between steps.</li>
 </ol>
 <h2 id="promises">Promises</h2>
@@ -369,7 +375,7 @@ module.exports = {
 <p>Config the <a href="./02-steps.html">step</a> to run. Do you need to config something, this is the stage to do it.</p>
 <h2 id="-run-stage"><code>run</code> stage</h2>
 <p>Run main execution of the <a href="./02-steps.html">step</a>. This stage hope that all that it need to implement a process is &#39;ok&#39;, because it has been provide by the above stage.</p>
-<h2 id="-proove-stage"><code>proove</code> stage</h2>
+<h2 id="-prove-stage"><code>prove</code> stage</h2>
 <p>Check if the <a href="./02-steps.html">step</a> has run ok.</p>
 <ul>
 <li>If artifacts has been well built.</li>
@@ -384,7 +390,8 @@ module.exports = {
 </ul>
 <h2 id="-emit-stage"><code>emit</code> stage</h2>
 <p>Emit the result of the <a href="./02-steps.html">step</a> to other steps. Allow communication between steps.</p>
-<p>See <a href="./08-parametes_between_steps.html">parameters between steps</a> for more information.</p>
+<p>See <a href="./08-parameters_between_steps.html">parameters between steps</a> for more information.</p>
+<p><code>Note:</code> Stages are configured on piscosour.json file of every recipe, it is possible to overwrite stages parameters on piscosour.json, see <a href="./11-configuration.html">recipe configuration</a> for more information. </p>
 
       </article>
     </section>

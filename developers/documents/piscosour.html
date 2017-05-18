@@ -13,7 +13,7 @@
       <aside>
 
         <div class="logoContainer">
-          <a href="../../index.html">
+          <a href="/">
             <img src="../../images/logo.svg" class="logo" />
             Piscosour
           </a>
@@ -43,37 +43,6 @@
               
                 
               
-            </li>
-
-            <li>
-              <h4>Tutorials</h4>
-              <ul>
-              
-                
-              
-                
-              
-                
-              
-                
-              
-                
-                  
-                  <li>
-                    
-                    <a href="../../developers/tutorials/pisco-website.html">Create WebSite Receipt</a>
-                    
-                  </li>
-                  
-                  <li>
-                    
-                    <a href="../../developers/tutorials/img-empty-submenu.png"></a>
-                    
-                  </li>
-                  
-                
-              
-              </ul>
             </li>
 
             <li>
@@ -150,7 +119,7 @@
                   
                   <li>
                     
-                    <a href="../../developers/guides/11-configuration.html">Receipt Configuration</a>
+                    <a href="../../developers/guides/11-configuration.html">Recipe Configuration</a>
                     
                   </li>
                   
@@ -172,8 +141,45 @@
                     
                   </li>
                   
+                  <li>
+                    
+                    <a href="../../developers/guides/15-implementations.html">Implementations</a>
+                    
+                  </li>
+                  
                 
               
+                
+              
+              </ul>
+            </li>
+
+            <li>
+              <h4>Tutorials</h4>
+              <ul>
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+                  
+                  <li>
+                    
+                    <a href="../../developers/tutorials/pisco-website.html">Create WebSite Recipe</a>
+                    
+                  </li>
+                  
+                  <li>
+                    
+                    <a href="../../developers/tutorials/img-empty-submenu.png"></a>
+                    
+                  </li>
+                  
                 
               
               </ul>
@@ -312,11 +318,12 @@
 <li><a href="#pkgFile">pkgFile addon</a></li>
 <li><a href="#Waterfall">Waterfall() addon</a></li>
 </ol>
-<h2 id="-a-name-piscoconfig-a-1-piscoconfig-addon"><a name="piscoConfig"></a>1. piscoConfig addon</h2>
-<p><code>this.piscoConfig</code> is the field that exposes the piscosour configuration.</p>
+<h2 id="-a-name-piscoconfig-a-1-piscoconfig-addon"><a name="piscoConfig"></a>1. piscoConfig() addon</h2>
+<p><code>this.piscoConfig()</code> a function that exposes the piscosour configuration.</p>
+<p>It has no parameters.</p>
 <p>Example:</p>
 <pre><code class="lang-javascript">run: function(resolve, reject) {
-  this.logger.info(&#39;params?&#39;, this.piscoConfig.get().params);
+  this.logger.info(&#39;config?&#39;, this.piscoConfig());
   return true;
 }
 </code></pre>

@@ -13,7 +13,7 @@
       <aside>
 
         <div class="logoContainer">
-          <a href="../index.html">
+          <a href="/">
             <img src="../images/logo.svg" class="logo" />
             Piscosour
           </a>
@@ -43,37 +43,6 @@
               
                 
               
-            </li>
-
-            <li>
-              <h4>Tutorials</h4>
-              <ul>
-              
-                
-              
-                
-              
-                
-              
-                
-              
-                
-                  
-                  <li>
-                    
-                    <a href="../developers/tutorials/pisco-website.html">Create WebSite Receipt</a>
-                    
-                  </li>
-                  
-                  <li>
-                    
-                    <a href="../developers/tutorials/img-empty-submenu.png"></a>
-                    
-                  </li>
-                  
-                
-              
-              </ul>
             </li>
 
             <li>
@@ -150,7 +119,7 @@
                   
                   <li>
                     
-                    <a href="../developers/guides/11-configuration.html">Receipt Configuration</a>
+                    <a href="../developers/guides/11-configuration.html">Recipe Configuration</a>
                     
                   </li>
                   
@@ -172,8 +141,45 @@
                     
                   </li>
                   
+                  <li>
+                    
+                    <a href="../developers/guides/15-implementations.html">Implementations</a>
+                    
+                  </li>
+                  
                 
               
+                
+              
+              </ul>
+            </li>
+
+            <li>
+              <h4>Tutorials</h4>
+              <ul>
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+                  
+                  <li>
+                    
+                    <a href="../developers/tutorials/pisco-website.html">Create WebSite Recipe</a>
+                    
+                  </li>
+                  
+                  <li>
+                    
+                    <a href="../developers/tutorials/img-empty-submenu.png"></a>
+                    
+                  </li>
+                  
                 
               
               </ul>
@@ -400,7 +406,7 @@ drwxr-xr-x    3 pisco  staff   bin
 -rw-r--r--    1 pisco  staff   piscosour.json
 drwxr-xr-x    3 pisco  staff   test
 -rw-r--r--    1 pisco  staff   test/index.js
-</code></pre><p>This receipt is npm package, empty, to make it run needs a <code>context</code>, a <code>step</code> and a <code>flow</code>.</p>
+</code></pre><p>This recipe is npm package, empty, to make it run needs a <code>context</code>, a <code>step</code> and a <code>flow</code>.</p>
 <h2 id="-a-name-add-context-a-2-add-a-context-world-"><a name="add-context"></a>2. Add a context <code>world</code></h2>
 <p>The context defines <strong>where</strong> could a step be executed. In this sample, the step <code>sayHello</code> just runs inside a folder called <code>world</code>.</p>
 <p>So, in the new folder <code>pisco-sample</code>, add a flow launching <code>pisco</code> and the action <code>add-context</code>.</p>
@@ -466,7 +472,7 @@ module.exports = {
 Check if current working directory is world
 </code></pre>
 <h2 id="-a-name-add-step-a-3-add-the-step-sayhello-"><a name="add-step"></a>3. Add the step <code>sayHello</code></h2>
-<p>To create the step, please go to the root of the receipt and execute the command <code>pisco add-step</code>:</p>
+<p>To create the step, please go to the root of the recipe and execute the command <code>pisco add-step</code>:</p>
 <pre><code>$ pisco    
 ? What&#39;s up!? Choose an action for a recipe 
   recipe:add-context (Add a context to a piscosour recipe) 

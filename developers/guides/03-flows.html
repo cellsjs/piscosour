@@ -13,7 +13,7 @@
       <aside>
 
         <div class="logoContainer">
-          <a href="../../index.html">
+          <a href="/">
             <img src="../../images/logo.svg" class="logo" />
             Piscosour
           </a>
@@ -43,37 +43,6 @@
               
                 
               
-            </li>
-
-            <li>
-              <h4>Tutorials</h4>
-              <ul>
-              
-                
-              
-                
-              
-                
-              
-                
-              
-                
-                  
-                  <li>
-                    
-                    <a href="../../developers/tutorials/pisco-website.html">Create WebSite Receipt</a>
-                    
-                  </li>
-                  
-                  <li>
-                    
-                    <a href="../../developers/tutorials/img-empty-submenu.png"></a>
-                    
-                  </li>
-                  
-                
-              
-              </ul>
             </li>
 
             <li>
@@ -150,7 +119,7 @@
                   
                   <li>
                     
-                    <a href="../../developers/guides/11-configuration.html">Receipt Configuration</a>
+                    <a href="../../developers/guides/11-configuration.html">Recipe Configuration</a>
                     
                   </li>
                   
@@ -172,8 +141,45 @@
                     
                   </li>
                   
+                  <li>
+                    
+                    <a href="../../developers/guides/15-implementations.html">Implementations</a>
+                    
+                  </li>
+                  
                 
               
+                
+              
+              </ul>
+            </li>
+
+            <li>
+              <h4>Tutorials</h4>
+              <ul>
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+                  
+                  <li>
+                    
+                    <a href="../../developers/tutorials/pisco-website.html">Create WebSite Recipe</a>
+                    
+                  </li>
+                  
+                  <li>
+                    
+                    <a href="../../developers/tutorials/img-empty-submenu.png"></a>
+                    
+                  </li>
+                  
                 
               
               </ul>
@@ -316,7 +322,8 @@
 <pre><code class="lang-json">{
   &quot;name&quot;: &quot;Create from scratch&quot;,
   &quot;description&quot;: &quot;Starting a repository from scratch&quot;,
-  &quot;type&quot;: &quot;normal&quot;,
+  &quot;type&quot; : &quot;normal&quot;,
+  &quot;excludes&quot; : [ &quot;any&quot; ],
   &quot;isGenerator&quot;: true,
   &quot;params&quot;: {
     &quot;param1&quot;: &quot;value1&quot;,
@@ -325,9 +332,20 @@
     &quot;param4&quot;: { &quot;object1&quot;: &quot;value&quot; }
   },
   &quot;steps&quot;: {
-    &quot;step1&quot;: { &quot;param5&quot;: &quot;value5&quot; },
-    &quot;step2&quot;: {},
-    &quot;step3&quot;: {}
+    &quot;step1&quot;: {
+        &quot;excludes&quot; : [ &quot;any&quot; ],
+        &quot;params&quot;: {
+            &quot;param1&quot;: &quot;value1&quot;,
+            &quot;param2&quot;: 2
+        }
+    },
+    &quot;step2&quot;: {
+        &quot;watchContext&quot; : true,
+        &quot;type&quot; : &quot;flow&quot;,
+    },
+    &quot;step3&quot;: {
+        &quot;implementation-check&quot; : false    
+    }
   }
 }
 </code></pre>
@@ -355,6 +373,22 @@
 </ol>
 </li>
 </ul>
+<h3 id="-excludes-property"><code>excludes</code> property</h3>
+<p>Is an array of contexts witch execution is excluded for all steps of this flow. For example:</p>
+<pre><code class="lang-json">{
+  &quot;name&quot;: &quot;validate&quot;,
+  &quot;description&quot;: &quot;Validate CI flow&quot;,
+  &quot;excludes&quot;: [&quot;develop&quot;, &quot;master&quot;, &quot;feature&quot;, &quot;hotfix&quot;, &quot;release&quot;, &quot;merger&quot;, &quot;consolidation&quot;],
+    &quot;steps&quot;: {
+      &quot;install&quot;: {
+        &quot;type&quot;: &quot;flow&quot;
+      },
+  ....
+}
+</code></pre>
+<p>The execution of this flow will prompt this message on output:</p>
+<pre><code class="lang-shell">[18:13:32] Run of flow &quot;install&quot; is excluded for context &quot;feature&quot;
+</code></pre>
 <h3 id="-isgenerator-property"><code>isGenerator</code> property</h3>
 <p>If the steps creates a context, then this flag must be with a &#39;true&#39; value.</p>
 <ul>
@@ -435,33 +469,61 @@
 <ol>
 <li>Parameters for a specific step and context</li>
 <li>Common parameters for all contexts in a specific step</li>
-<li>Common parameters for all steps</li>
+<li>Common parameters for all steps.</li>
 </ol>
-<h3 id="-steps-property"><code>steps</code> property</h3>
+<h3 id="-step-property"><code>step</code> property</h3>
 <p>List of sequential steps in the flow.</p>
 <ul>
 <li>It is mandatory</li>
 <li>Object with the list of step-key:config. Where <code>config</code> is an object that optionally contains:<ul>
-<li><code>type</code> which can be <code>flow</code> or <code>step</code> (step is default value)</li>
+<li><code>type</code> which can be <code>flow</code> or <code>step</code> (step is default value). Flow calls another flow with the name of the step. Nesting could be whatever.</li>
 <li><code>params</code> with the list of parameters of the step. See <a href="./05-parameters.html">parameters</a> for more information. <em>Please note that it isn&#39;t appropriate to use params into the configuration of the flow. Usually this must be configurated in the step <code>config.json</code> file. The recommendation is to use <code>params</code> just to overwrite a step parameter.</em></li>
 <li><code>input</code> to share in a steps a previously emitted parameter in another steps. Please see <a href="./08-parameters-between-steps">parameters between steps</a> for more information.</li>
+<li><code>excludes</code> array of contexts which execution is excluded for this step: <a href="#excludes">Log output</a> </li>
+<li><code>implementation-check</code> If this step is not implemented execution will fail unless this parameter was set to false (default is true).<a href="#imple">Log output</a></li>
+<li><code>watchContext</code> (default is false): If true the presence of contexts is re-evaluated at this step. Searching for new contexts that appears. <a href="#watchContext">See example</a></li>
 </ul>
 </li>
 </ul>
-<p>Example:</p>
+<p><a name="excludes"></a>The execution of a flow with <code>exclude</code> on it will prompt this message on output:</p>
+<pre><code class="lang-shell">[18:13:32] Run of step &quot;build&quot; is excluded for context &quot;feature&quot;
+</code></pre>
+<p><a name="imple"></a>The execution of a flow with <code>implementation-check</code> on it will prompt this message on output:</p>
+<pre><code class="lang-shell">[18:13:32] Run of step &quot;provide-env&quot; is allowed to be not implemented for context &quot;app&quot;
+</code></pre>
+<p><a name="watchContext"></a><code>watchContext example:</code></p>
+<pre><code class="lang-json">
+{
+  &quot;name&quot;: &quot;consolidate&quot;,
+  &quot;description&quot;: &quot;[Git flow]: Check for semver relate updates&quot;,
+  &quot;steps&quot;: {
+    &quot;start&quot; : {
+      &quot;type&quot; : &quot;flow&quot;
+    },
+    &quot;finish&quot; : {
+      &quot;watchContext&quot; : true,
+      &quot;type&quot; : &quot;flow&quot;
+    }
+  }
+}
+</code></pre>
+<p>In this example start flow change old context named <code>master</code> to new context named <code>consolidation</code>, finish flow needs to reload contexts in order to realize that this new context is present and execute finish using the new context.</p>
+<p>All options example:</p>
 <pre><code class="lang-json">{
-  &quot;steps&quot; : {
-    &quot;step1&quot; : {},
-    &quot;step2&quot; : {
-      &quot;type&quot;: &quot;flow&quot;,
-      &quot;params&quot;: {
-        &quot;param1&quot; : &quot;value1&quot;
-      }
+  &quot;steps&quot;: {
+    &quot;step1&quot;: {
+        &quot;excludes&quot; : [ &quot;any&quot; ],
+        &quot;params&quot;: {
+            &quot;param1&quot;: &quot;value1&quot;,
+            &quot;param2&quot;: 2
+        }
     },
     &quot;step2&quot;: {
-      &quot;input&quot;: {
-        &quot;key&quot;: { &quot;step3&quot; : &quot;value&quot; }
-      }
+        &quot;watchContext&quot; : true,
+        &quot;type&quot; : &quot;flow&quot;,
+    },
+    &quot;step3&quot;: {
+        &quot;implementation-check&quot; : false    
     }
   }
 }

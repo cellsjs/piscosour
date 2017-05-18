@@ -4,7 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Recipe Configuration</title>
+    <title>Implementations</title>
     <link rel="stylesheet" type="text/css" href="../../css/main.css">
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc=" crossorigin="anonymous"></script>
   </head>
@@ -119,7 +119,7 @@
                   
                   <li>
                     
-                    <a href="../../developers/guides/11-configuration.html" class="selected">Recipe Configuration</a>
+                    <a href="../../developers/guides/11-configuration.html">Recipe Configuration</a>
                     
                   </li>
                   
@@ -143,7 +143,7 @@
                   
                   <li>
                     
-                    <a href="../../developers/guides/15-implementations.html">Implementations</a>
+                    <a href="../../developers/guides/15-implementations.html" class="selected">Implementations</a>
                     
                   </li>
                   
@@ -309,136 +309,53 @@
         
       </aside>
       <article>
-        <h1 id="recipe-configuration">Recipe Configuration</h1>
-<p><code>piscosour.json</code> is the file which defines the general configuration of the recipe. It is placed at the root directory of the recipe.</p>
-<p>The configuration recipe could be overwritten with others available methods to fill parameters values. See <a href="./05-parameters.html">parameters</a> configuration.</p>
-<p>This is the general configuration file (<code>piscosour.json</code>) of piscosour:</p>
-<pre><code class="lang-json">{
-  &quot;cmd&quot; : &quot;pisco&quot;,
-  &quot;params&quot; : {
-    &quot;plugins&quot; : [&quot;inquirer&quot;]
-  },
-  &quot;junitDir&quot;: &quot;test-reports&quot;,
-  &quot;junitPiscoFile&quot;: &quot;pisco-junit.xml&quot;,
-  &quot;stages&quot;: [
-    &quot;core-install&quot;,
-    &quot;core-check&quot;,
-    &quot;check&quot;,
-    &quot;config&quot;,
-    &quot;run&quot;,
-    &quot;prove&quot;,
-    &quot;notify&quot;,
-    &quot;emit&quot;
-  ],
-  &quot;flowTypes&quot;: [
-    &quot;normal&quot;,
-    &quot;utils&quot;,
-    &quot;internal&quot;
-  ]
-}
+        <h1 id="implementations">Implementations</h1>
+<p>This is a very important concept of a recipe. Any step on a recipe could be implemented by one single step inside another recipe. Using this concept is possible to implement same flow in different ways on each recipe. </p>
+<p>How to do this. Inside piscosour.json of your recipe you can place the object <code>implementations</code> with, for example, this aspect:</p>
+<pre><code class="lang-json"> &quot;implementations&quot; : {
+    &quot;resolve-deps&quot;: {
+      &quot;app&quot;: &quot;pisco-cells-app-resolve@^0.1.0&quot;,
+      &quot;component&quot;: &quot;not-build&quot;,
+      &quot;android-app&quot;: &quot;pisco-cells-android-app-resolve-deps@^0.1.0&quot;,
+      &quot;ios-app&quot;: &quot;pisco-cells-ios-app-resolve-deps@^0.1.0&quot;
+    },
+    &quot;build&quot;: {
+      &quot;app&quot;: &quot;pisco-cells-app-build@^0.1.0&quot;,
+      &quot;component&quot; : &quot;not-build&quot;,
+      &quot;iconset&quot;: &quot;pisco-cells-iconset-create@^0.1.2&quot;,
+      &quot;catalog&quot;: &quot;pisco-cells-catalog-build@^0.1.0&quot;,
+      &quot;android-app&quot;: &quot;pisco-cells-android-app-build@^0.1.0&quot;,
+      &quot;ios-app&quot;: &quot;pisco-cells-ios-app-build@^0.2.0&quot;
+    },
+    .....
+ }
 </code></pre>
-<p>Then the different methods to configure (recipes, flows, steps, ...) will just add or remove configuration over the existing configuration.</p>
-<p>Example of a recipe:</p>
-<pre><code class="lang-json">{
-  &quot;cmd&quot;: &quot;cells&quot;
-}
+<p><code>IMPORTANT:</code> All recipes are installed globally so if you have more than one recipe installed that implements the same step in the same contexts. Executions is going to fail with this error:</p>
+<pre><code class="lang-shell">[18:13:32] step build is overwritten by step: &quot;other recipe&quot; in recipe &quot;your recipe&quot;);
 </code></pre>
-<h2 id="main-fields">Main fields</h2>
-<h3 id="-cmd-field"><code>cmd</code> field</h3>
-<p>Command name, this command will be executed in a console when the recipe is globally installed.</p>
-<h3 id="-params-field"><code>params</code> field</h3>
-<p>Global parameters, applies to all <a href="./03-flows.html">flows</a> and <a href="./02-steps.html">steps</a>. See <a href="./05-parameters.html">parameter</a> for more information.</p>
-<h3 id="-junitdir-and-junitpiscofile-fields"><code>junitDir</code> and <code>junitPiscoFile</code> fields</h3>
-<p><code>junitDir</code> is the Folder where will save the <code>junit.xml</code> file.
-<code>junitPiscoFile</code> is a customized name of the <code>junit.xml</code> file.</p>
-<p>These configurations are available when pisco write a junit report.</p>
-<pre><code class="lang-sh">$ pisco --junitReport
-$ pisco -u
-</code></pre>
-<h3 id="-stages-field"><code>stages</code> field</h3>
-<p>Default stages. See <a href="./04-stages.html">stages</a> for more information.</p>
-<p>If it is added a new stage, and will be just executed if the step has its implementation.</p>
-<pre><code class="lang-json">{
- &quot;stages&quot;: [ &quot;final&quot; ]
-}
-</code></pre>
-<p>After <code>notify</code> stage, customized <code>final</code> stage will be executed.</p>
-<pre><code class="lang-javascript">  final : function() {
-    this.logger.info(&quot;#magenta&quot;,&quot;notify&quot;,&quot;Recollect all execution information and notify&quot;);
-  }
-</code></pre>
-<h3 id="-flowtypes-field"><code>flowTypes</code> field</h3>
-<p>See <a href="./03-flows.html">flows</a> for more information.</p>
-<h3 id="-implementations-field"><code>implementations</code> field</h3>
-<p>Piscosour recipes has lazy install strategy for installation, this means that 
-See <a href="./15-implementations.html">implementations</a> for more information.</p>
-<h2 id="-a-name-parameters-a-piscosour-parameter-syntax"><a name="parameters"></a>Piscosour parameter syntax</h2>
-<p>Configuration has different options according to the scopes:</p>
-<h3 id="global-configuration">Global configuration</h3>
-<p>For all flows, steps and contexts</p>
-<pre><code class="lang-json">{
-  &quot;params&quot;: {
-    &quot;param1&quot;: &quot;value1&quot;
-  }
-}
-</code></pre>
-<h3 id="flow-configuration">Flow configuration</h3>
-<p>Just for a flow and all its steps and contexts.</p>
-<pre><code class="lang-json">{
-  &quot;flows&quot; : {
-    &quot;flowName&quot; : {
-      &quot;params&quot; : {
-        &quot;param1&quot;: &quot;value1&quot;
-      }
-    }
-  }
-}
-</code></pre>
-<h3 id="step-configuration">Step configuration</h3>
-<p>Just for a step and all its contexts.</p>
-<pre><code class="lang-json">{
-  &quot;steps&quot; : {
-    &quot;stepName&quot; : {
-      &quot;params&quot; : {
-        &quot;param1&quot;: &quot;value1&quot;
-      }
-    }
-  }
-}
-</code></pre>
-<h3 id="step-context-configuration">Step &amp; Context configuration</h3>
-<p>Just for a step and a context.</p>
-<pre><code class="lang-json">{
-  &quot;steps&quot; : {
-    &quot;stepName&quot; : {
-      &quot;contextName&quot; : {
-        &quot;params&quot; : {
-          &quot;param1&quot;: &quot;value1&quot;
-        }
-      }
-    }
-  }
-}
-</code></pre>
-<p>In a <a href="./02-steps">step</a> all parameters are accessible with <code>this.params.param1</code>.</p>
-<h3 id="priority-">Priority:</h3>
+<h2 id="implementations-object">Implementations Object</h2>
+<p>This is the structure of the object:</p>
+<pre><code>- implementations
+    - ${step name}
+        - ${context}: ${dependency}
+</code></pre><h3 id="step-name">step name</h3>
+<p>Is the name of the step. In config.json of the step <a href="./02-steps.html">see step documentation for more info</a></p>
+<h3 id="context-">context:</h3>
+<p>Name of the context implemented. In config.json of the step <a href="./02-steps.html">see step documentation for more info</a></p>
+<h3 id="dependency-">dependency:</h3>
+<p>Is a string containing the npm module or git repository with version where the implementation resides. With this format:</p>
 <ul>
-<li><strong>1</strong> <code>.piscosour/piscosour.json</code> file in the current working directory where recipe is executed.<ul>
-<li><strong>1.1</strong> Step &amp; Context configuration</li>
-<li><strong>1.2</strong> Step configuration</li>
-<li><strong>1.3</strong> Flow configuration</li>
-<li><strong>1.4</strong> Global configuration</li>
+<li>${npm_module_name}@${semver_version}</li>
+<li>${git_repository}#${version_or_tag}</li>
+<li><code>&quot;not-build&quot;</code> this literal means that this step is not implemented but do not fail with check implementation.</li>
 </ul>
-</li>
-<li><strong>2</strong> <code>piscosour.json</code> file of the recipe.<ul>
-<li><strong>1.1</strong> Step &amp; Context configuration</li>
-<li><strong>1.2</strong> Step configuration</li>
-<li><strong>1.3</strong> Flow configuration</li>
-<li><strong>1.4</strong> Global configuration</li>
-</ul>
-</li>
-</ul>
-<p>This is the priority order (from high to low), if a parameter is provided twice or more, with different values, then it will stay the value that is above in the list.</p>
+<p>for example:</p>
+<pre><code class="lang-json">    &quot;build&quot;: {
+      &quot;app&quot;: &quot;pisco-cells-app-build@^0.1.0&quot;,
+      &quot;migration&quot;: &quot;https://github.com/cellsjs/cells-migration-tool.git#0.1.0&quot;,
+      &quot;app-configuration&quot; : &quot;not-build&quot;
+    }
+</code></pre>
 
       </article>
     </section>
