@@ -322,29 +322,53 @@
 }
 </code></pre>
 <p>Below are the available methods to fill parameters values:</p>
-<ol>
-<li><a href="#cli">Command line paramaters option</a><ol>
+<ul>
+<li><ol>
+<li><a href="#cli">Command line paramaters option</a><ul>
+<li><ol>
 <li><a href="#file">External file of parameters</a></li>
+</ol>
+</li>
+<li><ol>
 <li><a href="#inline">Inline parameters</a></li>
 </ol>
 </li>
+</ul>
+</li>
+</ol>
+</li>
+<li><ol>
 <li><a href="#piscosour-json">Working Directory <code>.piscosour/piscosour.json</code> file configuration</a></li>
+</ol>
+</li>
+<li><ol>
 <li><a href="#piscosour-json">Any Recipe <code>${RECIPE_HOME}/piscosour.json</code> file configuration</a></li>
+</ol>
+</li>
+<li><ol>
 <li><a href="#flow">Flow <code>config.json</code> file configuration</a></li>
+</ol>
+</li>
+<li><ol>
 <li><a href="#step">Step <code>config.json</code> file configuration</a></li>
+</ol>
+</li>
+<li><ol>
 <li><a href="#interactive">User inquire - interactive way</a></li>
 </ol>
+</li>
+</ul>
 <p>This is the priority order (from high to low), if a parameter is provided twice or more, with different values, then it will stay the value that is above in the list.</p>
 <p>The <strong>effective configuration</strong> has the merge from all methods and applying this above priority. The <strong>effective configuration</strong> will be prompted if verbose mode is set using <code>-ov</code> parameter over the recipe command or <code>pisco</code> command:</p>
 <pre><code class="lang-sh">$ recipe-name -ov
 $ pisco -ov
 </code></pre>
 <p>The functional tests for this feature of pisco can be found in the <a href="https://github.com/cellsjs/pisco-functional-tests/blob/feature/QPA-33-functional-tests/test/parameters-functional-test.js">pisco-functional-tests/test/parameters-functional-test.js</a> file.</p>
-<h2 id="-a-name-cli-a-2-command-line-parameters-option"><a name="cli"></a>2. Command line parameters option</h2>
+<h2 id="-a-name-cli-a-1-command-line-parameters-option"><a name="cli"></a>1. Command line parameters option</h2>
 <p>Each recipe can be run with a list of inline parameters with the following syntax:</p>
 <pre><code class="lang-sh">$ pisco-recipe --param1 value1 --param2 value2 --param3 value3 --paramsFile anyfilename.json
 </code></pre>
-<h3 id="-a-name-file-a-1-external-file-configuration"><a name="file"></a>1. External file configuration</h3>
+<h3 id="-a-name-file-a-a-external-file-configuration"><a name="file"></a>a.- External file configuration</h3>
 <p><code>Important:</code> If you use paramsFile parameter to specify parameters on a external file other command line parameters that match is going to be overwritten.</p>
 <pre><code class="lang-sh">$ pisco --paramsFile anyfilename.json
 </code></pre>
@@ -404,7 +428,7 @@ $ pisco -ov
   }
 }
 </code></pre>
-<h2 id="-a-name-inline-a-2-inline-parameters-option"><a name="inline"></a>2. Inline parameters option</h2>
+<h3 id="-a-name-inline-a-b-inline-parameters-option"><a name="inline"></a>b.- Inline parameters option</h3>
 <p>Each recipe can be run with a list of inline parameters with the following syntax:</p>
 <pre><code class="lang-sh">$ pisco-recipe --param1 value1 --param2 value2 --param3 value3 ...
 </code></pre>
