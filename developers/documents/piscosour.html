@@ -38,6 +38,12 @@
                 
               
                 
+                  
+                    <a href="../../developers/.gitignore"></a>
+                  
+                
+              
+                
               
                 
               
@@ -48,6 +54,8 @@
             <li>
               <h4>Guides</h4>
               <ul>
+              
+                
               
                 
               
@@ -167,6 +175,8 @@
                 
               
                 
+              
+                
                   
                   <li>
                     
@@ -189,6 +199,8 @@
             <li>
               <h4>Plugins</h4>
               <ul>
+                
+                  
                 
                   
                 
@@ -319,7 +331,7 @@
 <li><a href="#Waterfall">Waterfall() addon</a></li>
 </ol>
 <h2 id="-a-name-piscoconfig-a-1-piscoconfig-addon"><a name="piscoConfig"></a>1. piscoConfig() addon</h2>
-<p><code>this.piscoConfig()</code> a function that exposes the piscosour configuration.</p>
+<p><code>this.piscoConfig()</code> a function that exposes piscosour configuration library.</p>
 <p>It has no parameters.</p>
 <p>Example:</p>
 <pre><code class="lang-javascript">run: function(resolve, reject) {
@@ -327,6 +339,24 @@
   return true;
 }
 </code></pre>
+<p>This functions are exposed</p>
+<ol>
+<li><a href="#get">this.piscoConfig().get() function</a></li>
+<li><a href="#get">this.piscoConfig().mergeObject(orig, added) function</a></li>
+<li><a href="#get">this.piscoConfig().getDir(name) function</a></li>
+<li><a href="#get">this.piscoConfig().allContexts() function</a></li>
+</ol>
+<h3 id="-a-name-get-a-this-piscoconfig-get-"><a name="get"></a>this.piscoConfig().get()</h3>
+<p>Return the entire configuration cooked for the execution.</p>
+<h3 id="-a-name-mergeobject-a-this-piscoconfig-mergeobject-orig-added-"><a name="mergeObject"></a>this.piscoConfig().mergeObject(orig, added)</h3>
+<p>Function that merge recursively two object, always added overwrite orig.
+Returns the merged object.</p>
+<p><code>string, array</code> -&gt; Overwrite all.
+<code>object</code> -&gt; Overwrite only same keys recursively.</p>
+<h3 id="-a-name-getdir-a-this-piscoconfig-getdir-name-"><a name="getDir"></a>this.piscoConfig().getDir(name)</h3>
+<p>Return the path of a recipe. </p>
+<h3 id="-a-name-allcontexts-a-this-piscoconfig-allcontexts-"><a name="allContexts"></a>this.piscoConfig().allContexts()</h3>
+<p>Return an array with all contexts present in configuration.</p>
 <h2 id="-a-name-piscofile-a-2-piscofile-addon"><a name="piscoFile"></a>2. piscoFile addon</h2>
 <p><code>this.piscoFile</code> a value with the piscosour file name (&#39;piscosour.json&#39;).</p>
 <p>Example:</p>
