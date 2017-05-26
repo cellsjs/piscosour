@@ -39,7 +39,7 @@ All parameters emitted are going to be available on this.params object of all up
 
 - Input are always set into `this.params` of all upper steps of the flow only in the context of the emitted step.
 
-So, any other step on any flow in our example have this code:
+So, any other upper step on any flow in our example have this code:
 
 ```javascript
   run: function() {
