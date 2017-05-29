@@ -24,8 +24,8 @@ module.export = {
 Below are the available methods to fill parameters values:
 
 - 1. [Command line paramaters option](#cli)
-    - 1. [External file of parameters](#file)
     - 1. [Inline parameters](#inline)
+    - 1. [External file of parameters](#file)
 - 1. [Working Directory `.piscosour/piscosour.json` file configuration](#piscosour-json)
 - 1. [Any Recipe `${RECIPE_HOME}/piscosour.json` file configuration](#piscosour-json)
 - 1. [Flow `config.json` file configuration](#flow)
@@ -51,85 +51,7 @@ $ pisco-recipe --param1 value1 --param2 value2 --param3 value3 --paramsFile anyf
 ```
 
 
-### <a name="file"></a>a.- External file configuration
-
-`Important:` If you use paramsFile parameter to specify parameters on a external file other command line parameters that match is going to be overwritten.
-
-```sh
-$ pisco --paramsFile anyfilename.json
-```
-
-Where `anyfilename.json`, can be any name you choose for your own parameter file. 
-
-This is very useful because you can provide complex parameters like objects and arrays.
-
-An example of a parameter file is:
-```json
-{
-  "param1": "value1",
-  "param2": {
-    "p1": "v1",
-    "p2": "v2"
-  },
-  "param3": [1, 2, 3]
- }
-```
-
-Where:
-- `param1` is a simple `String`
-- `param2` is an `Object`
-- `param3` is an `Array`
-
-It is important to say that all the Objects defined in this file will overwrite other objects definitions. For example, if we have this configuration in our external File:
-
-```json
-{
-  "firstPriority": "externalFile",
-  "secondPriority": "commandLine",
-  "priorityOrder": {
-    "thirdPriority": "workingDir.piscosour/piscosour.json"
-  }
-}
-```
-
-And in our step config we adjust some parameters as follows:
-
-```json
-{
-  "firstPriority": "piscosour.json - Recipe",
-  "secondPriority": "piscosour.json - Recipe",
-  "priorityOrder": {
-    "thirdPriority": "piscosour.json - Recipe",
-    "fourthPriority": "piscosour.json - Recipe"
-  }
-}
-```
-We expect that our params result in the merged object:
-
-```json
-{
-  "firstPriority": "externalFile",
-  "secondPriority": "commandLine",
-  "priorityOrder": {
-    "thirdPriority": "workingDir.piscosour/piscosour.json",
-     "fourthPriority": "piscosour.json - Recipe"
-  }
-}
-```
-But instead, paramsFile will overwrite the entire object, remaining
-
-
-```json
-{
-  "firstPriority": "externalFile",
-  "secondPriority": "commandLine",
-  "priorityOrder": {
-    "thirdPriority": "workingDir.piscosour/piscosour.json"
-  }
-}
-```
-
-### <a name="inline"></a>b.- Inline parameters option
+### <a name="inline"></a>a.- Inline parameters option
 
 Each recipe can be run with a list of inline parameters with the following syntax:
 
@@ -158,7 +80,49 @@ In order to simplify this is possible to use this shortcut:
  
 - `--b-booleanParam -> is equivalent to --booleanParam true`
 
-If default parameter is true and you need to specify a false value is mandatory to use `--booleanParam false`
+If default parameter is true and you need to specify a false value is mandatory to use `--booleanParam false`.
+Since version 1.1.2 of piscosour, inline configuration admit objects. So:
+```javascript
+$ pisco --car.model Audi
+```
+Will provoque a params object like that:
+```json
+{
+  car: {
+    model: 'Audi'
+  }
+}
+```
+
+### <a name="file"></a>b.- External file configuration
+
+
+```sh
+$ pisco --paramsFile anyfilename.json
+```
+
+Where `anyfilename.json`, can be any name you choose for your own parameter file. 
+
+This is very useful because you can provide complex parameters like objects and arrays.
+
+An example of a parameter file is:
+```json
+{
+  "param1": "value1",
+  "param2": {
+    "p1": "v1",
+    "p2": "v2"
+  },
+  "param3": [1, 2, 3]
+ }
+```
+
+Where:
+- `param1` is a simple `String`
+- `param2` is an `Object`
+- `param3` is an `Array`
+
+
 
 ## <a name="piscosour-json"></a>2. Working Directory `.piscosour/piscosour.json` file configuration
 
