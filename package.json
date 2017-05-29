@@ -1,6 +1,6 @@
 {
   "name": "piscosour",
-  "version": "1.1.2-beta.2",
+  "version": "1.1.2-beta.3",
   "description": "The adhesive orchestrator",
   "main": "index.js",
   "homepage": "https://github.com/cellsjs/piscosour",
@@ -43,7 +43,7 @@
   },
   "scripts": {
     "deps": "npm install",
-    "test": "mocha -u tdd --recursive && node ./test/npm-test.js && env PISCO=\"`pwd`/bin/pisco.js --uuid 288b3227-ba32-440c-8651-28b44d2ecd5d\" mocha -u tdd --recursive  ./node_modules/pisco-functional-tests/test"
+    "test": "mocha -u tdd --recursive && node ./functional-test/npm-test.js && env PISCO=\"`pwd`/bin/pisco.js --uuid 288b3227-ba32-440c-8651-28b44d2ecd5d\" mocha -u tdd --recursive  ./node_modules/pisco-functional-tests/test"
   },
   "dependencies": {
     "async": "^2.2.0",

@@ -15,9 +15,6 @@ var fConfigPiscoFTFromRootPath = './node_modules/pisco-functional-tests/package.
 var configPisco = require('../package.json');
 var configPiscoFunctionalTests = require(fConfigPiscoFT);
 
-Object.keys(configPisco.dependencies).forEach( (name) => {
-  //console.log(`Nombre de la dependencia ${name}`);
-});
 
 let previousVersion = configPiscoFunctionalTests.dependencies.piscosour;
 
@@ -41,8 +38,6 @@ function resolveExecution(){
 
 function callback(error) {
   if (error) return console.log(error);
-  console.log(JSON.stringify(configPiscoFunctionalTests));
-  console.log('writing to ' + fConfigPiscoFTFromRootPath);
 }
 
 

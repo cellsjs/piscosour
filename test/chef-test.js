@@ -7,13 +7,14 @@ const assert = require('assert');
 
 var async = require('async');
 
-describe('Testing chef.js file',  () => {
-    it('Should return ok', () => {
-        //Arrange
-        async.eachSeries
-        //Act
-        let recipes = chef.getRecipes(false);
-        //Assert
-        assert.notEqual(recipes, null, 'Checking the recipes after getRecipes of chef');
-    });
+/* global define, it, describe, before */
+describe('Testing chef.js file', () => {
+  it('Should return ok', () => {
+    //Arrange
+    async.eachSeries
+    //Act
+    let recipes = chef.getRecipes(false);
+    //Assert
+    assert.notEqual(recipes, null, 'Checking the recipes after getRecipes of chef');
+  });
 });
