@@ -1,6 +1,6 @@
 'use strict';
 
-const config = require('../../lib/config.js');
+const config = require('../../lib/config');
 const expect = require('chai').expect;
 
 /* global define, it, describe, before */
