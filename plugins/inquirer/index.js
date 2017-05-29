@@ -14,6 +14,10 @@ module.exports = {
     inquire: function(name) {
       const prompts = this.params[name];
 
+      if (!Array.isArray(prompts)) {
+        throw Error(`Inquire is not possible. The ${name} is not an array.`);
+      }
+
       const getValidate = function(prompt) {
         return function(userInput) {
           return userInput ? true : '"' + prompt.name + '" is required. ' + prompt.message;
