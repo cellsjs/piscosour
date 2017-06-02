@@ -2,6 +2,11 @@
 
 The system [requirements](../guides/10-requirements.md) are other commands that pisco needs for a pipeline execution. This plugin checks if everything is installed and ready to use by piscosour.
 
+**IMPORTANT:**
+
+- `TIP 1:` This configuration is mandatory to be complete always when you use other command line tool inside a step. (for example java , git, cordova, bower...).
+- `TIP 2:` This configuration is used by piscosour not only to check but even to provide all this externals tools for you. (for example with Dockerfile inside a docker or a playbook of ansible.)
+
 ## core-check hook
 
 Realize how to check system requirements of a piscosour command.
