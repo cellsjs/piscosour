@@ -100,13 +100,15 @@ Useful when you want to check if some dependency is listed by any command.
  1. Set list in version (f.i. in npm)
  2. In any other requirement set listedIn: (f.i. module: set listedIn: npm)
 
-this pugling is going to check the version returned when the match with regexp is done.
+this plugin is going to check the version returned when the match with regexp is done.
 
 ### 2. Define system requirements in all your steps.
 
 The system requirements are defined in `config.json` file inside every step.
 
-**requirements** All dependencies are defined inside requirements
+**requirements** All dependencies are defined inside requirements, 
+
+**IMPORTANT: effective requirements are going to be the merge between `versions` and `requirements` with more precedence for `requirements` of each step.** 
 
 Example of config.json:
 
