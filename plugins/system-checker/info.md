@@ -38,37 +38,60 @@ By default this is the versions defined inside core:
 {
   "params": {
     "versions": {
+      "cordova" : {
+        "installer": "npm"
+      },
       "bower" : {
-        "npm": true,
+        "installer": "npm",
         "list": "bower cache list",
-        "cmdInstaller": "bower install"        
+        "cmdInstaller": "bower install"
       },
       "npm" : {
         "list": "npm list -g --depth 0",
         "regexp": "\\@(.*?)\\s",
         "cmdInstaller": "npm install -g"
-      },    
-      "java": {
-        "option" : "-version",
-        "regexp" : "\"(.*?)_"
       },
-      "sass" : {
-        "regexp" : "s (.*?) "
+      "yo": {
+        "installer": "npm",
+        "option": "--version"
+      },
+      "java": {
+        "option": "-version",
+        "regexp": "\"(.*?)_"
+      },
+      "sass": {
+        "regexp": "s (.*?) "
       },
       "git": {
-        "option" : "--version",
-        "regexp" : "n (.*?)\\n"
+        "option": "--version",
+        "regexp": "n (.*?)\\n"
+      },
+      "curl": {
+        "option": "--version",
+        "regexp": "curl (.*?) "
+      },
+      "docker": {
+        "regexp": "n (.*?),"
+      },
+      "chrome": {
+        "uncheckable" : true
+      },
+      "firefox": {
+        "uncheckable" : true
       }
     }
   }
 }
 ```
 
+**`versions` could take same parameters as requirements [Possible parameters](#parameters)**
+
 - `key` (for example 'java'): is the command that you need inside your step.
 - `option`: (optional, default is '-v') if version is set the way to check this version.
 - `regexp`: (optional) if version is on a string the way to extract only the version. Overwrite version defined on piscosour.json
 - `list:` (optional) command used to get a stdout to use the regexp function in orther to get the version of the item you want to check.
 - `cmdInstaller:` (optional) command used to install packages using this key (for example 'npm install -g' or 'bower install')
+- `uncheckable` (default: false) tells pisco that this requirement is not possible to be checked.
 
 #### List tip
 
@@ -125,7 +148,7 @@ Example of config.json:
 }
 ```
 
-This is the possible parameters that you need in order to define a system requirement.
+<a name="parameters"></a>This is the possible parameters that you need in order to define a system requirement.
 
 - `key` (for example 'java'): is the command that you need inside your step.
 - `installer` (optional): package command, search inside requirements to check the cmdInstaller.
@@ -133,6 +156,7 @@ This is the possible parameters that you need in order to define a system requir
 - `option`: (optional, default is '-v') if version is set the way to check this version.
 - `regexp`: (optional) if version is on a string the way to extract only the version. Overwrite version defined on piscosour.json
 - `listedIn`: (optional) use the 'list' value of this parameter in order to check if this dependency is available.
+- `uncheckable` (default: false) tells pisco that this requirement is not possible to be checked.
 - `uri`: (optional) only apply in npm commands. Uri of the git repo.
 - `pkg`: (optional) only apply in npm commands. Used when executable and pkg are different.
  
