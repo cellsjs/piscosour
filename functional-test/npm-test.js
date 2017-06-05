@@ -2,10 +2,9 @@
 
 // Obtenemos la version del package.json de la receta de pisco
 // Navegamos hasta la dependencia de functional-test
-// MOdificamos la version dependencia de pisco en el package.json de functional-test a la verion que hemos obtenido en el punto 1
+// Modificamos la version dependencia de pisco en el package.json de functional-test a la version que hemos obtenido en el punto 1
 // Lanzamos los tests
 
-var exec = require('child_process').exec;
 var fs = require('fs');
 var resolve = require('path').resolve;
 
@@ -39,7 +38,6 @@ function resolveExecution(){
 function callback(error) {
   if (error) return console.log(error);
 }
-
 
 function modifyFile(path, data, callback) {
   fs.writeFile(path, data, callback);
