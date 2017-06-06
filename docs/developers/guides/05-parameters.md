@@ -88,8 +88,8 @@ $ pisco --car.model Audi
 Will provoque a params object like that:
 ```json
 {
-  car: {
-    model: 'Audi'
+  "car": {
+    "model": "Audi"
   }
 }
 ```
