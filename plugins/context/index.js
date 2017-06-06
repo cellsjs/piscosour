@@ -21,13 +21,6 @@ module.exports = {
     ctxWhoami() {
       return context.whoami();
     },
-    searchNpm(keyword){
-      const filter = (module, options) => {
-        if (module.keywords && module.keywords.indexOf(options.keyword) >= 0) {
-          return module;
-        }
-      };
-      return search.searchNpm(filter, {keyword: keyword});
-    }
+    searchNpm: search.searchByKeyword
   }
 };
