@@ -1,4 +1,3 @@
-
 ## Recipe
 
 - Executable
@@ -48,6 +47,7 @@
 In same domain:
 
 - Repeated step name is forbidden
+- Repeated context name is forbidden
  
 ## Configuration
 
