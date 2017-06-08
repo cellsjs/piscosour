@@ -47,7 +47,7 @@ The `config.json` file has the definition of the flow. A example is:
         }
     },
     "step2": {
-        "watchContext" : true,
+        "reloadContext" : true,
         "type" : "flow",
     },
     "step3": {
@@ -221,7 +221,7 @@ List of sequential steps in the flow.
   * `input` to share in a steps a previously emitted parameter in another steps. Please see [parameters between steps](./08-parameters-between-steps) for more information.
   * `excludes` array of contexts which execution is excluded for this step: [Log output](#excludes) 
   * `implementation-check` If this step is not implemented execution will fail unless this parameter was set to false (default is true).[Log output](#imple)
-  * `watchContext` (default is false): If true the presence of contexts is re-evaluated at this step. Searching for new contexts that appears. [See example](#watchContext)
+  * `reloadContext` (default is false): If true the presence of contexts is re-evaluated at this step. Searching for new contexts that appears. [See example](#watchContext)
   
 <a name="excludes"></a>The execution of a flow with `exclude` on it will prompt this message on output:
 
@@ -237,7 +237,7 @@ List of sequential steps in the flow.
 
 ```
 
-<a name="watchContext"></a>`watchContext example:`
+<a name="reloadContext"></a>`reloadContext example:`
  
 ```json
 
@@ -249,7 +249,7 @@ List of sequential steps in the flow.
       "type" : "flow"
     },
     "finish" : {
-      "watchContext" : true,
+      "reloadContext" : true,
       "type" : "flow"
     }
   }
@@ -273,7 +273,7 @@ All options example:
         }
     },
     "step2": {
-        "watchContext" : true,
+        "reloadContext" : true,
         "type" : "flow",
     },
     "step3": {
