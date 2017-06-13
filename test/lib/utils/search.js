@@ -12,7 +12,7 @@ describe('Search library', () => {
   };
   it('Should search get 0 results with keyword piscosour', () => {
     //Arrange
-    const options = {keyword: 'piscosour'};
+    const options = {keyword: 'piscosour-example'};
     //Act
     const result = search.searchNpm(filter, options);
     //Assert

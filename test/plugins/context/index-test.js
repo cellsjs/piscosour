@@ -7,7 +7,7 @@ const expect = require('chai').expect;
 describe('Functions of context plugin', () => {
   it('Should search all the dependencies and get 0 results', () => {
     // Act
-    var result = context.addons.searchNpm('piscosour');
+    var result = context.addons.searchNpm('piscosour-example');
     //Assert
     expect(result).to.be.empty;
   });
