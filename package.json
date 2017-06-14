@@ -71,7 +71,7 @@
     "cz-conventional-changelog": "^1.1.5",
     "mocha": "^3.2.0",
     "pisco-callback-to-promise": "^0.1.3",
-    "pisco-functional-tests": "https://git@github.com/cellsjs/pisco-functional-tests.git#feature/QPA-110-testing-framework"
+    "pisco-functional-tests": "^1.0.0"
   },
   "config": {
     "commitizen": {
