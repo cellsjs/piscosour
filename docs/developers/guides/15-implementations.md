@@ -7,6 +7,7 @@ order: 15
 # Implementations
 
 This is a very important concept of a recipe. Any step on a recipe could be implemented by one single step inside another recipe. Using this concept is possible to implement same flow in different ways on each recipe. 
+By default all steps in a flows have to be implemented otherwise the execution of the flow would end on error. With `implementation-check` parameter on flows is possible to disable this check [See implementation-check on flows](./03-flows.md) 
 
 How to do this. Inside piscosour.json of your recipe you can place the object `implementations` with, for example, this aspect:
 
