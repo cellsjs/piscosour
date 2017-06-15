@@ -34,7 +34,7 @@ package.json:
 
 ```json
 {
-  "...":"..."
+  "...":"...",
   "scripts": {
     "deps": "npm install",
     "test": "node_modules/.bin/mocha -u tdd --recursive"
