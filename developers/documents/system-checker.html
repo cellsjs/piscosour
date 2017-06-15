@@ -13,7 +13,7 @@
       <aside>
 
         <div class="logoContainer">
-          <a href="/">
+          <a href="../../index.html">
             <img src="../../images/logo.svg" class="logo" />
             Piscosour
           </a>
@@ -49,6 +49,39 @@
               
                 
               
+            </li>
+
+            <li>
+              <h4>Tutorials</h4>
+              <ul>
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+                  
+                  <li>
+                    
+                    <a href="../../developers/tutorials/pisco-website.html">Create WebSite Recipe</a>
+                    
+                  </li>
+                  
+                  <li>
+                    
+                    <a href="../../developers/tutorials/img-empty-submenu.png"></a>
+                    
+                  </li>
+                  
+                
+              
+              </ul>
             </li>
 
             <li>
@@ -155,41 +188,20 @@
                     
                   </li>
                   
-                
-              
-                
-              
-              </ul>
-            </li>
-
-            <li>
-              <h4>Tutorials</h4>
-              <ul>
-              
-                
-              
-                
-              
-                
-              
-                
-              
-                
-              
-                
-                  
                   <li>
                     
-                    <a href="../../developers/tutorials/pisco-website.html">Create WebSite Recipe</a>
+                    <a href="../../developers/guides/16-testing.html">Testing</a>
                     
                   </li>
                   
                   <li>
                     
-                    <a href="../../developers/tutorials/img-empty-submenu.png"></a>
+                    <a href="../../developers/guides/17-glossary.html">Glossary</a>
                     
                   </li>
                   
+                
+              
                 
               
               </ul>
@@ -324,6 +336,11 @@
         <h1 id="plugins-system-checker">Plugins: system-checker</h1>
 <h1 id="system-checker-plugin">system-checker plugin</h1>
 <p>The system <a href="../guides/10-requirements.html">requirements</a> are other commands that pisco needs for a pipeline execution. This plugin checks if everything is installed and ready to use by piscosour.</p>
+<p><strong>IMPORTANT:</strong></p>
+<ul>
+<li><code>TIP 1:</code> This configuration is mandatory to be complete always when you use other command line tool inside a step. (for example java , git, cordova, bower...).</li>
+<li><code>TIP 2:</code> This configuration is used by piscosour not only to check but even to provide all this externals tools for you. (for example with Dockerfile inside a docker or a playbook of ansible.)</li>
+</ul>
 <h2 id="core-check-hook">core-check hook</h2>
 <p>Realize how to check system requirements of a piscosour command.</p>
 <h3 id="1-define-version-match-only-in-the-cases-where-could-be-diferent-">1. Define version match (Only in the cases where could be diferent)</h3>
@@ -348,37 +365,59 @@
 <pre><code class="lang-json">{
   &quot;params&quot;: {
     &quot;versions&quot;: {
+      &quot;cordova&quot; : {
+        &quot;installer&quot;: &quot;npm&quot;
+      },
       &quot;bower&quot; : {
-        &quot;npm&quot;: true,
+        &quot;installer&quot;: &quot;npm&quot;,
         &quot;list&quot;: &quot;bower cache list&quot;,
-        &quot;cmdInstaller&quot;: &quot;bower install&quot;        
+        &quot;cmdInstaller&quot;: &quot;bower install&quot;
       },
       &quot;npm&quot; : {
         &quot;list&quot;: &quot;npm list -g --depth 0&quot;,
         &quot;regexp&quot;: &quot;\\@(.*?)\\s&quot;,
         &quot;cmdInstaller&quot;: &quot;npm install -g&quot;
-      },    
-      &quot;java&quot;: {
-        &quot;option&quot; : &quot;-version&quot;,
-        &quot;regexp&quot; : &quot;\&quot;(.*?)_&quot;
       },
-      &quot;sass&quot; : {
-        &quot;regexp&quot; : &quot;s (.*?) &quot;
+      &quot;yo&quot;: {
+        &quot;installer&quot;: &quot;npm&quot;,
+        &quot;option&quot;: &quot;--version&quot;
+      },
+      &quot;java&quot;: {
+        &quot;option&quot;: &quot;-version&quot;,
+        &quot;regexp&quot;: &quot;\&quot;(.*?)_&quot;
+      },
+      &quot;sass&quot;: {
+        &quot;regexp&quot;: &quot;s (.*?) &quot;
       },
       &quot;git&quot;: {
-        &quot;option&quot; : &quot;--version&quot;,
-        &quot;regexp&quot; : &quot;n (.*?)\\n&quot;
+        &quot;option&quot;: &quot;--version&quot;,
+        &quot;regexp&quot;: &quot;n (.*?)\\n&quot;
+      },
+      &quot;curl&quot;: {
+        &quot;option&quot;: &quot;--version&quot;,
+        &quot;regexp&quot;: &quot;curl (.*?) &quot;
+      },
+      &quot;docker&quot;: {
+        &quot;regexp&quot;: &quot;n (.*?),&quot;
+      },
+      &quot;chrome&quot;: {
+        &quot;uncheckable&quot; : true
+      },
+      &quot;firefox&quot;: {
+        &quot;uncheckable&quot; : true
       }
     }
   }
 }
 </code></pre>
+<p><strong><code>versions</code> could take same parameters as requirements <a href="#parameters">Possible parameters</a></strong></p>
 <ul>
 <li><code>key</code> (for example &#39;java&#39;): is the command that you need inside your step.</li>
 <li><code>option</code>: (optional, default is &#39;-v&#39;) if version is set the way to check this version.</li>
 <li><code>regexp</code>: (optional) if version is on a string the way to extract only the version. Overwrite version defined on piscosour.json</li>
 <li><code>list:</code> (optional) command used to get a stdout to use the regexp function in orther to get the version of the item you want to check.</li>
 <li><code>cmdInstaller:</code> (optional) command used to install packages using this key (for example &#39;npm install -g&#39; or &#39;bower install&#39;)</li>
+<li><code>uncheckable</code> (default: false) tells pisco that this requirement is not possible to be checked.</li>
 </ul>
 <h4 id="list-tip">List tip</h4>
 <p>Useful when you want to check if some dependency is listed by any command. </p>
@@ -386,10 +425,11 @@
 <li>Set list in version (f.i. in npm)</li>
 <li>In any other requirement set listedIn: (f.i. module: set listedIn: npm)</li>
 </ol>
-<p>this pugling is going to check the version returned when the match with regexp is done.</p>
+<p>this plugin is going to check the version returned when the match with regexp is done.</p>
 <h3 id="2-define-system-requirements-in-all-your-steps-">2. Define system requirements in all your steps.</h3>
 <p>The system requirements are defined in <code>config.json</code> file inside every step.</p>
-<p><strong>requirements</strong> All dependencies are defined inside requirements</p>
+<p><strong>requirements</strong> All dependencies are defined inside requirements, </p>
+<p><strong>IMPORTANT: effective requirements are going to be the merge between <code>versions</code> and <code>requirements</code> with more precedence for <code>requirements</code> of each step.</strong> </p>
 <p>Example of config.json:</p>
 <pre><code class="lang-json">{
   &quot;requirements&quot;: {
@@ -427,7 +467,7 @@
   }
 }
 </code></pre>
-<p>This is the possible parameters that you need in order to define a system requirement.</p>
+<p><a name="parameters"></a>This is the possible parameters that you need in order to define a system requirement.</p>
 <ul>
 <li><code>key</code> (for example &#39;java&#39;): is the command that you need inside your step.</li>
 <li><code>installer</code> (optional): package command, search inside requirements to check the cmdInstaller.</li>
@@ -435,6 +475,7 @@
 <li><code>option</code>: (optional, default is &#39;-v&#39;) if version is set the way to check this version.</li>
 <li><code>regexp</code>: (optional) if version is on a string the way to extract only the version. Overwrite version defined on piscosour.json</li>
 <li><code>listedIn</code>: (optional) use the &#39;list&#39; value of this parameter in order to check if this dependency is available.</li>
+<li><code>uncheckable</code> (default: false) tells pisco that this requirement is not possible to be checked.</li>
 <li><code>uri</code>: (optional) only apply in npm commands. Uri of the git repo.</li>
 <li><code>pkg</code>: (optional) only apply in npm commands. Used when executable and pkg are different.</li>
 </ul>

@@ -13,7 +13,7 @@
       <aside>
 
         <div class="logoContainer">
-          <a href="/">
+          <a href="../../index.html">
             <img src="../../images/logo.svg" class="logo" />
             Piscosour
           </a>
@@ -49,6 +49,39 @@
               
                 
               
+            </li>
+
+            <li>
+              <h4>Tutorials</h4>
+              <ul>
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+                  
+                  <li>
+                    
+                    <a href="../../developers/tutorials/pisco-website.html">Create WebSite Recipe</a>
+                    
+                  </li>
+                  
+                  <li>
+                    
+                    <a href="../../developers/tutorials/img-empty-submenu.png"></a>
+                    
+                  </li>
+                  
+                
+              
+              </ul>
             </li>
 
             <li>
@@ -155,41 +188,20 @@
                     
                   </li>
                   
-                
-              
-                
-              
-              </ul>
-            </li>
-
-            <li>
-              <h4>Tutorials</h4>
-              <ul>
-              
-                
-              
-                
-              
-                
-              
-                
-              
-                
-              
-                
-                  
                   <li>
                     
-                    <a href="../../developers/tutorials/pisco-website.html">Create WebSite Recipe</a>
+                    <a href="../../developers/guides/16-testing.html">Testing</a>
                     
                   </li>
                   
                   <li>
                     
-                    <a href="../../developers/tutorials/img-empty-submenu.png"></a>
+                    <a href="../../developers/guides/17-glossary.html">Glossary</a>
                     
                   </li>
                   
+                
+              
                 
               
               </ul>
@@ -328,6 +340,8 @@
 <ol>
 <li>Allways has to return an key:value object with the parameters we want to expose to others steps.</li>
 <li><strong>emit</strong> doesn&#39;t recive resolve and reject method so allways is synchronous</li>
+<li>Parameters emitted replace any previously parameter definition by configuration <a href="./05-parameters.html">See parameters for more information</a>.</li>
+<li>Parameters are emitted only for the contexts defined on config.json of the step. <a href="./02-steps.html">See steps for more information</a>.</li>
 </ol>
 <p>As other stages <strong>emit</strong> is optional</p>
 <p>Example in any <code>steps/stepName/index.js</code>:</p>
@@ -341,7 +355,19 @@
     }
   }
 </code></pre>
-<h2 id="connect-outputs-with-inputs-in-other-steps-">Connect outputs with inputs in other steps.</h2>
+<h2 id="input-in-other-steps-">Input in other steps.</h2>
+<p>All parameters emitted are going to be available on this.params object of all upper steps. </p>
+<ul>
+<li>Input are always set into <code>this.params</code> of all upper steps of the flow only in the context of the emitted step.</li>
+</ul>
+<p>So, any other upper step on any flow in our example have this code:</p>
+<pre><code class="lang-javascript">  run: function() {
+    console.log(this.params.param1);
+  }
+</code></pre>
+<p>That results in the console:</p>
+<pre><code>any text value
+</code></pre><h2 id="deprecated-do-not-use-connect-outputs-with-inputs-in-other-steps-just-back-compatibility-mode-">DEPRECATED: DO NOT USE - Connect outputs with inputs in other steps. (Just back compatibility mode)</h2>
 <ul>
 <li>This is can be defined in the <a href="./03-flow.html">flow</a> configuration).</li>
 <li>Input are always set into <code>this.params</code>.</li>

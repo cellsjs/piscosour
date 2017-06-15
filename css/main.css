@@ -217,7 +217,8 @@ a {
 
 .logo {
 	display: inline-block;
-	width: 100px;
+	width: 8vw;
+	height: 8vw;
 }
 
 .main-content {
@@ -234,12 +235,12 @@ a {
   .main-content h1 {
     font-family: 'Yellowtail', cursive;
     margin: 0;
-    font-size: 100px;
+    font-size: 9vw;
   }
 
   .main-content h2 {
     margin-top: 20px;
-    font-size: 32px;
+    font-size: 2.5vw;
     font-weight: 100;
   }
 
@@ -378,7 +379,8 @@ a {
 		.docs aside .logoContainer a {
 			display: block;
 			color: #FFF;
-			font-size: 70px;
+			font-size: 4vw;
+			line-height: 4vw;
 			font-family: 'Yellowtail';
 		}
 
@@ -482,14 +484,19 @@ a {
 			color: #8da273;
 			text-decoration: underline;
 		}
+			.docs article a:hover {
+				text-decoration: none;
+			}
 
 		.docs article ul {
 			margin: 15px 0 15px 16px;
 			list-style: circle;
 		}
-			.docs article a:hover {
-				text-decoration: none;
-			}
+
+		.docs article ol {
+			margin: 15px 0 15px 16px;
+			list-style: decimal;
+		}
 
 
 	.docs .docs-main-content {

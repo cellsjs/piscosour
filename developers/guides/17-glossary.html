@@ -4,7 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Steps</title>
+    <title>Glossary</title>
     <link rel="stylesheet" type="text/css" href="../../css/main.css">
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc=" crossorigin="anonymous"></script>
   </head>
@@ -106,7 +106,7 @@
                   
                   <li>
                     
-                    <a href="../../developers/guides/02-steps.html" class="selected">Steps</a>
+                    <a href="../../developers/guides/02-steps.html">Steps</a>
                     
                   </li>
                   
@@ -196,7 +196,7 @@
                   
                   <li>
                     
-                    <a href="../../developers/guides/17-glossary.html">Glossary</a>
+                    <a href="../../developers/guides/17-glossary.html" class="selected">Glossary</a>
                     
                   </li>
                   
@@ -333,159 +333,62 @@
         
       </aside>
       <article>
-        <h1 id="steps">Steps</h1>
-<p>Steps often belong to an execution <a href="./03-flows.html">flow</a>, and usually are executed in a <a href="./01-contexts.html">context</a>.</p>
-<p>Contexts are implements with three files in the recipe:</p>
-<pre><code>-rwxr-xr-x    1 pisco  staff   steps/step-name/config.json
--rwxr-xr-x    1 pisco  staff   steps/step-name/index.js
--rwxr-xr-x    1 pisco  staff   steps/step-name/info.md
-</code></pre><p>Where the <code>config.json</code> file has the configuration, <code>info.md</code> explain and document the step, and <code>index.js</code> has the implementation of the step.</p>
-<p>Note, it exists a <a href="#scaffold">scaffold generator tool</a></p>
-<h2 id="-config-json-configuration"><code>config.json</code> configuration</h2>
-<p>The <code>config.json</code> file has the definition of the step.</p>
-<p>Example:</p>
-<pre><code class="lang-json">{
-  &quot;name&quot;: &quot;sayHello&quot;,
-  &quot;description&quot;: &quot;Say Hello World&quot;,
-  &quot;isGenerator&quot;: false,
-  &quot;contexts&quot;: [ &quot;context1&quot;, &quot;context2&quot; ],
-  &quot;plugins&quot;: [ &quot;plugin1&quot;, &quot;plugin2&quot; ],
-  &quot;prompts&quot;: {},
-  &quot;param1&quot;: &quot;value1&quot;,
-  &quot;param2&quot;: 2,
-  &quot;param3&quot;: { &quot;object1&quot;: &quot;value&quot; }
-}
-</code></pre>
-<p>The <code>config.json</code> file can configure the following fields:</p>
-<h3 id="-name-property"><code>name</code> property</h3>
-<p>Short name of the step, it must be descriptive and unique.</p>
+        <h2 id="recipe">Recipe</h2>
 <ul>
-<li>It is mandatory</li>
-<li>String type expected</li>
+<li>Executable</li>
+<li>Functional tests (with framework, node, docker)</li>
+<li>General Configuration: (piscosour.json) Implementation of all steps, dependencies to flows.</li>
+<li>No steps, no plugins, no contexts, no flows allowed.</li>
+<li>Dockerizable</li>
+<li>Implementation of same step of same context is forbidden.</li>
+<li>Multi-domain. Can execute a command , if command es the same in more than one domain then shows a list to choose the right one.</li>
+<li>Two plugins with the same name in a recipe should give an error.</li>
+<li>Array domains with all allowed domains to be listed in commands. (default: all)</li>
+<li>Dependency to all flows implemented. Repeated flow name in same recipe is not allowed.   </li>
 </ul>
-<h3 id="-description-property"><code>description</code> property</h3>
-<p>It is a short description about the step.</p>
+<h2 id="plugins">Plugins</h2>
 <ul>
-<li>It is mandatory</li>
-<li>String type expected</li>
+<li>NO tag domain</li>
+<li>Only implementation of one or more plugins</li>
+<li>Unit tests with framework</li>
+<li>Dependency to piscosour on devDependency</li>
+<li>No general configuration (piscosour.json). No estoy muy seguro de esto.</li>
 </ul>
-<h3 id="-isgenerator-property"><code>isGenerator</code> property</h3>
-<p>If the steps creates a context, then fill a &#39;true&#39; value. Otherwise &#39;false&#39;.</p>
+<h2 id="steps-commands-">Steps (commands)</h2>
 <ul>
-<li>It is optional</li>
-<li>The default value is &#39;false&#39;.</li>
-<li>Boolean type expected</li>
+<li>Tag domain</li>
+<li>Only implementation of one or more steps</li>
+<li>Unit tests with framework</li>
+<li>Dependency to piscosour on devDependency</li>
+<li>Dependency to definition of contexts on devDependency</li>
 </ul>
-<h3 id="-contexts-property"><code>contexts</code> property</h3>
-<p>Array of contexts which step can be executed.</p>
+<h2 id="contexts">Contexts</h2>
 <ul>
-<li>It is mandatory.</li>
-<li>Array of string expected.</li>
-<li>Could be &quot;*&quot; that means that apply for all contexts.</li>
+<li>Tag domain</li>
+<li>Only implementation of one or more contexts</li>
+<li>Unit tests with framework</li>
+<li>Only definition of contexts</li>
+<li>Could have other contexts as a dependency and is possible to extend individual contexts.</li>
 </ul>
-<p>Example: <code>&quot;contexts&quot;: [ &quot;context1&quot;, &quot;context2&quot; ]</code></p>
-<h3 id="-plugins-property"><code>plugins</code> property</h3>
-<p>Array of <a href="./07-plugins.html">plugins</a> injected into the step.</p>
+<h2 id="flows">Flows</h2>
 <ul>
-<li>It is optional</li>
-<li>The default value is an empty array. <code>&quot;plugins&quot;: []</code></li>
+<li>No tag domain. Flows is not inside a domain are dependencies of a recipe.</li>
+<li>Only definition of flows</li>
 </ul>
-<p>Example: <code>&quot;plugins&quot;: [ &quot;plugin1&quot;, &quot;plugin2&quot; ]</code></p>
-<h3 id="-prompts-property"><code>prompts</code> property</h3>
-<p>Array of <a href="./06-inquire.html">inquire prompts</a> of the step.</p>
+<h2 id="domain">Domain</h2>
 <ul>
-<li>It is optional</li>
-<li>The default vulue is an empty array. <code>&quot;prompts&quot;: []</code></li>
+<li>Domain is a tag on every steps and contexts repositories.</li>
 </ul>
-<p>Example:</p>
-<pre><code class="lang-json">{
-  &quot;prompts&quot;: [
-    {
-      &quot;type&quot;: &quot;input&quot;,
-      &quot;name&quot;: &quot;param1&quot;,
-      &quot;required&quot;: true,
-      &quot;default&quot;: &quot;value1&quot;,
-      &quot;message&quot;: &quot;Write the param1&quot;
-    }, {
-      &quot;type&quot;: &quot;confirm&quot;,
-      &quot;name&quot;: &quot;param2&quot;,
-      &quot;required&quot;: true,
-      &quot;message&quot;: &quot;Write the param2&quot;
-    }
-  ]
-}
-</code></pre>
-<p>See <a href="./06-inquire.html">inquire prompts</a> for more information.</p>
-<h3 id="-a-name-paramaters-a-other-customized-params"><a name="paramaters"></a>Other customized params</h3>
-<p>And others customized paramaters, see <a href="./05-parameters.html">parameters</a> for more information.</p>
-<pre><code class="lang-json">{
-  &quot;param1&quot;: &quot;value1&quot;,
-  &quot;param2&quot;: &quot;value2&quot;,
-  &quot;param3&quot;: &quot;value3&quot;
-}
-</code></pre>
-<p>In the step implementation, parameters are available with <code>this.params</code>.</p>
-<p>Example:</p>
-<pre><code class="lang-javascript">module.export = {
-  run: function() {
-    console.log(
-      this.params.param1,
-      this.params.param2,
-      this.params.param3);
-  }
-}
-</code></pre>
-<p>This customized paramaters are common to all contexts.</p>
-<h2 id="-index-js-implementation"><code>index.js</code> implementation</h2>
-<p>The <code>index.js</code> file implements the flow. The <a href="#scaffold">scaffold</a> generates a file like this:</p>
-<pre><code class="lang-javascript">module.exports = {
-  check: function() {
-    this.logger.info(&#39;#blue&#39;, &#39;Check if all you need to execute this step exists&#39;);
-  },
-
-  config: function() {
-    this.logger.info(&#39;#yellow&#39;, &#39;Config the step to run&#39;);
-  },
-
-  run: function(ok, ko) {
-    this.sh(&#39;echo Run main execution of the step&#39;, ko, true);
-  },
-
-  prove: function() {
-    this.logger.info(&#39;#green&#39;, &#39;Check if the step has run ok&#39;);
-  },
-
-  notify: function() {
-    this.logger.info(&#39;#grey&#39;, &#39;Notify the end of the shot to someone or something&#39;);
-  },
-
-  emit: function() {
-    this.logger.info(&#39;#white&#39;, &#39;Emit the result of the step to other steps. Allow communication between steps&#39;);
-    return { message: &#39;emit a message&#39; };
-  }
-};
-</code></pre>
-<p>The stages of a step are used to:</p>
-<ol>
-<li><code>check</code>: check if all you need to execute this step exists.</li>
-<li><code>config</code>: config the step to run.</li>
-<li><code>run</code>: run main execution of the step.</li>
-<li><code>prove</code>: check if the step has run ok.</li>
-<li><code>notify</code>: notify the end of the shot to someone or something.</li>
-<li><code>emit</code>: emit the result of the step to other steps. Allow communication between steps. Check <a href="08-parameters_betwwen_steps.html">parameters transmission between steps</a> for more information.</li>
-</ol>
-<p>Please see <a href="./04-stages.html">stages of a step</a> for more information. And check <a href="./09-steps-advanced.html">advanced step feature</a> to help you how to implement those stages.</p>
-<h2 id="documentation">Documentation</h2>
-<p>The <code>info.md</code> file just explain the context with a markdown format:</p>
-<pre><code class="lang-markdown"># Step step-name
-
-The description about the step.
-</code></pre>
-<h2 id="-a-name-scaffold-a-scaffold-generator"><a name="scaffold"></a>Scaffold generator</h2>
-<p>Pisco provides a scaffold generator. Launch it placed inside your recipe with:</p>
-<pre><code class="lang-sh">$ cd your-recipe
-$ pisco recipe:add-step
-</code></pre>
+<p>In same domain:</p>
+<ul>
+<li>Repeated step name is forbidden</li>
+<li>Repeated context name is forbidden</li>
+</ul>
+<h2 id="configuration">Configuration</h2>
+<ul>
+<li>Only General configuration (piscosour.json) </li>
+<li>And dockerfiles directory for Dockerfile implementation for requirements.</li>
+</ul>
 
       </article>
     </section>

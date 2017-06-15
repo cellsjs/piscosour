@@ -13,7 +13,7 @@
       <aside>
 
         <div class="logoContainer">
-          <a href="/">
+          <a href="../../index.html">
             <img src="../../images/logo.svg" class="logo" />
             Piscosour
           </a>
@@ -49,6 +49,39 @@
               
                 
               
+            </li>
+
+            <li>
+              <h4>Tutorials</h4>
+              <ul>
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+                  
+                  <li>
+                    
+                    <a href="../../developers/tutorials/pisco-website.html">Create WebSite Recipe</a>
+                    
+                  </li>
+                  
+                  <li>
+                    
+                    <a href="../../developers/tutorials/img-empty-submenu.png"></a>
+                    
+                  </li>
+                  
+                
+              
+              </ul>
             </li>
 
             <li>
@@ -155,41 +188,20 @@
                     
                   </li>
                   
-                
-              
-                
-              
-              </ul>
-            </li>
-
-            <li>
-              <h4>Tutorials</h4>
-              <ul>
-              
-                
-              
-                
-              
-                
-              
-                
-              
-                
-              
-                
-                  
                   <li>
                     
-                    <a href="../../developers/tutorials/pisco-website.html">Create WebSite Recipe</a>
+                    <a href="../../developers/guides/16-testing.html">Testing</a>
                     
                   </li>
                   
                   <li>
                     
-                    <a href="../../developers/tutorials/img-empty-submenu.png"></a>
+                    <a href="../../developers/guides/17-glossary.html">Glossary</a>
                     
                   </li>
                   
+                
+              
                 
               
               </ul>
@@ -352,7 +364,7 @@
         }
     },
     &quot;step2&quot;: {
-        &quot;watchContext&quot; : true,
+        &quot;reloadContext&quot; : true,
         &quot;type&quot; : &quot;flow&quot;,
     },
     &quot;step3&quot;: {
@@ -493,7 +505,7 @@
 <li><code>input</code> to share in a steps a previously emitted parameter in another steps. Please see <a href="./08-parameters-between-steps">parameters between steps</a> for more information.</li>
 <li><code>excludes</code> array of contexts which execution is excluded for this step: <a href="#excludes">Log output</a> </li>
 <li><code>implementation-check</code> If this step is not implemented execution will fail unless this parameter was set to false (default is true).<a href="#imple">Log output</a></li>
-<li><code>watchContext</code> (default is false): If true the presence of contexts is re-evaluated at this step. Searching for new contexts that appears. <a href="#watchContext">See example</a></li>
+<li><code>reloadContext</code> (default is false): If true the presence of contexts is re-evaluated at this step. Searching for new contexts that appears. <a href="#watchContext">See example</a></li>
 </ul>
 </li>
 </ul>
@@ -503,7 +515,7 @@
 <p><a name="imple"></a>The execution of a flow with <code>implementation-check</code> on it will prompt this message on output:</p>
 <pre><code class="lang-shell">[18:13:32] Run of step &quot;provide-env&quot; is allowed to be not implemented for context &quot;app&quot;
 </code></pre>
-<p><a name="watchContext"></a><code>watchContext example:</code></p>
+<p><a name="reloadContext"></a><code>reloadContext example:</code></p>
 <pre><code class="lang-json">
 {
   &quot;name&quot;: &quot;consolidate&quot;,
@@ -513,7 +525,7 @@
       &quot;type&quot; : &quot;flow&quot;
     },
     &quot;finish&quot; : {
-      &quot;watchContext&quot; : true,
+      &quot;reloadContext&quot; : true,
       &quot;type&quot; : &quot;flow&quot;
     }
   }
@@ -531,7 +543,7 @@
         }
     },
     &quot;step2&quot;: {
-        &quot;watchContext&quot; : true,
+        &quot;reloadContext&quot; : true,
         &quot;type&quot; : &quot;flow&quot;,
     },
     &quot;step3&quot;: {

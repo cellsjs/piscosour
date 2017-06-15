@@ -13,7 +13,7 @@
       <aside>
 
         <div class="logoContainer">
-          <a href="/">
+          <a href="../../index.html">
             <img src="../../images/logo.svg" class="logo" />
             Piscosour
           </a>
@@ -49,6 +49,39 @@
               
                 
               
+            </li>
+
+            <li>
+              <h4>Tutorials</h4>
+              <ul>
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+                  
+                  <li>
+                    
+                    <a href="../../developers/tutorials/pisco-website.html">Create WebSite Recipe</a>
+                    
+                  </li>
+                  
+                  <li>
+                    
+                    <a href="../../developers/tutorials/img-empty-submenu.png"></a>
+                    
+                  </li>
+                  
+                
+              
+              </ul>
             </li>
 
             <li>
@@ -155,41 +188,20 @@
                     
                   </li>
                   
-                
-              
-                
-              
-              </ul>
-            </li>
-
-            <li>
-              <h4>Tutorials</h4>
-              <ul>
-              
-                
-              
-                
-              
-                
-              
-                
-              
-                
-              
-                
-                  
                   <li>
                     
-                    <a href="../../developers/tutorials/pisco-website.html">Create WebSite Recipe</a>
+                    <a href="../../developers/guides/16-testing.html">Testing</a>
                     
                   </li>
                   
                   <li>
                     
-                    <a href="../../developers/tutorials/img-empty-submenu.png"></a>
+                    <a href="../../developers/guides/17-glossary.html">Glossary</a>
                     
                   </li>
                   
+                
+              
                 
               
               </ul>
@@ -338,11 +350,11 @@
 <li><ol>
 <li><a href="#cli">Command line paramaters option</a><ul>
 <li><ol>
-<li><a href="#file">External file of parameters</a></li>
+<li><a href="#inline">Inline parameters</a></li>
 </ol>
 </li>
 <li><ol>
-<li><a href="#inline">Inline parameters</a></li>
+<li><a href="#file">External file of parameters</a></li>
 </ol>
 </li>
 </ul>
@@ -380,67 +392,7 @@ $ pisco -ov
 <p>Each recipe can be run with a list of inline parameters with the following syntax:</p>
 <pre><code class="lang-sh">$ pisco-recipe --param1 value1 --param2 value2 --param3 value3 --paramsFile anyfilename.json
 </code></pre>
-<h3 id="-a-name-file-a-a-external-file-configuration"><a name="file"></a>a.- External file configuration</h3>
-<p><code>Important:</code> If you use paramsFile parameter to specify parameters on a external file other command line parameters that match is going to be overwritten.</p>
-<pre><code class="lang-sh">$ pisco --paramsFile anyfilename.json
-</code></pre>
-<p>Where <code>anyfilename.json</code>, can be any name you choose for your own parameter file. </p>
-<p>This is very useful because you can provide complex parameters like objects and arrays.</p>
-<p>An example of a parameter file is:</p>
-<pre><code class="lang-json">{
-  &quot;param1&quot;: &quot;value1&quot;,
-  &quot;param2&quot;: {
-    &quot;p1&quot;: &quot;v1&quot;,
-    &quot;p2&quot;: &quot;v2&quot;
-  },
-  &quot;param3&quot;: [1, 2, 3]
- }
-</code></pre>
-<p>Where:</p>
-<ul>
-<li><code>param1</code> is a simple <code>String</code></li>
-<li><code>param2</code> is an <code>Object</code></li>
-<li><code>param3</code> is an <code>Array</code></li>
-</ul>
-<p>It is important to say that all the Objects defined in this file will overwrite other objects definitions. For example, if we have this configuration in our external File:</p>
-<pre><code class="lang-json">{
-  &quot;firstPriority&quot;: &quot;externalFile&quot;,
-  &quot;secondPriority&quot;: &quot;commandLine&quot;,
-  &quot;priorityOrder&quot;: {
-    &quot;thirdPriority&quot;: &quot;workingDir.piscosour/piscosour.json&quot;
-  }
-}
-</code></pre>
-<p>And in our step config we adjust some parameters as follows:</p>
-<pre><code class="lang-json">{
-  &quot;firstPriority&quot;: &quot;piscosour.json - Recipe&quot;,
-  &quot;secondPriority&quot;: &quot;piscosour.json - Recipe&quot;,
-  &quot;priorityOrder&quot;: {
-    &quot;thirdPriority&quot;: &quot;piscosour.json - Recipe&quot;,
-    &quot;fourthPriority&quot;: &quot;piscosour.json - Recipe&quot;
-  }
-}
-</code></pre>
-<p>We expect that our params result in the merged object:</p>
-<pre><code class="lang-json">{
-  &quot;firstPriority&quot;: &quot;externalFile&quot;,
-  &quot;secondPriority&quot;: &quot;commandLine&quot;,
-  &quot;priorityOrder&quot;: {
-    &quot;thirdPriority&quot;: &quot;workingDir.piscosour/piscosour.json&quot;,
-     &quot;fourthPriority&quot;: &quot;piscosour.json - Recipe&quot;
-  }
-}
-</code></pre>
-<p>But instead, paramsFile will overwrite the entire object, remaining</p>
-<pre><code class="lang-json">{
-  &quot;firstPriority&quot;: &quot;externalFile&quot;,
-  &quot;secondPriority&quot;: &quot;commandLine&quot;,
-  &quot;priorityOrder&quot;: {
-    &quot;thirdPriority&quot;: &quot;workingDir.piscosour/piscosour.json&quot;
-  }
-}
-</code></pre>
-<h3 id="-a-name-inline-a-b-inline-parameters-option"><a name="inline"></a>b.- Inline parameters option</h3>
+<h3 id="-a-name-inline-a-a-inline-parameters-option"><a name="inline"></a>a.- Inline parameters option</h3>
 <p>Each recipe can be run with a list of inline parameters with the following syntax:</p>
 <pre><code class="lang-sh">$ pisco-recipe --param1 value1 --param2 value2 --param3 value3 ...
 </code></pre>
@@ -461,7 +413,38 @@ In order to simplify this is possible to use this shortcut:</p>
 <ul>
 <li><code>--b-booleanParam -&gt; is equivalent to --booleanParam true</code></li>
 </ul>
-<p>If default parameter is true and you need to specify a false value is mandatory to use <code>--booleanParam false</code></p>
+<p>If default parameter is true and you need to specify a false value is mandatory to use <code>--booleanParam false</code>.
+Since version 1.1.2 of piscosour, inline configuration admit objects. So:</p>
+<pre><code class="lang-javascript">$ pisco --car.model Audi
+</code></pre>
+<p>Will provoque a params object like that:</p>
+<pre><code class="lang-json">{
+  &quot;car&quot;: {
+    &quot;model&quot;: &quot;Audi&quot;
+  }
+}
+</code></pre>
+<h3 id="-a-name-file-a-b-external-file-configuration"><a name="file"></a>b.- External file configuration</h3>
+<pre><code class="lang-sh">$ pisco --paramsFile anyfilename.json
+</code></pre>
+<p>Where <code>anyfilename.json</code>, can be any name you choose for your own parameter file. </p>
+<p>This is very useful because you can provide complex parameters like objects and arrays.</p>
+<p>An example of a parameter file is:</p>
+<pre><code class="lang-json">{
+  &quot;param1&quot;: &quot;value1&quot;,
+  &quot;param2&quot;: {
+    &quot;p1&quot;: &quot;v1&quot;,
+    &quot;p2&quot;: &quot;v2&quot;
+  },
+  &quot;param3&quot;: [1, 2, 3]
+ }
+</code></pre>
+<p>Where:</p>
+<ul>
+<li><code>param1</code> is a simple <code>String</code></li>
+<li><code>param2</code> is an <code>Object</code></li>
+<li><code>param3</code> is an <code>Array</code></li>
+</ul>
 <h2 id="-a-name-piscosour-json-a-2-working-directory-piscosour-piscosour-json-file-configuration"><a name="piscosour-json"></a>2. Working Directory <code>.piscosour/piscosour.json</code> file configuration</h2>
 <p>Another method to provide parameters is to create in the working directory where it is going to execute the recipe a folder <code>.piscosour</code> with a file called <code>piscosour.json</code>:</p>
 <pre><code>[CurrentWorkingDirectory]/.piscosour/piscosour.json

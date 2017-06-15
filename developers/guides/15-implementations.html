@@ -13,7 +13,7 @@
       <aside>
 
         <div class="logoContainer">
-          <a href="/">
+          <a href="../../index.html">
             <img src="../../images/logo.svg" class="logo" />
             Piscosour
           </a>
@@ -49,6 +49,39 @@
               
                 
               
+            </li>
+
+            <li>
+              <h4>Tutorials</h4>
+              <ul>
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+              
+                
+                  
+                  <li>
+                    
+                    <a href="../../developers/tutorials/pisco-website.html">Create WebSite Recipe</a>
+                    
+                  </li>
+                  
+                  <li>
+                    
+                    <a href="../../developers/tutorials/img-empty-submenu.png"></a>
+                    
+                  </li>
+                  
+                
+              
+              </ul>
             </li>
 
             <li>
@@ -155,41 +188,20 @@
                     
                   </li>
                   
-                
-              
-                
-              
-              </ul>
-            </li>
-
-            <li>
-              <h4>Tutorials</h4>
-              <ul>
-              
-                
-              
-                
-              
-                
-              
-                
-              
-                
-              
-                
-                  
                   <li>
                     
-                    <a href="../../developers/tutorials/pisco-website.html">Create WebSite Recipe</a>
+                    <a href="../../developers/guides/16-testing.html">Testing</a>
                     
                   </li>
                   
                   <li>
                     
-                    <a href="../../developers/tutorials/img-empty-submenu.png"></a>
+                    <a href="../../developers/guides/17-glossary.html">Glossary</a>
                     
                   </li>
                   
+                
+              
                 
               
               </ul>
@@ -322,7 +334,8 @@
       </aside>
       <article>
         <h1 id="implementations">Implementations</h1>
-<p>This is a very important concept of a recipe. Any step on a recipe could be implemented by one single step inside another recipe. Using this concept is possible to implement same flow in different ways on each recipe. </p>
+<p>This is a very important concept of a recipe. Any step on a recipe could be implemented by one single step inside another recipe. Using this concept is possible to implement same flow in different ways on each recipe. 
+By default all steps in a flows have to be implemented otherwise the execution of the flow would end on error. With <code>implementation-check</code> parameter on flows is possible to disable this check <a href="./03-flows.html">See implementation-check on flows</a> </p>
 <p>How to do this. Inside piscosour.json of your recipe you can place the object <code>implementations</code> with, for example, this aspect:</p>
 <pre><code class="lang-json"> &quot;implementations&quot; : {
     &quot;resolve-deps&quot;: {
