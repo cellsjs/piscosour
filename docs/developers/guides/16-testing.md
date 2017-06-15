@@ -61,7 +61,7 @@ Writing a test for piscosour. First require stepTester
 1. [loadStep(command) method](#loadStep)
 1. [runStep(command) method](#runStep)
 
-#### <a name="command"></a>1. command object.
+#### <a name="command"></a>command object.
 
 | Param | Type | Optional | Description |
 | --- | --- | --- | --- |
@@ -72,7 +72,7 @@ Writing a test for piscosour. First require stepTester
 
 Is the configuration parameter that piscosour use to run the test.
 
-#### <a name="setLoggerLevel"></a>1. setLoggerLevel(level) method
+#### <a name="setLoggerLevel"></a>setLoggerLevel(level) method
 
 `logger.setLoggerLevel(level)` set logger level for piscosour. [See logger for more information](./14-logger.md)
 
@@ -80,7 +80,7 @@ Is the configuration parameter that piscosour use to run the test.
 | --- | --- | --- | --- |
 | level | Number | No | 0...5 log levels  |
 
-#### <a name="loadStep"></a>1. loadStep(command) method
+#### <a name="loadStep"></a>loadStep(command) method
 
 `logger.loadStep(command)` Load local step with all plugins and all piscosour configuration. **Returns** step object with all piscosour features loaded.
 
@@ -89,7 +89,7 @@ Is the configuration parameter that piscosour use to run the test.
 | command | Object | No | See [command object](#command) |
 
 
-#### <a name="runStep"></a>1. runStep(command) method
+#### <a name="runStep"></a>runStep(command) method
 
 `logger.runStep(command)` Run one local step from the recipe. **Returns** a promise with the execution of the step.
 
@@ -185,7 +185,7 @@ describe('Unit testing framework for askHello step', () => {
 
 ### <a name="configureRecipe"></a> Configuring the recipe for testing
 
-1. Add "test" : "bin/pisco.js -ft"
+1. Add "test" : "bin/pisco.js -ft" to scripts in package.json.
 1. Add dependencies to one or more functional-testing modules.  
 
 package.json of a recipe.
@@ -293,4 +293,17 @@ mocha -u tdd --recursive test --timeout 5000 --grep "Unit testing framework for 
 
 ```bash
 export piscoExec="docker run -ti --rm -p 8000-8100:8000-8100 -p 3000-3100:3000-3100 -v ~/.gradle:/home/pisco/.gradle -v ~/.bowerrc:/home/pisco/.bowerrc -v ~/.npmrc:/home/pisco/.npmrc -v ~/.netrc:/home/pisco/.netrc -v ~/.ssh:/home/pisco/.ssh -v `pwd`:/home/pisco/workspace piscosour/cells-bundle"
+```
+
+The execution of pisco -ft or pisco --functionalTests starts with this messages on stdout. Showing the number of functional testing modules in the recipe, its names and versions.
+
+```bash
+
+[14:32:49] Number of functional testing modules detected:  1
+[14:32:49] Executing piscosour functional tests from pisco-functional-tests ( 1.0.15 )
+
+
+  Pisco context world validation
+    ✓ Should return ....
+
 ```
