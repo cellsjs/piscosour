@@ -1,3 +1,9 @@
+---
+title: Glossary
+layout: doc_page.html
+order: 17
+---
+
 ## Recipe
 
 - Executable
