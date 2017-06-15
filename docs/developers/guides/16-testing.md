@@ -6,7 +6,7 @@ order: 16
 
 # Testing Piscosour
 
-There are to ways to test piscosour recipes: `unit testing` and `functional testing (integration)`. Both could be functional but the main different is `unit testing` runs as a node library inside the test and `functional testing (integration)` runs the recipe as a system executable using require('child_process').exec.
+There are to ways to test piscosour recipes: `unit testing` and `functional testing (integration)`. Both could be functional but the main difference is that `unit testing` runs as a node library inside the test and `functional testing (integration)` runs the recipe as a system executable using require('child_process').exec.
 
 1. [Unit Testing](#unitTesting)
 1. [Functional Testing (integration)](#functionalTesting)
@@ -19,16 +19,16 @@ There are to ways to test piscosour recipes: `unit testing` and `functional test
 
 Needed to test `steps`, `plugins` (coming soon) and `contexts` (coming soon)
 
-- This tests resides on the `test` folder of a recipe module.
-- Only need the recipe to be tested and its dependencies.
-- Could generate coverage with this kind of tests
+- These tests reside on the `test` folder of a recipe module.
+- It just needs the recipe to be tested and its dependencies.
+- You could generate coverage with this kind of tests
 
 
 ### <a name="testingSteps"></a> Testing steps
 
-Steps only needs dependency to piscosour on devDependencies. Add dependencies to mocha and chai too.
+Steps only need dependency to piscosour on devDependencies. Add dependencies to mocha and chai too.
 
-`NOTE:` If you need a context definition for the step execution the dependency to the context has to be on devDependencies too. for exemple `pisco-cells-contexts`
+`NOTE:` If you need a context definition for the step execution, then the dependency to the context has to be on devDependencies too. for example `pisco-contexts`
 
 package.json:
 
@@ -62,14 +62,14 @@ Writing a test for piscosour. First require stepTester
 
 #### <a name="command"></a>command object.
 
+The command object is the configuration parameter that piscosour uses to run the test.
+
 | Param | Type | Optional | Description |
 | --- | --- | --- | --- |
 | name | String | No | The name of the step  |
 | context | Array | Yes | Array of the contexts runned |
 | baseDir | String | Yes | Folder where the step is going to be runned. Default is the root of the recipe. |
 | params | Object | Yes | All params passed for the execution |
-
-Is the configuration parameter that piscosour use to run the test.
 
 #### <a name="setLoggerLevel"></a>setLoggerLevel(level) method
 
@@ -96,7 +96,7 @@ Is the configuration parameter that piscosour use to run the test.
 | --- | --- | --- | --- |
 | command | Object | No | See [command object](#command) |
 
-This is a example of a entire test file.
+This is a example of an entire test file.
  
 ```javascript
 'use strict';
@@ -167,8 +167,11 @@ describe('Unit testing framework for askHello step', () => {
 ```
 
 ### <a name="testingPlugins"></a> Testing plugins
+
 (comming soon)
+
 ### <a name="testingContexts"></a> Testing contexts
+
 (comming soon)
 
 ## <a name="functionalTesting"></a> Functional testing (integration)
@@ -177,19 +180,18 @@ describe('Unit testing framework for askHello step', () => {
 1. [Writing tests](#writeTest)
 1. [Running tests](#runningTest)
 
-
-- Is used to test only recipes by executing externally all its commands.
-- Is possible to tests `flows` and `steps`.
-- Execute the recipe command so a configured environment is needed.
-- Tests resides on a external module outside the recipe. Test modules has to be dependencies of the recipe.
-
+The functional testing features are:
+- It is used to test only recipes by executing externally all its commands.
+- It is possible to test `flows` and `steps`.
+- Executes the recipe command so a configured environment is needed.
+- Tests are located on an external module, outside of the recipe. Test modules have to be dependencies of the recipe.
 
 ### <a name="configureRecipe"></a> Configuring the recipe for testing
 
-1. Add "test" : "bin/pisco.js -ft" to scripts in package.json.
+1. Add `"test" : "bin/pisco.js -ft"` to the `scripts` object in package.json.
 1. Add dependencies to one or more functional-testing modules.  
 
-package.json of a recipe.
+Fragment of package.json of a recipe.
 
 ```json
 {
@@ -207,7 +209,7 @@ package.json of a recipe.
     "piscosour": "^1.1.0"
   },
   "devDependencies": {
-    "cells-cli-functional-tests": "^1.0.1-beta"
+    "pisco-functional-tests": "^1.0.1-beta"
   },
   "...":"..."
 }
@@ -216,11 +218,11 @@ package.json of a recipe.
 
 ### <a name="writeTest"></a> Writing the tests (the functional testing module)
 
-- Has to have `functional-tests` keyword
-- Dependencies to testing frameworks have to be on dependencies not on devDependencies
+- This module must have `functional-tests` keyword
+- Dependencies to testing frameworks should be on dependencies not on devDependencies
 - Dependency to piscosour is not necessary.
 
-package.json of the functional testing module:
+Fragment of package.json of the functional testing module:
 
 ```json
 {
@@ -236,9 +238,9 @@ package.json of the functional testing module:
 }
 ```
 
-Now tests must execute the command `piscoExec` that is inject as a environment variable.
+Now tests must execute the command `piscoExec` that is injected as an environment variable.
 
-This is an example of tests that we can write. This test tests the creation of an app using cells-cli recipe.
+This is an example of tests that we can be written. This test proves the creation of an app using cells-cli recipe.
 
 ```javascript
 'use strict';
@@ -275,7 +277,7 @@ describe('Run cells app:create', function() {
 });
 ```
 
-lets see this example:
+Let's see this example:
 
 - Note that executable is a env variable: `process.env.piscoExec`
 - We are using pctp module that converts callbacks to promises.
@@ -290,13 +292,13 @@ export piscoExec="node /Users/sbonacho/projects/cells-cli/bin/pisco.js"
 mocha -u tdd --recursive test --timeout 5000 --grep "Unit testing framework for askHello step"
 ```
 
-`NOTE:` Is possible to test docker by changing piscoExec value:
+`NOTE:` Is possible to test docker by changing `piscoExec` value:
 
 ```bash
 export piscoExec="docker run -ti --rm -p 8000-8100:8000-8100 -p 3000-3100:3000-3100 -v ~/.gradle:/home/pisco/.gradle -v ~/.bowerrc:/home/pisco/.bowerrc -v ~/.npmrc:/home/pisco/.npmrc -v ~/.netrc:/home/pisco/.netrc -v ~/.ssh:/home/pisco/.ssh -v `pwd`:/home/pisco/workspace piscosour/cells-bundle"
 ```
 
-The execution of pisco -ft or pisco --functionalTests starts with this messages on stdout. Showing the number of functional testing modules in the recipe, its names and versions.
+The execution of `pisco -ft` or `pisco --functionalTests` starts with these messages on stdout. Showing the number of functional testing modules in the recipe, theirs names and versions.
 
 ```bash
 
