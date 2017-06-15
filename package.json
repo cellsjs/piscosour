@@ -43,7 +43,7 @@
   },
   "scripts": {
     "deps": "npm install",
-    "test": "node_modules/.bin/mocha -u tdd --recursive && bin/pisco.js -ft --uuid"
+    "test": "node_modules/.bin/mocha -u tdd --recursive && bin/pisco.js -ft"
   },
   "dependencies": {
     "async": "^2.2.0",
