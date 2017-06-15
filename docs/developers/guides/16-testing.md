@@ -55,8 +55,7 @@ Writing a test for piscosour. First require stepTester
  const tester = require('piscosour/lib/tests/stepTester');
 ```
 
-- [command object](#command)
-
+1. [command object](#command)
 1. [setLoggerLevel(level) method](#setLoggerLevel)
 1. [loadStep(command) method](#loadStep)
 1. [runStep(command) method](#runStep)
