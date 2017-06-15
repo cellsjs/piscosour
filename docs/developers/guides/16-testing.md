@@ -21,7 +21,7 @@ Needed to test `steps`, `plugins` (coming soon) and `contexts` (coming soon)
 
 - This tests resides on the `test` folder of a recipe module.
 - Only need the recipe to be tested and its dependencies.
-- Could generate coverage with this king of tests
+- Could generate coverage with this kind of tests
 
 
 ### <a name="testingSteps"></a> Testing steps
