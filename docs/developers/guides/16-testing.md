@@ -6,10 +6,10 @@ order: 16
 
 # Testing Piscosour
 
-There are to ways to test piscosour recipes: `unit testing` and `functional testing`. Both could be functional but the main different is meanwhile `unit testing` only need `node` to be run, all other tool could be mocked, `functional testing` needs recipes to be executed on a environment with all other tools installed.
+There are to ways to test piscosour recipes: `unit testing` and `functional testing (integration)`. Both could be functional but the main different is `unit testing` runs as a node library inside the test and `functional testing (integration)` runs the recipe as a system executable using require('child_process').exec.
 
 1. [Unit Testing](#unitTesting)
-1. [Functional Testing](#functionalTesting)
+1. [Functional Testing (integration)](#functionalTesting)
 
 ## <a name="unitTesting"></a> Unit testing
 
@@ -172,7 +172,7 @@ describe('Unit testing framework for askHello step', () => {
 ### <a name="testingContexts"></a> Testing contexts
 (comming soon)
 
-## <a name="functionalTesting"></a> Functional testing
+## <a name="functionalTesting"></a> Functional testing (integration)
 
 1. [Configure the recipe](#configureRecipe)
 1. [Writing tests](#writeTest)
@@ -180,8 +180,10 @@ describe('Unit testing framework for askHello step', () => {
 
 
 - Is used to test only recipes by executing externally all its commands.
+- Is possible to tests `flows` and `steps`.
 - Execute the recipe command so a configured environment is needed.
 - Tests resides on a external module outside the recipe. Test modules has to be dependencies of the recipe.
+
 
 ### <a name="configureRecipe"></a> Configuring the recipe for testing
 
