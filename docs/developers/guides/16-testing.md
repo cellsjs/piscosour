@@ -34,7 +34,7 @@ package.json:
 
 ```json
 {
-  {...},
+  "...":"..."
   "scripts": {
     "deps": "npm install",
     "test": "node_modules/.bin/mocha -u tdd --recursive"
@@ -44,7 +44,7 @@ package.json:
     "mocha": "*",
     "piscosour": "^1.0.0"
   },
-  {...}
+  "...":"..."
 }
 
 ```
@@ -208,7 +208,7 @@ package.json of a recipe.
   "devDependencies": {
     "cells-cli-functional-tests": "^1.0.1-beta"
   },
-  {...}
+  "...":"..."
 }
 
 ```
@@ -223,7 +223,7 @@ package.json of the functional testing module:
 
 ```json
 {
-  {...},
+  "...":"...",
   "keywords": [
     "functional-tests"
   ],
@@ -231,7 +231,7 @@ package.json of the functional testing module:
     "chai": "*",
     "mocha": "*"
   },
-  {...}
+  "...":"..."
 }
 ```
 
