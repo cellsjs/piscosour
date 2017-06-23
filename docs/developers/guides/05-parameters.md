@@ -27,7 +27,7 @@ Below are the available methods to fill parameters values:
     - 1. [Inline parameters](#inline)
     - 1. [External file of parameters](#file)
 - 1. [Working Directory `.piscosour/piscosour.json` file configuration](#piscosour-json)
-- 1. [Any Recipe `${RECIPE_HOME}/piscosour.json` file configuration](#piscosour-json)
+- 1. [Any Recipe `${RECIPE_HOME}/piscosour.json` file configuration](#piscosour-json-recipe)
 - 1. [Flow `config.json` file configuration](#flow)
 - 1. [Step `config.json` file configuration](#step)
 - 1. [User inquire - interactive way](#interactive)
@@ -134,7 +134,7 @@ Another method to provide parameters is to create in the working directory where
 
 Check [`piscosour.json` parameters syntax](./11-configuration.md#parameters) for more information and examples.
 
-## <a name="piscosour-json"></a>3. Recipe `piscosour.json` file configuration
+## <a name="piscosour-json-recipe"></a>3. Recipe `piscosour.json` file configuration
 
 You can also provide parameters editing in your recipe the file called `piscosour.json`:
 
