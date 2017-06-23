@@ -346,42 +346,18 @@
 }
 </code></pre>
 <p>Below are the available methods to fill parameters values:</p>
-<ul>
-<li><ol>
-<li><a href="#cli">Command line paramaters option</a><ul>
-<li><ol>
+<ol>
+<li><a href="#cli">Command line paramaters option</a><ol>
 <li><a href="#inline">Inline parameters</a></li>
-</ol>
-</li>
-<li><ol>
 <li><a href="#file">External file of parameters</a></li>
 </ol>
 </li>
-</ul>
-</li>
-</ol>
-</li>
-<li><ol>
 <li><a href="#piscosour-json">Working Directory <code>.piscosour/piscosour.json</code> file configuration</a></li>
-</ol>
-</li>
-<li><ol>
-<li><a href="#piscosour-json">Any Recipe <code>${RECIPE_HOME}/piscosour.json</code> file configuration</a></li>
-</ol>
-</li>
-<li><ol>
+<li><a href="#piscosour-json-recipe">Any Recipe <code>${RECIPE_HOME}/piscosour.json</code> file configuration</a></li>
 <li><a href="#flow">Flow <code>config.json</code> file configuration</a></li>
-</ol>
-</li>
-<li><ol>
 <li><a href="#step">Step <code>config.json</code> file configuration</a></li>
-</ol>
-</li>
-<li><ol>
 <li><a href="#interactive">User inquire - interactive way</a></li>
 </ol>
-</li>
-</ul>
 <p>This is the priority order (from high to low), if a parameter is provided twice or more, with different values, then it will stay the value that is above in the list.</p>
 <p>The <strong>effective configuration</strong> has the merge from all methods and applying this above priority. The <strong>effective configuration</strong> will be prompted if verbose mode is set using <code>-ov</code> parameter over the recipe command or <code>pisco</code> command:</p>
 <pre><code class="lang-sh">$ recipe-name -ov
@@ -449,7 +425,7 @@ Since version 1.1.2 of piscosour, inline configuration admit objects. So:</p>
 <p>Another method to provide parameters is to create in the working directory where it is going to execute the recipe a folder <code>.piscosour</code> with a file called <code>piscosour.json</code>:</p>
 <pre><code>[CurrentWorkingDirectory]/.piscosour/piscosour.json
 </code></pre><p>Check <a href="./11-configuration.md#parameters"><code>piscosour.json</code> parameters syntax</a> for more information and examples.</p>
-<h2 id="-a-name-piscosour-json-a-3-recipe-piscosour-json-file-configuration"><a name="piscosour-json"></a>3. Recipe <code>piscosour.json</code> file configuration</h2>
+<h2 id="-a-name-piscosour-json-recipe-a-3-recipe-piscosour-json-file-configuration"><a name="piscosour-json-recipe"></a>3. Recipe <code>piscosour.json</code> file configuration</h2>
 <p>You can also provide parameters editing in your recipe the file called <code>piscosour.json</code>:</p>
 <pre><code>[recipeRoot]/piscosour.json
 </code></pre><p>Check <a href="./11-configuration.md#paramaters"><code>piscosour.json</code> parameters syntax</a> for more information and examples.</p>

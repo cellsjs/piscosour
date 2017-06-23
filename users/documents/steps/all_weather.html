@@ -4,8 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Google Analytics Integration</title>
-    <link rel="stylesheet" type="text/css" href="../../css/main.css">
+    <title>all::weather</title>
+    <link rel="stylesheet" type="text/css" href="../../../css/main.css">
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc=" crossorigin="anonymous"></script>
   </head>
   <body>
@@ -13,8 +13,8 @@
       <aside>
 
         <div class="logoContainer">
-          <a href="../../index.html">
-            <img src="../../images/logo.svg" class="logo" />
+          <a href="../../../index.html">
+            <img src="../../../images/logo.svg" class="logo" />
             Piscosour
           </a>
 
@@ -33,19 +33,19 @@
               
                 
                   
-                    <a href="../../users/what_is_piscosour.html">What is piscosour</a>
+                    <a href="../../../users/what_is_piscosour.html">What is piscosour</a>
                   
                 
               
                 
                   
-                    <a href="../../users/get_started.html">Get started</a>
+                    <a href="../../../users/get_started.html">Get started</a>
                   
                 
               
                 
                   
-                    <a href="../../users/.gitignore"></a>
+                    <a href="../../../users/.gitignore"></a>
                   
                 
               
@@ -88,19 +88,19 @@
                   
                   <li>
                     
-                    <a href="../../users/guides/Load_Parameters.html">Load Parameters</a>
+                    <a href="../../../users/guides/Load_Parameters.html">Load Parameters</a>
                     
                   </li>
                   
                   <li>
                     
-                    <a href="../../users/guides/configuration.html">Configuration</a>
+                    <a href="../../../users/guides/configuration.html">Configuration</a>
                     
                   </li>
                   
                   <li>
                     
-                    <a href="../../users/guides/analytics.html" class="selected">Google Analytics Integration</a>
+                    <a href="../../../users/guides/analytics.html">Google Analytics Integration</a>
                     
                   </li>
                   
@@ -145,19 +145,19 @@
                         
                         <li>
                           
-                          <a href="../../users/documents/steps/all_weather.html">all::weather</a>
+                          <a href="../../../users/documents/steps/all_weather.html" class="selected">all::weather</a>
                           
                         </li>
                         
                         <li>
                           
-                          <a href="../../users/documents/steps/recipe_add-flows.html">recipe::add-flows</a>
+                          <a href="../../../users/documents/steps/recipe_add-flows.html">recipe::add-flows</a>
                           
                         </li>
                         
                         <li>
                           
-                          <a href="../../users/documents/steps/recipe_add-steps.html">recipe::add-steps</a>
+                          <a href="../../../users/documents/steps/recipe_add-steps.html">recipe::add-steps</a>
                           
                         </li>
                         
@@ -176,7 +176,7 @@
 
         
           
-          <a href="../../developers/get_started.html"
+          <a href="../../../developers/get_started.html"
             class="switch_target">
             Docs for developers
           </a>
@@ -190,20 +190,16 @@
         
       </aside>
       <article>
-        <h1 id="google-analytics-integration">Google Analytics Integration</h1>
+        <h1 id="steps-all-weather">Steps: all::weather</h1>
+<p>This demo step shows the weather in a city</p>
+<h5 id="configuration">Configuration</h5>
 <ul>
-<li>Store user information into $HOME/.piscosour directory. This directory is treated as a recipe stored in <strong>config.recipes.userConfig</strong></li>
-<li>Send usage information to google analytics just setting analytics item into piscosour.json.<pre><code>&quot;analytics&quot; : {
-  &quot;id&quot;: &quot;UA-xxxxxxxxx-xx&quot;,
-  &quot;ask&quot; : true
-}
-</code></pre></li>
-<li>(with analytics.ask param) First time any command is executed the user is going to be asked for permission to send usage information to google analytics.</li>
+<li><code>city</code>: (default: madrid): Name of the city we want to know the weather forecast </li>
 </ul>
 
       </article>
     </section>
-    <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+    <script type="text/javascript" src="../../../js/highlight.pack.js"></script>
     <script>
       hljs.initHighlightingOnLoad();
       $(function(){
