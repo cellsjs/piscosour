@@ -1,6 +1,6 @@
 {
   "name": "piscosour",
-  "version": "1.2.1",
+  "version": "1.3.1",
   "dependencies": {
     "abbrev": {
       "version": "1.1.0",
@@ -48,9 +48,9 @@
       "resolved": "https://registry.npmjs.org/assert-plus/-/assert-plus-0.2.0.tgz"
     },
     "async": {
-      "version": "2.4.1",
-      "from": "async@>=2.2.0 <3.0.0",
-      "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/async/-/async-2.4.1.tgz"
+      "version": "2.5.0",
+      "from": "async@2.5.0",
+      "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/async/-/async-2.5.0.tgz"
     },
     "asynckit": {
       "version": "0.4.0",
@@ -68,9 +68,9 @@
       "resolved": "https://registry.npmjs.org/aws4/-/aws4-1.6.0.tgz"
     },
     "balanced-match": {
-      "version": "0.4.2",
-      "from": "balanced-match@>=0.4.1 <0.5.0",
-      "resolved": "https://registry.npmjs.org/balanced-match/-/balanced-match-0.4.2.tgz"
+      "version": "1.0.0",
+      "from": "balanced-match@>=1.0.0 <2.0.0",
+      "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/balanced-match/-/balanced-match-1.0.0.tgz"
     },
     "bcrypt-pbkdf": {
       "version": "1.0.1",
@@ -89,9 +89,9 @@
       "resolved": "https://registry.npmjs.org/boxen/-/boxen-0.5.1.tgz"
     },
     "brace-expansion": {
-      "version": "1.1.7",
+      "version": "1.1.8",
       "from": "brace-expansion@>=1.1.7 <2.0.0",
-      "resolved": "https://registry.npmjs.org/brace-expansion/-/brace-expansion-1.1.7.tgz"
+      "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/brace-expansion/-/brace-expansion-1.1.8.tgz"
     },
     "camelcase": {
       "version": "2.1.1",
