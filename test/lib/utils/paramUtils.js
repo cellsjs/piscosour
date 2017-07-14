@@ -6,13 +6,15 @@ const expect = require('chai').expect;
 describe('ParamUtils library', () => {
   const MODELO_AUDI = 'audi';
   const MODELO_FORD = 'ford';
-  const COCHE_NAME = "nombreDelCoche";
+  const COCHE_NAME = 'nombreDelCoche';
   const POTENCIA = 110;
   const AUTOMATICO = 'automatico';
+  const EXTRAS = ['aire acondicionado', 'faros de xenon'];
   it('Should generate an object with nested properties (empty input object)', () => {
     //Arrange
     //Act
     const result = paramUtils.refactorObjectsFromCommandLine({}, 'coche.modelo', MODELO_AUDI);
+
     //Assert
     expect(result.coche.modelo).to.equal(MODELO_AUDI);
   });
@@ -23,8 +25,10 @@ describe('ParamUtils library', () => {
         nombre: COCHE_NAME
       }
     };
+
     //Act
     const result = paramUtils.refactorObjectsFromCommandLine(inputObject, 'coche.modelo', MODELO_AUDI);
+
     //Assert
     expect(result.coche.modelo).to.equal(MODELO_AUDI);
     expect(result.coche.nombre).to.equal(COCHE_NAME);
@@ -37,8 +41,10 @@ describe('ParamUtils library', () => {
         modelo: MODELO_FORD
       }
     };
+
     //Act
     const result = paramUtils.refactorObjectsFromCommandLine(inputObject, 'coche.modelo', MODELO_AUDI);
+
     //Assert
     expect(result.coche.modelo).to.equal(MODELO_AUDI);
     expect(result.coche.nombre).to.equal(COCHE_NAME);
@@ -54,8 +60,10 @@ describe('ParamUtils library', () => {
         }
       }
     };
+
     //Act
     const result = paramUtils.refactorObjectsFromCommandLine(inputObject, 'coche.modelo', MODELO_AUDI);
+
     //Assert
     expect(result.coche.modelo).to.equal(MODELO_AUDI);
     expect(inputObject.coche.modelo).to.equal(MODELO_FORD);
@@ -73,8 +81,10 @@ describe('ParamUtils library', () => {
         }
       }
     };
+
     //Act
     const result = paramUtils.refactorObjectsFromCommandLine(inputObject, 'coche.caracteristicas.cambio', AUTOMATICO);
+
     //Assert
     expect(result.coche.modelo).to.equal(MODELO_FORD);
     expect(result.coche.nombre).to.equal(COCHE_NAME);
@@ -82,4 +92,29 @@ describe('ParamUtils library', () => {
     expect(result.coche.caracteristicas.cambio).to.equal(AUTOMATICO);
     expect(inputObject.coche.caracteristicas).to.equal(undefined);
   });
+  it('Should override Arrays and merge the rest', () => {
+    //Arrange
+    const inputObject = {
+      nombre: COCHE_NAME,
+      modelo: MODELO_FORD,
+      extras: EXTRAS
+    };
+
+    const NEW_EXTRAS = [ 'bluetooth' ];
+    const newInput = {
+      extras: NEW_EXTRAS,
+      potencia: POTENCIA,
+      modelo: MODELO_AUDI
+    };
+
+    //Act
+    const result = paramUtils.mergeLodash(newInput, inputObject);
+
+    //Assert
+    expect(result.modelo).to.equal(MODELO_AUDI);
+    expect(result.nombre).to.equal(COCHE_NAME);
+    expect(result.potencia).to.equal(POTENCIA);
+    expect(result.extras).to.equal(NEW_EXTRAS);
+  });
+
 });
