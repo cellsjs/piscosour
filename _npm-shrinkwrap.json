@@ -1,6 +1,6 @@
 {
   "name": "piscosour",
-  "version": "1.3.4",
+  "version": "1.3.5",
   "dependencies": {
     "abbrev": {
       "version": "1.1.0",
@@ -30,7 +30,7 @@
     "ansi-styles": {
       "version": "2.2.1",
       "from": "ansi-styles@>=2.2.1 <3.0.0",
-      "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/ansi-styles/-/ansi-styles-2.2.1.tgz"
+      "resolved": "https://registry.npmjs.org/ansi-styles/-/ansi-styles-2.2.1.tgz"
     },
     "ansicolors": {
       "version": "0.2.1",
@@ -40,12 +40,12 @@
     "asn1": {
       "version": "0.2.3",
       "from": "asn1@>=0.2.3 <0.3.0",
-      "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/asn1/-/asn1-0.2.3.tgz"
+      "resolved": "https://registry.npmjs.org/asn1/-/asn1-0.2.3.tgz"
     },
     "assert-plus": {
       "version": "0.2.0",
       "from": "assert-plus@>=0.2.0 <0.3.0",
-      "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/assert-plus/-/assert-plus-0.2.0.tgz"
+      "resolved": "https://registry.npmjs.org/assert-plus/-/assert-plus-0.2.0.tgz"
     },
     "async": {
       "version": "2.5.0",
@@ -60,7 +60,7 @@
     "aws-sign2": {
       "version": "0.6.0",
       "from": "aws-sign2@>=0.6.0 <0.7.0",
-      "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/aws-sign2/-/aws-sign2-0.6.0.tgz"
+      "resolved": "https://registry.npmjs.org/aws-sign2/-/aws-sign2-0.6.0.tgz"
     },
     "aws4": {
       "version": "1.6.0",
@@ -81,7 +81,7 @@
     "boom": {
       "version": "2.10.1",
       "from": "boom@>=2.0.0 <3.0.0",
-      "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/boom/-/boom-2.10.1.tgz"
+      "resolved": "https://registry.npmjs.org/boom/-/boom-2.10.1.tgz"
     },
     "boxen": {
       "version": "0.5.1",
@@ -96,7 +96,7 @@
     "camelcase": {
       "version": "2.1.1",
       "from": "camelcase@>=2.1.0 <3.0.0",
-      "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/camelcase/-/camelcase-2.1.1.tgz"
+      "resolved": "https://registry.npmjs.org/camelcase/-/camelcase-2.1.1.tgz"
     },
     "capture-stack-trace": {
       "version": "1.0.0",
@@ -116,7 +116,7 @@
     "chalk": {
       "version": "1.1.3",
       "from": "chalk@>=1.1.1 <2.0.0",
-      "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/chalk/-/chalk-1.1.3.tgz"
+      "resolved": "https://registry.npmjs.org/chalk/-/chalk-1.1.3.tgz"
     },
     "cli-boxes": {
       "version": "1.0.0",
@@ -151,17 +151,17 @@
     "colors": {
       "version": "1.0.3",
       "from": "colors@1.0.3",
-      "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/colors/-/colors-1.0.3.tgz"
+      "resolved": "https://registry.npmjs.org/colors/-/colors-1.0.3.tgz"
     },
     "combined-stream": {
       "version": "1.0.5",
       "from": "combined-stream@>=1.0.5 <1.1.0",
-      "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/combined-stream/-/combined-stream-1.0.5.tgz"
+      "resolved": "https://registry.npmjs.org/combined-stream/-/combined-stream-1.0.5.tgz"
     },
     "concat-map": {
       "version": "0.0.1",
       "from": "concat-map@0.0.1",
-      "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/concat-map/-/concat-map-0.0.1.tgz"
+      "resolved": "https://registry.npmjs.org/concat-map/-/concat-map-0.0.1.tgz"
     },
     "concat-stream": {
       "version": "1.6.0",
@@ -176,7 +176,7 @@
     "core-util-is": {
       "version": "1.0.2",
       "from": "core-util-is@>=1.0.0 <1.1.0",
-      "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/core-util-is/-/core-util-is-1.0.2.tgz"
+      "resolved": "https://registry.npmjs.org/core-util-is/-/core-util-is-1.0.2.tgz"
     },
     "create-error-class": {
       "version": "3.0.2",
@@ -186,7 +186,7 @@
     "cryptiles": {
       "version": "2.0.5",
       "from": "cryptiles@>=2.0.0 <3.0.0",
-      "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/cryptiles/-/cryptiles-2.0.5.tgz"
+      "resolved": "https://registry.npmjs.org/cryptiles/-/cryptiles-2.0.5.tgz"
     },
     "dashdash": {
       "version": "1.14.1",
@@ -196,7 +196,7 @@
         "assert-plus": {
           "version": "1.0.0",
           "from": "assert-plus@>=1.0.0 <2.0.0",
-          "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/assert-plus/-/assert-plus-1.0.0.tgz"
+          "resolved": "https://registry.npmjs.org/assert-plus/-/assert-plus-1.0.0.tgz"
         }
       }
     },
@@ -208,7 +208,7 @@
     "delayed-stream": {
       "version": "1.0.0",
       "from": "delayed-stream@>=1.0.0 <1.1.0",
-      "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/delayed-stream/-/delayed-stream-1.0.0.tgz"
+      "resolved": "https://registry.npmjs.org/delayed-stream/-/delayed-stream-1.0.0.tgz"
     },
     "dot-prop": {
       "version": "3.0.0",
@@ -223,7 +223,7 @@
     "ecc-jsbn": {
       "version": "0.1.1",
       "from": "ecc-jsbn@>=0.1.1 <0.2.0",
-      "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/ecc-jsbn/-/ecc-jsbn-0.1.1.tgz",
+      "resolved": "https://registry.npmjs.org/ecc-jsbn/-/ecc-jsbn-0.1.1.tgz",
       "optional": true
     },
     "error-ex": {
@@ -234,7 +234,7 @@
     "escape-string-regexp": {
       "version": "1.0.5",
       "from": "escape-string-regexp@>=1.0.2 <2.0.0",
-      "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/escape-string-regexp/-/escape-string-regexp-1.0.5.tgz"
+      "resolved": "https://registry.npmjs.org/escape-string-regexp/-/escape-string-regexp-1.0.5.tgz"
     },
     "esprima": {
       "version": "3.0.0",
@@ -259,7 +259,7 @@
     "extsprintf": {
       "version": "1.0.2",
       "from": "extsprintf@1.0.2",
-      "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/extsprintf/-/extsprintf-1.0.2.tgz"
+      "resolved": "https://registry.npmjs.org/extsprintf/-/extsprintf-1.0.2.tgz"
     },
     "figures": {
       "version": "1.7.0",
@@ -274,7 +274,7 @@
     "forever-agent": {
       "version": "0.6.1",
       "from": "forever-agent@>=0.6.1 <0.7.0",
-      "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/forever-agent/-/forever-agent-0.6.1.tgz"
+      "resolved": "https://registry.npmjs.org/forever-agent/-/forever-agent-0.6.1.tgz"
     },
     "form-data": {
       "version": "2.1.4",
@@ -294,7 +294,7 @@
         "assert-plus": {
           "version": "1.0.0",
           "from": "assert-plus@>=1.0.0 <2.0.0",
-          "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/assert-plus/-/assert-plus-1.0.0.tgz"
+          "resolved": "https://registry.npmjs.org/assert-plus/-/assert-plus-1.0.0.tgz"
         }
       }
     },
@@ -336,17 +336,17 @@
     "has-ansi": {
       "version": "2.0.0",
       "from": "has-ansi@>=2.0.0 <3.0.0",
-      "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/has-ansi/-/has-ansi-2.0.0.tgz"
+      "resolved": "https://registry.npmjs.org/has-ansi/-/has-ansi-2.0.0.tgz"
     },
     "hawk": {
       "version": "3.1.3",
       "from": "hawk@>=3.1.3 <3.2.0",
-      "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/hawk/-/hawk-3.1.3.tgz"
+      "resolved": "https://registry.npmjs.org/hawk/-/hawk-3.1.3.tgz"
     },
     "hoek": {
       "version": "2.16.3",
       "from": "hoek@>=2.0.0 <3.0.0",
-      "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/hoek/-/hoek-2.16.3.tgz"
+      "resolved": "https://registry.npmjs.org/hoek/-/hoek-2.16.3.tgz"
     },
     "homedir-polyfill": {
       "version": "1.0.1",
@@ -356,7 +356,7 @@
     "http-signature": {
       "version": "1.1.1",
       "from": "http-signature@>=1.1.0 <1.2.0",
-      "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/http-signature/-/http-signature-1.1.1.tgz"
+      "resolved": "https://registry.npmjs.org/http-signature/-/http-signature-1.1.1.tgz"
     },
     "imurmurhash": {
       "version": "0.1.4",
@@ -396,7 +396,7 @@
     "is-fullwidth-code-point": {
       "version": "1.0.0",
       "from": "is-fullwidth-code-point@>=1.0.0 <2.0.0",
-      "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/is-fullwidth-code-point/-/is-fullwidth-code-point-1.0.0.tgz"
+      "resolved": "https://registry.npmjs.org/is-fullwidth-code-point/-/is-fullwidth-code-point-1.0.0.tgz"
     },
     "is-npm": {
       "version": "1.0.0",
@@ -431,7 +431,7 @@
     "is-typedarray": {
       "version": "1.0.0",
       "from": "is-typedarray@>=1.0.0 <1.1.0",
-      "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/is-typedarray/-/is-typedarray-1.0.0.tgz"
+      "resolved": "https://registry.npmjs.org/is-typedarray/-/is-typedarray-1.0.0.tgz"
     },
     "is-windows": {
       "version": "0.2.0",
@@ -441,7 +441,7 @@
     "isarray": {
       "version": "1.0.0",
       "from": "isarray@>=1.0.0 <1.1.0",
-      "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/isarray/-/isarray-1.0.0.tgz"
+      "resolved": "https://registry.npmjs.org/isarray/-/isarray-1.0.0.tgz"
     },
     "isexe": {
       "version": "2.0.0",
@@ -451,7 +451,7 @@
     "isstream": {
       "version": "0.1.2",
       "from": "isstream@>=0.1.2 <0.2.0",
-      "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/isstream/-/isstream-0.1.2.tgz"
+      "resolved": "https://registry.npmjs.org/isstream/-/isstream-0.1.2.tgz"
     },
     "jsbn": {
       "version": "0.1.1",
@@ -472,12 +472,12 @@
     "json-stringify-safe": {
       "version": "5.0.1",
       "from": "json-stringify-safe@>=5.0.1 <5.1.0",
-      "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/json-stringify-safe/-/json-stringify-safe-5.0.1.tgz"
+      "resolved": "https://registry.npmjs.org/json-stringify-safe/-/json-stringify-safe-5.0.1.tgz"
     },
     "jsonify": {
       "version": "0.0.0",
       "from": "jsonify@>=0.0.0 <0.1.0",
-      "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/jsonify/-/jsonify-0.0.0.tgz"
+      "resolved": "https://registry.npmjs.org/jsonify/-/jsonify-0.0.0.tgz"
     },
     "jsprim": {
       "version": "1.4.0",
@@ -487,7 +487,7 @@
         "assert-plus": {
           "version": "1.0.0",
           "from": "assert-plus@1.0.0",
-          "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/assert-plus/-/assert-plus-1.0.0.tgz"
+          "resolved": "https://registry.npmjs.org/assert-plus/-/assert-plus-1.0.0.tgz"
         }
       }
     },
@@ -505,6 +505,11 @@
       "version": "4.2.0",
       "from": "lodash.assign@>=4.2.0 <5.0.0",
       "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/lodash.assign/-/lodash.assign-4.2.0.tgz"
+    },
+    "lodash.toarray": {
+      "version": "4.4.0",
+      "from": "lodash.toarray@>=4.4.0 <5.0.0",
+      "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/lodash.toarray/-/lodash.toarray-4.4.0.tgz"
     },
     "lowercase-keys": {
       "version": "1.0.0",
@@ -539,12 +544,12 @@
     "minimist": {
       "version": "0.0.8",
       "from": "minimist@0.0.8",
-      "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/minimist/-/minimist-0.0.8.tgz"
+      "resolved": "https://registry.npmjs.org/minimist/-/minimist-0.0.8.tgz"
     },
     "mkdirp": {
       "version": "0.5.1",
       "from": "mkdirp@>=0.5.0 <0.6.0",
-      "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/mkdirp/-/mkdirp-0.5.1.tgz"
+      "resolved": "https://registry.npmjs.org/mkdirp/-/mkdirp-0.5.1.tgz"
     },
     "moment": {
       "version": "2.18.1",
@@ -557,9 +562,9 @@
       "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/mute-stream/-/mute-stream-0.0.6.tgz"
     },
     "node-emoji": {
-      "version": "1.5.1",
+      "version": "1.7.0",
       "from": "node-emoji@>=1.4.1 <2.0.0",
-      "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/node-emoji/-/node-emoji-1.5.1.tgz"
+      "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/node-emoji/-/node-emoji-1.7.0.tgz"
     },
     "node-status-codes": {
       "version": "1.0.0",
@@ -584,7 +589,7 @@
     "oauth-sign": {
       "version": "0.8.2",
       "from": "oauth-sign@>=0.8.1 <0.9.0",
-      "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/oauth-sign/-/oauth-sign-0.8.2.tgz"
+      "resolved": "https://registry.npmjs.org/oauth-sign/-/oauth-sign-0.8.2.tgz"
     },
     "object-assign": {
       "version": "4.1.1",
@@ -649,12 +654,12 @@
     "pinkie": {
       "version": "2.0.4",
       "from": "pinkie@>=2.0.0 <3.0.0",
-      "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/pinkie/-/pinkie-2.0.4.tgz"
+      "resolved": "https://registry.npmjs.org/pinkie/-/pinkie-2.0.4.tgz"
     },
     "pinkie-promise": {
       "version": "2.0.1",
       "from": "pinkie-promise@>=2.0.0 <3.0.0",
-      "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/pinkie-promise/-/pinkie-promise-2.0.1.tgz"
+      "resolved": "https://registry.npmjs.org/pinkie-promise/-/pinkie-promise-2.0.1.tgz"
     },
     "pisco-contexts": {
       "version": "1.3.0",
@@ -679,7 +684,7 @@
     "process-nextick-args": {
       "version": "1.0.7",
       "from": "process-nextick-args@>=1.0.6 <1.1.0",
-      "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/process-nextick-args/-/process-nextick-args-1.0.7.tgz"
+      "resolved": "https://registry.npmjs.org/process-nextick-args/-/process-nextick-args-1.0.7.tgz"
     },
     "punycode": {
       "version": "1.4.1",
@@ -699,7 +704,7 @@
         "minimist": {
           "version": "1.2.0",
           "from": "minimist@>=1.2.0 <2.0.0",
-          "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/minimist/-/minimist-1.2.0.tgz"
+          "resolved": "https://registry.npmjs.org/minimist/-/minimist-1.2.0.tgz"
         }
       }
     },
@@ -788,7 +793,7 @@
     "sntp": {
       "version": "1.0.9",
       "from": "sntp@>=1.0.0 <2.0.0",
-      "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/sntp/-/sntp-1.0.9.tgz"
+      "resolved": "https://registry.npmjs.org/sntp/-/sntp-1.0.9.tgz"
     },
     "spawn-sync": {
       "version": "1.0.15",
@@ -803,7 +808,7 @@
         "assert-plus": {
           "version": "1.0.0",
           "from": "assert-plus@>=1.0.0 <2.0.0",
-          "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/assert-plus/-/assert-plus-1.0.0.tgz"
+          "resolved": "https://registry.npmjs.org/assert-plus/-/assert-plus-1.0.0.tgz"
         }
       }
     },
@@ -825,12 +830,12 @@
     "stringstream": {
       "version": "0.0.5",
       "from": "stringstream@>=0.0.4 <0.1.0",
-      "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/stringstream/-/stringstream-0.0.5.tgz"
+      "resolved": "https://registry.npmjs.org/stringstream/-/stringstream-0.0.5.tgz"
     },
     "strip-ansi": {
       "version": "3.0.1",
       "from": "strip-ansi@>=3.0.0 <4.0.0",
-      "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/strip-ansi/-/strip-ansi-3.0.1.tgz"
+      "resolved": "https://registry.npmjs.org/strip-ansi/-/strip-ansi-3.0.1.tgz"
     },
     "strip-json-comments": {
       "version": "2.0.1",
@@ -845,12 +850,12 @@
     "supports-color": {
       "version": "2.0.0",
       "from": "supports-color@>=2.0.0 <3.0.0",
-      "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/supports-color/-/supports-color-2.0.0.tgz"
+      "resolved": "https://registry.npmjs.org/supports-color/-/supports-color-2.0.0.tgz"
     },
     "through": {
       "version": "2.3.8",
       "from": "through@>=2.3.6 <3.0.0",
-      "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/through/-/through-2.3.8.tgz"
+      "resolved": "https://registry.npmjs.org/through/-/through-2.3.8.tgz"
     },
     "timed-out": {
       "version": "3.1.3",
@@ -918,7 +923,7 @@
     "util-deprecate": {
       "version": "1.0.2",
       "from": "util-deprecate@>=1.0.1 <1.1.0",
-      "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/util-deprecate/-/util-deprecate-1.0.2.tgz"
+      "resolved": "https://registry.npmjs.org/util-deprecate/-/util-deprecate-1.0.2.tgz"
     },
     "uuid": {
       "version": "2.0.3",
@@ -928,7 +933,7 @@
     "verror": {
       "version": "1.3.6",
       "from": "verror@1.3.6",
-      "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/verror/-/verror-1.3.6.tgz"
+      "resolved": "https://registry.npmjs.org/verror/-/verror-1.3.6.tgz"
     },
     "which": {
       "version": "1.2.14",
@@ -943,7 +948,7 @@
     "wrappy": {
       "version": "1.0.2",
       "from": "wrappy@>=1.0.0 <2.0.0",
-      "resolved": "https://globaldevtools.bbva.com/artifactory/api/npm/npm-repo/wrappy/-/wrappy-1.0.2.tgz"
+      "resolved": "https://registry.npmjs.org/wrappy/-/wrappy-1.0.2.tgz"
     },
     "write-file-atomic": {
       "version": "1.3.4",
