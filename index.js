@@ -4,7 +4,6 @@ const fs = require('fs');
 
 const moment = require('moment');
 
-const config = require('./lib/config');
 const fsUtils = require('./lib/utils/fsUtils');
 const logger = require('./lib/logger');
 
@@ -23,9 +22,10 @@ const onFulfilled = function() {
     try {
       fs.unlinkSync(relaunch);
     } catch (e) {
+      console.log('Problem deleting', relaunch, e);
     }
     process.stdout.write('\n');
-    config.refresh(true);
+    require('./lib/config').refresh(true);
     gush();
   } else {
     process.exit(0);
